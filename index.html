@@ -1,120 +1,1245 @@
-
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101522">
-<title>Prompt Library</title>
+<meta name="theme-color" content="#070a13">
+<title>Maishn.Work — AI Prompts</title>
+
 <style>
-:root{color-scheme:dark;--bg:#101522;--card:#191f30;--line:#30394d;--text:#f5f7ff;--muted:#aab4ca;--blue:#4c83ff;--green:#27b783}
+:root{
+  color-scheme:dark;
+  --bg:#070a13;
+  --bg2:#0c1120;
+  --panel:#11182b;
+  --panel2:#151e34;
+  --line:#293653;
+  --text:#f5f7ff;
+  --muted:#9caaca;
+  --blue:#6487ff;
+  --cyan:#57e2ef;
+  --purple:#ad6cff;
+  --green:#45dfaa;
+  --red:#ff718b;
+  --shadow:0 25px 80px #0008;
+}
+
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top left,#202a49 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-main{width:min(900px,100%);margin:auto;padding:24px 16px 48px}
-.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.logo{width:46px;height:46px;border-radius:14px;background:#29375d;display:grid;place-items:center;font-size:24px}
-.brand h1{font-size:1.4rem;margin:0}
-.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
-input,textarea,button{font:inherit}
-input,textarea{width:100%;background:#111827;border:1px solid #38435a;color:var(--text);border-radius:12px;padding:12px}
-textarea{min-height:180px;resize:vertical}
-button{border:0;border-radius:12px;padding:11px 15px;font-weight:750;cursor:pointer;background:var(--blue);color:white}
-button:disabled{opacity:.6;cursor:wait}
-.secondary{background:#2a3245;color:#eaf0ff}
-.danger{background:#602d3b}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.search{margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:15px}
-.card{background:rgba(25,31,48,.96);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 14px 40px #0002;min-width:0}
-.tag{color:#9db7ff;font-size:.75rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
-.card h2{font-size:1.25rem;line-height:1.25;margin:9px 0}
-.desc{color:var(--muted);margin:0 0 13px}
-.prompt{white-space:pre-wrap;overflow-wrap:anywhere;background:#111827;border:1px solid #38435a;border-radius:13px;padding:13px;color:#e5eaf6;max-height:300px;overflow:auto}
-.status{min-height:24px;color:#7ce0b7;font-size:.9rem;margin:10px 0}
-.note,.footer{color:var(--muted);font-size:.85rem}
-.footer{text-align:center;margin-top:24px}
-.admin-dot{position:fixed;bottom:6px;right:6px;width:16px;height:16px;padding:0;font-size:1px;opacity:.04;border-radius:50%}
-.overlay{display:none;position:fixed;inset:0;background:#070a12ed;z-index:10;align-items:center;justify-content:center;padding:14px;overflow:auto}
-.overlay.show{display:flex}
-.modal{width:min(620px,100%);background:#191f30;border:1px solid var(--line);border-radius:18px;padding:20px}
-.modal h2{margin:0 0 10px}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 0%,#30447b55,transparent 35%),
+    radial-gradient(circle at 90% 20%,#722f9650,transparent 32%),
+    radial-gradient(circle at 50% 100%,#185f6b25,transparent 35%),
+    var(--bg);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(transparent 95%,#ffffff04 95%),
+    linear-gradient(90deg,transparent 95%,#ffffff04 95%);
+  background-size:40px 40px;
+  mask-image:linear-gradient(to bottom,#000,transparent 75%);
+}
+
+button,input,textarea{font:inherit}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:wait;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
 .hidden{display:none!important}
-.row{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:10px 0;flex-wrap:wrap}
-.formrow{margin:12px 0}
-.formrow label{display:block;color:var(--muted);font-size:.85rem;margin-bottom:5px}
-.admin-item{border-top:1px solid var(--line);padding:12px 0;display:flex;gap:10px;align-items:center;justify-content:space-between}
-.admin-item strong{overflow-wrap:anywhere;flex:1}
+
+.container{
+  width:min(1120px,100%);
+  margin:auto;
+  padding:0 17px;
+}
+
+/* HEADER */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  border-bottom:1px solid #ffffff0d;
+  background:#070a13cc;
+  backdrop-filter:blur(18px);
+}
+
+.header-inner{
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.logo{
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  box-shadow:0 0 35px #7185ff45;
+  font-size:21px;
+  animation:logoFloat 4s ease-in-out infinite;
+}
+
+.brand-name{
+  display:block;
+  font-weight:900;
+  letter-spacing:-.04em;
+  font-size:1.15rem;
+}
+
+.brand-sub{
+  display:block;
+  color:var(--muted);
+  font-size:.72rem;
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+}
+
+.nav button{
+  padding:9px 13px;
+  border-radius:11px;
+  color:#cbd4e9;
+  background:#ffffff08;
+  border:1px solid #ffffff0b;
+}
+
+.nav button:hover{
+  color:white;
+  background:#ffffff12;
+}
+
+/* PUBLIC */
+
+.page{
+  min-height:calc(100vh - 70px);
+}
+
+.hero{
+  padding:70px 0 45px;
+  text-align:center;
+  animation:fadeUp .8s both;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border:1px solid #7188ff45;
+  border-radius:999px;
+  color:#d2dcff;
+  background:#6a82ff12;
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
+}
+
+.hero h1{
+  max-width:850px;
+  margin:20px auto 14px;
+  font-size:clamp(2.7rem,8vw,5.7rem);
+  line-height:.98;
+  letter-spacing:-.07em;
+}
+
+.gradient{
+  color:transparent;
+  background:linear-gradient(100deg,#fff,#9eb7ff 35%,#d39dff 70%,#61e8f0);
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+
+.hero p{
+  max-width:650px;
+  margin:auto;
+  color:var(--muted);
+  font-size:1.02rem;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:26px;
+}
+
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:12px 17px;
+  border-radius:13px;
+  color:white;
+  font-weight:800;
+  background:linear-gradient(110deg,#557aff,#955cff);
+  box-shadow:0 8px 28px #617fff20;
+  transition:.25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.12);
+  box-shadow:0 14px 38px #7185ff35;
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn.secondary{
+  background:#1c263d;
+  border:1px solid #35425f;
+  box-shadow:none;
+}
+
+.btn.green{
+  background:linear-gradient(110deg,#168f71,#27bd95);
+}
+
+.btn.red{
+  background:#5d2939;
+  border:1px solid #8d3e55;
+}
+
+/* HERO CARD */
+
+.hero-card{
+  position:relative;
+  overflow:hidden;
+  margin:25px auto 40px;
+  max-width:1050px;
+  min-height:300px;
+  padding:35px;
+  text-align:left;
+  border:1px solid #7188ff45;
+  border-radius:30px;
+  background:
+    linear-gradient(135deg,#17264b,#17152d 58%,#112c3b);
+  box-shadow:var(--shadow);
+  animation:fadeUp .9s .12s both;
+  transition:.35s ease;
+}
+
+.hero-card:hover{
+  transform:translateY(-5px);
+  border-color:#9cafff80;
+}
+
+.hero-card:before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  right:-90px;
+  top:-110px;
+  border-radius:50%;
+  background:#8c68ff35;
+  filter:blur(8px);
+  animation:orb 6s ease-in-out infinite alternate;
+}
+
+.hero-card:after{
+  content:"";
+  position:absolute;
+  width:200px;
+  height:200px;
+  right:130px;
+  bottom:-140px;
+  border-radius:50%;
+  background:#52ddeb25;
+  filter:blur(15px);
+}
+
+.hero-card-content{
+  position:relative;
+  z-index:2;
+}
+
+.hero-card h2{
+  margin:23px 0 8px;
+  font-size:clamp(2.5rem,7vw,4.7rem);
+  line-height:1;
+  letter-spacing:-.065em;
+}
+
+.hero-card p{
+  max-width:600px;
+  color:#c0cbe2;
+  margin:0;
+}
+
+.orbit{
+  position:absolute;
+  z-index:1;
+  right:45px;
+  top:35px;
+  width:145px;
+  height:145px;
+  border:1px solid #9aafff40;
+  border-radius:50%;
+  animation:spin 18s linear infinite;
+}
+
+.orbit:before,
+.orbit:after{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 22px var(--cyan);
+}
+
+.orbit:before{
+  top:15px;
+  left:15px;
+}
+
+.orbit:after{
+  right:14px;
+  bottom:12px;
+  background:var(--purple);
+  box-shadow:0 0 22px var(--purple);
+}
+
+/* SEARCH */
+
+.search-wrap{
+  margin:25px 0;
+  position:relative;
+}
+
+.search{
+  width:100%;
+  padding:15px 18px 15px 46px;
+  border-radius:15px;
+  border:1px solid var(--line);
+  background:#0c1221e8;
+  color:white;
+  outline:none;
+}
+
+.search:focus{
+  border-color:#7088ff;
+  box-shadow:0 0 0 3px #7188ff15;
+}
+
+.search-icon{
+  position:absolute;
+  left:17px;
+  top:13px;
+  color:var(--muted);
+}
+
+/* PROMPTS */
+
+.section-heading{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin:35px 0 15px;
+}
+
+.section-heading h2{
+  margin:0;
+  font-size:1.45rem;
+}
+
+.section-heading p{
+  margin:0;
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+.prompt-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
+  gap:16px;
+}
+
+.prompt-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(145deg,#151d31,#0e1424);
+  box-shadow:0 15px 45px #0003;
+  animation:fadeUp .55s both;
+  transition:.28s ease;
+}
+
+.prompt-card:hover{
+  transform:translateY(-6px);
+  border-color:#6784ff75;
+  box-shadow:0 22px 55px #0005;
+}
+
+.card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.number{
+  display:grid;
+  place-items:center;
+  min-width:32px;
+  height:32px;
+  border-radius:10px;
+  color:#cbd7ff;
+  background:#627cff15;
+  border:1px solid #758aff40;
+  font-size:.78rem;
+  font-weight:900;
+}
+
+.platform{
+  max-width:70%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  padding:5px 9px;
+  border-radius:999px;
+  border:1px solid #51d9e835;
+  color:#8de9f3;
+  background:#50dce70d;
+  font-size:.73rem;
+  font-weight:750;
+}
+
+.prompt-card h3{
+  margin:18px 0 7px;
+  font-size:1.25rem;
+  line-height:1.3;
+}
+
+.prompt-card p{
+  margin:0 0 20px;
+  color:var(--muted);
+  font-size:.88rem;
+}
+
+.copy-btn{
+  width:100%;
+  margin-top:auto;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  z-index:100;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  padding:12px 17px;
+  border:1px solid #ffffff18;
+  border-radius:13px;
+  background:#151d31f5;
+  box-shadow:0 15px 45px #0008;
+  color:#fff;
+  font-weight:750;
+  transition:.3s ease;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* ADMIN LOGIN */
+
+.admin-page{
+  min-height:calc(100vh - 70px);
+  display:grid;
+  place-items:center;
+  padding:35px 0;
+}
+
+.login-box{
+  position:relative;
+  overflow:hidden;
+  width:min(480px,100%);
+  padding:34px 25px;
+  border:1px solid #56678f;
+  border-radius:27px;
+  background:linear-gradient(145deg,#141d34,#0d1322);
+  box-shadow:0 30px 100px #0009;
+  text-align:center;
+  animation:loginIn .55s both;
+}
+
+.login-box:before{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  top:-150px;
+  right:-100px;
+  border-radius:50%;
+  background:#755eff35;
+  filter:blur(20px);
+}
+
+.login-icon{
+  position:relative;
+  width:78px;
+  height:78px;
+  margin:0 auto 18px;
+  display:grid;
+  place-items:center;
+  border-radius:25px;
+  background:linear-gradient(135deg,#6385ff,#a661ff);
+  box-shadow:0 0 60px #7184ff45;
+  font-size:31px;
+  animation:logoFloat 3s ease-in-out infinite;
+}
+
+.login-box h1{
+  position:relative;
+  margin:0 0 8px;
+  font-size:2rem;
+}
+
+.login-box p{
+  position:relative;
+  color:var(--muted);
+  margin:0 auto 23px;
+}
+
+.google-btn{
+  width:100%;
+  background:white;
+  color:#171923;
+}
+
+.google-btn:hover{
+  background:#f0f2f7;
+  color:#171923;
+}
+
+.login-status{
+  min-height:24px;
+  margin-top:13px;
+  color:#8de5bd;
+  font-size:.85rem;
+}
+
+/* ADMIN */
+
+.admin-page-layout{
+  padding:35px 0 60px;
+}
+
+.admin-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.admin-title h1{
+  margin:8px 0 3px;
+  font-size:2.4rem;
+  letter-spacing:-.05em;
+}
+
+.admin-title p{
+  color:var(--muted);
+  margin:0;
+}
+
+.admin-layout{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:16px;
+}
+
+.admin-box{
+  padding:20px;
+  border:1px solid #293653;
+  border-radius:20px;
+  background:linear-gradient(145deg,#111a2e,#0d1424);
+  box-shadow:0 18px 55px #0004;
+}
+
+.admin-box h2{
+  margin:0 0 13px;
+  font-size:1.1rem;
+}
+
+.field{
+  width:100%;
+  padding:12px 13px;
+  border:1px solid #34425f;
+  border-radius:12px;
+  background:#0b1120;
+  color:white;
+  outline:none;
+}
+
+.field:focus{
+  border-color:#6d87ff;
+}
+
+.form-row{
+  margin:13px 0;
+}
+
+.form-row label{
+  display:block;
+  color:#c5cfe3;
+  font-size:.82rem;
+  margin-bottom:6px;
+}
+
+.admin-prompt{
+  padding:14px 0;
+  border-top:1px solid #ffffff10;
+}
+
+.admin-prompt:first-child{
+  border-top:0;
+}
+
+.admin-prompt-title{
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+
+.admin-prompt-meta{
+  color:var(--muted);
+  font-size:.78rem;
+  margin:3px 0 9px;
+}
+
+.admin-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.admin-actions .btn{
+  padding:8px 10px;
+  font-size:.78rem;
+}
+
+.footer{
+  padding:35px 0;
+  border-top:1px solid #ffffff0d;
+  text-align:center;
+  color:var(--muted);
+  font-size:.83rem;
+}
+
+/* MODAL */
+
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:80;
+  padding:15px;
+  align-items:center;
+  justify-content:center;
+  overflow:auto;
+  background:#03050bf0;
+  backdrop-filter:blur(15px);
+}
+
+.overlay.show{
+  display:flex;
+  animation:fade .2s both;
+}
+
+.modal{
+  width:min(620px,100%);
+  padding:24px;
+  border:1px solid #455577;
+  border-radius:23px;
+  background:linear-gradient(145deg,#171f35,#0e1525);
+  box-shadow:0 35px 110px #000b;
+  animation:modalIn .3s both;
+}
+
+.modal h2{
+  margin:0 0 5px;
+}
+
+.note{
+  color:var(--muted);
+  font-size:.83rem;
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes loginIn{
+  from{opacity:0;transform:translateY(25px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(15px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes fade{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes orb{
+  from{transform:translateY(-8px)}
+  to{transform:translateY(18px)}
+}
+
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+@media(max-width:760px){
+  .nav button{
+    padding:8px 10px;
+    font-size:.78rem;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  .hero-card{
+    padding:25px;
+  }
+
+  .orbit{
+    right:-35px;
+    opacity:.55;
+  }
+
+  .admin-layout{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:480px){
+  .container{
+    padding:0 13px;
+  }
+
+  .brand-sub{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:2.65rem;
+  }
+
+  .hero-card h2{
+    font-size:2.7rem;
+  }
+
+  .hero-card{
+    min-height:280px;
+  }
+
+  .section-heading{
+    display:block;
+  }
+
+  .section-heading p{
+    margin-top:4px;
+  }
+
+  .admin-title h1{
+    font-size:2rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<main>
-<header class="brand">
-<div class="logo">✨</div>
-<div>
-<h1>Prompt Library</h1>
-<p>Useful prompts, ready to copy</p>
-</div>
+<header class="header">
+  <div class="container header-inner">
+
+    <button class="brand" id="homeButton" style="background:none;padding:0;text-align:left">
+      <span class="logo">✦</span>
+      <span>
+        <span class="brand-name" id="brandName">Maishn.Work</span>
+        <span class="brand-sub">AI Prompt Library</span>
+      </span>
+    </button>
+
+    <nav class="nav">
+      <button id="promptsNav">Prompts</button>
+      <button id="adminNav">Admin</button>
+    </nav>
+
+  </div>
 </header>
 
-<input id="search" class="search" type="search" placeholder="Search prompts..." aria-label="Search prompts">
-<p id="status" class="status" role="status">Loading prompts…</p>
-<section id="cards" class="grid"></section>
-<p class="footer">Made for your Telegram prompt channel</p>
-</main>
+<!-- PUBLIC PAGE -->
 
-<!-- Public visitors see no login option. Admin: add #admin to the website URL. -->
-<button class="admin-dot" id="adminEntry" aria-label="Admin access">A</button>
+<section id="publicPage" class="page">
 
-<div class="overlay" id="adminOverlay">
-<div class="modal">
-<div class="row">
-<h2>Admin Panel</h2>
-<button class="secondary" id="closeAdmin">Close</button>
-</div>
-<p id="adminMessage" class="note">Only the authorized administrator can manage prompts.</p>
-<div id="loginArea">
-<button id="login">Continue with Google</button>
-</div>
-<div id="tools" class="hidden">
-<p id="signed" class="note"></p>
-<div class="actions">
-<button id="add">Add new prompt</button>
-<button class="secondary" id="logout">Sign out</button>
-</div>
-<div id="adminList"></div>
-</div>
-</div>
+  <div class="container">
+
+    <div class="hero">
+
+      <span class="badge">
+        <span class="dot"></span>
+        HANDCRAFTED AI PROMPTS
+      </span>
+
+      <h1>
+        Create more with
+        <span class="gradient">the right prompt.</span>
+      </h1>
+
+      <p id="heroTagline">
+        Empowering Your AI Workflow with Handcrafted Prompts.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn" id="exploreButton">
+          🚀 Explore Prompts
+        </button>
+        <button class="btn secondary" id="adminHeroButton">
+          ⚙ Admin
+        </button>
+      </div>
+
+    </div>
+
+    <section class="hero-card">
+
+      <span class="orbit"></span>
+
+      <div class="hero-card-content">
+
+        <span class="badge">
+          ✦ YOUR PROMPT COLLECTION
+        </span>
+
+        <h2 id="heroTitle">Prompts</h2>
+
+        <p id="heroDescription">
+          Discover useful AI prompts, choose your favourite and copy it instantly.
+        </p>
+
+      </div>
+
+    </section>
+
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="Search prompts by title or platform..."
+      >
+    </div>
+
+    <div class="section-heading">
+
+      <div>
+        <h2>Latest Prompts</h2>
+        <p id="promptCount">Loading...</p>
+      </div>
+
+    </div>
+
+    <p id="publicStatus" class="note"></p>
+
+    <div id="promptGrid" class="prompt-grid"></div>
+
+    <footer class="footer">
+      <strong id="footerBrand">Maishn.Work</strong>
+      <div id="footerTagline">
+        Empowering Your AI Workflow with Handcrafted Prompts.
+      </div>
+      <div style="margin-top:6px">Built for creators who imagine more. ✦</div>
+    </footer>
+
+  </div>
+
+</section>
+
+
+<!-- ADMIN LOGIN -->
+
+<section id="loginPage" class="admin-page hidden">
+
+  <div class="container">
+
+    <div class="login-box">
+
+      <div class="login-icon">✦</div>
+
+      <span class="badge">
+        🔐 PRIVATE WORKSPACE
+      </span>
+
+      <h1>Admin Access</h1>
+
+      <p>
+        Sign in with your authorized Google account to manage Maishn.Work.
+      </p>
+
+      <button class="btn google-btn" id="loginButton">
+        <span>G</span>
+        Continue with Google
+      </button>
+
+      <div id="loginStatus" class="login-status"></div>
+
+      <button
+        class="btn secondary"
+        id="backFromLogin"
+        style="margin-top:12px;width:100%"
+      >
+        ← Back to Website
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ADMIN DASHBOARD -->
+
+<section id="adminPage" class="admin-page-layout hidden">
+
+  <div class="container">
+
+    <div class="admin-header">
+
+      <div class="admin-title">
+
+        <span class="badge">
+          <span class="dot"></span>
+          ADMIN CONTROL CENTER
+        </span>
+
+        <h1 class="gradient">Dashboard</h1>
+
+        <p id="signedEmail"></p>
+
+      </div>
+
+      <div class="admin-actions">
+
+        <button class="btn secondary" id="adminHomeButton">
+          View Website
+        </button>
+
+        <button class="btn red" id="logoutButton">
+          Sign Out
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="admin-layout">
+
+      <!-- SETTINGS -->
+
+      <section class="admin-box">
+
+        <h2>⚙ Website Settings</h2>
+
+        <p class="note">
+          Control the public homepage from here.
+        </p>
+
+        <form id="settingsForm">
+
+          <div class="form-row">
+
+            <label>Brand Name</label>
+
+            <input
+              id="settingBrand"
+              class="field"
+              maxlength="70"
+              value="Maishn.Work"
+            >
+
+          </div>
+
+          <div class="form-row">
+
+            <label>Hero Title</label>
+
+            <input
+              id="settingHeroTitle"
+              class="field"
+              maxlength="100"
+              value="Prompts"
+            >
+
+          </div>
+
+          <div class="form-row">
+
+            <label>Hero Description</label>
+
+            <textarea
+              id="settingHeroDescription"
+              class="field"
+              rows="4"
+            >Discover useful AI prompts, choose your favourite and copy it instantly.</textarea>
+
+          </div>
+
+          <div class="form-row">
+
+            <label>Tagline</label>
+
+            <input
+              id="settingTagline"
+              class="field"
+              maxlength="180"
+              value="Empowering Your AI Workflow with Handcrafted Prompts."
+            >
+
+          </div>
+
+          <button class="btn green" style="width:100%">
+            Save Website Settings
+          </button>
+
+        </form>
+
+        <p id="settingsStatus" class="note"></p>
+
+      </section>
+
+
+      <!-- PROMPT MANAGEMENT -->
+
+      <section class="admin-box">
+
+        <div class="admin-header" style="margin-bottom:5px">
+
+          <div>
+            <h2 style="margin:0">📚 Prompt Management</h2>
+            <p class="note">
+              Add, edit, delete and reorder prompts.
+            </p>
+          </div>
+
+          <button class="btn" id="addPromptButton">
+            ＋ Add Prompt
+          </button>
+
+        </div>
+
+        <div id="adminPromptList"></div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROMPT EDITOR -->
+
+<div class="overlay" id="editorOverlay">
+
+  <div class="modal">
+
+    <h2 id="editorTitle">Add Prompt</h2>
+
+    <p class="note">
+      The raw prompt is stored in Firestore but is never displayed publicly.
+    </p>
+
+    <div class="form-row">
+
+      <label>Prompt Title</label>
+
+      <input
+        id="promptTitle"
+        class="field"
+        maxlength="180"
+        placeholder="Example: Cinematic AI Video"
+      >
+
+    </div>
+
+    <div class="form-row">
+
+      <label>AI Platform</label>
+
+      <input
+        id="promptPlatform"
+        class="field"
+        maxlength="100"
+        placeholder="Example: Meta AI"
+      >
+
+    </div>
+
+    <div class="form-row">
+
+      <label>Short Description</label>
+
+      <input
+        id="promptDescription"
+        class="field"
+        maxlength="300"
+        placeholder="What can this prompt create?"
+      >
+
+    </div>
+
+    <div class="form-row">
+
+      <label>Full Prompt</label>
+
+      <textarea
+        id="promptText"
+        class="field"
+        rows="9"
+        placeholder="Paste your complete prompt here..."
+      ></textarea>
+
+    </div>
+
+    <div class="form-row">
+
+      <label>
+        <input id="promptPublished" type="checkbox" checked>
+        Publish this prompt
+      </label>
+
+    </div>
+
+    <p id="editorStatus" class="note"></p>
+
+    <div class="modal-actions">
+
+      <button class="btn green" id="savePromptButton">
+        Save Prompt
+      </button>
+
+      <button class="btn secondary" id="cancelEditorButton">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
 
-<div class="overlay" id="editOverlay">
-<div class="modal">
-<h2 id="editHeading">Add prompt</h2>
-<div class="formrow">
-<label for="title">Prompt title</label>
-<input id="title" maxlength="180" placeholder="Prompt title">
-</div>
-<div class="formrow">
-<label for="desc">Short description (optional)</label>
-<input id="desc" maxlength="300" placeholder="Short description">
-</div>
-<div class="formrow">
-<label for="text">Full prompt</label>
-<textarea id="text" placeholder="Paste the full prompt here..."></textarea>
-</div>
-<p id="editError" class="status"></p>
-<div class="actions">
-<button id="save">Save prompt</button>
-<button id="cancel" class="secondary">Cancel</button>
-</div>
-</div>
-</div>
+
+<div id="toast" class="toast"></div>
+
+
+<!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
+"use strict";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
 const firebaseConfig = {
   apiKey: "AIzaSyB6WxK_Ty-FxfG-rAScxtY8t5VjqXnoSLA",
   authDomain: "maishnwork-65719.firebaseapp.com",
@@ -133,312 +1258,924 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-let user = null;
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentUser = null;
 let prompts = [];
 let editingId = null;
 
+let settings = {
+  brandName:"Maishn.Work",
+  heroTitle:"Prompts",
+  heroDescription:
+    "Discover useful AI prompts, choose your favourite and copy it instantly.",
+  tagline:
+    "Empowering Your AI Workflow with Handcrafted Prompts."
+};
+
+
+/* =========================
+   HELPERS
+========================= */
+
 const $ = id => document.getElementById(id);
-const str = value => String(value ?? "");
 
-const isAdmin = () =>
-  !!user &&
-  user.email === ADMIN_EMAIL &&
-  user.emailVerified === true;
+const text = value => String(value ?? "");
 
-function render() {
-  const query = $("search").value.trim().toLowerCase();
+function isAdmin(){
 
-  const list = prompts.filter(prompt =>
-    (
-      str(prompt.title) + " " +
-      str(prompt.description) + " " +
-      str(prompt.text)
-    ).toLowerCase().includes(query)
-  );
+  return !!currentUser &&
+    currentUser.email &&
+    currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
 
-  $("cards").innerHTML = "";
+}
 
-  if (!list.length) {
-    $("cards").innerHTML =
-      '<div class="card">No prompts published yet.</div>';
+function showToast(message){
+
+  const toast = $("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },1800);
+
+}
+
+
+/* =========================
+   ROUTING
+========================= */
+
+function route(){
+
+  const hash = location.hash.toLowerCase();
+
+  $("publicPage").classList.add("hidden");
+  $("loginPage").classList.add("hidden");
+  $("adminPage").classList.add("hidden");
+
+  if(hash === "#admin"){
+
+    if(isAdmin()){
+      $("adminPage").classList.remove("hidden");
+      renderAdmin();
+    }else{
+      $("loginPage").classList.remove("hidden");
+    }
+
     return;
   }
 
-  list.forEach(prompt => {
-    const card = document.createElement("article");
-    card.className = "card";
+  $("publicPage").classList.remove("hidden");
 
-    const tag = document.createElement("div");
-    tag.className = "tag";
-    tag.textContent = "PROMPT";
+}
 
-    const heading = document.createElement("h2");
-    heading.textContent = str(prompt.title);
+window.addEventListener("hashchange",route);
 
-    const description = document.createElement("p");
-    description.className = "desc";
-    description.textContent = str(prompt.description);
 
-    const body = document.createElement("div");
-    body.className = "prompt";
-    body.textContent = str(prompt.text);
+/* =========================
+   SETTINGS
+========================= */
 
-    const actions = document.createElement("div");
-    actions.className = "actions";
+function applySettings(data){
 
-    const copy = document.createElement("button");
-    copy.textContent = "📋 Copy Prompt";
+  settings = {
+    brandName:text(data.brandName || "Maishn.Work"),
+    heroTitle:text(data.heroTitle || "Prompts"),
+    heroDescription:text(
+      data.heroDescription ||
+      "Discover useful AI prompts, choose your favourite and copy it instantly."
+    ),
+    tagline:text(
+      data.tagline ||
+      "Empowering Your AI Workflow with Handcrafted Prompts."
+    )
+  };
 
-    copy.onclick = async () => {
-      try {
-        await navigator.clipboard.writeText(str(prompt.text));
-      } catch (error) {
-        const temp = document.createElement("textarea");
-        temp.value = str(prompt.text);
-        temp.style.position = "fixed";
-        document.body.append(temp);
-        temp.select();
-        document.execCommand("copy");
-        temp.remove();
+  $("brandName").textContent=settings.brandName;
+
+  $("heroTitle").textContent=settings.heroTitle;
+
+  $("heroDescription").textContent=settings.heroDescription;
+
+  $("heroTagline").textContent=settings.tagline;
+
+  $("footerBrand").textContent=settings.brandName;
+
+  $("footerTagline").textContent=settings.tagline;
+
+  document.title=settings.brandName+" — AI Prompts";
+
+}
+
+
+/* =========================
+   LOAD SETTINGS
+========================= */
+
+db.collection("settings").doc("site").onSnapshot(
+
+  snapshot=>{
+
+    if(snapshot.exists){
+      applySettings(snapshot.data());
+    }else{
+      applySettings({});
+    }
+
+  },
+
+  error=>{
+
+    console.error(error);
+    applySettings({});
+
+  }
+
+);
+
+
+/* =========================
+   LOAD PROMPTS
+========================= */
+
+db.collection("prompts").onSnapshot(
+
+  snapshot=>{
+
+    prompts=snapshot.docs
+      .map(doc=>({
+        id:doc.id,
+        ...doc.data()
+      }))
+      .filter(prompt=>prompt.published !== false);
+
+    prompts.sort((a,b)=>{
+
+      const orderA=Number(a.order ?? 999999);
+      const orderB=Number(b.order ?? 999999);
+
+      if(orderA !== orderB){
+        return orderA-orderB;
       }
 
-      copy.textContent = "Copied!";
-      setTimeout(() => {
-        copy.textContent = "📋 Copy Prompt";
-      }, 1300);
-    };
+      return text(a.title).localeCompare(text(b.title));
 
-    const select = document.createElement("button");
-    select.className = "secondary";
-    select.textContent = "Select text";
-
-    select.onclick = () => {
-      const range = document.createRange();
-      range.selectNodeContents(body);
-
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    };
-
-    actions.append(copy, select);
-    card.append(tag, heading, description, body, actions);
-    $("cards").append(card);
-  });
-}
-
-$("search").addEventListener("input", render);
-
-db.collection("prompts").onSnapshot(snapshot => {
-  prompts = snapshot.docs
-    .map(doc => ({ id: doc.id, ...doc.data() }))
-    .filter(prompt => prompt.published !== false);
-
-  prompts.sort((a, b) =>
-    str(a.title).localeCompare(str(b.title))
-  );
-
-  $("status").textContent = prompts.length
-    ? prompts.length + " prompts available"
-    : "No prompts yet. Admin can add the first prompt.";
-
-  render();
-  renderAdmin();
-}, error => {
-  $("status").textContent =
-    "Could not load prompts. Check Firestore Rules and internet connection.";
-  console.error(error);
-});
-
-function openAdmin() {
-  $("adminOverlay").classList.add("show");
-}
-
-function closeAdmin() {
-  $("adminOverlay").classList.remove("show");
-
-  if (location.hash === "#admin") {
-    history.replaceState(
-      null,
-      "",
-      location.pathname + location.search
-    );
-  }
-}
-
-$("adminEntry").onclick = () => {
-  location.hash = "admin";
-};
-
-$("closeAdmin").onclick = closeAdmin;
-
-window.addEventListener("hashchange", () => {
-  if (location.hash === "#admin") openAdmin();
-});
-
-if (location.hash === "#admin") openAdmin();
-
-$("login").onclick = async () => {
-  try {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    provider.setCustomParameters({
-      prompt: "select_account"
     });
 
-    const result = await auth.signInWithPopup(provider);
+    $("promptCount").textContent =
+      prompts.length+" published prompt"+
+      (prompts.length===1?"":"s");
 
-    if (
-      !result.user ||
-      result.user.email !== ADMIN_EMAIL ||
-      result.user.emailVerified !== true
-    ) {
-      await auth.signOut();
-      $("adminMessage").textContent = "Admin account not found.";
-    }
-  } catch (error) {
+    renderPublic();
+    renderAdmin();
+
+  },
+
+  error=>{
+
     console.error(error);
 
-    $("adminMessage").textContent =
-      error.code === "auth/unauthorized-domain"
-        ? "Add maishnwork.github.io to Firebase Authentication → Settings → Authorized domains."
-        : "Sign-in failed: " + (error.message || error.code);
+    $("publicStatus").textContent =
+      "Unable to load prompts. Check Firestore Rules.";
+
   }
+
+);
+
+
+/* =========================
+   PUBLIC PROMPTS
+========================= */
+
+function renderPublic(){
+
+  const query=$("search").value.trim().toLowerCase();
+
+  const list=prompts.filter(prompt=>{
+
+    return (
+      text(prompt.title)+" "+
+      text(prompt.platform)+" "+
+      text(prompt.description)
+    ).toLowerCase().includes(query);
+
+  });
+
+  const grid=$("promptGrid");
+
+  grid.innerHTML="";
+
+  if(!list.length){
+
+    grid.innerHTML=`
+      <div class="prompt-card">
+        <h3>No prompts found</h3>
+        <p>Try another search.</p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  list.forEach((prompt,index)=>{
+
+    const card=document.createElement("article");
+
+    card.className="prompt-card";
+
+    card.style.animationDelay=(index*0.05)+"s";
+
+    card.innerHTML=`
+      <div class="card-top">
+        <span class="number">${index+1}</span>
+        <span class="platform">
+          ${escapeHTML(text(prompt.platform || "AI Prompt"))}
+        </span>
+      </div>
+
+      <h3>${escapeHTML(text(prompt.title))}</h3>
+
+      <p>
+        ${escapeHTML(
+          text(prompt.description || "Ready-to-use AI prompt.")
+        )}
+      </p>
+
+      <button class="btn copy-btn">
+        📋 Copy Prompt
+      </button>
+    `;
+
+    card.querySelector(".copy-btn").onclick=()=>{
+
+      copyPrompt(text(prompt.text),card.querySelector(".copy-btn"));
+
+    };
+
+    grid.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================
+   SAFE HTML
+========================= */
+
+function escapeHTML(value){
+
+  return value
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   COPY
+========================= */
+
+async function copyPrompt(prompt,button){
+
+  if(!prompt){
+
+    showToast("Prompt is empty");
+
+    return;
+
+  }
+
+  try{
+
+    if(navigator.clipboard){
+
+      await navigator.clipboard.writeText(prompt);
+
+    }else{
+
+      throw new Error("Clipboard unavailable");
+
+    }
+
+  }catch(error){
+
+    const area=document.createElement("textarea");
+
+    area.value=prompt;
+
+    area.style.position="fixed";
+    area.style.left="-9999px";
+
+    document.body.appendChild(area);
+
+    area.focus();
+    area.select();
+
+    document.execCommand("copy");
+
+    area.remove();
+
+  }
+
+  const old=button.textContent;
+
+  button.textContent="✓ Copied!";
+
+  showToast("Prompt copied successfully");
+
+  setTimeout(()=>{
+    button.textContent=old;
+  },1500);
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+$("search").addEventListener("input",renderPublic);
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+$("homeButton").onclick=()=>{
+
+  location.hash="";
+
 };
 
-auth.onAuthStateChanged(currentUser => {
-  user = currentUser;
+$("promptsNav").onclick=()=>{
 
-  const authorized = isAdmin();
+  location.hash="";
 
-  $("loginArea").classList.toggle("hidden", authorized);
-  $("tools").classList.toggle("hidden", !authorized);
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-  if (currentUser && !authorized) {
-    $("adminMessage").textContent = "Admin account not found.";
-    auth.signOut().catch(console.error);
-  } else if (authorized) {
-    $("adminMessage").textContent = "Administrator verified.";
-    $("signed").textContent = "Signed in as " + currentUser.email;
+};
+
+$("exploreButton").onclick=()=>{
+
+  document.querySelector(".search-wrap")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+};
+
+$("adminNav").onclick=()=>{
+
+  location.hash="admin";
+
+};
+
+$("adminHeroButton").onclick=()=>{
+
+  location.hash="admin";
+
+};
+
+$("backFromLogin").onclick=()=>{
+
+  location.hash="";
+
+};
+
+$("adminHomeButton").onclick=()=>{
+
+  location.hash="";
+
+};
+
+
+/* =========================
+   GOOGLE LOGIN
+========================= */
+
+$("loginButton").onclick=async()=>{
+
+  const button=$("loginButton");
+
+  button.disabled=true;
+
+  $("loginStatus").textContent="Opening Google Sign-in...";
+
+  try{
+
+    const provider=
+      new firebase.auth.GoogleAuthProvider();
+
+    provider.setCustomParameters({
+      prompt:"select_account"
+    });
+
+    await auth.signInWithRedirect(provider);
+
+  }catch(error){
+
+    console.error(error);
+
+    $("loginStatus").textContent=
+      "Login failed: "+(error.message || error.code);
+
+    button.disabled=false;
+
   }
 
-  renderAdmin();
+};
+
+
+/* =========================
+   AUTH
+========================= */
+
+auth.getRedirectResult()
+.then(result=>{
+
+  if(result && result.user){
+
+    if(
+      result.user.email &&
+      result.user.email.toLowerCase() ===
+      ADMIN_EMAIL.toLowerCase()
+    ){
+
+      showToast("Admin login successful");
+
+      location.hash="admin";
+
+    }else{
+
+      auth.signOut();
+
+      $("loginStatus").textContent=
+        "This Google account is not authorized.";
+
+    }
+
+  }
+
+})
+.catch(error=>{
+
+  console.error(error);
+
+  $("loginStatus").textContent=
+    "Google login failed: "+(error.message || error.code);
+
 });
 
-function renderAdmin() {
-  const list = $("adminList");
-  list.innerHTML = "";
 
-  if (!isAdmin()) return;
+auth.onAuthStateChanged(user=>{
 
-  if (!prompts.length) {
-    list.textContent = "No prompts yet.";
-    return;
+  currentUser=user;
+
+  route();
+
+  if(isAdmin()){
+
+    $("signedEmail").textContent=
+      "Signed in as "+currentUser.email;
+
+    $("settingBrand").value=settings.brandName;
+    $("settingHeroTitle").value=settings.heroTitle;
+    $("settingHeroDescription").value=settings.heroDescription;
+    $("settingTagline").value=settings.tagline;
+
+    renderAdmin();
+
   }
 
-  prompts.forEach(prompt => {
-    const row = document.createElement("div");
-    row.className = "admin-item";
+});
 
-    const name = document.createElement("strong");
-    name.textContent = str(prompt.title);
 
-    const actions = document.createElement("div");
-    actions.className = "actions";
+/* =========================
+   ADMIN SETTINGS
+========================= */
 
-    const edit = document.createElement("button");
-    edit.className = "secondary";
-    edit.textContent = "Edit";
-    edit.onclick = () => showEditor(prompt);
+$("settingsForm").onsubmit=async event=>{
 
-    const remove = document.createElement("button");
-    remove.className = "danger";
-    remove.textContent = "Delete";
+  event.preventDefault();
 
-    remove.onclick = async () => {
-      if (!confirm('Delete "' + str(prompt.title) + '"?')) return;
+  if(!isAdmin()){
 
-      try {
-        await db.collection("prompts").doc(prompt.id).delete();
-      } catch (error) {
-        alert("Delete failed. Check Firestore Rules.");
-      }
-    };
+    showToast("Admin access required");
 
-    actions.append(edit, remove);
-    row.append(name, actions);
-    list.append(row);
-  });
-}
-
-$("add").onclick = () => showEditor(null);
-
-function showEditor(prompt) {
-  if (!isAdmin()) return;
-
-  editingId = prompt ? prompt.id : null;
-
-  $("editHeading").textContent =
-    prompt ? "Edit prompt" : "Add new prompt";
-
-  $("title").value = prompt ? str(prompt.title) : "";
-  $("desc").value = prompt ? str(prompt.description) : "";
-  $("text").value = prompt ? str(prompt.text) : "";
-  $("editError").textContent = "";
-
-  $("editOverlay").classList.add("show");
-}
-
-$("cancel").onclick = () => {
-  $("editOverlay").classList.remove("show");
-};
-
-$("save").onclick = async () => {
-  if (!isAdmin()) return;
-
-  const title = $("title").value.trim();
-  const description = $("desc").value.trim();
-  const text = $("text").value.trim();
-
-  if (!title || !text) {
-    $("editError").textContent =
-      "Please enter both title and prompt text.";
     return;
+
   }
 
-  const button = $("save");
-  button.disabled = true;
+  const button=event.submitter;
 
-  try {
-    const data = {
-      title,
-      description,
-      text,
-      published: true,
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    };
+  button.disabled=true;
 
-    if (editingId) {
-      await db.collection("prompts").doc(editingId).update(data);
-    } else {
-      data.createdAt =
-        firebase.firestore.FieldValue.serverTimestamp();
+  try{
 
-      await db.collection("prompts").add(data);
-    }
+    await db.collection("settings")
+      .doc("site")
+      .set({
 
-    $("editOverlay").classList.remove("show");
-  } catch (error) {
+        brandName:$("settingBrand").value.trim() ||
+          "Maishn.Work",
+
+        heroTitle:$("settingHeroTitle").value.trim() ||
+          "Prompts",
+
+        heroDescription:
+          $("settingHeroDescription").value.trim() ||
+          "Discover useful AI prompts, choose your favourite and copy it instantly.",
+
+        tagline:
+          $("settingTagline").value.trim() ||
+          "Empowering Your AI Workflow with Handcrafted Prompts.",
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      },{
+        merge:true
+      });
+
+    $("settingsStatus").textContent=
+      "✓ Website settings saved.";
+
+    showToast("Settings saved");
+
+  }catch(error){
+
     console.error(error);
 
-    $("editError").textContent =
-      "Could not save. Check Firestore Rules and admin sign-in.";
-  } finally {
-    button.disabled = false;
+    $("settingsStatus").textContent=
+      "Could not save settings. Check Firestore Rules.";
+
+  }finally{
+
+    button.disabled=false;
+
   }
+
 };
 
-$("logout").onclick = () => auth.signOut();
+
+/* =========================
+   ADMIN PROMPT LIST
+========================= */
+
+function renderAdmin(){
+
+  const list=$("adminPromptList");
+
+  if(!list)return;
+
+  list.innerHTML="";
+
+  if(!isAdmin()){
+
+    return;
+
+  }
+
+  if(!prompts.length){
+
+    list.innerHTML=
+      '<p class="note">No prompts yet. Add your first prompt.</p>';
+
+    return;
+
+  }
+
+  prompts.forEach((prompt,index)=>{
+
+    const item=document.createElement("div");
+
+    item.className="admin-prompt";
+
+    item.innerHTML=`
+
+      <div class="admin-prompt-title">
+        ${escapeHTML(text(prompt.title))}
+      </div>
+
+      <div class="admin-prompt-meta">
+        ${escapeHTML(text(prompt.platform || "AI"))}
+        · Order ${Number(prompt.order ?? index+1)}
+        · ${prompt.published === false ? "Unpublished":"Published"}
+      </div>
+
+      <div class="admin-actions">
+
+        <button class="btn secondary edit">
+          Edit
+        </button>
+
+        <button class="btn secondary up">
+          ↑
+        </button>
+
+        <button class="btn secondary down">
+          ↓
+        </button>
+
+        <button class="btn red delete">
+          Delete
+        </button>
+
+      </div>
+
+    `;
+
+    item.querySelector(".edit").onclick=()=>{
+
+      openEditor(prompt);
+
+    };
+
+    item.querySelector(".delete").onclick=async()=>{
+
+      if(!confirm(
+        'Delete "'+text(prompt.title)+'"?'
+      ))return;
+
+      try{
+
+        await db.collection("prompts")
+          .doc(prompt.id)
+          .delete();
+
+        showToast("Prompt deleted");
+
+      }catch(error){
+
+        alert(
+          "Delete failed. Check Firestore Rules."
+        );
+
+      }
+
+    };
+
+    item.querySelector(".up").onclick=()=>{
+
+      movePrompt(index,-1);
+
+    };
+
+    item.querySelector(".down").onclick=()=>{
+
+      movePrompt(index,1);
+
+    };
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+/* =========================
+   REORDER
+========================= */
+
+async function movePrompt(index,direction){
+
+  if(!isAdmin())return;
+
+  const target=index+direction;
+
+  if(target<0 || target>=prompts.length)return;
+
+  const current=prompts[index];
+  const other=prompts[target];
+
+  const currentOrder=Number(current.order ?? index+1);
+  const otherOrder=Number(other.order ?? target+1);
+
+  try{
+
+    const batch=db.batch();
+
+    batch.update(
+      db.collection("prompts").doc(current.id),
+      {order:otherOrder}
+    );
+
+    batch.update(
+      db.collection("prompts").doc(other.id),
+      {order:currentOrder}
+    );
+
+    await batch.commit();
+
+    showToast("Order updated");
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast("Could not change order");
+
+  }
+
+}
+
+
+/* =========================
+   ADD PROMPT
+========================= */
+
+$("addPromptButton").onclick=()=>{
+
+  openEditor(null);
+
+};
+
+
+/* =========================
+   OPEN EDITOR
+========================= */
+
+function openEditor(prompt){
+
+  if(!isAdmin())return;
+
+  editingId=prompt ? prompt.id : null;
+
+  $("editorTitle").textContent=
+    prompt ? "Edit Prompt":"Add Prompt";
+
+  $("promptTitle").value=
+    prompt ? text(prompt.title):"";
+
+  $("promptPlatform").value=
+    prompt ? text(prompt.platform):"";
+
+  $("promptDescription").value=
+    prompt ? text(prompt.description):"";
+
+  $("promptText").value=
+    prompt ? text(prompt.text):"";
+
+  $("promptPublished").checked=
+    prompt ? prompt.published !== false:true;
+
+  $("editorStatus").textContent="";
+
+  $("editorOverlay").classList.add("show");
+
+}
+
+
+/* =========================
+   CANCEL
+========================= */
+
+$("cancelEditorButton").onclick=()=>{
+
+  $("editorOverlay").classList.remove("show");
+
+};
+
+
+/* =========================
+   SAVE PROMPT
+========================= */
+
+$("savePromptButton").onclick=async()=>{
+
+  if(!isAdmin())return;
+
+  const title=$("promptTitle").value.trim();
+
+  const platform=$("promptPlatform").value.trim();
+
+  const description=
+    $("promptDescription").value.trim();
+
+  const promptText=
+    $("promptText").value.trim();
+
+  const published=
+    $("promptPublished").checked;
+
+  if(!title || !platform || !promptText){
+
+    $("editorStatus").textContent=
+      "Title, Platform and Full Prompt are required.";
+
+    return;
+
+  }
+
+  const button=$("savePromptButton");
+
+  button.disabled=true;
+
+  $("editorStatus").textContent="Saving...";
+
+  try{
+
+    if(editingId){
+
+      await db.collection("prompts")
+        .doc(editingId)
+        .update({
+
+          title,
+          platform,
+          description,
+          text:promptText,
+          published,
+          updatedAt:
+            firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+    }else{
+
+      await db.collection("prompts")
+        .add({
+
+          title,
+          platform,
+          description,
+          text:promptText,
+          published,
+          order:prompts.length+1,
+
+          createdAt:
+            firebase.firestore.FieldValue.serverTimestamp(),
+
+          updatedAt:
+            firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+    }
+
+    $("editorOverlay").classList.remove("show");
+
+    showToast(
+      editingId ?
+      "Prompt updated":
+      "Prompt added"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    $("editorStatus").textContent=
+      "Save failed. Check Firestore Rules.";
+
+  }finally{
+
+    button.disabled=false;
+
+  }
+
+};
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+$("logoutButton").onclick=async()=>{
+
+  await auth.signOut();
+
+  location.hash="";
+
+  showToast("Signed out");
+
+};
+
+
+/* =========================
+   START
+========================= */
+
+applySettings({});
+
+route();
+
 </script>
+
 </body>
 </html>
