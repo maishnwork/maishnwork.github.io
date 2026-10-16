@@ -1,25 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080b16">
+<meta name="theme-color" content="#080b14">
 <title>Maishn.Work</title>
 
 <style>
 :root{
   color-scheme:dark;
-  --bg:#070a13;
-  --panel:#11172a;
-  --panel2:#151d33;
-  --line:#293451;
+  --bg:#080b14;
+  --bg2:#0d1220;
+  --panel:#111827;
+  --panel2:#151d2e;
+  --line:#293650;
   --text:#f5f7ff;
-  --muted:#9caac6;
+  --muted:#9aa8c2;
   --blue:#6385ff;
-  --cyan:#56e0ef;
-  --purple:#b16bff;
-  --green:#45e3a2;
-  --red:#ff718b;
+  --cyan:#57e1ef;
+  --purple:#b46cff;
+  --green:#42dba1;
+  --red:#ff6681;
+  --shadow:0 25px 80px rgba(0,0,0,.35);
 }
 
 *{box-sizing:border-box}
@@ -31,82 +33,45 @@ body{
   min-height:100vh;
   color:var(--text);
   background:
-    radial-gradient(circle at 10% 0%,#26315c70,transparent 38%),
-    radial-gradient(circle at 90% 20%,#45205a55,transparent 35%),
+    radial-gradient(circle at 10% 0%,#26366680,transparent 35%),
+    radial-gradient(circle at 90% 20%,#4b236050,transparent 32%),
     var(--bg);
-  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  overflow-x:hidden;
 }
 
-button,input,textarea,select{font:inherit}
+button,input,textarea{font:inherit}
 
-button{cursor:pointer}
+button{
+  cursor:pointer;
+  border:0;
+}
 
 button:disabled{
   opacity:.55;
   cursor:wait;
 }
 
-input,textarea,select{
-  width:100%;
-  color:var(--text);
-  background:#0c1220;
-  border:1px solid #303b58;
-  border-radius:13px;
-  padding:12px 14px;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-textarea{
-  min-height:180px;
-  resize:vertical;
-}
+.hidden{display:none!important}
 
-button{
-  border:0;
-  border-radius:13px;
-  padding:11px 16px;
-  font-weight:750;
-  color:white;
-  background:linear-gradient(110deg,#587cff,#8b5bff);
-  transition:.2s;
-}
-
-button:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
-}
-
-button:active{
-  transform:scale(.97);
-}
-
-.secondary{
-  background:#202943;
-  border:1px solid #35415e;
-}
-
-.danger{
-  background:#642b3c;
-}
-
-.green{
-  background:linear-gradient(110deg,#168e71,#24b991);
-}
-
-.hidden{
-  display:none!important;
-}
-
-.wrap{
-  width:min(1050px,100%);
+.container{
+  width:min(1100px,100%);
   margin:auto;
-  padding:20px 16px 55px;
+  padding:22px 16px 55px;
 }
 
-.topbar{
+/* HEADER */
+
+.header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:12px;
+  justify-content:space-between;
+  gap:15px;
   margin-bottom:25px;
 }
 
@@ -122,25 +87,70 @@ button:active{
   border-radius:15px;
   display:grid;
   place-items:center;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  box-shadow:0 0 35px #7287ff35;
   font-size:23px;
-  background:linear-gradient(135deg,#6385ff,#a365ff);
-  box-shadow:0 0 35px #7185ff35;
+  animation:float 4s ease-in-out infinite alternate;
 }
 
-.brand-name{
-  font-size:1.25rem;
-  font-weight:850;
+.brand-title{
+  font-weight:900;
+  letter-spacing:-.04em;
+  font-size:1.2rem;
 }
 
 .brand-sub{
-  display:block;
   color:var(--muted);
   font-size:.78rem;
 }
 
+/* BUTTONS */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:11px 16px;
+  border-radius:12px;
+  color:white;
+  font-weight:800;
+  background:linear-gradient(110deg,#587cff,#925cff);
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.12);
+  box-shadow:0 10px 30px #637dff25;
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn.secondary{
+  background:#202a40;
+  border:1px solid #35425f;
+}
+
+.btn.green{
+  background:linear-gradient(110deg,#168c6c,#28bd94);
+}
+
+.btn.red{
+  background:#612c3b;
+  border:1px solid #8b4054;
+}
+
+.btn.full{width:100%}
+
+/* PUBLIC HOME */
+
 .hero{
   text-align:center;
-  padding:50px 0 35px;
+  padding:45px 0 30px;
+  animation:rise .7s both;
 }
 
 .eyebrow{
@@ -148,12 +158,13 @@ button:active{
   align-items:center;
   gap:8px;
   padding:6px 11px;
-  border:1px solid #6b83ff45;
+  border:1px solid #7289ff40;
   border-radius:99px;
+  color:#cbd5ff;
   background:#637fff12;
-  color:#c6d2ff;
-  font-size:.76rem;
-  font-weight:750;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.03em;
 }
 
 .dot{
@@ -165,29 +176,50 @@ button:active{
 }
 
 .hero h1{
-  margin:20px 0 12px;
+  margin:18px 0 12px;
   font-size:clamp(2.7rem,8vw,5.5rem);
   line-height:1;
-  letter-spacing:-.065em;
+  letter-spacing:-.07em;
 }
 
 .gradient{
   color:transparent;
-  background:linear-gradient(100deg,#fff,#9db6ff,#d3a4ff,#6be7f3);
+  background:linear-gradient(100deg,#fff,#9eb6ff 42%,#d19dff 75%,#62e7f2);
   background-clip:text;
   -webkit-background-clip:text;
 }
 
 .hero p{
-  max-width:600px;
+  max-width:650px;
   margin:auto;
   color:var(--muted);
 }
 
+/* COLLECTION GRID */
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin:25px 0 15px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:1.4rem;
+}
+
+.section-head p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:.88rem;
+}
+
 .collection-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));
+  gap:15px;
 }
 
 .collection-card{
@@ -196,119 +228,173 @@ button:active{
   min-height:220px;
   padding:25px;
   text-align:left;
-  border:1px solid #39476b;
-  border-radius:24px;
-  background:linear-gradient(145deg,#182447,#17152e);
-  box-shadow:0 18px 55px #0005;
-  transition:.3s;
+  border:1px solid #687cff38;
+  border-radius:23px;
+  background:
+    linear-gradient(145deg,#17213a,#121829 70%,#18243b);
+  box-shadow:var(--shadow);
+  color:var(--text);
+  transition:.3s ease;
+  animation:rise .55s both;
 }
 
 .collection-card:hover{
   transform:translateY(-7px);
-  border-color:#8298ff;
-  box-shadow:0 25px 70px #0008;
+  border-color:#8295ff9c;
+  box-shadow:0 30px 80px #0006;
 }
 
-.collection-card:after{
+.collection-card:before{
   content:"";
   position:absolute;
-  width:150px;
-  height:150px;
-  right:-60px;
-  top:-60px;
+  width:170px;
+  height:170px;
+  right:-65px;
+  top:-70px;
   border-radius:50%;
-  background:#7185ff30;
-  filter:blur(5px);
+  background:#7466ff35;
+  filter:blur(10px);
 }
 
-.collection-card h2{
-  margin:25px 0 7px;
-  font-size:1.65rem;
+.collection-icon{
+  position:relative;
+  width:47px;
+  height:47px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:#637dff18;
+  border:1px solid #7890ff35;
+  font-size:21px;
+}
+
+.collection-card h3{
+  position:relative;
+  margin:20px 0 7px;
+  font-size:1.5rem;
+  letter-spacing:-.04em;
 }
 
 .collection-card p{
+  position:relative;
   color:var(--muted);
+  margin:0 0 18px;
 }
 
-.arrow{
-  display:inline-block;
-  margin-top:15px;
+.collection-bottom{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#dce4ff;
+  font-size:.85rem;
   font-weight:800;
-  color:#dce5ff;
 }
 
-.page-head{
-  margin:30px 0 20px;
+/* DETAILS */
+
+.page-title{
+  margin:20px 0 20px;
 }
 
-.page-head h1{
-  margin:12px 0 6px;
-  font-size:clamp(2rem,6vw,3.5rem);
+.back{
+  margin-bottom:15px;
+}
+
+.page-title h1{
+  margin:12px 0 5px;
+  font-size:clamp(2rem,6vw,3.6rem);
   line-height:1.05;
+  letter-spacing:-.06em;
 }
 
-.page-head p{
+.page-title p{
   margin:0;
   color:var(--muted);
 }
 
-.toolbar{
-  display:flex;
-  gap:10px;
+.search-box{
   margin:20px 0;
 }
 
-.prompt-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:15px;
+.input{
+  width:100%;
+  padding:13px 15px;
+  color:var(--text);
+  background:#0d1423;
+  border:1px solid #33405d;
+  border-radius:13px;
+  outline:none;
 }
 
-.prompt-card{
+.input:focus{
+  border-color:var(--cyan);
+  box-shadow:0 0 0 3px #57e1ef15;
+}
+
+.item-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));
+  gap:14px;
+}
+
+.item-card{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
   padding:20px;
   border:1px solid var(--line);
   border-radius:19px;
-  background:linear-gradient(145deg,#151d32,#101525);
-  transition:.25s;
+  background:linear-gradient(145deg,#151e31,#101624);
+  transition:.25s ease;
+  animation:rise .45s both;
 }
 
-.prompt-card:hover{
+.item-card:hover{
   transform:translateY(-4px);
-  border-color:#647fff80;
+  border-color:#637fff80;
+  box-shadow:0 18px 50px #0004;
 }
 
-.platform{
-  display:inline-block;
-  max-width:100%;
-  padding:5px 10px;
-  border:1px solid #4ad8e52b;
-  border-radius:99px;
-  color:#8fe6f1;
-  background:#41d8e70c;
-  font-size:.75rem;
-}
-
-.prompt-card h2{
-  margin:17px 0 18px;
-  font-size:1.3rem;
+.item-card h3{
+  margin:15px 0 14px;
+  font-size:1.25rem;
   line-height:1.3;
 }
 
+.badge{
+  align-self:flex-start;
+  padding:5px 9px;
+  border-radius:99px;
+  background:#47dce915;
+  border:1px solid #47dce935;
+  color:#8fe8f2;
+  font-size:.72rem;
+  font-weight:800;
+}
+
 .copy-btn{
+  margin-top:auto;
   width:100%;
 }
 
+.copy-btn.copied{
+  background:linear-gradient(110deg,#168c6c,#28bd94);
+}
+
+/* EMPTY / STATUS */
+
 .status{
-  min-height:25px;
-  color:#9eafd0;
-  font-size:.9rem;
+  min-height:24px;
+  color:var(--muted);
   margin:12px 0;
 }
 
 .empty{
-  padding:30px;
+  grid-column:1/-1;
+  padding:35px 20px;
   text-align:center;
-  border:1px dashed #384663;
+  border:1px dashed #3a4967;
   border-radius:18px;
   color:var(--muted);
 }
@@ -319,82 +405,127 @@ button:active{
   border-top:1px solid #ffffff12;
   text-align:center;
   color:var(--muted);
-  font-size:.85rem;
+  font-size:.82rem;
 }
 
-.back{
-  margin-bottom:15px;
+/* TOAST */
+
+.toast{
+  position:fixed;
+  z-index:100;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,20px);
+  padding:12px 17px;
+  border:1px solid #5570a0;
+  border-radius:13px;
+  background:#111a2bed;
+  box-shadow:0 15px 45px #0007;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* ADMIN */
+
+.admin-page{
+  min-height:calc(100vh - 100px);
 }
 
 .admin-shell{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at top right,#44276a35,transparent 35%),
-    #080b14;
-}
-
-.admin-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:18px 0;
-  border-bottom:1px solid #ffffff12;
-}
-
-.admin-title{
-  font-weight:850;
-  font-size:1.25rem;
-}
-
-.admin-layout{
   display:grid;
   grid-template-columns:220px 1fr;
-  gap:18px;
-  margin-top:20px;
+  gap:15px;
+}
+
+.admin-sidebar{
+  padding:16px;
+  border:1px solid #293754;
+  border-radius:20px;
+  background:#0d1422;
+  height:max-content;
+  position:sticky;
+  top:15px;
+}
+
+.admin-sidebar h2{
+  margin:3px 8px 18px;
+  font-size:1rem;
 }
 
 .admin-nav{
-  height:max-content;
-  padding:14px;
-  border:1px solid #293451;
-  border-radius:18px;
-  background:#101625;
+  display:grid;
+  gap:7px;
 }
 
-.admin-nav button{
+.nav-btn{
   width:100%;
-  margin-bottom:8px;
+  padding:12px;
+  border-radius:11px;
   text-align:left;
-  background:#192238;
+  color:#aebbd3;
+  background:transparent;
+  font-weight:750;
 }
 
-.admin-nav button.active{
-  background:linear-gradient(110deg,#587cff,#8b5bff);
+.nav-btn:hover,
+.nav-btn.active{
+  color:white;
+  background:#24304a;
 }
 
-.admin-content{
+.admin-main{
   min-width:0;
+}
+
+.admin-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
+}
+
+.admin-title{
+  margin:0;
+  font-size:clamp(1.7rem,5vw,2.6rem);
+  letter-spacing:-.05em;
 }
 
 .admin-box{
   padding:20px;
-  border:1px solid #293451;
-  border-radius:20px;
-  background:linear-gradient(145deg,#121a2d,#0d1322);
-  margin-bottom:16px;
+  border:1px solid #293754;
+  border-radius:19px;
+  background:linear-gradient(145deg,#111a2a,#0d1421);
+  box-shadow:0 15px 50px #0003;
+  margin-bottom:15px;
 }
 
 .admin-box h2{
-  margin-top:0;
+  margin:0 0 6px;
+}
+
+.admin-box .muted{
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+.admin-list{
+  margin-top:18px;
 }
 
 .admin-row{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:10px;
-  padding:13px 0;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 0;
   border-top:1px solid #ffffff10;
 }
 
@@ -411,6 +542,7 @@ button:active{
 .admin-info small{
   display:block;
   color:var(--muted);
+  overflow-wrap:anywhere;
 }
 
 .admin-actions{
@@ -419,78 +551,118 @@ button:active{
   flex-wrap:wrap;
 }
 
-.admin-actions button{
-  padding:8px 11px;
-  font-size:.8rem;
+.admin-actions .btn{
+  padding:8px 10px;
+  font-size:.78rem;
 }
 
-.login-screen{
-  min-height:75vh;
+.form-grid{
   display:grid;
-  place-items:center;
+  gap:13px;
 }
 
-.login-box{
-  width:min(470px,100%);
-  padding:32px;
+label{
+  display:block;
+  margin-bottom:5px;
+  color:#c6d0e5;
+  font-size:.83rem;
+  font-weight:700;
+}
+
+textarea.input{
+  min-height:150px;
+  resize:vertical;
+}
+
+.login-card{
+  width:min(480px,100%);
+  margin:60px auto;
+  padding:30px;
   text-align:center;
-  border:1px solid #47557c;
-  border-radius:26px;
-  background:linear-gradient(145deg,#171f35,#0f1525);
+  border:1px solid #44547b;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at top,#29386650,transparent 45%),
+    #111827;
   box-shadow:0 30px 100px #0008;
+  animation:pop .4s both;
 }
 
-.login-icon{
-  width:78px;
-  height:78px;
-  margin:auto auto 18px;
+.login-logo{
+  width:75px;
+  height:75px;
+  margin:auto;
   display:grid;
   place-items:center;
-  border-radius:25px;
+  border-radius:24px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
   font-size:32px;
-  background:linear-gradient(135deg,#6385ff,#a365ff);
-  box-shadow:0 0 55px #7185ff45;
+  box-shadow:0 0 60px #7185ff40;
+  animation:float 3s ease-in-out infinite alternate;
+}
+
+.login-card h1{
+  margin:20px 0 7px;
+}
+
+.login-card p{
+  color:var(--muted);
+}
+
+.google{
+  width:100%;
+  margin-top:17px;
+  padding:13px;
+  border-radius:13px;
+  background:#fff;
+  color:#111827;
+  font-weight:850;
+}
+
+.google:hover{
+  background:#eef1f7;
+}
+
+/* MODAL */
+
+.overlay{
+  display:none;
+  position:fixed;
+  z-index:50;
+  inset:0;
+  padding:15px;
+  overflow:auto;
+  align-items:center;
+  justify-content:center;
+  background:#050711ed;
+  backdrop-filter:blur(12px);
+}
+
+.overlay.show{
+  display:flex;
+}
+
+.modal{
+  width:min(600px,100%);
+  padding:23px;
+  border:1px solid #405075;
+  border-radius:21px;
+  background:#111a2b;
+  box-shadow:0 30px 100px #0009;
+  animation:pop .25s both;
+}
+
+.modal h2{
+  margin:0 0 5px;
+}
+
+.modal-note{
+  color:var(--muted);
+  font-size:.83rem;
 }
 
 .form-row{
   margin:14px 0;
-}
-
-.form-row label{
-  display:block;
-  margin-bottom:6px;
-  color:#c5cfe5;
-  font-size:.85rem;
-}
-
-.modal-bg{
-  position:fixed;
-  inset:0;
-  z-index:50;
-  display:none;
-  place-items:center;
-  padding:15px;
-  background:#050712ed;
-  backdrop-filter:blur(15px);
-}
-
-.modal-bg.show{
-  display:grid;
-}
-
-.modal{
-  width:min(620px,100%);
-  max-height:92vh;
-  overflow:auto;
-  padding:24px;
-  border:1px solid #48547a;
-  border-radius:23px;
-  background:#151d30;
-  box-shadow:0 30px 100px #0009;
-}
-
-.modal h2{
-  margin-top:0;
 }
 
 .modal-actions{
@@ -500,41 +672,34 @@ button:active{
   margin-top:15px;
 }
 
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  z-index:100;
-  transform:translateX(-50%) translateY(20px);
-  padding:12px 18px;
-  border:1px solid #4d628e;
-  border-radius:13px;
-  background:#151e32;
-  box-shadow:0 15px 45px #0008;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
+/* ANIMATION */
+
+@keyframes rise{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+@keyframes pop{
+  from{opacity:0;transform:translateY(15px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
 
-@media(max-width:700px){
-  .admin-layout{
+@keyframes float{
+  from{transform:translateY(-4px)}
+  to{transform:translateY(8px)}
+}
+
+@media(max-width:760px){
+  .admin-shell{
     grid-template-columns:1fr;
   }
 
-  .admin-nav{
-    display:flex;
-    overflow:auto;
-    gap:7px;
+  .admin-sidebar{
+    position:static;
   }
 
-  .admin-nav button{
-    min-width:max-content;
-    margin:0;
+  .admin-nav{
+    grid-template-columns:1fr 1fr;
   }
 
   .admin-row{
@@ -546,12 +711,34 @@ button:active{
     width:100%;
   }
 
-  .admin-actions button{
+  .admin-actions .btn{
     flex:1;
   }
+}
 
-  .toolbar{
-    flex-direction:column;
+@media(max-width:480px){
+  .container{
+    padding:17px 13px 40px;
+  }
+
+  .hero{
+    padding-top:30px;
+  }
+
+  .collection-card{
+    min-height:200px;
+  }
+
+  .admin-nav{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
   }
 }
 </style>
@@ -559,21 +746,488 @@ button:active{
 
 <body>
 
-<div id="app"></div>
+<div class="container">
 
-<div id="toast" class="toast"></div>
+<header class="header">
+  <a class="brand" href="#home">
+    <div class="logo">✦</div>
+    <div>
+      <div class="brand-title" id="brandName">Maishn.Work</div>
+      <div class="brand-sub" id="brandTagline">
+        Handcrafted prompts for smarter AI workflows.
+      </div>
+    </div>
+  </a>
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="homePage">
+
+  <div class="hero">
+    <span class="eyebrow">
+      <span class="dot"></span>
+      AI COLLECTIONS
+    </span>
+
+    <h1>
+      Create more with<br>
+      <span class="gradient">better ideas.</span>
+    </h1>
+
+    <p id="heroText">
+      Explore curated collections and copy useful AI resources instantly.
+    </p>
+  </div>
+
+  <div class="section-head">
+    <div>
+      <h2 id="collectionHeading">Collections</h2>
+      <p id="collectionSubheading">
+        Choose a collection to explore.
+      </p>
+    </div>
+  </div>
+
+  <p id="homeStatus" class="status">Loading collections…</p>
+
+  <div id="collectionGrid" class="collection-grid"></div>
+
+</section>
+
+
+<!-- ================= COLLECTION DETAILS ================= -->
+
+<section id="collectionPage" class="hidden">
+
+  <button class="btn secondary back" id="backHome">
+    ← Collections
+  </button>
+
+  <div class="page-title">
+    <span class="eyebrow" id="detailBadge">COLLECTION</span>
+
+    <h1 class="gradient" id="detailTitle">Collection</h1>
+
+    <p id="detailDescription"></p>
+  </div>
+
+  <div class="search-box">
+    <input
+      id="itemSearch"
+      class="input"
+      type="search"
+      placeholder="🔍 Search items in this collection..."
+    >
+  </div>
+
+  <p id="itemStatus" class="status"></p>
+
+  <div id="itemGrid" class="item-grid"></div>
+
+</section>
+
+
+<!-- ================= ADMIN LOGIN ================= -->
+
+<section id="adminLoginPage" class="hidden admin-page">
+
+  <div class="login-card">
+
+    <div class="login-logo">✦</div>
+
+    <h1>Admin Access</h1>
+
+    <p>
+      Sign in with the authorized Google account
+      to manage Maishn.Work.
+    </p>
+
+    <button class="google" id="googleLogin">
+      Continue with Google
+    </button>
+
+    <p id="loginStatus" class="status"></p>
+
+    <button class="btn secondary full" id="loginBack">
+      ← Back to website
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<section id="adminDashboard" class="hidden admin-page">
+
+  <div class="admin-shell">
+
+    <aside class="admin-sidebar">
+
+      <h2>Maishn.Work Admin</h2>
+
+      <div class="admin-nav">
+
+        <button
+          class="nav-btn active"
+          id="collectionsTab"
+        >
+          ◈ Collections
+        </button>
+
+        <button
+          class="nav-btn"
+          id="settingsTab"
+        >
+          ⚙ Settings
+        </button>
+
+      </div>
+
+      <div style="margin-top:18px">
+        <button class="btn secondary full" id="adminLogout">
+          Sign out
+        </button>
+      </div>
+
+    </aside>
+
+
+    <main class="admin-main">
+
+      <!-- COLLECTIONS PANEL -->
+
+      <section id="collectionsPanel">
+
+        <div class="admin-top">
+
+          <div>
+            <h1 class="admin-title">Collections</h1>
+            <div class="muted">
+              Create and manage your content collections.
+            </div>
+          </div>
+
+          <button class="btn" id="newCollection">
+            ＋ New Collection
+          </button>
+
+        </div>
+
+        <div class="admin-box">
+
+          <div id="adminCollectionList" class="admin-list"></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SETTINGS PANEL -->
+
+      <section id="settingsPanel" class="hidden">
+
+        <div class="admin-top">
+
+          <div>
+            <h1 class="admin-title">Settings</h1>
+            <div class="muted">
+              Customize the public website.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="admin-box">
+
+          <div class="form-grid">
+
+            <div>
+              <label>Brand name</label>
+              <input
+                id="settingBrand"
+                class="input"
+                maxlength="70"
+              >
+            </div>
+
+            <div>
+              <label>Tagline</label>
+              <input
+                id="settingTagline"
+                class="input"
+                maxlength="180"
+              >
+            </div>
+
+            <div>
+              <label>Hero text</label>
+              <textarea
+                id="settingHero"
+                class="input"
+                maxlength="300"
+              ></textarea>
+            </div>
+
+            <div>
+              <label>Collection heading</label>
+              <input
+                id="settingHeading"
+                class="input"
+                maxlength="100"
+              >
+            </div>
+
+            <div>
+              <label>Collection subheading</label>
+              <input
+                id="settingSubheading"
+                class="input"
+                maxlength="200"
+              >
+            </div>
+
+          </div>
+
+          <div class="modal-actions">
+
+            <button class="btn" id="saveSettings">
+              Save Settings
+            </button>
+
+          </div>
+
+          <p id="settingsStatus" class="status"></p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</section>
+
+
+<footer class="footer">
+  <strong id="footerBrand">Maishn.Work</strong>
+  <div id="footerTagline">
+    Handcrafted prompts for smarter AI workflows.
+  </div>
+</footer>
+
+</div>
+
+
+<!-- ================= COLLECTION MODAL ================= -->
+
+<div class="overlay" id="collectionModal">
+
+  <div class="modal">
+
+    <h2 id="collectionModalTitle">
+      New Collection
+    </h2>
+
+    <div class="modal-note">
+      Create a collection for prompts, links, documents,
+      notes, or any other content.
+    </div>
+
+    <div class="form-row">
+      <label>Collection name</label>
+
+      <input
+        id="collectionName"
+        class="input"
+        maxlength="100"
+        placeholder="e.g. AI Prompts"
+      >
+    </div>
+
+    <div class="form-row">
+      <label>Description</label>
+
+      <textarea
+        id="collectionDescription"
+        class="input"
+        maxlength="250"
+        placeholder="Short collection description..."
+      ></textarea>
+    </div>
+
+    <div class="form-row">
+      <label>Order</label>
+
+      <input
+        id="collectionOrder"
+        class="input"
+        type="number"
+        min="0"
+        value="1"
+      >
+    </div>
+
+    <p id="collectionError" class="status"></p>
+
+    <div class="modal-actions">
+
+      <button class="btn" id="saveCollection">
+        Save Collection
+      </button>
+
+      <button class="btn secondary" id="cancelCollection">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= COLLECTION MANAGEMENT MODAL ================= -->
+
+<div class="overlay" id="manageModal">
+
+  <div class="modal">
+
+    <div class="admin-top">
+
+      <div>
+        <h2 id="manageTitle">Collection</h2>
+        <div class="modal-note">
+          Manage items inside this collection.
+        </div>
+      </div>
+
+      <button class="btn secondary" id="closeManage">
+        Close
+      </button>
+
+    </div>
+
+    <button class="btn full" id="newItem">
+      ＋ Add Item
+    </button>
+
+    <div id="manageItemList" class="admin-list"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= ITEM MODAL ================= -->
+
+<div class="overlay" id="itemModal">
+
+  <div class="modal">
+
+    <h2 id="itemModalTitle">
+      Add Item
+    </h2>
+
+    <div class="modal-note">
+      The content is stored privately and is only copied
+      when a visitor presses Copy.
+    </div>
+
+    <div class="form-row">
+
+      <label>Item title</label>
+
+      <input
+        id="itemTitle"
+        class="input"
+        maxlength="180"
+        placeholder="e.g. Cinematic Car Prompt"
+      >
+
+    </div>
+
+    <div class="form-row">
+
+      <label>Platform / Type</label>
+
+      <input
+        id="itemType"
+        class="input"
+        maxlength="100"
+        placeholder="e.g. Meta AI"
+      >
+
+    </div>
+
+    <div class="form-row">
+
+      <label>Hidden content</label>
+
+      <textarea
+        id="itemContent"
+        class="input"
+        placeholder="Enter the prompt, URL, note, or other content..."
+      ></textarea>
+
+    </div>
+
+    <div class="form-row">
+
+      <label>Order</label>
+
+      <input
+        id="itemOrder"
+        class="input"
+        type="number"
+        min="0"
+        value="1"
+      >
+
+    </div>
+
+    <p id="itemError" class="status"></p>
+
+    <div class="modal-actions">
+
+      <button class="btn" id="saveItem">
+        Save Item
+      </button>
+
+      <button class="btn secondary" id="cancelItem">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="toast" class="toast">
+  ✓ Copied
+</div>
+
 
 <!-- Firebase -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+
 <script>
 "use strict";
 
-/* ==============================
-   FIREBASE
-============================== */
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
 
 const firebaseConfig = {
   apiKey: "AIzaSyB6WxK_Ty-FxfG-rAScxtY8t5VjqXnoSLA",
@@ -593,1291 +1247,2303 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+
+/* =========================================================
+   STATE
+========================================================= */
+
 let currentUser = null;
+
 let collections = [];
-let prompts = [];
+let items = [];
+
 let selectedCollection = null;
 
 let editingCollectionId = null;
-let editingPromptId = null;
+let editingItemId = null;
 
-let settings = {
-  brandName: "Maishn.Work",
-  tagline: "Empowering your AI workflow with handcrafted prompts."
-};
+let collectionUnsubscribe = null;
+let itemUnsubscribe = null;
+let settingsUnsubscribe = null;
 
-const app = document.getElementById("app");
 
-function esc(value){
-  return String(value ?? "");
-}
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+const text = value => String(value ?? "");
 
 function isAdmin(){
+
   return !!currentUser &&
     currentUser.email &&
-    currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase() &&
-    currentUser.emailVerified === true;
+    currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
 }
+
+
+function show(id){
+
+  $(id).classList.remove("hidden");
+
+}
+
+
+function hide(id){
+
+  $(id).classList.add("hidden");
+
+}
+
 
 function toast(message){
-  const el = document.getElementById("toast");
+
+  const el = $("toast");
+
   el.textContent = message;
+
   el.classList.add("show");
 
-  setTimeout(()=>{
+  setTimeout(() => {
     el.classList.remove("show");
-  },1800);
+  }, 1700);
+
 }
 
-function orderValue(item){
-  return Number(item.order || 0);
+
+function setStatus(id,message,error=false){
+
+  const el = $(id);
+
+  el.textContent = message;
+
+  el.style.color = error
+    ? "#ff91a5"
+    : "";
+
 }
 
-/* ==============================
-   FIRESTORE LISTENERS
-============================== */
 
-db.collection("collections").onSnapshot(snapshot=>{
-  collections = snapshot.docs
-    .map(d=>({id:d.id,...d.data()}))
-    .filter(x=>x.published !== false)
-    .sort((a,b)=>orderValue(a)-orderValue(b));
+function closeOverlay(id){
 
-  route();
-},error=>{
-  console.error(error);
-});
+  $(id).classList.remove("show");
 
-db.collection("prompts").onSnapshot(snapshot=>{
-  prompts = snapshot.docs
-    .map(d=>({id:d.id,...d.data()}))
-    .filter(x=>x.published !== false)
-    .sort((a,b)=>orderValue(a)-orderValue(b));
+}
 
-  route();
-},error=>{
-  console.error(error);
-});
 
-db.collection("settings").doc("site").onSnapshot(doc=>{
-  if(doc.exists){
-    settings = {
-      ...settings,
-      ...doc.data()
-    };
-  }
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-  route();
-});
+const DEFAULT_SETTINGS = {
 
-/* ==============================
-   PUBLIC HOME
-============================== */
+  brandName:
+    "Maishn.Work",
 
-function renderHome(){
+  tagline:
+    "Handcrafted prompts for smarter AI workflows.",
 
-  app.innerHTML = `
-    <main class="wrap">
+  heroText:
+    "Explore curated collections and copy useful AI resources instantly.",
 
-      <header class="topbar">
-        <div class="brand">
-          <div class="logo">✦</div>
-          <div>
-            <div class="brand-name">${esc(settings.brandName)}</div>
-            <span class="brand-sub">${esc(settings.tagline)}</span>
-          </div>
-        </div>
-      </header>
+  collectionHeading:
+    "Collections",
 
-      <section class="hero">
-        <span class="eyebrow">
-          <span class="dot"></span>
-          AI PROMPT COLLECTION
-        </span>
+  collectionSubheading:
+    "Choose a collection to explore."
 
-        <h1>
-          Explore the
-          <span class="gradient">Prompts.</span>
-        </h1>
+};
 
-        <p>
-          Discover handcrafted AI prompts for your creative workflow.
-          Choose a collection and copy the prompt you need.
-        </p>
-      </section>
 
-      <section class="collection-grid">
+function applySettings(data){
 
-        ${
-          collections.length
-          ?
-          collections.map((c,i)=>`
-            <button
-              class="collection-card"
-              onclick="openCollection('${c.id}')"
-            >
+  const s = {
+    ...DEFAULT_SETTINGS,
+    ...(data || {})
+  };
 
-              <span class="eyebrow">
-                ✦ COLLECTION ${i+1}
-              </span>
 
-              <h2>${esc(c.title)}</h2>
+  $("brandName").textContent =
+    s.brandName;
 
-              <p>${esc(c.description || "Explore prompts from this collection.")}</p>
+  $("brandTagline").textContent =
+    s.tagline;
 
-              <span class="arrow">
-                Explore collection →
-              </span>
+  $("footerBrand").textContent =
+    s.brandName;
 
-            </button>
-          `).join("")
-          :
-          `<div class="empty">
-            No collections published yet.
-          </div>`
+  $("footerTagline").textContent =
+    s.tagline;
+
+  $("heroText").textContent =
+    s.heroText;
+
+  $("collectionHeading").textContent =
+    s.collectionHeading;
+
+  $("collectionSubheading").textContent =
+    s.collectionSubheading;
+
+  document.title =
+    s.brandName;
+
+
+  $("settingBrand").value =
+    s.brandName;
+
+  $("settingTagline").value =
+    s.tagline;
+
+  $("settingHero").value =
+    s.heroText;
+
+  $("settingHeading").value =
+    s.collectionHeading;
+
+  $("settingSubheading").value =
+    s.collectionSubheading;
+
+}
+
+
+/* =========================================================
+   LOAD SETTINGS
+========================================================= */
+
+function listenSettings(){
+
+  if(settingsUnsubscribe)
+    settingsUnsubscribe();
+
+
+  settingsUnsubscribe =
+    db.collection("settings")
+      .doc("site")
+      .onSnapshot(
+        snap => {
+
+          if(snap.exists){
+
+            applySettings(snap.data());
+
+          }else{
+
+            applySettings(DEFAULT_SETTINGS);
+
+          }
+
+        },
+        error => {
+
+          console.error(error);
+
+          applySettings(DEFAULT_SETTINGS);
+
         }
+      );
 
-      </section>
-
-      <footer class="footer">
-        <strong>${esc(settings.brandName)}</strong>
-        <br>
-        ${esc(settings.tagline)}
-      </footer>
-
-    </main>
-  `;
 }
 
-/* ==============================
-   COLLECTION PAGE
-============================== */
 
-function openCollection(id){
-  location.hash = "collection/" + encodeURIComponent(id);
+/* =========================================================
+   COLLECTIONS
+========================================================= */
+
+function listenCollections(){
+
+  if(collectionUnsubscribe)
+    collectionUnsubscribe();
+
+
+  collectionUnsubscribe =
+    db.collection("collections")
+      .orderBy("order","asc")
+      .onSnapshot(
+        snapshot => {
+
+          collections =
+            snapshot.docs.map(doc => ({
+              id:doc.id,
+              ...doc.data()
+            }));
+
+
+          renderCollections();
+
+          renderAdminCollections();
+
+          if(selectedCollection){
+
+            const updated =
+              collections.find(
+                c => c.id === selectedCollection.id
+              );
+
+            if(updated){
+
+              selectedCollection =
+                updated;
+
+              $("detailTitle").textContent =
+                text(updated.name);
+
+              $("detailDescription").textContent =
+                text(updated.description);
+
+            }
+
+          }
+
+        },
+        error => {
+
+          console.error(error);
+
+          $("homeStatus").textContent =
+            "Could not load collections. Check Firestore Rules.";
+
+        }
+      );
+
 }
 
-function renderCollection(id){
 
-  const collection =
-    collections.find(x=>x.id === id);
+function renderCollections(){
 
-  if(!collection){
-    renderHome();
+  const grid =
+    $("collectionGrid");
+
+  grid.innerHTML = "";
+
+
+  if(!collections.length){
+
+    grid.innerHTML = `
+      <div class="empty">
+        No collections available yet.
+      </div>
+    `;
+
+    $("homeStatus").textContent =
+      "No collections yet.";
+
     return;
+
   }
 
-  selectedCollection = collection;
 
-  const collectionPrompts =
-    prompts.filter(p=>p.collectionId === id);
+  $("homeStatus").textContent =
+    collections.length +
+    " collection" +
+    (collections.length === 1 ? "" : "s");
 
-  app.innerHTML = `
-    <main class="wrap">
 
-      <button class="secondary back" onclick="location.hash=''">
-        ← Back
-      </button>
+  collections.forEach((collection,index) => {
 
-      <section class="page-head">
+    const card =
+      document.createElement("button");
 
-        <span class="eyebrow">
-          ✦ COLLECTION
-        </span>
+    card.className =
+      "collection-card";
 
-        <h1 class="gradient">
-          ${esc(collection.title)}
-        </h1>
+    card.style.animationDelay =
+      `${index * 60}ms`;
 
-        <p>
-          ${esc(collection.description || "")}
-        </p>
 
-      </section>
+    const icon =
+      document.createElement("div");
 
-      <div class="toolbar">
+    icon.className =
+      "collection-icon";
 
-        <input
-          id="promptSearch"
-          type="search"
-          placeholder="🔍 Search prompts..."
-          oninput="filterPrompts()"
-        >
+    icon.textContent =
+      "✦";
 
-      </div>
 
-      <div id="promptGrid" class="prompt-grid">
+    const title =
+      document.createElement("h3");
 
-        ${
-          collectionPrompts.length
-          ?
-          collectionPrompts.map(p=>`
+    title.textContent =
+      text(collection.name);
 
-            <article
-              class="prompt-card"
-              data-search="${esc(
-                (p.title+" "+p.platform).toLowerCase()
-              )}"
-            >
 
-              <span class="platform">
-                ${esc(p.platform || "AI")}
-              </span>
+    const desc =
+      document.createElement("p");
 
-              <h2>
-                ${esc(p.title)}
-              </h2>
+    desc.textContent =
+      text(
+        collection.description ||
+        "Explore this collection."
+      );
 
-              <button
-                class="copy-btn"
-                onclick="copyPrompt('${p.id}',this)"
-              >
-                📋 Copy Prompt
-              </button>
 
-            </article>
+    const bottom =
+      document.createElement("div");
 
-          `).join("")
-          :
-          `<div class="empty">
-            No prompts in this collection yet.
-          </div>`
-        }
+    bottom.className =
+      "collection-bottom";
 
-      </div>
+    bottom.innerHTML =
+      `
+        <span>Open collection</span>
+        <span>↗</span>
+      `;
 
-      <footer class="footer">
-        ${esc(settings.brandName)}
-      </footer>
 
-    </main>
-  `;
-}
-
-function filterPrompts(){
-
-  const query =
-    document.getElementById("promptSearch")
-      .value
-      .toLowerCase()
-      .trim();
-
-  document
-    .querySelectorAll(".prompt-card")
-    .forEach(card=>{
-
-      card.style.display =
-        card.dataset.search.includes(query)
-        ? ""
-        : "none";
-
-    });
-}
-
-/* ==============================
-   COPY
-============================== */
-
-async function copyPrompt(id,button){
-
-  const prompt =
-    prompts.find(p=>p.id===id);
-
-  if(!prompt) return;
-
-  try{
-
-    await navigator.clipboard.writeText(
-      String(prompt.text || "")
+    card.append(
+      icon,
+      title,
+      desc,
+      bottom
     );
 
-  }catch(error){
 
-    const textarea =
-      document.createElement("textarea");
+    card.onclick =
+      () => openCollection(collection);
 
-    textarea.value =
-      String(prompt.text || "");
 
-    textarea.style.position="fixed";
-    textarea.style.opacity="0";
+    grid.append(card);
 
-    document.body.appendChild(textarea);
-    textarea.select();
+  });
 
-    document.execCommand("copy");
+}
 
-    textarea.remove();
+
+/* =========================================================
+   OPEN COLLECTION
+========================================================= */
+
+function openCollection(collection){
+
+  selectedCollection =
+    collection;
+
+
+  hide("homePage");
+
+  hide("adminLoginPage");
+
+  hide("adminDashboard");
+
+  show("collectionPage");
+
+
+  $("detailTitle").textContent =
+    text(collection.name);
+
+  $("detailDescription").textContent =
+    text(collection.description);
+
+
+  $("itemSearch").value = "";
+
+
+  listenItems(collection.id);
+
+
+  history.replaceState(
+    null,
+    "",
+    location.pathname +
+    location.search +
+    "#collection-" +
+    collection.id
+  );
+
+}
+
+
+/* =========================================================
+   ITEMS
+========================================================= */
+
+function listenItems(collectionId){
+
+  if(itemUnsubscribe)
+    itemUnsubscribe();
+
+
+  itemUnsubscribe =
+    db.collection("items")
+      .where("collectionId","==",collectionId)
+      .onSnapshot(
+        snapshot => {
+
+          items =
+            snapshot.docs.map(doc => ({
+              id:doc.id,
+              ...doc.data()
+            }));
+
+
+          items.sort(
+            (a,b) =>
+              Number(a.order || 0) -
+              Number(b.order || 0)
+          );
+
+
+          renderItems();
+
+        },
+        error => {
+
+          console.error(error);
+
+          $("itemStatus").textContent =
+            "Could not load items.";
+
+        }
+      );
+
+}
+
+
+function renderItems(){
+
+  const grid =
+    $("itemGrid");
+
+  grid.innerHTML = "";
+
+
+  const query =
+    $("itemSearch").value
+      .trim()
+      .toLowerCase();
+
+
+  const filtered =
+    items.filter(item => {
+
+      const searchable =
+        (
+          text(item.title) +
+          " " +
+          text(item.type)
+        ).toLowerCase();
+
+      return searchable.includes(query);
+
+    });
+
+
+  $("itemStatus").textContent =
+    filtered.length +
+    " item" +
+    (filtered.length === 1 ? "" : "s");
+
+
+  if(!filtered.length){
+
+    grid.innerHTML = `
+      <div class="empty">
+        ${
+          query
+          ? "No matching items found."
+          : "No items in this collection yet."
+        }
+      </div>
+    `;
+
+    return;
+
   }
 
-  const old = button.textContent;
 
-  button.textContent = "✓ Copied!";
+  filtered.forEach((item,index) => {
 
-  toast("Prompt copied successfully");
+    const card =
+      document.createElement("article");
 
-  setTimeout(()=>{
-    button.textContent = old;
-  },1500);
+    card.className =
+      "item-card";
+
+    card.style.animationDelay =
+      `${index * 45}ms`;
+
+
+    const badge =
+      document.createElement("span");
+
+    badge.className =
+      "badge";
+
+    badge.textContent =
+      text(item.type || "ITEM");
+
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      text(item.title);
+
+
+    const copy =
+      document.createElement("button");
+
+    copy.className =
+      "btn copy-btn";
+
+    copy.textContent =
+      "📋 Copy";
+
+
+    copy.onclick =
+      async () => {
+
+        const content =
+          text(item.content);
+
+
+        if(!content){
+
+          toast("Nothing to copy");
+
+          return;
+
+        }
+
+
+        try{
+
+          if(
+            navigator.clipboard &&
+            window.isSecureContext
+          ){
+
+            await navigator.clipboard
+              .writeText(content);
+
+          }else{
+
+            const area =
+              document.createElement("textarea");
+
+            area.value =
+              content;
+
+            area.style.position =
+              "fixed";
+
+            area.style.opacity =
+              "0";
+
+            document.body.append(area);
+
+            area.focus();
+            area.select();
+
+            document.execCommand("copy");
+
+            area.remove();
+
+          }
+
+
+          copy.textContent =
+            "✓ Copied!";
+
+          copy.classList.add("copied");
+
+          toast("✓ Copied to clipboard");
+
+
+          setTimeout(() => {
+
+            copy.textContent =
+              "📋 Copy";
+
+            copy.classList.remove("copied");
+
+          },1400);
+
+
+        }catch(error){
+
+          console.error(error);
+
+          toast(
+            "Copy blocked by browser"
+          );
+
+        }
+
+      };
+
+
+    card.append(
+      badge,
+      title,
+      copy
+    );
+
+
+    grid.append(card);
+
+  });
+
 }
 
-/* ==============================
+
+$("itemSearch").addEventListener(
+  "input",
+  renderItems
+);
+
+
+/* =========================================================
+   HOME / COLLECTION NAVIGATION
+========================================================= */
+
+$("backHome").onclick =
+  () => {
+
+    if(itemUnsubscribe)
+      itemUnsubscribe();
+
+    selectedCollection = null;
+
+    hide("collectionPage");
+
+    show("homePage");
+
+    history.replaceState(
+      null,
+      "",
+      location.pathname +
+      location.search
+    );
+
+  };
+
+
+/* =========================================================
+   ADMIN ROUTING
+========================================================= */
+
+function route(){
+
+  const hash =
+    location.hash;
+
+
+  if(hash === "#admin"){
+
+    hide("homePage");
+    hide("collectionPage");
+
+    if(isAdmin()){
+
+      show("adminDashboard");
+      hide("adminLoginPage");
+
+    }else{
+
+      show("adminLoginPage");
+      hide("adminDashboard");
+
+    }
+
+    return;
+
+  }
+
+
+  if(hash.startsWith("#collection-")){
+
+    const id =
+      hash.replace(
+        "#collection-",
+        ""
+      );
+
+    const collection =
+      collections.find(
+        c => c.id === id
+      );
+
+    if(collection){
+
+      openCollection(collection);
+
+      return;
+
+    }
+
+  }
+
+
+  hide("collectionPage");
+  hide("adminLoginPage");
+  hide("adminDashboard");
+
+  show("homePage");
+
+}
+
+
+window.addEventListener(
+  "hashchange",
+  route
+);
+
+
+/* =========================================================
    ADMIN LOGIN
-============================== */
+========================================================= */
 
-function renderAdminLogin(){
+$("googleLogin").onclick =
+  async () => {
 
-  app.innerHTML = `
-    <main class="wrap">
+    const button =
+      $("googleLogin");
 
-      <div class="login-screen">
+    button.disabled = true;
 
-        <section class="login-box">
+    setStatus(
+      "loginStatus",
+      "Opening Google sign-in…"
+    );
 
-          <div class="login-icon">
-            ✦
-          </div>
 
-          <h1 class="gradient">
-            Maishn.Work
-          </h1>
+    try{
 
-          <h2>
-            Admin Control Panel
-          </h2>
+      const provider =
+        new firebase.auth.GoogleAuthProvider();
 
-          <p class="status">
-            Private administrator access.
-          </p>
+      provider.setCustomParameters({
+        prompt:"select_account"
+      });
 
-          <button
-            style="width:100%"
-            onclick="googleLogin()"
-          >
-            Continue with Google
-          </button>
 
-          <p class="note">
-            Authorized account only.
-          </p>
+      const result =
+        await auth.signInWithPopup(
+          provider
+        );
 
-        </section>
 
+      const signedUser =
+        result.user;
+
+
+      if(
+        !signedUser ||
+        !signedUser.email ||
+        signedUser.email.toLowerCase() !==
+        ADMIN_EMAIL.toLowerCase()
+      ){
+
+        await auth.signOut();
+
+        throw new Error(
+          "This Google account is not authorized."
+        );
+
+      }
+
+
+      /*
+        Google accounts are normally already
+        email verified. We don't reject the
+        admin here solely because the provider
+        did not expose emailVerified as expected.
+      */
+
+
+      setStatus(
+        "loginStatus",
+        "Login successful. Opening dashboard…"
+      );
+
+
+      location.hash =
+        "#admin";
+
+
+    }catch(error){
+
+      console.error(error);
+
+      let message =
+        error.message ||
+        error.code ||
+        "Login failed.";
+
+
+      if(
+        error.code ===
+        "auth/unauthorized-domain"
+      ){
+
+        message =
+          "Firebase Authorized Domains-এ maishnwork.github.io যোগ করো.";
+
+      }
+
+
+      if(
+        error.code ===
+        "auth/popup-closed-by-user"
+      ){
+
+        message =
+          "Google sign-in window was closed.";
+
+      }
+
+
+      setStatus(
+        "loginStatus",
+        message,
+        true
+      );
+
+
+    }finally{
+
+      button.disabled = false;
+
+    }
+
+  };
+
+
+$("loginBack").onclick =
+  () => {
+
+    location.hash = "";
+
+  };
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+auth.onAuthStateChanged(
+  user => {
+
+    currentUser =
+      user;
+
+
+    if(user){
+
+      if(
+        user.email &&
+        user.email.toLowerCase() ===
+        ADMIN_EMAIL.toLowerCase()
+      ){
+
+        if(location.hash === "#admin"){
+
+          hide("adminLoginPage");
+
+          show("adminDashboard");
+
+          renderAdminCollections();
+
+        }
+
+      }else{
+
+        /*
+          Any non-admin Google account
+          is immediately signed out.
+        */
+
+        auth.signOut()
+          .catch(console.error);
+
+      }
+
+    }else{
+
+      if(location.hash === "#admin"){
+
+        hide("adminDashboard");
+
+        show("adminLoginPage");
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ADMIN TABS
+========================================================= */
+
+$("collectionsTab").onclick =
+  () => {
+
+    $("collectionsTab")
+      .classList.add("active");
+
+    $("settingsTab")
+      .classList.remove("active");
+
+    show("collectionsPanel");
+
+    hide("settingsPanel");
+
+  };
+
+
+$("settingsTab").onclick =
+  () => {
+
+    $("settingsTab")
+      .classList.add("active");
+
+    $("collectionsTab")
+      .classList.remove("active");
+
+    hide("collectionsPanel");
+
+    show("settingsPanel");
+
+  };
+
+
+/* =========================================================
+   ADMIN COLLECTION LIST
+========================================================= */
+
+function renderAdminCollections(){
+
+  const list =
+    $("adminCollectionList");
+
+  list.innerHTML = "";
+
+
+  if(!isAdmin()){
+
+    return;
+
+  }
+
+
+  if(!collections.length){
+
+    list.innerHTML = `
+      <div class="empty">
+        No collections yet.<br>
+        Click "New Collection" to create one.
       </div>
+    `;
 
-    </main>
-  `;
+    return;
+
+  }
+
+
+  collections.forEach(
+    (collection,index) => {
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "admin-row";
+
+
+      const info =
+        document.createElement("div");
+
+      info.className =
+        "admin-info";
+
+
+      const strong =
+        document.createElement("strong");
+
+      strong.textContent =
+        text(collection.name);
+
+
+      const small =
+        document.createElement("small");
+
+      small.textContent =
+        text(
+          collection.description ||
+          "No description"
+        );
+
+
+      info.append(
+        strong,
+        small
+      );
+
+
+      const actions =
+        document.createElement("div");
+
+      actions.className =
+        "admin-actions";
+
+
+      const open =
+        document.createElement("button");
+
+      open.className =
+        "btn";
+
+      open.textContent =
+        "Open";
+
+      open.onclick =
+        () => {
+
+          openManageCollection(
+            collection
+          );
+
+        };
+
+
+      const up =
+        document.createElement("button");
+
+      up.className =
+        "btn secondary";
+
+      up.textContent =
+        "↑";
+
+      up.title =
+        "Move up";
+
+      up.disabled =
+        index === 0;
+
+      up.onclick =
+        () =>
+          moveCollection(
+            collection,
+            -1
+          );
+
+
+      const down =
+        document.createElement("button");
+
+      down.className =
+        "btn secondary";
+
+      down.textContent =
+        "↓";
+
+      down.title =
+        "Move down";
+
+      down.disabled =
+        index ===
+        collections.length - 1;
+
+      down.onclick =
+        () =>
+          moveCollection(
+            collection,
+            1
+          );
+
+
+      const edit =
+        document.createElement("button");
+
+      edit.className =
+        "btn secondary";
+
+      edit.textContent =
+        "Edit";
+
+      edit.onclick =
+        () =>
+          editCollection(
+            collection
+          );
+
+
+      const remove =
+        document.createElement("button");
+
+      remove.className =
+        "btn red";
+
+      remove.textContent =
+        "Delete";
+
+      remove.onclick =
+        () =>
+          deleteCollection(
+            collection
+          );
+
+
+      actions.append(
+        open,
+        up,
+        down,
+        edit,
+        remove
+      );
+
+
+      row.append(
+        info,
+        actions
+      );
+
+
+      list.append(row);
+
+    }
+  );
+
 }
 
-async function googleLogin(){
+
+/* =========================================================
+   NEW COLLECTION
+========================================================= */
+
+$("newCollection").onclick =
+  () => {
+
+    editingCollectionId =
+      null;
+
+    $("collectionModalTitle")
+      .textContent =
+      "New Collection";
+
+    $("collectionName").value =
+      "";
+
+    $("collectionDescription").value =
+      "";
+
+    $("collectionOrder").value =
+      String(collections.length + 1);
+
+    $("collectionError")
+      .textContent =
+      "";
+
+    $("collectionModal")
+      .classList.add("show");
+
+  };
+
+
+$("cancelCollection").onclick =
+  () =>
+    closeOverlay(
+      "collectionModal"
+    );
+
+
+/* =========================================================
+   SAVE COLLECTION
+========================================================= */
+
+$("saveCollection").onclick =
+  async () => {
+
+    if(!isAdmin()){
+
+      setStatus(
+        "collectionError",
+        "Admin authentication required.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    const name =
+      $("collectionName")
+        .value
+        .trim();
+
+    const description =
+      $("collectionDescription")
+        .value
+        .trim();
+
+    const order =
+      Number(
+        $("collectionOrder").value
+      ) || 0;
+
+
+    if(!name){
+
+      setStatus(
+        "collectionError",
+        "Enter a collection name.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    const button =
+      $("saveCollection");
+
+    button.disabled = true;
+
+
+    try{
+
+      const data = {
+
+        name,
+
+        description,
+
+        order,
+
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      };
+
+
+      if(editingCollectionId){
+
+        await db
+          .collection("collections")
+          .doc(editingCollectionId)
+          .update(data);
+
+      }else{
+
+        data.createdAt =
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp();
+
+        await db
+          .collection("collections")
+          .add(data);
+
+      }
+
+
+      closeOverlay(
+        "collectionModal"
+      );
+
+      toast(
+        "✓ Collection saved"
+      );
+
+
+    }catch(error){
+
+      console.error(error);
+
+      setStatus(
+        "collectionError",
+        "Save failed: " +
+        (error.message || "Check Firestore Rules."),
+        true
+      );
+
+    }finally{
+
+      button.disabled = false;
+
+    }
+
+  };
+
+
+/* =========================================================
+   EDIT COLLECTION
+========================================================= */
+
+function editCollection(collection){
+
+  editingCollectionId =
+    collection.id;
+
+
+  $("collectionModalTitle")
+    .textContent =
+    "Edit Collection";
+
+
+  $("collectionName").value =
+    text(collection.name);
+
+
+  $("collectionDescription").value =
+    text(collection.description);
+
+
+  $("collectionOrder").value =
+    String(
+      Number(collection.order || 0)
+    );
+
+
+  $("collectionError")
+    .textContent =
+    "";
+
+
+  $("collectionModal")
+    .classList.add("show");
+
+}
+
+
+/* =========================================================
+   DELETE COLLECTION
+========================================================= */
+
+async function deleteCollection(collection){
+
+  if(!isAdmin())
+    return;
+
+
+  const ok =
+    confirm(
+      'Delete collection "' +
+      text(collection.name) +
+      '" and all items inside it?'
+    );
+
+
+  if(!ok)
+    return;
+
 
   try{
 
-    const provider =
-      new firebase.auth.GoogleAuthProvider();
+    const snapshot =
+      await db
+        .collection("items")
+        .where(
+          "collectionId",
+          "==",
+          collection.id
+        )
+        .get();
 
-    provider.setCustomParameters({
-      prompt:"select_account"
-    });
 
-    await auth.signInWithPopup(provider);
+    const batch =
+      db.batch();
+
+
+    snapshot.forEach(
+      doc =>
+        batch.delete(doc.ref)
+    );
+
+
+    batch.delete(
+      db
+        .collection("collections")
+        .doc(collection.id)
+    );
+
+
+    await batch.commit();
+
+
+    toast(
+      "✓ Collection deleted"
+    );
+
 
   }catch(error){
 
     console.error(error);
 
     toast(
-      error.message ||
-      "Google sign-in failed"
-    );
-  }
-}
-
-/* ==============================
-   ADMIN DASHBOARD
-============================== */
-
-function renderAdmin(){
-
-  if(!isAdmin()){
-    renderAdminLogin();
-    return;
-  }
-
-  app.innerHTML = `
-    <div class="admin-shell">
-
-      <main class="wrap">
-
-        <header class="admin-header">
-
-          <div>
-            <div class="admin-title">
-              ✦ Maishn.Work
-            </div>
-
-            <small class="status">
-              Admin Control Panel
-            </small>
-          </div>
-
-          <button
-            class="secondary"
-            onclick="logout()"
-          >
-            Logout
-          </button>
-
-        </header>
-
-        <div class="admin-layout">
-
-          <aside class="admin-nav">
-
-            <button
-              id="navCollections"
-              onclick="adminSection('collections')"
-            >
-              📁 Collections
-            </button>
-
-            <button
-              id="navPrompts"
-              onclick="adminSection('prompts')"
-            >
-              ✦ Prompts
-            </button>
-
-            <button
-              id="navSettings"
-              onclick="adminSection('settings')"
-            >
-              ⚙ Settings
-            </button>
-
-          </aside>
-
-          <section
-            class="admin-content"
-            id="adminContent"
-          ></section>
-
-        </div>
-
-      </main>
-
-    </div>
-
-    <div id="modalArea"></div>
-  `;
-
-  adminSection("collections");
-}
-
-function adminSection(section){
-
-  document.querySelectorAll(".admin-nav button")
-    .forEach(x=>x.classList.remove("active"));
-
-  if(section==="collections")
-    document.getElementById("navCollections")
-      ?.classList.add("active");
-
-  if(section==="prompts")
-    document.getElementById("navPrompts")
-      ?.classList.add("active");
-
-  if(section==="settings")
-    document.getElementById("navSettings")
-      ?.classList.add("active");
-
-  if(section==="collections")
-    renderAdminCollections();
-
-  if(section==="prompts")
-    renderAdminPrompts();
-
-  if(section==="settings")
-    renderAdminSettings();
-}
-
-/* ==============================
-   COLLECTION CMS
-============================== */
-
-function renderAdminCollections(){
-
-  const box =
-    document.getElementById("adminContent");
-
-  box.innerHTML = `
-
-    <section class="admin-box">
-
-      <div class="admin-row"
-           style="border:0;padding-top:0">
-
-        <div>
-          <h2>Collections</h2>
-          <div class="status">
-            Create and manage your prompt categories.
-          </div>
-        </div>
-
-        <button
-          onclick="showCollectionEditor()"
-        >
-          + Add Collection
-        </button>
-
-      </div>
-
-      ${
-        collections.length
-        ?
-        collections.map((c,i)=>`
-
-          <div class="admin-row">
-
-            <div class="admin-info">
-
-              <strong>
-                ${esc(c.title)}
-              </strong>
-
-              <small>
-                ${esc(c.description || "No description")}
-              </small>
-
-            </div>
-
-            <div class="admin-actions">
-
-              <button
-                class="secondary"
-                onclick="moveCollection('${c.id}',-1)"
-              >
-                ↑
-              </button>
-
-              <button
-                class="secondary"
-                onclick="moveCollection('${c.id}',1)"
-              >
-                ↓
-              </button>
-
-              <button
-                class="secondary"
-                onclick="showCollectionEditor('${c.id}')"
-              >
-                Edit
-              </button>
-
-              <button
-                class="danger"
-                onclick="deleteCollection('${c.id}')"
-              >
-                Delete
-              </button>
-
-            </div>
-
-          </div>
-
-        `).join("")
-        :
-        `<div class="empty">No collections yet.</div>`
-      }
-
-    </section>
-  `;
-}
-
-function showCollectionEditor(id=null){
-
-  editingCollectionId = id;
-
-  const c =
-    id
-    ? collections.find(x=>x.id===id)
-    : null;
-
-  document.getElementById("modalArea").innerHTML = `
-
-    <div class="modal-bg show">
-
-      <div class="modal">
-
-        <h2>
-          ${c ? "Edit Collection" : "Add Collection"}
-        </h2>
-
-        <div class="form-row">
-
-          <label>Collection Title</label>
-
-          <input
-            id="collectionTitle"
-            value="${c ? esc(c.title) : ""}"
-            placeholder="e.g. AI Image Prompts"
-          >
-
-        </div>
-
-        <div class="form-row">
-
-          <label>Description</label>
-
-          <textarea
-            id="collectionDescription"
-            placeholder="Collection description"
-          >${c ? esc(c.description) : ""}</textarea>
-
-        </div>
-
-        <div class="modal-actions">
-
-          <button onclick="saveCollection()">
-            Save Collection
-          </button>
-
-          <button
-            class="secondary"
-            onclick="closeModal()"
-          >
-            Cancel
-          </button>
-
-        </div>
-
-        <p id="modalError" class="status"></p>
-
-      </div>
-
-    </div>
-  `;
-}
-
-async function saveCollection(){
-
-  if(!isAdmin()){
-    toast("Admin access required");
-    return;
-  }
-
-  const title =
-    document.getElementById("collectionTitle")
-      .value.trim();
-
-  const description =
-    document.getElementById("collectionDescription")
-      .value.trim();
-
-  if(!title){
-    document.getElementById("modalError")
-      .textContent="Collection title is required.";
-    return;
-  }
-
-  try{
-
-    if(editingCollectionId){
-
-      await db.collection("collections")
-        .doc(editingCollectionId)
-        .update({
-          title,
-          description,
-          updatedAt:
-            firebase.firestore.FieldValue.serverTimestamp()
-        });
-
-      toast("Collection updated");
-
-    }else{
-
-      const maxOrder =
-        collections.length
-        ? Math.max(...collections.map(orderValue))
-        : 0;
-
-      await db.collection("collections").add({
-
-        title,
-        description,
-        order:maxOrder+1,
-        published:true,
-
-        createdAt:
-          firebase.firestore.FieldValue.serverTimestamp(),
-
-        updatedAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-      });
-
-      toast("Collection created");
-    }
-
-    closeModal();
-
-  }catch(error){
-
-    console.error(error);
-
-    document.getElementById("modalError")
-      .textContent =
-      "Save failed: " + error.message;
-  }
-}
-
-async function deleteCollection(id){
-
-  if(!isAdmin()) return;
-
-  const c =
-    collections.find(x=>x.id===id);
-
-  if(!confirm(
-    `Delete "${c?.title || "this collection"}"?`
-  )) return;
-
-  try{
-
-    const related =
-      prompts.filter(
-        p=>p.collectionId===id
-      );
-
-    const batch = db.batch();
-
-    batch.delete(
-      db.collection("collections").doc(id)
+      "Delete failed"
     );
 
-    related.forEach(p=>{
-      batch.delete(
-        db.collection("prompts").doc(p.id)
-      );
-    });
-
-    await batch.commit();
-
-    toast("Collection deleted");
-
-  }catch(error){
-
-    alert("Delete failed: "+error.message);
   }
+
 }
 
-async function moveCollection(id,direction){
 
-  if(!isAdmin()) return;
+/* =========================================================
+   REORDER COLLECTION
+========================================================= */
+
+async function moveCollection(
+  collection,
+  direction
+){
+
+  if(!isAdmin())
+    return;
+
 
   const index =
-    collections.findIndex(x=>x.id===id);
+    collections.findIndex(
+      c => c.id === collection.id
+    );
 
-  const target=index+direction;
 
-  if(index<0 || target<0 ||
-     target>=collections.length) return;
+  const targetIndex =
+    index + direction;
 
-  const a=collections[index];
-  const b=collections[target];
+
+  if(
+    targetIndex < 0 ||
+    targetIndex >= collections.length
+  )
+    return;
+
+
+  const target =
+    collections[targetIndex];
+
 
   try{
 
-    const batch=db.batch();
+    const batch =
+      db.batch();
+
 
     batch.update(
-      db.collection("collections").doc(a.id),
-      {order:orderValue(b)}
+      db
+        .collection("collections")
+        .doc(collection.id),
+      {
+        order:
+          Number(
+            target.order || 0
+          ),
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+      }
     );
 
+
     batch.update(
-      db.collection("collections").doc(b.id),
-      {order:orderValue(a)}
+      db
+        .collection("collections")
+        .doc(target.id),
+      {
+        order:
+          Number(
+            collection.order || 0
+          ),
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+      }
     );
+
 
     await batch.commit();
 
+
   }catch(error){
-    toast("Reorder failed");
+
+    console.error(error);
+
+    toast(
+      "Reorder failed"
+    );
+
   }
+
 }
 
-/* ==============================
-   PROMPT CMS
-============================== */
 
-function renderAdminPrompts(){
+/* =========================================================
+   MANAGE COLLECTION
+========================================================= */
 
-  const box =
-    document.getElementById("adminContent");
+function openManageCollection(collection){
 
-  box.innerHTML = `
+  selectedCollection =
+    collection;
 
-    <section class="admin-box">
 
-      <div class="admin-row"
-           style="border:0;padding-top:0">
+  $("manageTitle").textContent =
+    text(collection.name);
 
-        <div>
-          <h2>Prompts</h2>
-          <div class="status">
-            Add prompts to specific collections.
-          </div>
-        </div>
 
-        <button onclick="showPromptEditor()">
-          + Add Prompt
-        </button>
+  $("manageModal")
+    .classList.add("show");
 
-      </div>
 
-      ${
-        prompts.length
-        ?
-        prompts.map(p=>{
+  listenManageItems(
+    collection.id
+  );
 
-          const c =
-            collections.find(
-              x=>x.id===p.collectionId
+}
+
+
+$("closeManage").onclick =
+  () => {
+
+    closeOverlay(
+      "manageModal"
+    );
+
+  };
+
+
+let manageItemsUnsubscribe = null;
+
+
+function listenManageItems(collectionId){
+
+  if(manageItemsUnsubscribe)
+    manageItemsUnsubscribe();
+
+
+  manageItemsUnsubscribe =
+    db
+      .collection("items")
+      .where(
+        "collectionId",
+        "==",
+        collectionId
+      )
+      .onSnapshot(
+        snapshot => {
+
+          const list =
+            snapshot.docs.map(
+              doc => ({
+                id:doc.id,
+                ...doc.data()
+              })
             );
 
-          return `
 
-            <div class="admin-row">
+          list.sort(
+            (a,b) =>
+              Number(a.order || 0) -
+              Number(b.order || 0)
+          );
 
-              <div class="admin-info">
 
-                <strong>
-                  ${esc(p.title)}
-                </strong>
+          renderManageItems(
+            list
+          );
 
-                <small>
-                  ${esc(p.platform || "AI")}
-                  ·
-                  ${esc(c?.title || "No collection")}
-                </small>
+        },
+        error => {
 
-              </div>
+          console.error(error);
 
-              <div class="admin-actions">
-
-                <button
-                  class="secondary"
-                  onclick="showPromptEditor('${p.id}')"
-                >
-                  Edit
-                </button>
-
-                <button
-                  class="danger"
-                  onclick="deletePrompt('${p.id}')"
-                >
-                  Delete
-                </button>
-
-              </div>
-
-            </div>
-          `;
-        }).join("")
-        :
-        `<div class="empty">
-          No prompts yet.
-        </div>`
-      }
-
-    </section>
-  `;
-}
-
-function showPromptEditor(id=null){
-
-  editingPromptId=id;
-
-  const p =
-    id
-    ? prompts.find(x=>x.id===id)
-    : null;
-
-  document.getElementById("modalArea").innerHTML=`
-
-    <div class="modal-bg show">
-
-      <div class="modal">
-
-        <h2>
-          ${p ? "Edit Prompt" : "Add Prompt"}
-        </h2>
-
-        <div class="form-row">
-
-          <label>Prompt Title</label>
-
-          <input
-            id="promptTitle"
-            value="${p ? esc(p.title) : ""}"
-            placeholder="Prompt title"
-          >
-
-        </div>
-
-        <div class="form-row">
-
-          <label>Platform</label>
-
-          <input
-            id="promptPlatform"
-            value="${p ? esc(p.platform) : ""}"
-            placeholder="Meta AI / Google Flow AI / ChatGPT"
-          >
-
-        </div>
-
-        <div class="form-row">
-
-          <label>Collection</label>
-
-          <select id="promptCollection">
-
-            <option value="">
-              Select Collection
-            </option>
-
-            ${
-              collections.map(c=>`
-
-                <option
-                  value="${c.id}"
-                  ${p?.collectionId===c.id ? "selected":""}
-                >
-                  ${esc(c.title)}
-                </option>
-
-              `).join("")
-            }
-
-          </select>
-
-        </div>
-
-        <div class="form-row">
-
-          <label>Full Prompt</label>
-
-          <textarea
-            id="promptText"
-            placeholder="Paste your complete prompt here..."
-          >${p ? esc(p.text) : ""}</textarea>
-
-        </div>
-
-        <div class="modal-actions">
-
-          <button onclick="savePrompt()">
-            Save Prompt
-          </button>
-
-          <button
-            class="secondary"
-            onclick="closeModal()"
-          >
-            Cancel
-          </button>
-
-        </div>
-
-        <p id="modalError" class="status"></p>
-
-      </div>
-
-    </div>
-  `;
-}
-
-async function savePrompt(){
-
-  if(!isAdmin()) return;
-
-  const title =
-    document.getElementById("promptTitle")
-      .value.trim();
-
-  const platform =
-    document.getElementById("promptPlatform")
-      .value.trim();
-
-  const collectionId =
-    document.getElementById("promptCollection")
-      .value;
-
-  const text =
-    document.getElementById("promptText")
-      .value.trim();
-
-  if(!title || !platform || !collectionId || !text){
-
-    document.getElementById("modalError")
-      .textContent =
-      "Title, platform, collection and prompt are required.";
-
-    return;
-  }
-
-  try{
-
-    if(editingPromptId){
-
-      await db.collection("prompts")
-        .doc(editingPromptId)
-        .update({
-
-          title,
-          platform,
-          collectionId,
-          text,
-          published:true,
-
-          updatedAt:
-            firebase.firestore.FieldValue.serverTimestamp()
-        });
-
-      toast("Prompt updated");
-
-    }else{
-
-      const sameCollection =
-        prompts.filter(
-          p=>p.collectionId===collectionId
-        );
-
-      const maxOrder =
-        sameCollection.length
-        ? Math.max(
-            ...sameCollection.map(orderValue)
-          )
-        : 0;
-
-      await db.collection("prompts").add({
-
-        title,
-        platform,
-        collectionId,
-        text,
-
-        order:maxOrder+1,
-
-        published:true,
-
-        createdAt:
-          firebase.firestore.FieldValue.serverTimestamp(),
-
-        updatedAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-      });
-
-      toast("Prompt created");
-    }
-
-    closeModal();
-
-  }catch(error){
-
-    console.error(error);
-
-    document.getElementById("modalError")
-      .textContent =
-      "Save failed: " + error.message;
-  }
-}
-
-async function deletePrompt(id){
-
-  if(!isAdmin()) return;
-
-  const p=prompts.find(x=>x.id===id);
-
-  if(!confirm(
-    `Delete "${p?.title || "this prompt"}"?`
-  )) return;
-
-  try{
-
-    await db.collection("prompts")
-      .doc(id)
-      .delete();
-
-    toast("Prompt deleted");
-
-  }catch(error){
-
-    alert("Delete failed: "+error.message);
-  }
-}
-
-/* ==============================
-   SETTINGS
-============================== */
-
-function renderAdminSettings(){
-
-  document.getElementById("adminContent").innerHTML=`
-
-    <section class="admin-box">
-
-      <h2>Website Settings</h2>
-
-      <p class="status">
-        Customize your public website.
-      </p>
-
-      <div class="form-row">
-
-        <label>Brand Name</label>
-
-        <input
-          id="settingBrand"
-          value="${esc(settings.brandName)}"
-        >
-
-      </div>
-
-      <div class="form-row">
-
-        <label>Tagline</label>
-
-        <input
-          id="settingTagline"
-          value="${esc(settings.tagline)}"
-        >
-
-      </div>
-
-      <button onclick="saveSettings()">
-        Save Settings
-      </button>
-
-      <button
-        class="secondary"
-        onclick="auth.signOut()"
-      >
-        Logout
-      </button>
-
-    </section>
-  `;
-}
-
-async function saveSettings(){
-
-  if(!isAdmin()) return;
-
-  const brandName =
-    document.getElementById("settingBrand")
-      .value.trim();
-
-  const tagline =
-    document.getElementById("settingTagline")
-      .value.trim();
-
-  try{
-
-    await db.collection("settings")
-      .doc("site")
-      .set({
-
-        brandName:
-          brandName || "Maishn.Work",
-
-        tagline:
-          tagline ||
-          "Empowering your AI workflow with handcrafted prompts.",
-
-        updatedAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-
-      },{merge:true});
-
-    toast("Settings saved");
-
-  }catch(error){
-
-    toast("Settings save failed");
-    console.error(error);
-  }
-}
-
-/* ==============================
-   HELPERS
-============================== */
-
-function closeModal(){
-
-  const area =
-    document.getElementById("modalArea");
-
-  if(area)
-    area.innerHTML="";
-}
-
-async function logout(){
-
-  await auth.signOut();
-
-  location.hash="";
-}
-
-/* ==============================
-   ROUTER
-============================== */
-
-function route(){
-
-  const hash =
-    location.hash.replace(/^#/,"");
-
-  if(hash==="admin"){
-
-    if(isAdmin())
-      renderAdmin();
-    else
-      renderAdminLogin();
-
-    return;
-  }
-
-  if(hash.startsWith("collection/")){
-
-    const id =
-      decodeURIComponent(
-        hash.substring("collection/".length)
+        }
       );
 
-    renderCollection(id);
-
-    return;
-  }
-
-  renderHome();
 }
 
-window.addEventListener("hashchange",route);
 
-auth.onAuthStateChanged(user=>{
+function renderManageItems(list){
 
-  currentUser=user;
+  const container =
+    $("manageItemList");
 
-  route();
+  container.innerHTML = "";
 
-});
 
-/* Initial */
+  if(!list.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        No items yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  list.forEach(
+    (item,index) => {
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "admin-row";
+
+
+      const info =
+        document.createElement("div");
+
+      info.className =
+        "admin-info";
+
+
+      const strong =
+        document.createElement("strong");
+
+      strong.textContent =
+        text(item.title);
+
+
+      const small =
+        document.createElement("small");
+
+      small.textContent =
+        text(item.type || "ITEM");
+
+
+      info.append(
+        strong,
+        small
+      );
+
+
+      const actions =
+        document.createElement("div");
+
+      actions.className =
+        "admin-actions";
+
+
+      const up =
+        document.createElement("button");
+
+      up.className =
+        "btn secondary";
+
+      up.textContent =
+        "↑";
+
+      up.disabled =
+        index === 0;
+
+      up.onclick =
+        () =>
+          moveItem(
+            list,
+            index,
+            -1
+          );
+
+
+      const down =
+        document.createElement("button");
+
+      down.className =
+        "btn secondary";
+
+      down.textContent =
+        "↓";
+
+      down.disabled =
+        index === list.length - 1;
+
+      down.onclick =
+        () =>
+          moveItem(
+            list,
+            index,
+            1
+          );
+
+
+      const edit =
+        document.createElement("button");
+
+      edit.className =
+        "btn secondary";
+
+      edit.textContent =
+        "Edit";
+
+      edit.onclick =
+        () =>
+          editItem(item);
+
+
+      const remove =
+        document.createElement("button");
+
+      remove.className =
+        "btn red";
+
+      remove.textContent =
+        "Delete";
+
+      remove.onclick =
+        () =>
+          deleteItem(item);
+
+
+      actions.append(
+        up,
+        down,
+        edit,
+        remove
+      );
+
+
+      row.append(
+        info,
+        actions
+      );
+
+
+      container.append(row);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   NEW ITEM
+========================================================= */
+
+$("newItem").onclick =
+  () => {
+
+    if(!selectedCollection)
+      return;
+
+
+    editingItemId =
+      null;
+
+
+    $("itemModalTitle")
+      .textContent =
+      "Add Item";
+
+
+    $("itemTitle").value =
+      "";
+
+    $("itemType").value =
+      "";
+
+    $("itemContent").value =
+      "";
+
+    $("itemOrder").value =
+      "1";
+
+    $("itemError").textContent =
+      "";
+
+
+    $("itemModal")
+      .classList.add("show");
+
+  };
+
+
+$("cancelItem").onclick =
+  () =>
+    closeOverlay(
+      "itemModal"
+    );
+
+
+/* =========================================================
+   EDIT ITEM
+========================================================= */
+
+function editItem(item){
+
+  editingItemId =
+    item.id;
+
+
+  $("itemModalTitle")
+    .textContent =
+    "Edit Item";
+
+
+  $("itemTitle").value =
+    text(item.title);
+
+  $("itemType").value =
+    text(item.type);
+
+  $("itemContent").value =
+    text(item.content);
+
+  $("itemOrder").value =
+    String(
+      Number(item.order || 0)
+    );
+
+
+  $("itemError").textContent =
+    "";
+
+
+  $("itemModal")
+    .classList.add("show");
+
+}
+
+
+/* =========================================================
+   SAVE ITEM
+========================================================= */
+
+$("saveItem").onclick =
+  async () => {
+
+    if(!isAdmin())
+      return;
+
+
+    if(!selectedCollection){
+
+      setStatus(
+        "itemError",
+        "No collection selected.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    const title =
+      $("itemTitle")
+        .value
+        .trim();
+
+    const type =
+      $("itemType")
+        .value
+        .trim();
+
+    const content =
+      $("itemContent")
+        .value
+        .trim();
+
+    const order =
+      Number(
+        $("itemOrder").value
+      ) || 0;
+
+
+    if(!title){
+
+      setStatus(
+        "itemError",
+        "Enter an item title.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    if(!content){
+
+      setStatus(
+        "itemError",
+        "Enter the hidden content.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    const button =
+      $("saveItem");
+
+    button.disabled = true;
+
+
+    try{
+
+      const data = {
+
+        collectionId:
+          selectedCollection.id,
+
+        title,
+
+        type,
+
+        content,
+
+        order,
+
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      };
+
+
+      if(editingItemId){
+
+        await db
+          .collection("items")
+          .doc(editingItemId)
+          .update(data);
+
+      }else{
+
+        data.createdAt =
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp();
+
+
+        await db
+          .collection("items")
+          .add(data);
+
+      }
+
+
+      closeOverlay(
+        "itemModal"
+      );
+
+
+      toast(
+        "✓ Item saved"
+      );
+
+
+    }catch(error){
+
+      console.error(error);
+
+      setStatus(
+        "itemError",
+        "Save failed: " +
+        (error.message || "Check Firestore Rules."),
+        true
+      );
+
+    }finally{
+
+      button.disabled = false;
+
+    }
+
+  };
+
+
+/* =========================================================
+   DELETE ITEM
+========================================================= */
+
+async function deleteItem(item){
+
+  if(!isAdmin())
+    return;
+
+
+  if(
+    !confirm(
+      'Delete "' +
+      text(item.title) +
+      '"?'
+    )
+  )
+    return;
+
+
+  try{
+
+    await db
+      .collection("items")
+      .doc(item.id)
+      .delete();
+
+
+    toast(
+      "✓ Item deleted"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Delete failed"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   REORDER ITEM
+========================================================= */
+
+async function moveItem(
+  list,
+  index,
+  direction
+){
+
+  if(!isAdmin())
+    return;
+
+
+  const targetIndex =
+    index + direction;
+
+
+  if(
+    targetIndex < 0 ||
+    targetIndex >= list.length
+  )
+    return;
+
+
+  const current =
+    list[index];
+
+  const target =
+    list[targetIndex];
+
+
+  try{
+
+    const batch =
+      db.batch();
+
+
+    batch.update(
+      db
+        .collection("items")
+        .doc(current.id),
+      {
+        order:
+          Number(
+            target.order || 0
+          ),
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+      }
+    );
+
+
+    batch.update(
+      db
+        .collection("items")
+        .doc(target.id),
+      {
+        order:
+          Number(
+            current.order || 0
+          ),
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+      }
+    );
+
+
+    await batch.commit();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Reorder failed"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SETTINGS SAVE
+========================================================= */
+
+$("saveSettings").onclick =
+  async () => {
+
+    if(!isAdmin())
+      return;
+
+
+    const button =
+      $("saveSettings");
+
+    button.disabled = true;
+
+
+    try{
+
+      const data = {
+
+        brandName:
+          $("settingBrand")
+            .value
+            .trim() ||
+          DEFAULT_SETTINGS.brandName,
+
+        tagline:
+          $("settingTagline")
+            .value
+            .trim() ||
+          DEFAULT_SETTINGS.tagline,
+
+        heroText:
+          $("settingHero")
+            .value
+            .trim() ||
+          DEFAULT_SETTINGS.heroText,
+
+        collectionHeading:
+          $("settingHeading")
+            .value
+            .trim() ||
+          DEFAULT_SETTINGS.collectionHeading,
+
+        collectionSubheading:
+          $("settingSubheading")
+            .value
+            .trim() ||
+          DEFAULT_SETTINGS.collectionSubheading,
+
+        updatedAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      };
+
+
+      await db
+        .collection("settings")
+        .doc("site")
+        .set(
+          data,
+          {merge:true}
+        );
+
+
+      setStatus(
+        "settingsStatus",
+        "✓ Settings saved successfully."
+      );
+
+
+      toast(
+        "✓ Website settings updated"
+      );
+
+
+    }catch(error){
+
+      console.error(error);
+
+      setStatus(
+        "settingsStatus",
+        "Could not save settings: " +
+        (error.message || "Check Firestore Rules."),
+        true
+      );
+
+    }finally{
+
+      button.disabled = false;
+
+    }
+
+  };
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("adminLogout").onclick =
+  async () => {
+
+    try{
+
+      await auth.signOut();
+
+      currentUser = null;
+
+      location.hash =
+        "#admin";
+
+
+      setStatus(
+        "loginStatus",
+        "Signed out. You can sign in again."
+      );
+
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+
+  };
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+applySettings(
+  DEFAULT_SETTINGS
+);
+
+listenSettings();
+
+listenCollections();
+
 route();
 
 </script>
+
 </body>
 </html>
