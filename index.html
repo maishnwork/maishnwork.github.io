@@ -1,58 +1,444 @@
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101522">
 <title>Prompt Library</title>
 <style>
 :root{color-scheme:dark;--bg:#101522;--card:#191f30;--line:#30394d;--text:#f5f7ff;--muted:#aab4ca;--blue:#4c83ff;--green:#27b783}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#202a49 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-main{width:min(760px,100%);margin:auto;padding:24px 16px 48px}.brand{display:flex;align-items:center;gap:12px;margin-bottom:26px}.logo{width:46px;height:46px;border-radius:14px;background:#29375d;display:grid;place-items:center;font-size:24px}.brand h1{font-size:1.25rem;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
-.card{background:rgba(25,31,48,.96);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 14px 40px #0002}.tag{color:#9db7ff;font-size:.75rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase}.card h2{font-size:1.4rem;line-height:1.25;margin:10px 0 8px}.desc{color:var(--muted);margin:0 0 18px}.prompt-label{font-size:.9rem;font-weight:700;margin:0 0 8px}.prompt{white-space:pre-wrap;overflow-wrap:anywhere;background:#111827;border:1px solid #38435a;border-radius:13px;padding:15px;color:#e5eaf6;min-height:140px;font-size:.95rem}.actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}button{border:0;border-radius:12px;padding:13px 16px;font:inherit;font-weight:750;cursor:pointer}.copy{flex:1;background:var(--blue);color:white}.copy:active{transform:scale(.99)}.secondary{background:#2a3245;color:#eaf0ff}.status{min-height:24px;color:#7ce0b7;font-size:.9rem;margin:8px 0 0}.note{color:var(--muted);font-size:.85rem;margin-top:18px}.footer{color:#8792a9;text-align:center;font-size:.8rem;margin-top:24px}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top left,#202a49 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{width:min(900px,100%);margin:auto;padding:24px 16px 48px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.logo{width:46px;height:46px;border-radius:14px;background:#29375d;display:grid;place-items:center;font-size:24px}
+.brand h1{font-size:1.4rem;margin:0}
+.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+input,textarea,button{font:inherit}
+input,textarea{width:100%;background:#111827;border:1px solid #38435a;color:var(--text);border-radius:12px;padding:12px}
+textarea{min-height:180px;resize:vertical}
+button{border:0;border-radius:12px;padding:11px 15px;font-weight:750;cursor:pointer;background:var(--blue);color:white}
+button:disabled{opacity:.6;cursor:wait}
+.secondary{background:#2a3245;color:#eaf0ff}
+.danger{background:#602d3b}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.search{margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:15px}
+.card{background:rgba(25,31,48,.96);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 14px 40px #0002;min-width:0}
+.tag{color:#9db7ff;font-size:.75rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
+.card h2{font-size:1.25rem;line-height:1.25;margin:9px 0}
+.desc{color:var(--muted);margin:0 0 13px}
+.prompt{white-space:pre-wrap;overflow-wrap:anywhere;background:#111827;border:1px solid #38435a;border-radius:13px;padding:13px;color:#e5eaf6;max-height:300px;overflow:auto}
+.status{min-height:24px;color:#7ce0b7;font-size:.9rem;margin:10px 0}
+.note,.footer{color:var(--muted);font-size:.85rem}
+.footer{text-align:center;margin-top:24px}
+.admin-dot{position:fixed;bottom:6px;right:6px;width:16px;height:16px;padding:0;font-size:1px;opacity:.04;border-radius:50%}
+.overlay{display:none;position:fixed;inset:0;background:#070a12ed;z-index:10;align-items:center;justify-content:center;padding:14px;overflow:auto}
+.overlay.show{display:flex}
+.modal{width:min(620px,100%);background:#191f30;border:1px solid var(--line);border-radius:18px;padding:20px}
+.modal h2{margin:0 0 10px}
+.hidden{display:none!important}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:10px 0;flex-wrap:wrap}
+.formrow{margin:12px 0}
+.formrow label{display:block;color:var(--muted);font-size:.85rem;margin-bottom:5px}
+.admin-item{border-top:1px solid var(--line);padding:12px 0;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.admin-item strong{overflow-wrap:anywhere;flex:1}
 </style>
 </head>
 <body>
+
 <main>
-<header class="brand"><div class="logo">✨</div><div><h1>Prompt Library</h1><p>Useful prompts, ready to copy</p></div></header>
-<section class="card" aria-labelledby="prompt-title">
-<div class="tag">AI IMAGE GENERATION · SAMPLE</div>
-<h2 id="prompt-title">Cinematic Car Photography</h2>
-<p class="desc">A cinematic automotive photography prompt.</p>
-<p class="prompt-label">Your Prompt</p>
-<div class="prompt" id="prompt-text">Create a cinematic photograph of a modified sports car on a wet city street at night, dramatic neon reflections, realistic details, professional automotive photography, 4K quality, moody lighting.</div>
-<div class="actions"><button class="copy" id="copy-button">📋 Copy Prompt</button><button class="secondary" id="select-button">Select text</button></div>
-<p class="status" id="status" role="status" aria-live="polite"></p>
-<p class="note">Tap “Copy Prompt” to copy the full text. If your browser blocks clipboard access, use “Select text” and copy from the selection menu.</p>
-</section>
+<header class="brand">
+<div class="logo">✨</div>
+<div>
+<h1>Prompt Library</h1>
+<p>Useful prompts, ready to copy</p>
+</div>
+</header>
+
+<input id="search" class="search" type="search" placeholder="Search prompts..." aria-label="Search prompts">
+<p id="status" class="status" role="status">Loading prompts…</p>
+<section id="cards" class="grid"></section>
 <p class="footer">Made for your Telegram prompt channel</p>
 </main>
+
+<!-- Public visitors see no login option. Admin: add #admin to the website URL. -->
+<button class="admin-dot" id="adminEntry" aria-label="Admin access">A</button>
+
+<div class="overlay" id="adminOverlay">
+<div class="modal">
+<div class="row">
+<h2>Admin Panel</h2>
+<button class="secondary" id="closeAdmin">Close</button>
+</div>
+<p id="adminMessage" class="note">Only the authorized administrator can manage prompts.</p>
+<div id="loginArea">
+<button id="login">Continue with Google</button>
+</div>
+<div id="tools" class="hidden">
+<p id="signed" class="note"></p>
+<div class="actions">
+<button id="add">Add new prompt</button>
+<button class="secondary" id="logout">Sign out</button>
+</div>
+<div id="adminList"></div>
+</div>
+</div>
+</div>
+
+<div class="overlay" id="editOverlay">
+<div class="modal">
+<h2 id="editHeading">Add prompt</h2>
+<div class="formrow">
+<label for="title">Prompt title</label>
+<input id="title" maxlength="180" placeholder="Prompt title">
+</div>
+<div class="formrow">
+<label for="desc">Short description (optional)</label>
+<input id="desc" maxlength="300" placeholder="Short description">
+</div>
+<div class="formrow">
+<label for="text">Full prompt</label>
+<textarea id="text" placeholder="Paste the full prompt here..."></textarea>
+</div>
+<p id="editError" class="status"></p>
+<div class="actions">
+<button id="save">Save prompt</button>
+<button id="cancel" class="secondary">Cancel</button>
+</div>
+</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script>
-const promptEl = document.getElementById('prompt-text');
-const statusEl = document.getElementById('status');
-document.getElementById('copy-button').addEventListener('click', async () => {
-  const text = promptEl.innerText;
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      const area = document.createElement('textarea');
-      area.value = text;
-      area.style.position = 'fixed'; area.style.opacity = '0';
-      document.body.appendChild(area); area.focus(); area.select();
-      const ok = document.execCommand('copy'); area.remove();
-      if (!ok) throw new Error('Copy not available');
-    }
-    statusEl.textContent = 'Copied! Paste your prompt anywhere.';
-  } catch (e) {
-    statusEl.textContent = 'Automatic copy was blocked. Tap “Select text”, then copy.';
+const firebaseConfig = {
+  apiKey: "AIzaSyB6WxK_Ty-FxfG-rAScxtY8t5VjqXnoSLA",
+  authDomain: "maishnwork-65719.firebaseapp.com",
+  databaseURL: "https://maishnwork-65719-default-rtdb.firebaseio.com",
+  projectId: "maishnwork-65719",
+  storageBucket: "maishnwork-65719.firebasestorage.app",
+  messagingSenderId: "472199331646",
+  appId: "1:472199331646:web:f5d64df7ab68fc7cceb66f",
+  measurementId: "G-HHFSBHX254"
+};
+
+const ADMIN_EMAIL = "maishn.work@gmail.com";
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+let user = null;
+let prompts = [];
+let editingId = null;
+
+const $ = id => document.getElementById(id);
+const str = value => String(value ?? "");
+
+const isAdmin = () =>
+  !!user &&
+  user.email === ADMIN_EMAIL &&
+  user.emailVerified === true;
+
+function render() {
+  const query = $("search").value.trim().toLowerCase();
+
+  const list = prompts.filter(prompt =>
+    (
+      str(prompt.title) + " " +
+      str(prompt.description) + " " +
+      str(prompt.text)
+    ).toLowerCase().includes(query)
+  );
+
+  $("cards").innerHTML = "";
+
+  if (!list.length) {
+    $("cards").innerHTML =
+      '<div class="card">No prompts published yet.</div>';
+    return;
   }
+
+  list.forEach(prompt => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const tag = document.createElement("div");
+    tag.className = "tag";
+    tag.textContent = "PROMPT";
+
+    const heading = document.createElement("h2");
+    heading.textContent = str(prompt.title);
+
+    const description = document.createElement("p");
+    description.className = "desc";
+    description.textContent = str(prompt.description);
+
+    const body = document.createElement("div");
+    body.className = "prompt";
+    body.textContent = str(prompt.text);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const copy = document.createElement("button");
+    copy.textContent = "📋 Copy Prompt";
+
+    copy.onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(str(prompt.text));
+      } catch (error) {
+        const temp = document.createElement("textarea");
+        temp.value = str(prompt.text);
+        temp.style.position = "fixed";
+        document.body.append(temp);
+        temp.select();
+        document.execCommand("copy");
+        temp.remove();
+      }
+
+      copy.textContent = "Copied!";
+      setTimeout(() => {
+        copy.textContent = "📋 Copy Prompt";
+      }, 1300);
+    };
+
+    const select = document.createElement("button");
+    select.className = "secondary";
+    select.textContent = "Select text";
+
+    select.onclick = () => {
+      const range = document.createRange();
+      range.selectNodeContents(body);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    };
+
+    actions.append(copy, select);
+    card.append(tag, heading, description, body, actions);
+    $("cards").append(card);
+  });
+}
+
+$("search").addEventListener("input", render);
+
+db.collection("prompts").onSnapshot(snapshot => {
+  prompts = snapshot.docs
+    .map(doc => ({ id: doc.id, ...doc.data() }))
+    .filter(prompt => prompt.published !== false);
+
+  prompts.sort((a, b) =>
+    str(a.title).localeCompare(str(b.title))
+  );
+
+  $("status").textContent = prompts.length
+    ? prompts.length + " prompts available"
+    : "No prompts yet. Admin can add the first prompt.";
+
+  render();
+  renderAdmin();
+}, error => {
+  $("status").textContent =
+    "Could not load prompts. Check Firestore Rules and internet connection.";
+  console.error(error);
 });
-document.getElementById('select-button').addEventListener('click', () => {
-  const range = document.createRange(); range.selectNodeContents(promptEl);
-  const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
-  statusEl.textContent = 'Text selected. Use your phone’s Copy option.';
+
+function openAdmin() {
+  $("adminOverlay").classList.add("show");
+}
+
+function closeAdmin() {
+  $("adminOverlay").classList.remove("show");
+
+  if (location.hash === "#admin") {
+    history.replaceState(
+      null,
+      "",
+      location.pathname + location.search
+    );
+  }
+}
+
+$("adminEntry").onclick = () => {
+  location.hash = "admin";
+};
+
+$("closeAdmin").onclick = closeAdmin;
+
+window.addEventListener("hashchange", () => {
+  if (location.hash === "#admin") openAdmin();
 });
+
+if (location.hash === "#admin") openAdmin();
+
+$("login").onclick = async () => {
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    provider.setCustomParameters({
+      prompt: "select_account"
+    });
+
+    const result = await auth.signInWithPopup(provider);
+
+    if (
+      !result.user ||
+      result.user.email !== ADMIN_EMAIL ||
+      result.user.emailVerified !== true
+    ) {
+      await auth.signOut();
+      $("adminMessage").textContent = "Admin account not found.";
+    }
+  } catch (error) {
+    console.error(error);
+
+    $("adminMessage").textContent =
+      error.code === "auth/unauthorized-domain"
+        ? "Add maishnwork.github.io to Firebase Authentication → Settings → Authorized domains."
+        : "Sign-in failed: " + (error.message || error.code);
+  }
+};
+
+auth.onAuthStateChanged(currentUser => {
+  user = currentUser;
+
+  const authorized = isAdmin();
+
+  $("loginArea").classList.toggle("hidden", authorized);
+  $("tools").classList.toggle("hidden", !authorized);
+
+  if (currentUser && !authorized) {
+    $("adminMessage").textContent = "Admin account not found.";
+    auth.signOut().catch(console.error);
+  } else if (authorized) {
+    $("adminMessage").textContent = "Administrator verified.";
+    $("signed").textContent = "Signed in as " + currentUser.email;
+  }
+
+  renderAdmin();
+});
+
+function renderAdmin() {
+  const list = $("adminList");
+  list.innerHTML = "";
+
+  if (!isAdmin()) return;
+
+  if (!prompts.length) {
+    list.textContent = "No prompts yet.";
+    return;
+  }
+
+  prompts.forEach(prompt => {
+    const row = document.createElement("div");
+    row.className = "admin-item";
+
+    const name = document.createElement("strong");
+    name.textContent = str(prompt.title);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const edit = document.createElement("button");
+    edit.className = "secondary";
+    edit.textContent = "Edit";
+    edit.onclick = () => showEditor(prompt);
+
+    const remove = document.createElement("button");
+    remove.className = "danger";
+    remove.textContent = "Delete";
+
+    remove.onclick = async () => {
+      if (!confirm('Delete "' + str(prompt.title) + '"?')) return;
+
+      try {
+        await db.collection("prompts").doc(prompt.id).delete();
+      } catch (error) {
+        alert("Delete failed. Check Firestore Rules.");
+      }
+    };
+
+    actions.append(edit, remove);
+    row.append(name, actions);
+    list.append(row);
+  });
+}
+
+$("add").onclick = () => showEditor(null);
+
+function showEditor(prompt) {
+  if (!isAdmin()) return;
+
+  editingId = prompt ? prompt.id : null;
+
+  $("editHeading").textContent =
+    prompt ? "Edit prompt" : "Add new prompt";
+
+  $("title").value = prompt ? str(prompt.title) : "";
+  $("desc").value = prompt ? str(prompt.description) : "";
+  $("text").value = prompt ? str(prompt.text) : "";
+  $("editError").textContent = "";
+
+  $("editOverlay").classList.add("show");
+}
+
+$("cancel").onclick = () => {
+  $("editOverlay").classList.remove("show");
+};
+
+$("save").onclick = async () => {
+  if (!isAdmin()) return;
+
+  const title = $("title").value.trim();
+  const description = $("desc").value.trim();
+  const text = $("text").value.trim();
+
+  if (!title || !text) {
+    $("editError").textContent =
+      "Please enter both title and prompt text.";
+    return;
+  }
+
+  const button = $("save");
+  button.disabled = true;
+
+  try {
+    const data = {
+      title,
+      description,
+      text,
+      published: true,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    if (editingId) {
+      await db.collection("prompts").doc(editingId).update(data);
+    } else {
+      data.createdAt =
+        firebase.firestore.FieldValue.serverTimestamp();
+
+      await db.collection("prompts").add(data);
+    }
+
+    $("editOverlay").classList.remove("show");
+  } catch (error) {
+    console.error(error);
+
+    $("editError").textContent =
+      "Could not save. Check Firestore Rules and admin sign-in.";
+  } finally {
+    button.disabled = false;
+  }
+};
+
+$("logout").onclick = () => auth.signOut();
 </script>
 </body>
 </html>
