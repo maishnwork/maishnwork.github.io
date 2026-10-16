@@ -1,25 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#070914">
+<meta name="theme-color" content="#080b16">
 <title>Maishn.Work</title>
 
 <style>
 :root{
   color-scheme:dark;
-  --bg:#070914;
-  --panel:#101526;
-  --panel2:#151c30;
-  --line:#283452;
-  --text:#f6f8ff;
-  --muted:#99a6c1;
-  --blue:#6687ff;
-  --purple:#a66cff;
-  --cyan:#54dce8;
-  --green:#42dda3;
-  --red:#ff667f;
+  --bg:#070a13;
+  --panel:#11172a;
+  --panel2:#151d34;
+  --line:#293451;
+  --text:#f5f7ff;
+  --muted:#9da9c2;
+  --blue:#6785ff;
+  --cyan:#56e0ef;
+  --purple:#b36cff;
+  --green:#45dfa1;
+  --red:#ff6682;
 }
 
 *{box-sizing:border-box}
@@ -31,79 +31,128 @@ body{
   min-height:100vh;
   color:var(--text);
   background:
-    radial-gradient(circle at 10% 0%,#34447a55,transparent 34%),
-    radial-gradient(circle at 90% 20%,#7436a844,transparent 32%),
+    radial-gradient(circle at 10% 0%,#27366580,transparent 35%),
+    radial-gradient(circle at 90% 15%,#48205c55,transparent 32%),
     var(--bg);
   font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   overflow-x:hidden;
 }
 
 button,input,textarea{font:inherit}
+
 button{cursor:pointer}
-button:disabled{opacity:.55;cursor:wait}
+
+button:disabled{
+  opacity:.55;
+  cursor:wait;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+  outline:2px solid var(--cyan);
+  outline-offset:3px;
+}
+
+.hidden{display:none!important}
 
 .wrap{
-  width:min(1080px,100%);
+  width:min(1050px,100%);
   margin:auto;
   padding:20px 16px 55px;
 }
 
-/* HEADER */
-
-.header{
+.topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
-  padding:5px 0 25px;
+  gap:12px;
+  margin-bottom:20px;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:11px;
 }
 
 .logo{
-  width:47px;
-  height:47px;
+  width:46px;
+  height:46px;
+  border-radius:15px;
   display:grid;
   place-items:center;
-  border-radius:15px;
-  background:linear-gradient(135deg,#6687ff,#a762ff);
-  box-shadow:0 0 35px #7185ff45;
-  font-size:23px;
+  background:linear-gradient(135deg,#617fff,#a45cff);
+  box-shadow:0 0 35px #7185ff40;
+  font-size:22px;
+  animation:float 4s ease-in-out infinite alternate;
 }
 
 .brand-name{
-  font-size:1.18rem;
+  display:block;
+  font-size:1.2rem;
   font-weight:850;
   letter-spacing:-.04em;
 }
 
 .brand-sub{
+  display:block;
   color:var(--muted);
-  font-size:.76rem;
+  font-size:.75rem;
 }
 
-/* HERO */
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:11px 15px;
+  color:white;
+  font-weight:750;
+  background:linear-gradient(110deg,#587cff,#935dff);
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+  box-shadow:0 10px 30px #657fff30;
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn.secondary{
+  background:#202943;
+  border:1px solid #34415f;
+}
+
+.btn.green{
+  background:linear-gradient(110deg,#158d70,#25bd92);
+}
+
+.btn.red{
+  background:#632b3c;
+  border:1px solid #8e3e55;
+}
+
+.full{width:100%}
 
 .hero{
   text-align:center;
-  padding:60px 0 42px;
+  padding:48px 0 28px;
   animation:rise .7s both;
 }
 
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:7px 12px;
-  border:1px solid #6e85ff45;
+  gap:7px;
+  padding:6px 11px;
+  border:1px solid #7388ff40;
   border-radius:99px;
-  background:#6380ff12;
-  color:#cbd5ff;
-  font-size:.76rem;
+  background:#657fff12;
+  color:#cbd6ff;
+  font-size:.75rem;
   font-weight:750;
 }
 
@@ -112,19 +161,19 @@ button:disabled{opacity:.55;cursor:wait}
   height:7px;
   border-radius:50%;
   background:var(--green);
-  box-shadow:0 0 15px var(--green);
+  box-shadow:0 0 12px var(--green);
 }
 
 .hero h1{
-  margin:20px 0 13px;
-  font-size:clamp(2.7rem,9vw,5.6rem);
+  margin:18px 0 12px;
+  font-size:clamp(2.5rem,8vw,5.2rem);
   line-height:1;
   letter-spacing:-.07em;
 }
 
 .gradient{
   color:transparent;
-  background:linear-gradient(100deg,#fff,#9fb6ff,#d0a0ff,#62e6ef);
+  background:linear-gradient(100deg,#fff,#9fb7ff 40%,#d1a2ff 72%,#6de7f3);
   background-clip:text;
   -webkit-background-clip:text;
 }
@@ -135,128 +184,98 @@ button:disabled{opacity:.55;cursor:wait}
   color:var(--muted);
 }
 
-/* COLLECTIONS */
-
-.section-head{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:15px;
-  margin:25px 0 16px;
-}
-
-.section-head h2{
-  margin:0;
-  font-size:1.45rem;
-  letter-spacing:-.04em;
-}
-
-.section-head p{
-  margin:3px 0 0;
-  color:var(--muted);
-  font-size:.86rem;
-}
-
-.collection-grid{
+.collections{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
-  gap:15px;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));
+  gap:16px;
+  margin-top:20px;
 }
 
 .collection-card{
   position:relative;
+  min-height:230px;
   overflow:hidden;
-  min-height:220px;
-  padding:24px;
-  text-align:left;
-  border:1px solid var(--line);
+  padding:25px;
+  border:1px solid #354263;
   border-radius:24px;
-  color:var(--text);
   background:
-    linear-gradient(145deg,#17213b,#111728);
-  transition:
-    transform .28s ease,
-    border-color .28s ease,
-    box-shadow .28s ease;
-  animation:rise .55s both;
+    radial-gradient(circle at 85% 15%,#735fff25,transparent 30%),
+    linear-gradient(145deg,#17213c,#101625);
+  color:white;
+  text-align:left;
+  transition:.3s ease;
+  animation:rise .6s both;
 }
 
 .collection-card:hover{
-  transform:translateY(-7px);
-  border-color:#7890ff88;
-  box-shadow:0 22px 60px #0007;
+  transform:translateY(-6px);
+  border-color:#7188ff;
+  box-shadow:0 20px 60px #0006;
 }
 
-.collection-card:before{
+.collection-card:after{
   content:"";
   position:absolute;
-  width:170px;
-  height:170px;
-  right:-65px;
-  top:-70px;
+  width:130px;
+  height:130px;
+  right:-45px;
+  bottom:-55px;
   border-radius:50%;
-  background:#8069ff35;
-  filter:blur(8px);
+  background:#4de0ef20;
+  filter:blur(10px);
 }
 
 .collection-number{
-  display:inline-grid;
-  place-items:center;
-  width:35px;
-  height:35px;
-  border-radius:11px;
-  border:1px solid #7088ff50;
-  background:#6981ff16;
-  color:#c9d4ff;
-  font-size:.8rem;
-  font-weight:850;
+  color:#9eb3ff;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.1em;
 }
 
-.collection-card h3{
-  position:relative;
-  margin:25px 0 8px;
-  font-size:1.55rem;
-  line-height:1.2;
+.collection-card h2{
+  margin:30px 0 8px;
+  font-size:clamp(1.7rem,5vw,2.5rem);
+  line-height:1.05;
+  letter-spacing:-.05em;
 }
 
 .collection-card p{
-  position:relative;
   margin:0;
   color:var(--muted);
-  font-size:.9rem;
 }
 
-.collection-open{
-  position:relative;
-  display:inline-flex;
+.collection-arrow{
+  display:inline-block;
   margin-top:22px;
-  color:#dce4ff;
   font-weight:800;
-  transition:gap .2s;
-  gap:7px;
+  color:#dce5ff;
+  transition:.2s;
 }
 
-.collection-card:hover .collection-open{
-  gap:13px;
+.collection-card:hover .collection-arrow{
+  transform:translateX(6px);
 }
 
-/* PROMPT PAGE */
-
-.page{
+.page-head{
+  padding:28px 0 12px;
   animation:rise .4s both;
 }
 
-.hidden{
-  display:none!important;
+.page-head h1{
+  margin:12px 0 7px;
+  font-size:clamp(2rem,6vw,3.5rem);
+  line-height:1.05;
+  letter-spacing:-.06em;
 }
 
-.back{
-  margin-bottom:18px;
+.page-head p{
+  margin:0;
+  color:var(--muted);
 }
 
 .toolbar{
   display:flex;
-  gap:10px;
+  gap:9px;
   margin:20px 0;
 }
 
@@ -264,217 +283,174 @@ button:disabled{opacity:.55;cursor:wait}
   width:100%;
   background:#0d1323;
   border:1px solid #303b58;
-  border-radius:13px;
+  border-radius:12px;
   padding:12px 14px;
-  color:var(--text);
+  color:white;
 }
 
-.prompt-grid{
+.prompts{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
-  gap:15px;
+  gap:14px;
 }
 
 .prompt-card{
   display:flex;
   flex-direction:column;
-  padding:20px;
+  min-width:0;
+  padding:19px;
   border:1px solid var(--line);
-  border-radius:20px;
-  background:linear-gradient(145deg,#151d31,#0e1424);
+  border-radius:19px;
+  background:linear-gradient(145deg,#151d32,#101525);
   animation:rise .45s both;
-  transition:transform .25s,border-color .25s,box-shadow .25s;
+  transition:.25s ease;
 }
 
 .prompt-card:hover{
-  transform:translateY(-5px);
-  border-color:#647fff80;
-  box-shadow:0 17px 45px #0005;
+  transform:translateY(-4px);
+  border-color:#647eff80;
+  box-shadow:0 16px 45px #0004;
 }
 
 .platform{
+  display:inline-block;
   align-self:flex-start;
+  max-width:100%;
+  overflow-wrap:anywhere;
   padding:5px 9px;
-  border:1px solid #51dbe73b;
+  border:1px solid #4bd9e52b;
   border-radius:99px;
-  background:#49dce710;
-  color:#8fe6ef;
-  font-size:.74rem;
+  background:#41d8e70c;
+  color:#8ee5f0;
+  font-size:.73rem;
   font-weight:750;
 }
 
-.prompt-card h3{
+.prompt-card h2{
   margin:17px 0 8px;
-  font-size:1.28rem;
+  font-size:1.3rem;
   line-height:1.3;
+  overflow-wrap:anywhere;
 }
 
 .prompt-card p{
-  margin:0 0 20px;
+  margin:0 0 18px;
   color:var(--muted);
   font-size:.88rem;
+}
+
+.prompt-card .copy-btn{
+  margin-top:auto;
 }
 
 .copy-btn{
   width:100%;
-  margin-top:auto;
-  border:0;
-  border-radius:13px;
-  padding:12px 15px;
-  color:white;
-  background:linear-gradient(110deg,#5b7eff,#975eff);
-  font-weight:800;
-  transition:transform .2s,filter .2s;
 }
-
-.copy-btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
-}
-
-.copy-btn.copied{
-  background:linear-gradient(110deg,#168f70,#27bb91);
-}
-
-/* STATUS */
 
 .status{
-  min-height:24px;
-  color:var(--muted);
-  margin:12px 0;
+  min-height:23px;
+  margin:10px 0;
+  color:#91a0bd;
   font-size:.88rem;
 }
 
+.error{
+  color:#ff91a3;
+}
+
 .empty{
-  padding:35px 20px;
+  padding:35px;
   text-align:center;
   color:var(--muted);
-  border:1px dashed #394665;
+  border:1px dashed #374563;
   border-radius:18px;
 }
 
-/* TOAST */
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  z-index:100;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  padding:12px 18px;
-  border:1px solid #53658f;
-  border-radius:14px;
-  background:#151d31ee;
-  box-shadow:0 15px 50px #0009;
-  transition:.3s;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
+.footer{
+  margin-top:45px;
+  padding-top:20px;
+  border-top:1px solid #ffffff10;
+  text-align:center;
+  color:var(--muted);
+  font-size:.82rem;
 }
 
 /* ADMIN */
 
 .admin-page{
-  min-height:70vh;
-}
-
-.admin-login{
-  width:min(520px,100%);
-  margin:55px auto;
-  padding:32px;
-  text-align:center;
-  border:1px solid #47557b;
-  border-radius:26px;
-  background:
-    radial-gradient(circle at top,#35467d45,transparent 55%),
-    #101729;
-  box-shadow:0 30px 100px #0008;
-  animation:pop .45s both;
-}
-
-.admin-icon{
-  width:75px;
-  height:75px;
-  margin:auto;
-  display:grid;
-  place-items:center;
-  border-radius:23px;
-  background:linear-gradient(135deg,#6687ff,#a963ff);
-  box-shadow:0 0 50px #7185ff50;
-  font-size:30px;
-}
-
-.admin-login h1{
-  margin:20px 0 8px;
-}
-
-.admin-login p{
-  color:var(--muted);
-}
-
-.google-btn{
-  width:100%;
-  margin-top:18px;
-  padding:14px;
-  border:1px solid #d7dbe5;
-  border-radius:13px;
-  background:white;
-  color:#161a23;
-  font-weight:800;
-}
-
-.google-btn:hover{
-  background:#edf0f5;
+  min-height:80vh;
 }
 
 .admin-shell{
-  padding:10px 0 40px;
+  border:1px solid #34415f;
+  border-radius:24px;
+  padding:20px;
+  background:
+    radial-gradient(circle at 90% 0%,#684cff16,transparent 30%),
+    linear-gradient(145deg,#10172b,#0c111e);
+  box-shadow:0 25px 80px #0007;
 }
 
-.admin-top{
+.admin-header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:15px;
+  align-items:center;
+  gap:12px;
   flex-wrap:wrap;
-  margin-bottom:20px;
+  padding-bottom:18px;
+  border-bottom:1px solid #ffffff10;
 }
 
-.admin-top h1{
-  margin:0;
-  font-size:2rem;
+.admin-title{
+  font-size:1.7rem;
+  font-weight:850;
 }
 
-.admin-layout{
+.admin-sub{
+  color:var(--muted);
+  font-size:.82rem;
+}
+
+.admin-grid{
   display:grid;
-  grid-template-columns:1fr;
+  grid-template-columns:1fr 1.5fr;
   gap:15px;
+  margin-top:15px;
 }
 
 .admin-box{
-  padding:20px;
-  border:1px solid #293654;
-  border-radius:20px;
-  background:#0e1526;
+  min-width:0;
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#11182a;
 }
 
 .admin-box h2{
-  margin:0 0 8px;
+  margin:0 0 12px;
+  font-size:1.1rem;
 }
 
-.admin-box p{
-  color:var(--muted);
+.form-row{
+  margin:13px 0;
+}
+
+.form-row label{
+  display:block;
+  margin-bottom:5px;
+  color:#c8d2e8;
+  font-size:.83rem;
+}
+
+textarea{
+  min-height:140px;
+  resize:vertical;
 }
 
 .admin-item{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  gap:10px;
   padding:13px 0;
   border-top:1px solid #ffffff10;
 }
@@ -483,48 +459,71 @@ button:disabled{opacity:.55;cursor:wait}
   border-top:0;
 }
 
-.admin-item strong{
+.admin-info{
+  flex:1;
+  min-width:0;
+}
+
+.admin-info strong{
+  display:block;
+  overflow-wrap:anywhere;
+}
+
+.admin-info small{
+  display:block;
+  color:var(--muted);
   overflow-wrap:anywhere;
 }
 
 .admin-actions{
   display:flex;
-  gap:7px;
+  gap:5px;
   flex-wrap:wrap;
 }
 
-.btn{
-  border:0;
-  border-radius:12px;
-  padding:11px 15px;
-  color:white;
-  background:linear-gradient(110deg,#5b7eff,#965eff);
-  font-weight:750;
+.admin-actions .btn{
+  padding:8px 10px;
+  font-size:.78rem;
 }
 
-.btn.secondary{
-  background:#202943;
-  border:1px solid #35415e;
+.login{
+  max-width:500px;
+  margin:55px auto;
+  text-align:center;
+  padding:30px;
+  border:1px solid #3b4868;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 50% 0%,#6a65ff25,transparent 35%),
+    #11182a;
+  box-shadow:0 30px 100px #0008;
+  animation:pop .4s both;
 }
 
-.btn.red{
-  background:#652c3d;
+.login-icon{
+  width:75px;
+  height:75px;
+  margin:auto;
+  display:grid;
+  place-items:center;
+  border-radius:24px;
+  background:linear-gradient(135deg,#6385ff,#a35dff);
+  font-size:31px;
+  box-shadow:0 0 50px #7885ff45;
+  animation:float 3s ease-in-out infinite alternate;
 }
 
-.form-row{
-  margin:14px 0;
+.login h1{
+  margin:18px 0 7px;
 }
 
-.form-row label{
-  display:block;
-  margin-bottom:6px;
-  color:#c9d2e7;
-  font-size:.85rem;
+.login p{
+  color:var(--muted);
 }
 
-textarea.field{
-  min-height:150px;
-  resize:vertical;
+.google{
+  background:white;
+  color:#171923;
 }
 
 .modal-bg{
@@ -535,7 +534,7 @@ textarea.field{
   align-items:center;
   justify-content:center;
   padding:15px;
-  background:#03050cee;
+  background:#050711ed;
   backdrop-filter:blur(15px);
 }
 
@@ -544,69 +543,83 @@ textarea.field{
 }
 
 .modal{
-  width:min(600px,100%);
-  max-height:90vh;
+  width:min(620px,100%);
+  max-height:92vh;
   overflow:auto;
-  padding:23px;
-  border:1px solid #46547a;
-  border-radius:23px;
-  background:#11192c;
-  box-shadow:0 30px 100px #0009;
-  animation:pop .3s both;
+  padding:22px;
+  border:1px solid #465477;
+  border-radius:22px;
+  background:linear-gradient(145deg,#172039,#0f1525);
+  box-shadow:0 35px 100px #000b;
+  animation:pop .25s both;
 }
 
 .modal h2{
-  margin:0 0 15px;
+  margin:0 0 8px;
 }
 
-/* FOOTER */
-
-.footer{
-  margin-top:45px;
-  padding-top:22px;
-  border-top:1px solid #ffffff12;
-  text-align:center;
-  color:var(--muted);
-  font-size:.82rem;
+.modal-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
 }
 
-/* ANIMATIONS */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  z-index:100;
+  transform:translate(-50%,20px);
+  padding:12px 18px;
+  border:1px solid #ffffff18;
+  border-radius:13px;
+  background:#171e31;
+  color:white;
+  box-shadow:0 15px 50px #0008;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
 
 @keyframes rise{
-  from{
-    opacity:0;
-    transform:translateY(18px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 @keyframes pop{
-  from{
-    opacity:0;
-    transform:translateY(15px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
+  from{opacity:0;transform:scale(.96) translateY(10px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
 }
 
-@media(min-width:760px){
-  .admin-layout{
-    grid-template-columns:1fr 1.5fr;
-  }
+@keyframes float{
+  from{transform:translateY(-4px)}
+  to{transform:translateY(9px)}
 }
 
-@media(max-width:500px){
-  .wrap{
-    padding:16px 13px 40px;
+@media(max-width:760px){
+  .admin-grid{
+    grid-template-columns:1fr;
   }
 
   .hero{
-    padding:40px 0 30px;
+    padding-top:30px;
+  }
+}
+
+@media(max-width:480px){
+  .wrap{
+    padding:15px 12px 40px;
+  }
+
+  .collection-card{
+    min-height:210px;
+    padding:21px;
   }
 
   .admin-item{
@@ -622,23 +635,33 @@ textarea.field{
     flex:1;
   }
 }
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
+<main class="wrap">
 
-<header class="header">
-  <a class="brand" href="#home">
+<header class="topbar">
+  <div class="brand">
     <div class="logo">✦</div>
     <div>
-      <div class="brand-name" id="brandName">Maishn.Work</div>
-      <div class="brand-sub" id="brandSub">AI prompts, made useful.</div>
+      <span class="brand-name" id="brandName">Maishn.Work</span>
+      <span class="brand-sub" id="brandTagline">
+        Handcrafted prompts for better AI workflows.
+      </span>
     </div>
-  </a>
+  </div>
 
-  <button class="btn secondary hidden" id="headerBack">← Back</button>
+  <button class="btn secondary hidden" id="backBtn">← Back</button>
 </header>
 
 
@@ -653,51 +676,43 @@ textarea.field{
     </span>
 
     <h1>
-      Create more with<br>
+      Create more with
+      <br>
       <span class="gradient">the right prompt.</span>
     </h1>
 
-    <p id="homeDescription">
-      Discover handcrafted AI prompts designed to turn your ideas into results.
+    <p id="heroText">
+      Explore curated AI prompt collections and copy exactly what you need.
     </p>
   </div>
 
-  <div class="section-head">
-    <div>
-      <h2 id="collectionHeading">Collections</h2>
-      <p>Choose a collection to explore its prompts.</p>
-    </div>
-  </div>
+  <div id="collections" class="collections"></div>
 
   <p id="homeStatus" class="status">Loading collections…</p>
-
-  <section id="collectionGrid" class="collection-grid"></section>
 
 </section>
 
 
 <!-- COLLECTION DETAILS -->
 
-<section id="collectionPage" class="page hidden">
+<section id="collectionPage" class="hidden">
 
-  <button class="btn secondary back" id="backCollections">
-    ← Collections
-  </button>
+  <div class="page-head">
+    <span class="badge">✦ COLLECTION</span>
 
-  <div class="section-head">
-    <div>
-      <span class="badge">PROMPT COLLECTION</span>
-      <h2 id="collectionTitle" style="font-size:2rem;margin:13px 0 4px">
-        Collection
-      </h2>
-      <p id="collectionDescription">Explore prompts.</p>
-    </div>
+    <h1 class="gradient" id="collectionTitle">
+      Prompts
+    </h1>
+
+    <p id="collectionDescription">
+      Explore prompts from this collection.
+    </p>
   </div>
 
   <div class="toolbar">
     <input
       class="field"
-      id="promptSearch"
+      id="search"
       type="search"
       placeholder="🔍 Search prompts..."
     >
@@ -705,27 +720,27 @@ textarea.field{
 
   <p id="promptStatus" class="status"></p>
 
-  <section id="promptGrid" class="prompt-grid"></section>
+  <div id="prompts" class="prompts"></div>
 
 </section>
 
 
 <!-- ADMIN -->
 
-<section id="adminPage" class="admin-page hidden">
+<section id="adminPage" class="hidden admin-page">
 
-  <div id="adminLogin" class="admin-login">
+  <div id="loginView" class="login">
 
-    <div class="admin-icon">✦</div>
+    <div class="login-icon">✦</div>
 
     <h1>Admin Access</h1>
 
     <p>
-      Private workspace for managing Maishn.Work.
-      Authorized administrator only.
+      Private control panel for Maishn.Work.
+      Only the authorized administrator can continue.
     </p>
 
-    <button class="google-btn" id="googleLogin">
+    <button id="googleLogin" class="btn google full">
       Continue with Google
     </button>
 
@@ -734,52 +749,46 @@ textarea.field{
   </div>
 
 
-  <div id="adminDashboard" class="admin-shell hidden">
+  <div id="dashboard" class="admin-shell hidden">
 
-    <div class="admin-top">
+    <div class="admin-header">
+
       <div>
-        <span class="badge">
-          <span class="dot"></span>
-          PRIVATE CMS
-        </span>
-
-        <h1>Admin Dashboard</h1>
-
-        <p id="adminEmail" class="status"></p>
+        <div class="admin-title">Maishn.Work CMS</div>
+        <div class="admin-sub" id="adminEmail"></div>
       </div>
 
       <button class="btn secondary" id="logout">
         Sign out
       </button>
+
     </div>
 
 
-    <div class="admin-layout">
+    <div class="admin-grid">
 
       <!-- SETTINGS -->
 
       <section class="admin-box">
 
-        <h2>Website Settings</h2>
-
-        <p>Control your public website branding.</p>
+        <h2>⚙️ Website Settings</h2>
 
         <div class="form-row">
-          <label>Brand name</label>
-          <input class="field" id="setBrand">
+          <label>Brand Name</label>
+          <input class="field" id="settingBrand">
         </div>
 
         <div class="form-row">
           <label>Tagline</label>
-          <input class="field" id="setTagline">
+          <input class="field" id="settingTagline">
         </div>
 
         <div class="form-row">
-          <label>Homepage description</label>
-          <textarea class="field" id="setDescription"></textarea>
+          <label>Hero Text</label>
+          <textarea class="field" id="settingHero"></textarea>
         </div>
 
-        <button class="btn" id="saveSettings">
+        <button class="btn green full" id="saveSettings">
           Save Settings
         </button>
 
@@ -788,16 +797,13 @@ textarea.field{
       </section>
 
 
-      <!-- COLLECTION MANAGEMENT -->
+      <!-- COLLECTIONS -->
 
       <section class="admin-box">
 
-        <div class="admin-top">
+        <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
 
-          <div>
-            <h2>Collections</h2>
-            <p>Add and manage prompt collections.</p>
-          </div>
+          <h2>📁 Collections</h2>
 
           <button class="btn" id="addCollection">
             ＋ Add Collection
@@ -811,6 +817,28 @@ textarea.field{
 
     </div>
 
+
+    <section class="admin-box" style="margin-top:15px">
+
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+
+        <div>
+          <h2 style="margin:0">📝 Prompts</h2>
+          <div class="admin-sub">
+            Manage titles, platforms, hidden prompt text and collection.
+          </div>
+        </div>
+
+        <button class="btn" id="addPrompt">
+          ＋ Add Prompt
+        </button>
+
+      </div>
+
+      <div id="adminPrompts"></div>
+
+    </section>
+
   </div>
 
 </section>
@@ -818,11 +846,13 @@ textarea.field{
 
 <footer class="footer">
   <strong id="footerBrand">Maishn.Work</strong>
-  <p id="footerTagline">Empowering your AI workflow with handcrafted prompts.</p>
-  <span>Built for creators who imagine more. ✦</span>
+  <div id="footerTagline">
+    Handcrafted prompts for better AI workflows.
+  </div>
+  <div>Made for creators who imagine more. ✦</div>
 </footer>
 
-</div>
+</main>
 
 
 <!-- COLLECTION MODAL -->
@@ -834,8 +864,8 @@ textarea.field{
     <h2 id="collectionModalTitle">Add Collection</h2>
 
     <div class="form-row">
-      <label>Collection title</label>
-      <input class="field" id="collectionName" maxlength="120">
+      <label>Collection Title</label>
+      <input class="field" id="collectionName" maxlength="100">
     </div>
 
     <div class="form-row">
@@ -843,19 +873,17 @@ textarea.field{
       <textarea class="field" id="collectionDesc" maxlength="300"></textarea>
     </div>
 
-    <p id="collectionError" class="status"></p>
-
-    <div class="admin-actions">
-
-      <button class="btn" id="saveCollection">
+    <div class="modal-actions">
+      <button class="btn green" id="saveCollection">
         Save Collection
       </button>
 
       <button class="btn secondary" id="cancelCollection">
         Cancel
       </button>
-
     </div>
+
+    <p id="collectionError" class="status"></p>
 
   </div>
 
@@ -871,39 +899,42 @@ textarea.field{
     <h2 id="promptModalTitle">Add Prompt</h2>
 
     <div class="form-row">
-      <label>Prompt title</label>
+      <label>Prompt Title</label>
       <input class="field" id="promptTitle" maxlength="180">
     </div>
 
     <div class="form-row">
-      <label>Platform</label>
+      <label>Platform Tag</label>
       <input
         class="field"
         id="promptPlatform"
-        placeholder="Meta AI / ChatGPT / Google Flow AI..."
-        maxlength="100"
+        placeholder="Meta AI / ChatGPT / Google Flow AI"
+        maxlength="80"
       >
     </div>
 
     <div class="form-row">
-      <label>Short description</label>
-      <input class="field" id="promptDesc" maxlength="300">
+      <label>Collection</label>
+      <select class="field" id="promptCollection"></select>
     </div>
 
     <div class="form-row">
-      <label>Full prompt</label>
+      <label>Short Description</label>
+      <input class="field" id="promptDescription" maxlength="300">
+    </div>
+
+    <div class="form-row">
+      <label>Hidden Prompt Text</label>
       <textarea
         class="field"
         id="promptText"
-        placeholder="Paste your full prompt here..."
+        placeholder="Paste the full prompt here..."
       ></textarea>
     </div>
 
-    <p id="promptError" class="status"></p>
+    <div class="modal-actions">
 
-    <div class="admin-actions">
-
-      <button class="btn" id="savePrompt">
+      <button class="btn green" id="savePrompt">
         Save Prompt
       </button>
 
@@ -913,17 +944,15 @@ textarea.field{
 
     </div>
 
+    <p id="promptError" class="status"></p>
+
   </div>
 
 </div>
 
 
-<div class="toast" id="toast">
-  Prompt copied!
-</div>
+<div id="toast" class="toast"></div>
 
-
-<!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -935,7 +964,7 @@ textarea.field{
 
 
 /* =========================
-   FIREBASE CONFIG
+   FIREBASE
 ========================= */
 
 const firebaseConfig = {
@@ -950,10 +979,7 @@ const firebaseConfig = {
 };
 
 
-/* =========================
-   ADMIN ACCOUNT
-========================= */
-
+/* YOUR ADMIN EMAIL */
 const ADMIN_EMAIL = "maishn.work@gmail.com";
 
 
@@ -964,15 +990,22 @@ const db = firebase.firestore();
 
 
 /* =========================
-   VARIABLES
+   STATE
 ========================= */
 
 let currentUser = null;
-
 let collections = [];
-let currentCollection = null;
+let prompts = [];
 
 let editingCollectionId = null;
+let editingPromptId = null;
+let activeCollectionId = null;
+
+let settings = {
+  brandName: "Maishn.Work",
+  tagline: "Handcrafted prompts for better AI workflows.",
+  heroText: "Explore curated AI prompt collections and copy exactly what you need."
+};
 
 
 /* =========================
@@ -983,115 +1016,164 @@ const $ = id => document.getElementById(id);
 
 const text = value => String(value ?? "");
 
-
 function isAdmin(){
 
   return !!currentUser &&
-    (currentUser.email || "").toLowerCase() ===
-    ADMIN_EMAIL.toLowerCase();
+    currentUser.email &&
+    currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase() &&
+    currentUser.emailVerified === true;
 
 }
 
 
-function showToast(message){
+function toast(message){
 
-  const toast = $("toast");
+  const el = $("toast");
 
-  toast.textContent = message;
+  el.textContent = message;
 
-  toast.classList.add("show");
+  el.classList.add("show");
 
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },1600);
+  clearTimeout(window.toastTimer);
 
-}
-
-
-function goHome(){
-
-  location.hash = "home";
+  window.toastTimer = setTimeout(() => {
+    el.classList.remove("show");
+  }, 1800);
 
 }
 
 
-function showSection(name){
+function status(id,message,error=false){
 
-  $("homePage").classList.add("hidden");
-  $("collectionPage").classList.add("hidden");
-  $("adminPage").classList.add("hidden");
+  const el = $(id);
 
-  $("headerBack").classList.add("hidden");
+  if(!el) return;
 
-  if(name === "home"){
+  el.textContent = message;
 
-    $("homePage").classList.remove("hidden");
-
-  }
-
-  if(name === "collection"){
-
-    $("collectionPage").classList.remove("hidden");
-
-    $("headerBack").classList.remove("hidden");
-
-  }
-
-  if(name === "admin"){
-
-    $("adminPage").classList.remove("hidden");
-
-  }
+  el.classList.toggle("error",error);
 
 }
 
 
 /* =========================
-   WEBSITE SETTINGS
+   SETTINGS
 ========================= */
 
-let settings = {
-  brandName:"Maishn.Work",
-  tagline:"Empowering your AI workflow with handcrafted prompts.",
-  description:"Discover handcrafted AI prompts designed to turn your ideas into results."
-};
+function applySettings(data={}){
 
+  settings = {
+    brandName: text(data.brandName || "Maishn.Work"),
+    tagline: text(
+      data.tagline ||
+      "Handcrafted prompts for better AI workflows."
+    ),
+    heroText: text(
+      data.heroText ||
+      "Explore curated AI prompt collections and copy exactly what you need."
+    )
+  };
 
-function applySettings(){
 
   $("brandName").textContent = settings.brandName;
 
-  $("footerBrand").textContent = settings.brandName;
+  $("brandTagline").textContent = settings.tagline;
 
-  $("brandSub").textContent = settings.tagline;
+  $("footerBrand").textContent = settings.brandName;
 
   $("footerTagline").textContent = settings.tagline;
 
-  $("homeDescription").textContent = settings.description;
+  $("heroText").textContent = settings.heroText;
 
   document.title = settings.brandName;
 
-  $("setBrand").value = settings.brandName;
 
-  $("setTagline").value = settings.tagline;
+  $("settingBrand").value = settings.brandName;
 
-  $("setDescription").value = settings.description;
+  $("settingTagline").value = settings.tagline;
+
+  $("settingHero").value = settings.heroText;
 
 }
 
 
+/* =========================
+   ROUTING
+========================= */
+
+function route(){
+
+  const hash = location.hash || "";
+
+  $("homePage").classList.add("hidden");
+  $("collectionPage").classList.add("hidden");
+  $("adminPage").classList.add("hidden");
+
+  $("backBtn").classList.add("hidden");
+
+
+  if(hash === "#admin"){
+
+    $("adminPage").classList.remove("hidden");
+
+    $("backBtn").classList.remove("hidden");
+
+    return;
+
+  }
+
+
+  if(hash.startsWith("#collection/")){
+
+    const id = decodeURIComponent(
+      hash.replace("#collection/","")
+    );
+
+    openCollection(id);
+
+    $("backBtn").classList.remove("hidden");
+
+    return;
+
+  }
+
+
+  $("homePage").classList.remove("hidden");
+
+}
+
+
+window.addEventListener("hashchange",route);
+
+
+$("backBtn").onclick = () => {
+
+  location.hash = "";
+
+};
+
+
+/* =========================
+   LOAD SETTINGS
+========================= */
+
 db.collection("settings")
   .doc("site")
-  .onSnapshot(doc => {
+  .onSnapshot(snapshot => {
 
-    if(doc.exists){
+    if(snapshot.exists){
 
-      settings = {
-        ...settings,
-        ...doc.data()
-      };
+      applySettings(snapshot.data());
+
+    }else{
+
+      applySettings();
 
     }
+
+  },error => {
+
+    console.error(error);
 
     applySettings();
 
@@ -1099,7 +1181,7 @@ db.collection("settings")
 
 
 /* =========================
-   COLLECTIONS
+   LOAD COLLECTIONS
 ========================= */
 
 db.collection("collections")
@@ -1115,6 +1197,8 @@ db.collection("collections")
 
     renderAdminCollections();
 
+    populatePromptCollections();
+
   },error => {
 
     console.error(error);
@@ -1125,51 +1209,116 @@ db.collection("collections")
   });
 
 
+/* =========================
+   LOAD PROMPTS
+========================= */
+
+db.collection("prompts")
+  .orderBy("order","asc")
+  .onSnapshot(snapshot => {
+
+    prompts = snapshot.docs.map(doc => ({
+      id:doc.id,
+      ...doc.data()
+    }));
+
+    renderCollectionPrompts();
+
+    renderAdminPrompts();
+
+  },error => {
+
+    console.error(error);
+
+    $("promptStatus").textContent =
+      "Could not load prompts.";
+
+  });
+
+
+/* =========================
+   HOME COLLECTIONS
+========================= */
+
 function renderCollections(){
 
-  const grid = $("collectionGrid");
+  const box = $("collections");
 
-  grid.innerHTML = "";
+  box.innerHTML = "";
 
   if(!collections.length){
 
-    grid.innerHTML =
-      '<div class="empty">No collections available yet.</div>';
+    box.innerHTML =
+      '<div class="empty">No collections published yet.</div>';
 
-    $("homeStatus").textContent = "";
+    $("homeStatus").textContent =
+      "No collections yet.";
 
     return;
 
   }
 
+
   $("homeStatus").textContent =
     collections.length + " collections available";
 
 
-  collections.forEach((collection,index)=>{
+  collections.forEach((collection,index) => {
 
     const card = document.createElement("button");
 
     card.className = "collection-card";
 
-    card.innerHTML = `
-      <span class="collection-number">${String(index+1).padStart(2,"0")}</span>
-      <h3></h3>
-      <p></p>
-      <span class="collection-open">
-        Explore collection ↗
-      </span>
-    `;
+    card.type = "button";
 
-    card.querySelector("h3").textContent =
+
+    const number = document.createElement("div");
+
+    number.className = "collection-number";
+
+    number.textContent =
+      "COLLECTION " +
+      String(index+1).padStart(2,"0");
+
+
+    const title = document.createElement("h2");
+
+    title.textContent =
       text(collection.title);
 
-    card.querySelector("p").textContent =
+
+    const desc = document.createElement("p");
+
+    desc.textContent =
       text(collection.description);
 
-    card.onclick = () => openCollection(collection);
 
-    grid.appendChild(card);
+    const arrow = document.createElement("span");
+
+    arrow.className = "collection-arrow";
+
+    arrow.textContent =
+      "Explore collection  →";
+
+
+    card.append(
+      number,
+      title,
+      desc,
+      arrow
+    );
+
+
+    card.onclick = () => {
+
+      location.hash =
+        "#collection/" +
+        encodeURIComponent(collection.id);
+
+    };
+
+
+    box.append(card);
 
   });
 
@@ -1177,12 +1326,27 @@ function renderCollections(){
 
 
 /* =========================
-   OPEN COLLECTION
+   COLLECTION PAGE
 ========================= */
 
-function openCollection(collection){
+function openCollection(id){
 
-  currentCollection = collection;
+  activeCollectionId = id;
+
+  const collection =
+    collections.find(item => item.id === id);
+
+
+  if(!collection){
+
+    location.hash = "";
+
+    return;
+
+  }
+
+
+  $("collectionPage").classList.remove("hidden");
 
   $("collectionTitle").textContent =
     text(collection.title);
@@ -1190,72 +1354,57 @@ function openCollection(collection){
   $("collectionDescription").textContent =
     text(collection.description);
 
-  $("promptSearch").value = "";
 
-  showSection("collection");
+  $("search").value = "";
 
-  location.hash = "collection";
-
-  loadCollectionPrompts(collection.id);
+  renderCollectionPrompts();
 
 }
 
 
-function loadCollectionPrompts(collectionId){
+function renderCollectionPrompts(){
 
-  const grid = $("promptGrid");
-
-  grid.innerHTML = "";
-
-  $("promptStatus").textContent =
-    "Loading prompts…";
+  if(!activeCollectionId) return;
 
 
-  db.collection("prompts")
-    .where("collectionId","==",collectionId)
-    .where("published","==",true)
-    .get()
-    .then(snapshot => {
+  const collection =
+    collections.find(item => item.id === activeCollectionId);
 
-      const prompts = snapshot.docs.map(doc => ({
-        id:doc.id,
-        ...doc.data()
-      }));
 
-      prompts.sort((a,b)=>
-        Number(a.order || 0) -
-        Number(b.order || 0)
-      );
+  if(!collection) return;
 
-      renderPrompts(prompts);
 
-    })
-    .catch(error => {
+  const query =
+    $("search").value.trim().toLowerCase();
 
-      console.error(error);
 
-      $("promptStatus").textContent =
-        "Could not load prompts.";
+  const list =
+    prompts.filter(prompt =>
+      text(prompt.collectionId) === activeCollectionId
+    ).filter(prompt => {
+
+      const haystack =
+        (
+          text(prompt.title) +
+          " " +
+          text(prompt.platform) +
+          " " +
+          text(prompt.description)
+        ).toLowerCase();
+
+      return haystack.includes(query);
 
     });
 
-}
+
+  const box = $("prompts");
+
+  box.innerHTML = "";
 
 
-let activePrompts = [];
+  if(!list.length){
 
-
-function renderPrompts(prompts){
-
-  activePrompts = prompts;
-
-  const grid = $("promptGrid");
-
-  grid.innerHTML = "";
-
-  if(!prompts.length){
-
-    grid.innerHTML =
+    box.innerHTML =
       '<div class="empty">No prompts found in this collection.</div>';
 
     $("promptStatus").textContent = "";
@@ -1264,11 +1413,13 @@ function renderPrompts(prompts){
 
   }
 
+
   $("promptStatus").textContent =
-    prompts.length + " prompts";
+    list.length + " prompt" +
+    (list.length === 1 ? "" : "s");
 
 
-  prompts.forEach(prompt=>{
+  list.forEach((prompt,index) => {
 
     const card = document.createElement("article");
 
@@ -1283,51 +1434,54 @@ function renderPrompts(prompts){
       text(prompt.platform || "AI");
 
 
-    const title = document.createElement("h3");
+    const title = document.createElement("h2");
 
     title.textContent =
       text(prompt.title);
 
 
-    const desc = document.createElement("p");
+    const description = document.createElement("p");
 
-    desc.textContent =
+    description.textContent =
       text(prompt.description);
 
 
     /*
       IMPORTANT:
-      The actual prompt text is NOT rendered.
-      It exists only in JavaScript for copying.
+      Raw prompt text is NEVER rendered here.
     */
 
 
-    const button = document.createElement("button");
+    const copy = document.createElement("button");
 
-    button.className = "copy-btn";
+    copy.className = "btn copy-btn";
 
-    button.textContent = "📋 Copy Prompt";
+    copy.textContent = "📋 Copy Prompt";
 
 
-    button.onclick = async ()=>{
+    copy.onclick = async () => {
 
-      const promptText =
-        text(prompt.text);
-
+      const original =
+        copy.textContent;
 
       try{
 
-        if(navigator.clipboard &&
-           window.isSecureContext){
+        if(
+          navigator.clipboard &&
+          window.isSecureContext
+        ){
 
-          await navigator.clipboard.writeText(promptText);
+          await navigator.clipboard.writeText(
+            text(prompt.text)
+          );
 
         }else{
 
           const area =
             document.createElement("textarea");
 
-          area.value = promptText;
+          area.value =
+            text(prompt.text);
 
           area.style.position = "fixed";
 
@@ -1346,26 +1500,32 @@ function renderPrompts(prompts){
         }
 
 
-        button.textContent = "✓ Copied!";
+        copy.textContent = "✓ Copied!";
 
-        button.classList.add("copied");
-
-        showToast("Prompt copied successfully!");
+        toast("Prompt copied successfully");
 
 
-        setTimeout(()=>{
+        setTimeout(() => {
 
-          button.textContent =
-            "📋 Copy Prompt";
+          copy.textContent = original;
 
-          button.classList.remove("copied");
-
-        },1400);
+        },1300);
 
 
       }catch(error){
 
-        showToast("Copy failed. Please try again.");
+        console.error(error);
+
+        copy.textContent =
+          "Copy failed";
+
+        toast("Copy was blocked by the browser");
+
+        setTimeout(() => {
+
+          copy.textContent = original;
+
+        },1600);
 
       }
 
@@ -1375,122 +1535,39 @@ function renderPrompts(prompts){
     card.append(
       platform,
       title,
-      desc,
-      button
+      description,
+      copy
     );
 
 
-    grid.appendChild(card);
+    box.append(card);
 
   });
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
-
-$("promptSearch").addEventListener(
+$("search").addEventListener(
   "input",
-  ()=>{
-
-    const q =
-      $("promptSearch").value
-        .trim()
-        .toLowerCase();
-
-
-    if(!q){
-
-      renderPrompts(activePrompts);
-
-      return;
-
-    }
-
-
-    const filtered =
-      activePrompts.filter(prompt =>
-
-        (
-          text(prompt.title) +
-          " " +
-          text(prompt.platform) +
-          " " +
-          text(prompt.description)
-        )
-        .toLowerCase()
-        .includes(q)
-
-      );
-
-
-    renderPrompts(filtered);
-
-  }
+  renderCollectionPrompts
 );
 
 
 /* =========================
-   ADMIN ROUTING
+   ADMIN AUTH
 ========================= */
 
-function route(){
+$("googleLogin").onclick = async () => {
 
-  const hash =
-    location.hash.toLowerCase();
-
-
-  if(hash === "#admin"){
-
-    showSection("admin");
-
-    return;
-
-  }
-
-
-  if(hash === "#collection" &&
-     currentCollection){
-
-    showSection("collection");
-
-    return;
-
-  }
-
-
-  showSection("home");
-
-}
-
-
-window.addEventListener("hashchange",route);
-
-
-$("headerBack").onclick = ()=>{
-  location.hash = "home";
-};
-
-
-$("backCollections").onclick = ()=>{
-  location.hash = "home";
-};
-
-
-/* =========================
-   GOOGLE LOGIN
-========================= */
-
-$("googleLogin").onclick = async ()=>{
-
-  const button = $("googleLogin");
+  const button =
+    $("googleLogin");
 
   button.disabled = true;
 
-  button.textContent =
-    "Opening Google…";
+  status(
+    "loginStatus",
+    "Opening Google sign-in..."
+  );
 
 
   try{
@@ -1507,81 +1584,118 @@ $("googleLogin").onclick = async ()=>{
       await auth.signInWithPopup(provider);
 
 
+    const signedUser =
+      result.user;
+
+
     if(
-      !result.user ||
-      (result.user.email || "").toLowerCase() !==
+      !signedUser ||
+      !signedUser.email ||
+      signedUser.email.toLowerCase() !==
       ADMIN_EMAIL.toLowerCase()
     ){
 
       await auth.signOut();
 
-      $("loginStatus").textContent =
-        "This Google account is not authorized.";
-
-      button.disabled = false;
-
-      button.textContent =
-        "Continue with Google";
+      status(
+        "loginStatus",
+        "This Google account is not authorized.",
+        true
+      );
 
       return;
 
     }
 
 
-    $("loginStatus").textContent =
-      "Admin verified.";
+    if(!signedUser.emailVerified){
+
+      await auth.signOut();
+
+      status(
+        "loginStatus",
+        "Your Google account must be verified.",
+        true
+      );
+
+      return;
+
+    }
+
+
+    toast("Admin login successful");
+
+    location.hash = "#admin";
 
   }catch(error){
 
     console.error(error);
 
-    $("loginStatus").textContent =
-      "Login failed: " +
-      (error.message || error.code);
+    let message =
+      error.message || error.code || "Login failed";
+
+
+    if(error.code === "auth/unauthorized-domain"){
+
+      message =
+        "GitHub Pages domain is not authorized in Firebase.";
+
+    }
+
+
+    if(error.code === "auth/popup-blocked"){
+
+      message =
+        "Chrome blocked the popup. Allow popups and try again.";
+
+    }
+
+
+    status(
+      "loginStatus",
+      message,
+      true
+    );
+
+  }finally{
 
     button.disabled = false;
-
-    button.textContent =
-      "Continue with Google";
 
   }
 
 };
 
 
-/* =========================
-   AUTH STATE
-========================= */
+auth.onAuthStateChanged(current => {
 
-auth.onAuthStateChanged(user=>{
-
-  currentUser = user;
+  currentUser = current;
 
 
-  if(
-    user &&
-    (user.email || "").toLowerCase() ===
-    ADMIN_EMAIL.toLowerCase()
-  ){
+  if(location.hash === "#admin"){
 
-    $("adminLogin").classList.add("hidden");
+    if(isAdmin()){
 
-    $("adminDashboard").classList.remove("hidden");
+      $("loginView").classList.add("hidden");
 
-    $("adminEmail").textContent =
-      "Signed in as " + user.email;
+      $("dashboard").classList.remove("hidden");
 
-    loadAdminSettings();
+      $("adminEmail").textContent =
+        "Signed in as " + currentUser.email;
 
-    renderAdminCollections();
+    }else{
 
-  }else{
+      $("loginView").classList.remove("hidden");
 
-    $("adminLogin").classList.remove("hidden");
+      $("dashboard").classList.add("hidden");
 
-    $("adminDashboard").classList.add("hidden");
+    }
 
   }
+
+
+  renderAdminCollections();
+
+  renderAdminPrompts();
 
 });
 
@@ -1590,92 +1704,29 @@ auth.onAuthStateChanged(user=>{
    LOGOUT
 ========================= */
 
-$("logout").onclick = async ()=>{
+$("logout").onclick = async () => {
 
   await auth.signOut();
 
-  location.hash = "home";
+  toast("Signed out");
+
+  location.hash = "";
 
 };
 
 
 /* =========================
-   ADMIN SETTINGS
-========================= */
-
-function loadAdminSettings(){
-
-  $("setBrand").value =
-    settings.brandName;
-
-  $("setTagline").value =
-    settings.tagline;
-
-  $("setDescription").value =
-    settings.description;
-
-}
-
-
-$("saveSettings").onclick = async ()=>{
-
-  if(!isAdmin()) return;
-
-
-  const button =
-    $("saveSettings");
-
-  button.disabled = true;
-
-
-  try{
-
-    await db.collection("settings")
-      .doc("site")
-      .set({
-
-        brandName:
-          $("setBrand").value.trim(),
-
-        tagline:
-          $("setTagline").value.trim(),
-
-        description:
-          $("setDescription").value.trim()
-
-      },{
-        merge:true
-      });
-
-
-    $("settingsStatus").textContent =
-      "Settings saved successfully.";
-
-  }catch(error){
-
-    console.error(error);
-
-    $("settingsStatus").textContent =
-      "Could not save settings.";
-
-  }
-
-
-  button.disabled = false;
-
-};
-
-
-/* =========================
-   ADMIN COLLECTION LIST
+   ADMIN COLLECTIONS
 ========================= */
 
 function renderAdminCollections(){
 
-  const area =
+  const box =
     $("adminCollections");
 
-  area.innerHTML = "";
+  if(!box) return;
+
+  box.innerHTML = "";
 
 
   if(!isAdmin()) return;
@@ -1683,15 +1734,15 @@ function renderAdminCollections(){
 
   if(!collections.length){
 
-    area.innerHTML =
-      '<p class="status">No collections yet.</p>';
+    box.innerHTML =
+      '<p class="admin-sub">No collections yet.</p>';
 
     return;
 
   }
 
 
-  collections.forEach((collection,index)=>{
+  collections.forEach((collection,index) => {
 
     const row =
       document.createElement("div");
@@ -1703,28 +1754,25 @@ function renderAdminCollections(){
     const info =
       document.createElement("div");
 
-    info.style.flex = "1";
+    info.className =
+      "admin-info";
 
 
-    const name =
+    const title =
       document.createElement("strong");
 
-    name.textContent =
+    title.textContent =
       text(collection.title);
 
 
-    const desc =
+    const small =
       document.createElement("small");
 
-    desc.style.display = "block";
-
-    desc.style.color = "var(--muted)";
-
-    desc.textContent =
-      text(collection.description);
+    small.textContent =
+      "Order: " + (index+1);
 
 
-    info.append(name,desc);
+    info.append(title,small);
 
 
     const actions =
@@ -1734,17 +1782,34 @@ function renderAdminCollections(){
       "admin-actions";
 
 
-    const open =
+    const up =
       document.createElement("button");
 
-    open.className =
+    up.className =
       "btn secondary";
 
-    open.textContent =
-      "Prompts";
+    up.textContent = "↑";
 
-    open.onclick =
-      ()=>openAdminPrompts(collection);
+    up.disabled =
+      index === 0;
+
+    up.onclick =
+      () => moveCollection(index,-1);
+
+
+    const down =
+      document.createElement("button");
+
+    down.className =
+      "btn secondary";
+
+    down.textContent = "↓";
+
+    down.disabled =
+      index === collections.length-1;
+
+    down.onclick =
+      () => moveCollection(index,1);
 
 
     const edit =
@@ -1757,7 +1822,7 @@ function renderAdminCollections(){
       "Edit";
 
     edit.onclick =
-      ()=>editCollection(collection);
+      () => showCollectionEditor(collection);
 
 
     const del =
@@ -1770,14 +1835,20 @@ function renderAdminCollections(){
       "Delete";
 
     del.onclick =
-      ()=>deleteCollection(collection);
+      () => deleteCollection(collection);
 
 
-    actions.append(open,edit,del);
+    actions.append(
+      up,
+      down,
+      edit,
+      del
+    );
+
 
     row.append(info,actions);
 
-    area.appendChild(row);
+    box.append(row);
 
   });
 
@@ -1785,10 +1856,12 @@ function renderAdminCollections(){
 
 
 /* =========================
-   COLLECTION MODAL
+   COLLECTION EDITOR
 ========================= */
 
-$("addCollection").onclick = ()=>{
+$("addCollection").onclick = () => {
+
+  if(!isAdmin()) return;
 
   editingCollectionId = null;
 
@@ -1799,14 +1872,16 @@ $("addCollection").onclick = ()=>{
 
   $("collectionDesc").value = "";
 
-  $("collectionError").textContent = "";
+  status("collectionError","");
 
   $("collectionModal").classList.add("show");
 
 };
 
 
-function editCollection(collection){
+function showCollectionEditor(collection){
+
+  if(!isAdmin()) return;
 
   editingCollectionId =
     collection.id;
@@ -1820,23 +1895,33 @@ function editCollection(collection){
   $("collectionDesc").value =
     text(collection.description);
 
-  $("collectionError").textContent = "";
+  status("collectionError","");
 
   $("collectionModal").classList.add("show");
 
 }
 
 
-$("cancelCollection").onclick = ()=>{
+$("cancelCollection").onclick = () => {
 
   $("collectionModal").classList.remove("show");
 
 };
 
 
-$("saveCollection").onclick = async ()=>{
+$("saveCollection").onclick = async () => {
 
-  if(!isAdmin()) return;
+  if(!isAdmin()){
+
+    status(
+      "collectionError",
+      "Admin authentication required.",
+      true
+    );
+
+    return;
+
+  }
 
 
   const title =
@@ -1848,39 +1933,54 @@ $("saveCollection").onclick = async ()=>{
 
   if(!title){
 
-    $("collectionError").textContent =
-      "Collection title is required.";
+    status(
+      "collectionError",
+      "Collection title is required.",
+      true
+    );
 
     return;
 
   }
 
 
+  const button =
+    $("saveCollection");
+
+  button.disabled = true;
+
+
   try{
 
     if(editingCollectionId){
 
-      await db.collection("collections")
+      await db
+        .collection("collections")
         .doc(editingCollectionId)
         .update({
-
           title,
-          description
-
+          description,
+          updatedAt:
+            firebase.firestore.FieldValue.serverTimestamp()
         });
+
+      toast("Collection updated");
 
     }else{
 
-      await db.collection("collections")
+      await db
+        .collection("collections")
         .add({
-
           title,
           description,
-          order:collections.length,
+          order: collections.length,
           createdAt:
+            firebase.firestore.FieldValue.serverTimestamp(),
+          updatedAt:
             firebase.firestore.FieldValue.serverTimestamp()
-
         });
+
+      toast("Collection created");
 
     }
 
@@ -1891,8 +1991,15 @@ $("saveCollection").onclick = async ()=>{
 
     console.error(error);
 
-    $("collectionError").textContent =
-      "Could not save collection.";
+    status(
+      "collectionError",
+      "Save failed: " + error.message,
+      true
+    );
+
+  }finally{
+
+    button.disabled = false;
 
   }
 
@@ -1908,48 +2015,49 @@ async function deleteCollection(collection){
   if(!isAdmin()) return;
 
 
-  if(!confirm(
-    'Delete "' +
-    text(collection.title) +
-    '"?'
-  )) return;
+  const used =
+    prompts.some(
+      prompt =>
+        text(prompt.collectionId) === collection.id
+    );
+
+
+  if(used){
+
+    alert(
+      "This collection still contains prompts. Delete or move those prompts first."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      'Delete collection "' +
+      text(collection.title) +
+      '"?'
+    )
+  ) return;
 
 
   try{
 
-    await db.collection("collections")
+    await db
+      .collection("collections")
       .doc(collection.id)
       .delete();
 
-
-    const snapshot =
-      await db.collection("prompts")
-        .where(
-          "collectionId",
-          "==",
-          collection.id
-        )
-        .get();
-
-
-    const batch =
-      db.batch();
-
-
-    snapshot.forEach(doc=>{
-      batch.delete(doc.ref);
-    });
-
-
-    await batch.commit();
-
+    toast("Collection deleted");
 
   }catch(error){
 
     console.error(error);
 
     alert(
-      "Could not delete collection."
+      "Delete failed: " +
+      error.message
     );
 
   }
@@ -1958,116 +2066,123 @@ async function deleteCollection(collection){
 
 
 /* =========================
-   ADMIN PROMPTS
+   REORDER COLLECTIONS
 ========================= */
 
-async function openAdminPrompts(collection){
+async function moveCollection(index,direction){
 
   if(!isAdmin()) return;
 
 
-  const snapshot =
-    await db.collection("prompts")
-      .where(
-        "collectionId",
-        "==",
-        collection.id
-      )
-      .get();
+  const otherIndex =
+    index + direction;
 
 
-  const prompts =
-    snapshot.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
+  if(
+    otherIndex < 0 ||
+    otherIndex >= collections.length
+  ) return;
 
 
-  prompts.sort((a,b)=>
-    Number(a.order || 0) -
-    Number(b.order || 0)
-  );
+  const first =
+    collections[index];
+
+  const second =
+    collections[otherIndex];
 
 
-  const area =
-    $("adminCollections");
+  try{
+
+    await db.runTransaction(async transaction => {
+
+      transaction.update(
+        db.collection("collections").doc(first.id),
+        {order:otherIndex}
+      );
+
+      transaction.update(
+        db.collection("collections").doc(second.id),
+        {order:index}
+      );
+
+    });
 
 
-  area.innerHTML = "";
+    toast("Collection order updated");
 
+  }catch(error){
 
-  const back =
-    document.createElement("button");
+    console.error(error);
 
-  back.className =
-    "btn secondary";
-
-  back.textContent =
-    "← Collections";
-
-  back.onclick =
-    renderAdminCollections;
-
-
-  area.appendChild(back);
-
-
-  const heading =
-    document.createElement("div");
-
-  heading.style.margin =
-    "18px 0";
-
-
-  heading.innerHTML =
-    "<h3>" +
-    text(collection.title) +
-    "</h3>";
-
-
-  area.appendChild(heading);
-
-
-  const add =
-    document.createElement("button");
-
-  add.className =
-    "btn";
-
-  add.textContent =
-    "＋ Add Prompt";
-
-
-  add.onclick =
-    ()=>openPromptEditor(
-      collection,
-      null,
-      prompts.length
+    alert(
+      "Could not reorder collections."
     );
 
+  }
 
-  area.appendChild(add);
+}
+
+
+/* =========================
+   PROMPT COLLECTION SELECT
+========================= */
+
+function populatePromptCollections(){
+
+  const select =
+    $("promptCollection");
+
+  if(!select) return;
+
+  select.innerHTML = "";
+
+
+  collections.forEach(collection => {
+
+    const option =
+      document.createElement("option");
+
+    option.value =
+      collection.id;
+
+    option.textContent =
+      collection.title;
+
+    select.append(option);
+
+  });
+
+}
+
+
+/* =========================
+   ADMIN PROMPTS
+========================= */
+
+function renderAdminPrompts(){
+
+  const box =
+    $("adminPrompts");
+
+  if(!box) return;
+
+  box.innerHTML = "";
+
+
+  if(!isAdmin()) return;
 
 
   if(!prompts.length){
 
-    const empty =
-      document.createElement("p");
-
-    empty.className =
-      "status";
-
-    empty.textContent =
-      "No prompts in this collection yet.";
-
-    area.appendChild(empty);
+    box.innerHTML =
+      '<p class="admin-sub">No prompts yet.</p>';
 
     return;
 
   }
 
 
-  prompts.forEach(prompt=>{
+  prompts.forEach((prompt,index) => {
 
     const row =
       document.createElement("div");
@@ -2079,7 +2194,8 @@ async function openAdminPrompts(collection){
     const info =
       document.createElement("div");
 
-    info.style.flex = "1";
+    info.className =
+      "admin-info";
 
 
     const title =
@@ -2089,20 +2205,23 @@ async function openAdminPrompts(collection){
       text(prompt.title);
 
 
-    const platform =
+    const collection =
+      collections.find(
+        item =>
+          item.id === prompt.collectionId
+      );
+
+
+    const small =
       document.createElement("small");
 
-    platform.style.display =
-      "block";
-
-    platform.style.color =
-      "var(--cyan)";
-
-    platform.textContent =
-      text(prompt.platform);
+    small.textContent =
+      text(prompt.platform || "AI") +
+      " · " +
+      text(collection?.title || "No collection");
 
 
-    info.append(title,platform);
+    info.append(title,small);
 
 
     const actions =
@@ -2110,6 +2229,38 @@ async function openAdminPrompts(collection){
 
     actions.className =
       "admin-actions";
+
+
+    const up =
+      document.createElement("button");
+
+    up.className =
+      "btn secondary";
+
+    up.textContent =
+      "↑";
+
+    up.disabled =
+      index === 0;
+
+    up.onclick =
+      () => movePrompt(index,-1);
+
+
+    const down =
+      document.createElement("button");
+
+    down.className =
+      "btn secondary";
+
+    down.textContent =
+      "↓";
+
+    down.disabled =
+      index === prompts.length-1;
+
+    down.onclick =
+      () => movePrompt(index,1);
 
 
     const edit =
@@ -2122,11 +2273,7 @@ async function openAdminPrompts(collection){
       "Edit";
 
     edit.onclick =
-      ()=>openPromptEditor(
-        collection,
-        prompt,
-        prompt.order || 0
-      );
+      () => showPromptEditor(prompt);
 
 
     const del =
@@ -2139,30 +2286,20 @@ async function openAdminPrompts(collection){
       "Delete";
 
     del.onclick =
-      async ()=>{
-
-        if(!confirm(
-          'Delete "' +
-          text(prompt.title) +
-          '"?'
-        )) return;
+      () => deletePrompt(prompt);
 
 
-        await db.collection("prompts")
-          .doc(prompt.id)
-          .delete();
+    actions.append(
+      up,
+      down,
+      edit,
+      del
+    );
 
-
-        openAdminPrompts(collection);
-
-      };
-
-
-    actions.append(edit,del);
 
     row.append(info,actions);
 
-    area.appendChild(row);
+    box.append(row);
 
   });
 
@@ -2173,65 +2310,93 @@ async function openAdminPrompts(collection){
    PROMPT EDITOR
 ========================= */
 
-let editingPromptId = null;
-let editingPromptCollection = null;
+$("addPrompt").onclick = () => {
+
+  if(!isAdmin()) return;
 
 
-function openPromptEditor(
-  collection,
-  prompt,
-  order
-){
+  if(!collections.length){
 
-  editingPromptCollection =
-    collection;
+    alert(
+      "Create a collection first."
+    );
 
-  editingPromptId =
-    prompt ? prompt.id : null;
+    return;
 
+  }
+
+
+  editingPromptId = null;
 
   $("promptModalTitle").textContent =
-    prompt ? "Edit Prompt" : "Add Prompt";
+    "Add Prompt";
 
+  $("promptTitle").value = "";
+
+  $("promptPlatform").value = "";
+
+  $("promptDescription").value = "";
+
+  $("promptText").value = "";
+
+  populatePromptCollections();
+
+  $("promptCollection").value =
+    collections[0].id;
+
+  status("promptError","");
+
+  $("promptModal").classList.add("show");
+
+};
+
+
+function showPromptEditor(prompt){
+
+  if(!isAdmin()) return;
+
+
+  editingPromptId =
+    prompt.id;
+
+  $("promptModalTitle").textContent =
+    "Edit Prompt";
 
   $("promptTitle").value =
-    prompt ? text(prompt.title) : "";
-
+    text(prompt.title);
 
   $("promptPlatform").value =
-    prompt ? text(prompt.platform) : "";
+    text(prompt.platform);
 
-
-  $("promptDesc").value =
-    prompt ? text(prompt.description) : "";
-
+  $("promptDescription").value =
+    text(prompt.description);
 
   $("promptText").value =
-    prompt ? text(prompt.text) : "";
+    text(prompt.text);
 
 
-  $("promptError").textContent = "";
+  populatePromptCollections();
 
 
-  $("savePrompt").dataset.order =
-    prompt
-      ? String(prompt.order || 0)
-      : String(order || 0);
+  $("promptCollection").value =
+    text(prompt.collectionId);
 
+
+  status("promptError","");
 
   $("promptModal").classList.add("show");
 
 }
 
 
-$("cancelPrompt").onclick = ()=>{
+$("cancelPrompt").onclick = () => {
 
   $("promptModal").classList.remove("show");
 
 };
 
 
-$("savePrompt").onclick = async ()=>{
+$("savePrompt").onclick = async () => {
 
   if(!isAdmin()) return;
 
@@ -2243,83 +2408,102 @@ $("savePrompt").onclick = async ()=>{
     $("promptPlatform").value.trim();
 
   const description =
-    $("promptDesc").value.trim();
+    $("promptDescription").value.trim();
 
   const promptText =
-    $("promptText").value.trim();
+    $("promptText").value;
 
-  const order =
-    Number(
-      $("savePrompt").dataset.order || 0
+  const collectionId =
+    $("promptCollection").value;
+
+
+  if(
+    !title ||
+    !platform ||
+    !promptText.trim() ||
+    !collectionId
+  ){
+
+    status(
+      "promptError",
+      "Title, platform, collection and prompt text are required.",
+      true
     );
-
-
-  if(!title || !platform || !promptText){
-
-    $("promptError").textContent =
-      "Title, platform and prompt text are required.";
 
     return;
 
   }
 
 
-  const data = {
+  const button =
+    $("savePrompt");
 
-    collectionId:
-      editingPromptCollection.id,
-
-    title,
-
-    platform,
-
-    description,
-
-    text:promptText,
-
-    published:true,
-
-    order,
-
-    updatedAt:
-      firebase.firestore.FieldValue.serverTimestamp()
-
-  };
+  button.disabled = true;
 
 
   try{
 
     if(editingPromptId){
 
-      await db.collection("prompts")
+      await db
+        .collection("prompts")
         .doc(editingPromptId)
-        .update(data);
+        .update({
+
+          title,
+          platform,
+          description,
+          text:promptText,
+          collectionId,
+
+          updatedAt:
+            firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+      toast("Prompt updated");
 
     }else{
 
-      data.createdAt =
-        firebase.firestore.FieldValue.serverTimestamp();
+      await db
+        .collection("prompts")
+        .add({
 
-      await db.collection("prompts")
-        .add(data);
+          title,
+          platform,
+          description,
+          text:promptText,
+          collectionId,
+          order:prompts.length,
+
+          createdAt:
+            firebase.firestore.FieldValue.serverTimestamp(),
+
+          updatedAt:
+            firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+      toast("Prompt created");
 
     }
 
 
     $("promptModal").classList.remove("show");
 
-
-    openAdminPrompts(
-      editingPromptCollection
-    );
-
-
   }catch(error){
 
     console.error(error);
 
-    $("promptError").textContent =
-      "Could not save prompt. Check Firestore Rules.";
+    status(
+      "promptError",
+      "Save failed: " + error.message,
+      true
+    );
+
+  }finally{
+
+    button.disabled = false;
 
   }
 
@@ -2327,10 +2511,175 @@ $("savePrompt").onclick = async ()=>{
 
 
 /* =========================
-   START
+   DELETE PROMPT
 ========================= */
 
-applySettings();
+async function deletePrompt(prompt){
+
+  if(!isAdmin()) return;
+
+
+  if(
+    !confirm(
+      'Delete "' +
+      text(prompt.title) +
+      '"?'
+    )
+  ) return;
+
+
+  try{
+
+    await db
+      .collection("prompts")
+      .doc(prompt.id)
+      .delete();
+
+    toast("Prompt deleted");
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Delete failed: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================
+   REORDER PROMPTS
+========================= */
+
+async function movePrompt(index,direction){
+
+  if(!isAdmin()) return;
+
+
+  const otherIndex =
+    index + direction;
+
+
+  if(
+    otherIndex < 0 ||
+    otherIndex >= prompts.length
+  ) return;
+
+
+  const first =
+    prompts[index];
+
+  const second =
+    prompts[otherIndex];
+
+
+  try{
+
+    await db.runTransaction(async transaction => {
+
+      transaction.update(
+        db.collection("prompts").doc(first.id),
+        {order:otherIndex}
+      );
+
+      transaction.update(
+        db.collection("prompts").doc(second.id),
+        {order:index}
+      );
+
+    });
+
+
+    toast("Prompt order updated");
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not reorder prompts."
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SAVE WEBSITE SETTINGS
+========================= */
+
+$("saveSettings").onclick = async () => {
+
+  if(!isAdmin()) return;
+
+
+  const button =
+    $("saveSettings");
+
+  button.disabled = true;
+
+
+  try{
+
+    await db
+      .collection("settings")
+      .doc("site")
+      .set({
+
+        brandName:
+          $("settingBrand").value.trim() ||
+          "Maishn.Work",
+
+        tagline:
+          $("settingTagline").value.trim() ||
+          "Handcrafted prompts for better AI workflows.",
+
+        heroText:
+          $("settingHero").value.trim() ||
+          "Explore curated AI prompt collections and copy exactly what you need.",
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      },{
+        merge:true
+      });
+
+
+    status(
+      "settingsStatus",
+      "Settings saved successfully."
+    );
+
+    toast("Website settings updated");
+
+  }catch(error){
+
+    console.error(error);
+
+    status(
+      "settingsStatus",
+      "Could not save settings: " + error.message,
+      true
+    );
+
+  }finally{
+
+    button.disabled = false;
+
+  }
+
+};
+
+
+/* =========================
+   START ROUTER
+========================= */
 
 route();
 
