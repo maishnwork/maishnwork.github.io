@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b16">
 <title>Maishn.Work</title>
@@ -11,15 +11,15 @@
   color-scheme:dark;
   --bg:#070a13;
   --panel:#11172a;
-  --panel2:#151d34;
+  --panel2:#151d33;
   --line:#293451;
   --text:#f5f7ff;
-  --muted:#9da9c2;
-  --blue:#6785ff;
+  --muted:#9caac6;
+  --blue:#6385ff;
   --cyan:#56e0ef;
-  --purple:#b36cff;
-  --green:#45dfa1;
-  --red:#ff6682;
+  --purple:#b16bff;
+  --green:#45e3a2;
+  --red:#ff718b;
 }
 
 *{box-sizing:border-box}
@@ -31,14 +31,13 @@ body{
   min-height:100vh;
   color:var(--text);
   background:
-    radial-gradient(circle at 10% 0%,#27366580,transparent 35%),
-    radial-gradient(circle at 90% 15%,#48205c55,transparent 32%),
+    radial-gradient(circle at 10% 0%,#26315c70,transparent 38%),
+    radial-gradient(circle at 90% 20%,#45205a55,transparent 35%),
     var(--bg);
   font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  overflow-x:hidden;
 }
 
-button,input,textarea{font:inherit}
+button,input,textarea,select{font:inherit}
 
 button{cursor:pointer}
 
@@ -47,14 +46,55 @@ button:disabled{
   cursor:wait;
 }
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible{
-  outline:2px solid var(--cyan);
-  outline-offset:3px;
+input,textarea,select{
+  width:100%;
+  color:var(--text);
+  background:#0c1220;
+  border:1px solid #303b58;
+  border-radius:13px;
+  padding:12px 14px;
 }
 
-.hidden{display:none!important}
+textarea{
+  min-height:180px;
+  resize:vertical;
+}
+
+button{
+  border:0;
+  border-radius:13px;
+  padding:11px 16px;
+  font-weight:750;
+  color:white;
+  background:linear-gradient(110deg,#587cff,#8b5bff);
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+.secondary{
+  background:#202943;
+  border:1px solid #35415e;
+}
+
+.danger{
+  background:#642b3c;
+}
+
+.green{
+  background:linear-gradient(110deg,#168e71,#24b991);
+}
+
+.hidden{
+  display:none!important;
+}
 
 .wrap{
   width:min(1050px,100%);
@@ -64,16 +104,16 @@ textarea:focus-visible{
 
 .topbar{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:12px;
-  margin-bottom:20px;
+  margin-bottom:25px;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:12px;
 }
 
 .logo{
@@ -82,77 +122,37 @@ textarea:focus-visible{
   border-radius:15px;
   display:grid;
   place-items:center;
-  background:linear-gradient(135deg,#617fff,#a45cff);
-  box-shadow:0 0 35px #7185ff40;
-  font-size:22px;
-  animation:float 4s ease-in-out infinite alternate;
+  font-size:23px;
+  background:linear-gradient(135deg,#6385ff,#a365ff);
+  box-shadow:0 0 35px #7185ff35;
 }
 
 .brand-name{
-  display:block;
-  font-size:1.2rem;
+  font-size:1.25rem;
   font-weight:850;
-  letter-spacing:-.04em;
 }
 
 .brand-sub{
   display:block;
   color:var(--muted);
-  font-size:.75rem;
+  font-size:.78rem;
 }
-
-.btn{
-  border:0;
-  border-radius:12px;
-  padding:11px 15px;
-  color:white;
-  font-weight:750;
-  background:linear-gradient(110deg,#587cff,#935dff);
-  transition:.2s ease;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
-  box-shadow:0 10px 30px #657fff30;
-}
-
-.btn:active{
-  transform:scale(.97);
-}
-
-.btn.secondary{
-  background:#202943;
-  border:1px solid #34415f;
-}
-
-.btn.green{
-  background:linear-gradient(110deg,#158d70,#25bd92);
-}
-
-.btn.red{
-  background:#632b3c;
-  border:1px solid #8e3e55;
-}
-
-.full{width:100%}
 
 .hero{
   text-align:center;
-  padding:48px 0 28px;
-  animation:rise .7s both;
+  padding:50px 0 35px;
 }
 
-.badge{
+.eyebrow{
   display:inline-flex;
   align-items:center;
-  gap:7px;
+  gap:8px;
   padding:6px 11px;
-  border:1px solid #7388ff40;
+  border:1px solid #6b83ff45;
   border-radius:99px;
-  background:#657fff12;
-  color:#cbd6ff;
-  font-size:.75rem;
+  background:#637fff12;
+  color:#c6d2ff;
+  font-size:.76rem;
   font-weight:750;
 }
 
@@ -161,19 +161,19 @@ textarea:focus-visible{
   height:7px;
   border-radius:50%;
   background:var(--green);
-  box-shadow:0 0 12px var(--green);
+  box-shadow:0 0 14px var(--green);
 }
 
 .hero h1{
-  margin:18px 0 12px;
-  font-size:clamp(2.5rem,8vw,5.2rem);
+  margin:20px 0 12px;
+  font-size:clamp(2.7rem,8vw,5.5rem);
   line-height:1;
-  letter-spacing:-.07em;
+  letter-spacing:-.065em;
 }
 
 .gradient{
   color:transparent;
-  background:linear-gradient(100deg,#fff,#9fb7ff 40%,#d1a2ff 72%,#6de7f3);
+  background:linear-gradient(100deg,#fff,#9db6ff,#d3a4ff,#6be7f3);
   background-clip:text;
   -webkit-background-clip:text;
 }
@@ -184,88 +184,67 @@ textarea:focus-visible{
   color:var(--muted);
 }
 
-.collections{
+.collection-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
   gap:16px;
-  margin-top:20px;
 }
 
 .collection-card{
   position:relative;
-  min-height:230px;
   overflow:hidden;
+  min-height:220px;
   padding:25px;
-  border:1px solid #354263;
-  border-radius:24px;
-  background:
-    radial-gradient(circle at 85% 15%,#735fff25,transparent 30%),
-    linear-gradient(145deg,#17213c,#101625);
-  color:white;
   text-align:left;
-  transition:.3s ease;
-  animation:rise .6s both;
+  border:1px solid #39476b;
+  border-radius:24px;
+  background:linear-gradient(145deg,#182447,#17152e);
+  box-shadow:0 18px 55px #0005;
+  transition:.3s;
 }
 
 .collection-card:hover{
-  transform:translateY(-6px);
-  border-color:#7188ff;
-  box-shadow:0 20px 60px #0006;
+  transform:translateY(-7px);
+  border-color:#8298ff;
+  box-shadow:0 25px 70px #0008;
 }
 
 .collection-card:after{
   content:"";
   position:absolute;
-  width:130px;
-  height:130px;
-  right:-45px;
-  bottom:-55px;
+  width:150px;
+  height:150px;
+  right:-60px;
+  top:-60px;
   border-radius:50%;
-  background:#4de0ef20;
-  filter:blur(10px);
-}
-
-.collection-number{
-  color:#9eb3ff;
-  font-size:.75rem;
-  font-weight:800;
-  letter-spacing:.1em;
+  background:#7185ff30;
+  filter:blur(5px);
 }
 
 .collection-card h2{
-  margin:30px 0 8px;
-  font-size:clamp(1.7rem,5vw,2.5rem);
-  line-height:1.05;
-  letter-spacing:-.05em;
+  margin:25px 0 7px;
+  font-size:1.65rem;
 }
 
 .collection-card p{
-  margin:0;
   color:var(--muted);
 }
 
-.collection-arrow{
+.arrow{
   display:inline-block;
-  margin-top:22px;
+  margin-top:15px;
   font-weight:800;
   color:#dce5ff;
-  transition:.2s;
-}
-
-.collection-card:hover .collection-arrow{
-  transform:translateX(6px);
 }
 
 .page-head{
-  padding:28px 0 12px;
-  animation:rise .4s both;
+  margin:30px 0 20px;
 }
 
 .page-head h1{
-  margin:12px 0 7px;
+  margin:12px 0 6px;
   font-size:clamp(2rem,6vw,3.5rem);
   line-height:1.05;
-  letter-spacing:-.06em;
 }
 
 .page-head p{
@@ -275,72 +254,44 @@ textarea:focus-visible{
 
 .toolbar{
   display:flex;
-  gap:9px;
+  gap:10px;
   margin:20px 0;
 }
 
-.field{
-  width:100%;
-  background:#0d1323;
-  border:1px solid #303b58;
-  border-radius:12px;
-  padding:12px 14px;
-  color:white;
-}
-
-.prompts{
+.prompt-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:15px;
 }
 
 .prompt-card{
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-  padding:19px;
+  padding:20px;
   border:1px solid var(--line);
   border-radius:19px;
   background:linear-gradient(145deg,#151d32,#101525);
-  animation:rise .45s both;
-  transition:.25s ease;
+  transition:.25s;
 }
 
 .prompt-card:hover{
   transform:translateY(-4px);
-  border-color:#647eff80;
-  box-shadow:0 16px 45px #0004;
+  border-color:#647fff80;
 }
 
 .platform{
   display:inline-block;
-  align-self:flex-start;
   max-width:100%;
-  overflow-wrap:anywhere;
-  padding:5px 9px;
-  border:1px solid #4bd9e52b;
+  padding:5px 10px;
+  border:1px solid #4ad8e52b;
   border-radius:99px;
+  color:#8fe6f1;
   background:#41d8e70c;
-  color:#8ee5f0;
-  font-size:.73rem;
-  font-weight:750;
+  font-size:.75rem;
 }
 
 .prompt-card h2{
-  margin:17px 0 8px;
+  margin:17px 0 18px;
   font-size:1.3rem;
   line-height:1.3;
-  overflow-wrap:anywhere;
-}
-
-.prompt-card p{
-  margin:0 0 18px;
-  color:var(--muted);
-  font-size:.88rem;
-}
-
-.prompt-card .copy-btn{
-  margin-top:auto;
 }
 
 .copy-btn{
@@ -348,115 +299,103 @@ textarea:focus-visible{
 }
 
 .status{
-  min-height:23px;
-  margin:10px 0;
-  color:#91a0bd;
-  font-size:.88rem;
-}
-
-.error{
-  color:#ff91a3;
+  min-height:25px;
+  color:#9eafd0;
+  font-size:.9rem;
+  margin:12px 0;
 }
 
 .empty{
-  padding:35px;
+  padding:30px;
   text-align:center;
-  color:var(--muted);
-  border:1px dashed #374563;
+  border:1px dashed #384663;
   border-radius:18px;
+  color:var(--muted);
 }
 
 .footer{
   margin-top:45px;
   padding-top:20px;
-  border-top:1px solid #ffffff10;
+  border-top:1px solid #ffffff12;
   text-align:center;
   color:var(--muted);
-  font-size:.82rem;
+  font-size:.85rem;
 }
 
-/* ADMIN */
-
-.admin-page{
-  min-height:80vh;
+.back{
+  margin-bottom:15px;
 }
 
 .admin-shell{
-  border:1px solid #34415f;
-  border-radius:24px;
-  padding:20px;
+  min-height:100vh;
   background:
-    radial-gradient(circle at 90% 0%,#684cff16,transparent 30%),
-    linear-gradient(145deg,#10172b,#0c111e);
-  box-shadow:0 25px 80px #0007;
+    radial-gradient(circle at top right,#44276a35,transparent 35%),
+    #080b14;
 }
 
 .admin-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  padding-bottom:18px;
-  border-bottom:1px solid #ffffff10;
+  gap:10px;
+  padding:18px 0;
+  border-bottom:1px solid #ffffff12;
 }
 
 .admin-title{
-  font-size:1.7rem;
   font-weight:850;
+  font-size:1.25rem;
 }
 
-.admin-sub{
-  color:var(--muted);
-  font-size:.82rem;
-}
-
-.admin-grid{
+.admin-layout{
   display:grid;
-  grid-template-columns:1fr 1.5fr;
-  gap:15px;
-  margin-top:15px;
+  grid-template-columns:220px 1fr;
+  gap:18px;
+  margin-top:20px;
+}
+
+.admin-nav{
+  height:max-content;
+  padding:14px;
+  border:1px solid #293451;
+  border-radius:18px;
+  background:#101625;
+}
+
+.admin-nav button{
+  width:100%;
+  margin-bottom:8px;
+  text-align:left;
+  background:#192238;
+}
+
+.admin-nav button.active{
+  background:linear-gradient(110deg,#587cff,#8b5bff);
+}
+
+.admin-content{
+  min-width:0;
 }
 
 .admin-box{
-  min-width:0;
-  padding:18px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#11182a;
+  padding:20px;
+  border:1px solid #293451;
+  border-radius:20px;
+  background:linear-gradient(145deg,#121a2d,#0d1322);
+  margin-bottom:16px;
 }
 
 .admin-box h2{
-  margin:0 0 12px;
-  font-size:1.1rem;
+  margin-top:0;
 }
 
-.form-row{
-  margin:13px 0;
-}
-
-.form-row label{
-  display:block;
-  margin-bottom:5px;
-  color:#c8d2e8;
-  font-size:.83rem;
-}
-
-textarea{
-  min-height:140px;
-  resize:vertical;
-}
-
-.admin-item{
+.admin-row{
   display:flex;
+  justify-content:space-between;
   align-items:center;
   gap:10px;
   padding:13px 0;
   border-top:1px solid #ffffff10;
-}
-
-.admin-item:first-child{
-  border-top:0;
 }
 
 .admin-info{
@@ -472,90 +411,86 @@ textarea{
 .admin-info small{
   display:block;
   color:var(--muted);
-  overflow-wrap:anywhere;
 }
 
 .admin-actions{
   display:flex;
-  gap:5px;
+  gap:6px;
   flex-wrap:wrap;
 }
 
-.admin-actions .btn{
-  padding:8px 10px;
-  font-size:.78rem;
+.admin-actions button{
+  padding:8px 11px;
+  font-size:.8rem;
 }
 
-.login{
-  max-width:500px;
-  margin:55px auto;
+.login-screen{
+  min-height:75vh;
+  display:grid;
+  place-items:center;
+}
+
+.login-box{
+  width:min(470px,100%);
+  padding:32px;
   text-align:center;
-  padding:30px;
-  border:1px solid #3b4868;
-  border-radius:24px;
-  background:
-    radial-gradient(circle at 50% 0%,#6a65ff25,transparent 35%),
-    #11182a;
+  border:1px solid #47557c;
+  border-radius:26px;
+  background:linear-gradient(145deg,#171f35,#0f1525);
   box-shadow:0 30px 100px #0008;
-  animation:pop .4s both;
 }
 
 .login-icon{
-  width:75px;
-  height:75px;
-  margin:auto;
+  width:78px;
+  height:78px;
+  margin:auto auto 18px;
   display:grid;
   place-items:center;
-  border-radius:24px;
-  background:linear-gradient(135deg,#6385ff,#a35dff);
-  font-size:31px;
-  box-shadow:0 0 50px #7885ff45;
-  animation:float 3s ease-in-out infinite alternate;
+  border-radius:25px;
+  font-size:32px;
+  background:linear-gradient(135deg,#6385ff,#a365ff);
+  box-shadow:0 0 55px #7185ff45;
 }
 
-.login h1{
-  margin:18px 0 7px;
+.form-row{
+  margin:14px 0;
 }
 
-.login p{
-  color:var(--muted);
-}
-
-.google{
-  background:white;
-  color:#171923;
+.form-row label{
+  display:block;
+  margin-bottom:6px;
+  color:#c5cfe5;
+  font-size:.85rem;
 }
 
 .modal-bg{
-  display:none;
   position:fixed;
   inset:0;
   z-index:50;
-  align-items:center;
-  justify-content:center;
+  display:none;
+  place-items:center;
   padding:15px;
-  background:#050711ed;
+  background:#050712ed;
   backdrop-filter:blur(15px);
 }
 
 .modal-bg.show{
-  display:flex;
+  display:grid;
 }
 
 .modal{
   width:min(620px,100%);
   max-height:92vh;
   overflow:auto;
-  padding:22px;
-  border:1px solid #465477;
-  border-radius:22px;
-  background:linear-gradient(145deg,#172039,#0f1525);
-  box-shadow:0 35px 100px #000b;
-  animation:pop .25s both;
+  padding:24px;
+  border:1px solid #48547a;
+  border-radius:23px;
+  background:#151d30;
+  box-shadow:0 30px 100px #0009;
 }
 
 .modal h2{
-  margin:0 0 8px;
+  margin-top:0;
 }
 
 .modal-actions{
@@ -570,59 +505,39 @@ textarea{
   left:50%;
   bottom:25px;
   z-index:100;
-  transform:translate(-50%,20px);
+  transform:translateX(-50%) translateY(20px);
   padding:12px 18px;
-  border:1px solid #ffffff18;
+  border:1px solid #4d628e;
   border-radius:13px;
-  background:#171e31;
-  color:white;
-  box-shadow:0 15px 50px #0008;
+  background:#151e32;
+  box-shadow:0 15px 45px #0008;
   opacity:0;
   pointer-events:none;
-  transition:.25s;
+  transition:.3s;
 }
 
 .toast.show{
   opacity:1;
-  transform:translate(-50%,0);
+  transform:translateX(-50%) translateY(0);
 }
 
-@keyframes rise{
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-@keyframes pop{
-  from{opacity:0;transform:scale(.96) translateY(10px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-
-@keyframes float{
-  from{transform:translateY(-4px)}
-  to{transform:translateY(9px)}
-}
-
-@media(max-width:760px){
-  .admin-grid{
+@media(max-width:700px){
+  .admin-layout{
     grid-template-columns:1fr;
   }
 
-  .hero{
-    padding-top:30px;
-  }
-}
-
-@media(max-width:480px){
-  .wrap{
-    padding:15px 12px 40px;
+  .admin-nav{
+    display:flex;
+    overflow:auto;
+    gap:7px;
   }
 
-  .collection-card{
-    min-height:210px;
-    padding:21px;
+  .admin-nav button{
+    min-width:max-content;
+    margin:0;
   }
 
-  .admin-item{
+  .admin-row{
     align-items:flex-start;
     flex-direction:column;
   }
@@ -631,16 +546,12 @@ textarea{
     width:100%;
   }
 
-  .admin-actions .btn{
+  .admin-actions button{
     flex:1;
   }
-}
 
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation:none!important;
-    transition:none!important;
-    scroll-behavior:auto!important;
+  .toolbar{
+    flex-direction:column;
   }
 }
 </style>
@@ -648,324 +559,21 @@ textarea{
 
 <body>
 
-<main class="wrap">
-
-<header class="topbar">
-  <div class="brand">
-    <div class="logo">✦</div>
-    <div>
-      <span class="brand-name" id="brandName">Maishn.Work</span>
-      <span class="brand-sub" id="brandTagline">
-        Handcrafted prompts for better AI workflows.
-      </span>
-    </div>
-  </div>
-
-  <button class="btn secondary hidden" id="backBtn">← Back</button>
-</header>
-
-
-<!-- HOME -->
-
-<section id="homePage">
-
-  <div class="hero">
-    <span class="badge">
-      <span class="dot"></span>
-      AI PROMPT COLLECTION
-    </span>
-
-    <h1>
-      Create more with
-      <br>
-      <span class="gradient">the right prompt.</span>
-    </h1>
-
-    <p id="heroText">
-      Explore curated AI prompt collections and copy exactly what you need.
-    </p>
-  </div>
-
-  <div id="collections" class="collections"></div>
-
-  <p id="homeStatus" class="status">Loading collections…</p>
-
-</section>
-
-
-<!-- COLLECTION DETAILS -->
-
-<section id="collectionPage" class="hidden">
-
-  <div class="page-head">
-    <span class="badge">✦ COLLECTION</span>
-
-    <h1 class="gradient" id="collectionTitle">
-      Prompts
-    </h1>
-
-    <p id="collectionDescription">
-      Explore prompts from this collection.
-    </p>
-  </div>
-
-  <div class="toolbar">
-    <input
-      class="field"
-      id="search"
-      type="search"
-      placeholder="🔍 Search prompts..."
-    >
-  </div>
-
-  <p id="promptStatus" class="status"></p>
-
-  <div id="prompts" class="prompts"></div>
-
-</section>
-
-
-<!-- ADMIN -->
-
-<section id="adminPage" class="hidden admin-page">
-
-  <div id="loginView" class="login">
-
-    <div class="login-icon">✦</div>
-
-    <h1>Admin Access</h1>
-
-    <p>
-      Private control panel for Maishn.Work.
-      Only the authorized administrator can continue.
-    </p>
-
-    <button id="googleLogin" class="btn google full">
-      Continue with Google
-    </button>
-
-    <p id="loginStatus" class="status"></p>
-
-  </div>
-
-
-  <div id="dashboard" class="admin-shell hidden">
-
-    <div class="admin-header">
-
-      <div>
-        <div class="admin-title">Maishn.Work CMS</div>
-        <div class="admin-sub" id="adminEmail"></div>
-      </div>
-
-      <button class="btn secondary" id="logout">
-        Sign out
-      </button>
-
-    </div>
-
-
-    <div class="admin-grid">
-
-      <!-- SETTINGS -->
-
-      <section class="admin-box">
-
-        <h2>⚙️ Website Settings</h2>
-
-        <div class="form-row">
-          <label>Brand Name</label>
-          <input class="field" id="settingBrand">
-        </div>
-
-        <div class="form-row">
-          <label>Tagline</label>
-          <input class="field" id="settingTagline">
-        </div>
-
-        <div class="form-row">
-          <label>Hero Text</label>
-          <textarea class="field" id="settingHero"></textarea>
-        </div>
-
-        <button class="btn green full" id="saveSettings">
-          Save Settings
-        </button>
-
-        <p id="settingsStatus" class="status"></p>
-
-      </section>
-
-
-      <!-- COLLECTIONS -->
-
-      <section class="admin-box">
-
-        <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
-
-          <h2>📁 Collections</h2>
-
-          <button class="btn" id="addCollection">
-            ＋ Add Collection
-          </button>
-
-        </div>
-
-        <div id="adminCollections"></div>
-
-      </section>
-
-    </div>
-
-
-    <section class="admin-box" style="margin-top:15px">
-
-      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
-
-        <div>
-          <h2 style="margin:0">📝 Prompts</h2>
-          <div class="admin-sub">
-            Manage titles, platforms, hidden prompt text and collection.
-          </div>
-        </div>
-
-        <button class="btn" id="addPrompt">
-          ＋ Add Prompt
-        </button>
-
-      </div>
-
-      <div id="adminPrompts"></div>
-
-    </section>
-
-  </div>
-
-</section>
-
-
-<footer class="footer">
-  <strong id="footerBrand">Maishn.Work</strong>
-  <div id="footerTagline">
-    Handcrafted prompts for better AI workflows.
-  </div>
-  <div>Made for creators who imagine more. ✦</div>
-</footer>
-
-</main>
-
-
-<!-- COLLECTION MODAL -->
-
-<div class="modal-bg" id="collectionModal">
-
-  <div class="modal">
-
-    <h2 id="collectionModalTitle">Add Collection</h2>
-
-    <div class="form-row">
-      <label>Collection Title</label>
-      <input class="field" id="collectionName" maxlength="100">
-    </div>
-
-    <div class="form-row">
-      <label>Description</label>
-      <textarea class="field" id="collectionDesc" maxlength="300"></textarea>
-    </div>
-
-    <div class="modal-actions">
-      <button class="btn green" id="saveCollection">
-        Save Collection
-      </button>
-
-      <button class="btn secondary" id="cancelCollection">
-        Cancel
-      </button>
-    </div>
-
-    <p id="collectionError" class="status"></p>
-
-  </div>
-
-</div>
-
-
-<!-- PROMPT MODAL -->
-
-<div class="modal-bg" id="promptModal">
-
-  <div class="modal">
-
-    <h2 id="promptModalTitle">Add Prompt</h2>
-
-    <div class="form-row">
-      <label>Prompt Title</label>
-      <input class="field" id="promptTitle" maxlength="180">
-    </div>
-
-    <div class="form-row">
-      <label>Platform Tag</label>
-      <input
-        class="field"
-        id="promptPlatform"
-        placeholder="Meta AI / ChatGPT / Google Flow AI"
-        maxlength="80"
-      >
-    </div>
-
-    <div class="form-row">
-      <label>Collection</label>
-      <select class="field" id="promptCollection"></select>
-    </div>
-
-    <div class="form-row">
-      <label>Short Description</label>
-      <input class="field" id="promptDescription" maxlength="300">
-    </div>
-
-    <div class="form-row">
-      <label>Hidden Prompt Text</label>
-      <textarea
-        class="field"
-        id="promptText"
-        placeholder="Paste the full prompt here..."
-      ></textarea>
-    </div>
-
-    <div class="modal-actions">
-
-      <button class="btn green" id="savePrompt">
-        Save Prompt
-      </button>
-
-      <button class="btn secondary" id="cancelPrompt">
-        Cancel
-      </button>
-
-    </div>
-
-    <p id="promptError" class="status"></p>
-
-  </div>
-
-</div>
-
+<div id="app"></div>
 
 <div id="toast" class="toast"></div>
 
-
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-
 <script>
 "use strict";
 
-
-/* =========================
+/* ==============================
    FIREBASE
-========================= */
+============================== */
 
 const firebaseConfig = {
   apiKey: "AIzaSyB6WxK_Ty-FxfG-rAScxtY8t5VjqXnoSLA",
@@ -978,597 +586,390 @@ const firebaseConfig = {
   measurementId: "G-HHFSBHX254"
 };
 
-
-/* YOUR ADMIN EMAIL */
 const ADMIN_EMAIL = "maishn.work@gmail.com";
-
 
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-
-/* =========================
-   STATE
-========================= */
-
 let currentUser = null;
 let collections = [];
 let prompts = [];
+let selectedCollection = null;
 
 let editingCollectionId = null;
 let editingPromptId = null;
-let activeCollectionId = null;
 
 let settings = {
   brandName: "Maishn.Work",
-  tagline: "Handcrafted prompts for better AI workflows.",
-  heroText: "Explore curated AI prompt collections and copy exactly what you need."
+  tagline: "Empowering your AI workflow with handcrafted prompts."
 };
 
+const app = document.getElementById("app");
 
-/* =========================
-   HELPERS
-========================= */
-
-const $ = id => document.getElementById(id);
-
-const text = value => String(value ?? "");
+function esc(value){
+  return String(value ?? "");
+}
 
 function isAdmin(){
-
   return !!currentUser &&
     currentUser.email &&
     currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase() &&
     currentUser.emailVerified === true;
-
 }
-
 
 function toast(message){
-
-  const el = $("toast");
-
+  const el = document.getElementById("toast");
   el.textContent = message;
-
   el.classList.add("show");
 
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer = setTimeout(() => {
+  setTimeout(()=>{
     el.classList.remove("show");
-  }, 1800);
-
+  },1800);
 }
 
-
-function status(id,message,error=false){
-
-  const el = $(id);
-
-  if(!el) return;
-
-  el.textContent = message;
-
-  el.classList.toggle("error",error);
-
+function orderValue(item){
+  return Number(item.order || 0);
 }
 
+/* ==============================
+   FIRESTORE LISTENERS
+============================== */
 
-/* =========================
-   SETTINGS
-========================= */
+db.collection("collections").onSnapshot(snapshot=>{
+  collections = snapshot.docs
+    .map(d=>({id:d.id,...d.data()}))
+    .filter(x=>x.published !== false)
+    .sort((a,b)=>orderValue(a)-orderValue(b));
 
-function applySettings(data={}){
+  route();
+},error=>{
+  console.error(error);
+});
 
-  settings = {
-    brandName: text(data.brandName || "Maishn.Work"),
-    tagline: text(
-      data.tagline ||
-      "Handcrafted prompts for better AI workflows."
-    ),
-    heroText: text(
-      data.heroText ||
-      "Explore curated AI prompt collections and copy exactly what you need."
-    )
-  };
+db.collection("prompts").onSnapshot(snapshot=>{
+  prompts = snapshot.docs
+    .map(d=>({id:d.id,...d.data()}))
+    .filter(x=>x.published !== false)
+    .sort((a,b)=>orderValue(a)-orderValue(b));
 
+  route();
+},error=>{
+  console.error(error);
+});
 
-  $("brandName").textContent = settings.brandName;
-
-  $("brandTagline").textContent = settings.tagline;
-
-  $("footerBrand").textContent = settings.brandName;
-
-  $("footerTagline").textContent = settings.tagline;
-
-  $("heroText").textContent = settings.heroText;
-
-  document.title = settings.brandName;
-
-
-  $("settingBrand").value = settings.brandName;
-
-  $("settingTagline").value = settings.tagline;
-
-  $("settingHero").value = settings.heroText;
-
-}
-
-
-/* =========================
-   ROUTING
-========================= */
-
-function route(){
-
-  const hash = location.hash || "";
-
-  $("homePage").classList.add("hidden");
-  $("collectionPage").classList.add("hidden");
-  $("adminPage").classList.add("hidden");
-
-  $("backBtn").classList.add("hidden");
-
-
-  if(hash === "#admin"){
-
-    $("adminPage").classList.remove("hidden");
-
-    $("backBtn").classList.remove("hidden");
-
-    return;
-
-  }
-
-
-  if(hash.startsWith("#collection/")){
-
-    const id = decodeURIComponent(
-      hash.replace("#collection/","")
-    );
-
-    openCollection(id);
-
-    $("backBtn").classList.remove("hidden");
-
-    return;
-
-  }
-
-
-  $("homePage").classList.remove("hidden");
-
-}
-
-
-window.addEventListener("hashchange",route);
-
-
-$("backBtn").onclick = () => {
-
-  location.hash = "";
-
-};
-
-
-/* =========================
-   LOAD SETTINGS
-========================= */
-
-db.collection("settings")
-  .doc("site")
-  .onSnapshot(snapshot => {
-
-    if(snapshot.exists){
-
-      applySettings(snapshot.data());
-
-    }else{
-
-      applySettings();
-
-    }
-
-  },error => {
-
-    console.error(error);
-
-    applySettings();
-
-  });
-
-
-/* =========================
-   LOAD COLLECTIONS
-========================= */
-
-db.collection("collections")
-  .orderBy("order","asc")
-  .onSnapshot(snapshot => {
-
-    collections = snapshot.docs.map(doc => ({
-      id:doc.id,
+db.collection("settings").doc("site").onSnapshot(doc=>{
+  if(doc.exists){
+    settings = {
+      ...settings,
       ...doc.data()
-    }));
-
-    renderCollections();
-
-    renderAdminCollections();
-
-    populatePromptCollections();
-
-  },error => {
-
-    console.error(error);
-
-    $("homeStatus").textContent =
-      "Could not load collections. Check Firestore Rules.";
-
-  });
-
-
-/* =========================
-   LOAD PROMPTS
-========================= */
-
-db.collection("prompts")
-  .orderBy("order","asc")
-  .onSnapshot(snapshot => {
-
-    prompts = snapshot.docs.map(doc => ({
-      id:doc.id,
-      ...doc.data()
-    }));
-
-    renderCollectionPrompts();
-
-    renderAdminPrompts();
-
-  },error => {
-
-    console.error(error);
-
-    $("promptStatus").textContent =
-      "Could not load prompts.";
-
-  });
-
-
-/* =========================
-   HOME COLLECTIONS
-========================= */
-
-function renderCollections(){
-
-  const box = $("collections");
-
-  box.innerHTML = "";
-
-  if(!collections.length){
-
-    box.innerHTML =
-      '<div class="empty">No collections published yet.</div>';
-
-    $("homeStatus").textContent =
-      "No collections yet.";
-
-    return;
-
-  }
-
-
-  $("homeStatus").textContent =
-    collections.length + " collections available";
-
-
-  collections.forEach((collection,index) => {
-
-    const card = document.createElement("button");
-
-    card.className = "collection-card";
-
-    card.type = "button";
-
-
-    const number = document.createElement("div");
-
-    number.className = "collection-number";
-
-    number.textContent =
-      "COLLECTION " +
-      String(index+1).padStart(2,"0");
-
-
-    const title = document.createElement("h2");
-
-    title.textContent =
-      text(collection.title);
-
-
-    const desc = document.createElement("p");
-
-    desc.textContent =
-      text(collection.description);
-
-
-    const arrow = document.createElement("span");
-
-    arrow.className = "collection-arrow";
-
-    arrow.textContent =
-      "Explore collection  →";
-
-
-    card.append(
-      number,
-      title,
-      desc,
-      arrow
-    );
-
-
-    card.onclick = () => {
-
-      location.hash =
-        "#collection/" +
-        encodeURIComponent(collection.id);
-
     };
-
-
-    box.append(card);
-
-  });
-
-}
-
-
-/* =========================
-   COLLECTION PAGE
-========================= */
-
-function openCollection(id){
-
-  activeCollectionId = id;
-
-  const collection =
-    collections.find(item => item.id === id);
-
-
-  if(!collection){
-
-    location.hash = "";
-
-    return;
-
   }
 
-
-  $("collectionPage").classList.remove("hidden");
-
-  $("collectionTitle").textContent =
-    text(collection.title);
-
-  $("collectionDescription").textContent =
-    text(collection.description);
-
-
-  $("search").value = "";
-
-  renderCollectionPrompts();
-
-}
-
-
-function renderCollectionPrompts(){
-
-  if(!activeCollectionId) return;
-
-
-  const collection =
-    collections.find(item => item.id === activeCollectionId);
-
-
-  if(!collection) return;
-
-
-  const query =
-    $("search").value.trim().toLowerCase();
-
-
-  const list =
-    prompts.filter(prompt =>
-      text(prompt.collectionId) === activeCollectionId
-    ).filter(prompt => {
-
-      const haystack =
-        (
-          text(prompt.title) +
-          " " +
-          text(prompt.platform) +
-          " " +
-          text(prompt.description)
-        ).toLowerCase();
-
-      return haystack.includes(query);
-
-    });
-
-
-  const box = $("prompts");
-
-  box.innerHTML = "";
-
-
-  if(!list.length){
-
-    box.innerHTML =
-      '<div class="empty">No prompts found in this collection.</div>';
-
-    $("promptStatus").textContent = "";
-
-    return;
-
-  }
-
-
-  $("promptStatus").textContent =
-    list.length + " prompt" +
-    (list.length === 1 ? "" : "s");
-
-
-  list.forEach((prompt,index) => {
-
-    const card = document.createElement("article");
-
-    card.className = "prompt-card";
-
-
-    const platform = document.createElement("span");
-
-    platform.className = "platform";
-
-    platform.textContent =
-      text(prompt.platform || "AI");
-
-
-    const title = document.createElement("h2");
-
-    title.textContent =
-      text(prompt.title);
-
-
-    const description = document.createElement("p");
-
-    description.textContent =
-      text(prompt.description);
-
-
-    /*
-      IMPORTANT:
-      Raw prompt text is NEVER rendered here.
-    */
-
-
-    const copy = document.createElement("button");
-
-    copy.className = "btn copy-btn";
-
-    copy.textContent = "📋 Copy Prompt";
-
-
-    copy.onclick = async () => {
-
-      const original =
-        copy.textContent;
-
-      try{
-
-        if(
-          navigator.clipboard &&
-          window.isSecureContext
-        ){
-
-          await navigator.clipboard.writeText(
-            text(prompt.text)
-          );
-
-        }else{
-
-          const area =
-            document.createElement("textarea");
-
-          area.value =
-            text(prompt.text);
-
-          area.style.position = "fixed";
-
-          area.style.opacity = "0";
-
-          document.body.appendChild(area);
-
-          area.focus();
-
-          area.select();
-
-          document.execCommand("copy");
-
-          area.remove();
-
+  route();
+});
+
+/* ==============================
+   PUBLIC HOME
+============================== */
+
+function renderHome(){
+
+  app.innerHTML = `
+    <main class="wrap">
+
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">✦</div>
+          <div>
+            <div class="brand-name">${esc(settings.brandName)}</div>
+            <span class="brand-sub">${esc(settings.tagline)}</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <span class="eyebrow">
+          <span class="dot"></span>
+          AI PROMPT COLLECTION
+        </span>
+
+        <h1>
+          Explore the
+          <span class="gradient">Prompts.</span>
+        </h1>
+
+        <p>
+          Discover handcrafted AI prompts for your creative workflow.
+          Choose a collection and copy the prompt you need.
+        </p>
+      </section>
+
+      <section class="collection-grid">
+
+        ${
+          collections.length
+          ?
+          collections.map((c,i)=>`
+            <button
+              class="collection-card"
+              onclick="openCollection('${c.id}')"
+            >
+
+              <span class="eyebrow">
+                ✦ COLLECTION ${i+1}
+              </span>
+
+              <h2>${esc(c.title)}</h2>
+
+              <p>${esc(c.description || "Explore prompts from this collection.")}</p>
+
+              <span class="arrow">
+                Explore collection →
+              </span>
+
+            </button>
+          `).join("")
+          :
+          `<div class="empty">
+            No collections published yet.
+          </div>`
         }
 
+      </section>
 
-        copy.textContent = "✓ Copied!";
+      <footer class="footer">
+        <strong>${esc(settings.brandName)}</strong>
+        <br>
+        ${esc(settings.tagline)}
+      </footer>
 
-        toast("Prompt copied successfully");
-
-
-        setTimeout(() => {
-
-          copy.textContent = original;
-
-        },1300);
-
-
-      }catch(error){
-
-        console.error(error);
-
-        copy.textContent =
-          "Copy failed";
-
-        toast("Copy was blocked by the browser");
-
-        setTimeout(() => {
-
-          copy.textContent = original;
-
-        },1600);
-
-      }
-
-    };
-
-
-    card.append(
-      platform,
-      title,
-      description,
-      copy
-    );
-
-
-    box.append(card);
-
-  });
-
+    </main>
+  `;
 }
 
+/* ==============================
+   COLLECTION PAGE
+============================== */
 
-$("search").addEventListener(
-  "input",
-  renderCollectionPrompts
-);
+function openCollection(id){
+  location.hash = "collection/" + encodeURIComponent(id);
+}
 
+function renderCollection(id){
 
-/* =========================
-   ADMIN AUTH
-========================= */
+  const collection =
+    collections.find(x=>x.id === id);
 
-$("googleLogin").onclick = async () => {
+  if(!collection){
+    renderHome();
+    return;
+  }
 
-  const button =
-    $("googleLogin");
+  selectedCollection = collection;
 
-  button.disabled = true;
+  const collectionPrompts =
+    prompts.filter(p=>p.collectionId === id);
 
-  status(
-    "loginStatus",
-    "Opening Google sign-in..."
-  );
+  app.innerHTML = `
+    <main class="wrap">
 
+      <button class="secondary back" onclick="location.hash=''">
+        ← Back
+      </button>
+
+      <section class="page-head">
+
+        <span class="eyebrow">
+          ✦ COLLECTION
+        </span>
+
+        <h1 class="gradient">
+          ${esc(collection.title)}
+        </h1>
+
+        <p>
+          ${esc(collection.description || "")}
+        </p>
+
+      </section>
+
+      <div class="toolbar">
+
+        <input
+          id="promptSearch"
+          type="search"
+          placeholder="🔍 Search prompts..."
+          oninput="filterPrompts()"
+        >
+
+      </div>
+
+      <div id="promptGrid" class="prompt-grid">
+
+        ${
+          collectionPrompts.length
+          ?
+          collectionPrompts.map(p=>`
+
+            <article
+              class="prompt-card"
+              data-search="${esc(
+                (p.title+" "+p.platform).toLowerCase()
+              )}"
+            >
+
+              <span class="platform">
+                ${esc(p.platform || "AI")}
+              </span>
+
+              <h2>
+                ${esc(p.title)}
+              </h2>
+
+              <button
+                class="copy-btn"
+                onclick="copyPrompt('${p.id}',this)"
+              >
+                📋 Copy Prompt
+              </button>
+
+            </article>
+
+          `).join("")
+          :
+          `<div class="empty">
+            No prompts in this collection yet.
+          </div>`
+        }
+
+      </div>
+
+      <footer class="footer">
+        ${esc(settings.brandName)}
+      </footer>
+
+    </main>
+  `;
+}
+
+function filterPrompts(){
+
+  const query =
+    document.getElementById("promptSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+  document
+    .querySelectorAll(".prompt-card")
+    .forEach(card=>{
+
+      card.style.display =
+        card.dataset.search.includes(query)
+        ? ""
+        : "none";
+
+    });
+}
+
+/* ==============================
+   COPY
+============================== */
+
+async function copyPrompt(id,button){
+
+  const prompt =
+    prompts.find(p=>p.id===id);
+
+  if(!prompt) return;
+
+  try{
+
+    await navigator.clipboard.writeText(
+      String(prompt.text || "")
+    );
+
+  }catch(error){
+
+    const textarea =
+      document.createElement("textarea");
+
+    textarea.value =
+      String(prompt.text || "");
+
+    textarea.style.position="fixed";
+    textarea.style.opacity="0";
+
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    document.execCommand("copy");
+
+    textarea.remove();
+  }
+
+  const old = button.textContent;
+
+  button.textContent = "✓ Copied!";
+
+  toast("Prompt copied successfully");
+
+  setTimeout(()=>{
+    button.textContent = old;
+  },1500);
+}
+
+/* ==============================
+   ADMIN LOGIN
+============================== */
+
+function renderAdminLogin(){
+
+  app.innerHTML = `
+    <main class="wrap">
+
+      <div class="login-screen">
+
+        <section class="login-box">
+
+          <div class="login-icon">
+            ✦
+          </div>
+
+          <h1 class="gradient">
+            Maishn.Work
+          </h1>
+
+          <h2>
+            Admin Control Panel
+          </h2>
+
+          <p class="status">
+            Private administrator access.
+          </p>
+
+          <button
+            style="width:100%"
+            onclick="googleLogin()"
+          >
+            Continue with Google
+          </button>
+
+          <p class="note">
+            Authorized account only.
+          </p>
+
+        </section>
+
+      </div>
+
+    </main>
+  `;
+}
+
+async function googleLogin(){
 
   try{
 
@@ -1579,383 +980,311 @@ $("googleLogin").onclick = async () => {
       prompt:"select_account"
     });
 
-
-    const result =
-      await auth.signInWithPopup(provider);
-
-
-    const signedUser =
-      result.user;
-
-
-    if(
-      !signedUser ||
-      !signedUser.email ||
-      signedUser.email.toLowerCase() !==
-      ADMIN_EMAIL.toLowerCase()
-    ){
-
-      await auth.signOut();
-
-      status(
-        "loginStatus",
-        "This Google account is not authorized.",
-        true
-      );
-
-      return;
-
-    }
-
-
-    if(!signedUser.emailVerified){
-
-      await auth.signOut();
-
-      status(
-        "loginStatus",
-        "Your Google account must be verified.",
-        true
-      );
-
-      return;
-
-    }
-
-
-    toast("Admin login successful");
-
-    location.hash = "#admin";
+    await auth.signInWithPopup(provider);
 
   }catch(error){
 
     console.error(error);
 
-    let message =
-      error.message || error.code || "Login failed";
-
-
-    if(error.code === "auth/unauthorized-domain"){
-
-      message =
-        "GitHub Pages domain is not authorized in Firebase.";
-
-    }
-
-
-    if(error.code === "auth/popup-blocked"){
-
-      message =
-        "Chrome blocked the popup. Allow popups and try again.";
-
-    }
-
-
-    status(
-      "loginStatus",
-      message,
-      true
+    toast(
+      error.message ||
+      "Google sign-in failed"
     );
+  }
+}
 
-  }finally{
+/* ==============================
+   ADMIN DASHBOARD
+============================== */
 
-    button.disabled = false;
+function renderAdmin(){
 
+  if(!isAdmin()){
+    renderAdminLogin();
+    return;
   }
 
-};
+  app.innerHTML = `
+    <div class="admin-shell">
 
+      <main class="wrap">
 
-auth.onAuthStateChanged(current => {
+        <header class="admin-header">
 
-  currentUser = current;
+          <div>
+            <div class="admin-title">
+              ✦ Maishn.Work
+            </div>
 
+            <small class="status">
+              Admin Control Panel
+            </small>
+          </div>
 
-  if(location.hash === "#admin"){
+          <button
+            class="secondary"
+            onclick="logout()"
+          >
+            Logout
+          </button>
 
-    if(isAdmin()){
+        </header>
 
-      $("loginView").classList.add("hidden");
+        <div class="admin-layout">
 
-      $("dashboard").classList.remove("hidden");
+          <aside class="admin-nav">
 
-      $("adminEmail").textContent =
-        "Signed in as " + currentUser.email;
+            <button
+              id="navCollections"
+              onclick="adminSection('collections')"
+            >
+              📁 Collections
+            </button>
 
-    }else{
+            <button
+              id="navPrompts"
+              onclick="adminSection('prompts')"
+            >
+              ✦ Prompts
+            </button>
 
-      $("loginView").classList.remove("hidden");
+            <button
+              id="navSettings"
+              onclick="adminSection('settings')"
+            >
+              ⚙ Settings
+            </button>
 
-      $("dashboard").classList.add("hidden");
+          </aside>
 
-    }
+          <section
+            class="admin-content"
+            id="adminContent"
+          ></section>
 
-  }
+        </div>
 
+      </main>
 
-  renderAdminCollections();
+    </div>
 
-  renderAdminPrompts();
+    <div id="modalArea"></div>
+  `;
 
-});
+  adminSection("collections");
+}
 
+function adminSection(section){
 
-/* =========================
-   LOGOUT
-========================= */
+  document.querySelectorAll(".admin-nav button")
+    .forEach(x=>x.classList.remove("active"));
 
-$("logout").onclick = async () => {
+  if(section==="collections")
+    document.getElementById("navCollections")
+      ?.classList.add("active");
 
-  await auth.signOut();
+  if(section==="prompts")
+    document.getElementById("navPrompts")
+      ?.classList.add("active");
 
-  toast("Signed out");
+  if(section==="settings")
+    document.getElementById("navSettings")
+      ?.classList.add("active");
 
-  location.hash = "";
+  if(section==="collections")
+    renderAdminCollections();
 
-};
+  if(section==="prompts")
+    renderAdminPrompts();
 
+  if(section==="settings")
+    renderAdminSettings();
+}
 
-/* =========================
-   ADMIN COLLECTIONS
-========================= */
+/* ==============================
+   COLLECTION CMS
+============================== */
 
 function renderAdminCollections(){
 
   const box =
-    $("adminCollections");
+    document.getElementById("adminContent");
 
-  if(!box) return;
+  box.innerHTML = `
 
-  box.innerHTML = "";
+    <section class="admin-box">
 
+      <div class="admin-row"
+           style="border:0;padding-top:0">
 
-  if(!isAdmin()) return;
+        <div>
+          <h2>Collections</h2>
+          <div class="status">
+            Create and manage your prompt categories.
+          </div>
+        </div>
 
+        <button
+          onclick="showCollectionEditor()"
+        >
+          + Add Collection
+        </button>
 
-  if(!collections.length){
+      </div>
 
-    box.innerHTML =
-      '<p class="admin-sub">No collections yet.</p>';
+      ${
+        collections.length
+        ?
+        collections.map((c,i)=>`
 
-    return;
+          <div class="admin-row">
 
-  }
+            <div class="admin-info">
 
+              <strong>
+                ${esc(c.title)}
+              </strong>
 
-  collections.forEach((collection,index) => {
+              <small>
+                ${esc(c.description || "No description")}
+              </small>
 
-    const row =
-      document.createElement("div");
+            </div>
 
-    row.className =
-      "admin-item";
+            <div class="admin-actions">
 
+              <button
+                class="secondary"
+                onclick="moveCollection('${c.id}',-1)"
+              >
+                ↑
+              </button>
 
-    const info =
-      document.createElement("div");
+              <button
+                class="secondary"
+                onclick="moveCollection('${c.id}',1)"
+              >
+                ↓
+              </button>
 
-    info.className =
-      "admin-info";
+              <button
+                class="secondary"
+                onclick="showCollectionEditor('${c.id}')"
+              >
+                Edit
+              </button>
 
+              <button
+                class="danger"
+                onclick="deleteCollection('${c.id}')"
+              >
+                Delete
+              </button>
 
-    const title =
-      document.createElement("strong");
+            </div>
 
-    title.textContent =
-      text(collection.title);
+          </div>
 
+        `).join("")
+        :
+        `<div class="empty">No collections yet.</div>`
+      }
 
-    const small =
-      document.createElement("small");
-
-    small.textContent =
-      "Order: " + (index+1);
-
-
-    info.append(title,small);
-
-
-    const actions =
-      document.createElement("div");
-
-    actions.className =
-      "admin-actions";
-
-
-    const up =
-      document.createElement("button");
-
-    up.className =
-      "btn secondary";
-
-    up.textContent = "↑";
-
-    up.disabled =
-      index === 0;
-
-    up.onclick =
-      () => moveCollection(index,-1);
-
-
-    const down =
-      document.createElement("button");
-
-    down.className =
-      "btn secondary";
-
-    down.textContent = "↓";
-
-    down.disabled =
-      index === collections.length-1;
-
-    down.onclick =
-      () => moveCollection(index,1);
-
-
-    const edit =
-      document.createElement("button");
-
-    edit.className =
-      "btn secondary";
-
-    edit.textContent =
-      "Edit";
-
-    edit.onclick =
-      () => showCollectionEditor(collection);
-
-
-    const del =
-      document.createElement("button");
-
-    del.className =
-      "btn red";
-
-    del.textContent =
-      "Delete";
-
-    del.onclick =
-      () => deleteCollection(collection);
-
-
-    actions.append(
-      up,
-      down,
-      edit,
-      del
-    );
-
-
-    row.append(info,actions);
-
-    box.append(row);
-
-  });
-
+    </section>
+  `;
 }
 
+function showCollectionEditor(id=null){
 
-/* =========================
-   COLLECTION EDITOR
-========================= */
+  editingCollectionId = id;
 
-$("addCollection").onclick = () => {
+  const c =
+    id
+    ? collections.find(x=>x.id===id)
+    : null;
 
-  if(!isAdmin()) return;
+  document.getElementById("modalArea").innerHTML = `
 
-  editingCollectionId = null;
+    <div class="modal-bg show">
 
-  $("collectionModalTitle").textContent =
-    "Add Collection";
+      <div class="modal">
 
-  $("collectionName").value = "";
+        <h2>
+          ${c ? "Edit Collection" : "Add Collection"}
+        </h2>
 
-  $("collectionDesc").value = "";
+        <div class="form-row">
 
-  status("collectionError","");
+          <label>Collection Title</label>
 
-  $("collectionModal").classList.add("show");
+          <input
+            id="collectionTitle"
+            value="${c ? esc(c.title) : ""}"
+            placeholder="e.g. AI Image Prompts"
+          >
 
-};
+        </div>
 
+        <div class="form-row">
 
-function showCollectionEditor(collection){
+          <label>Description</label>
 
-  if(!isAdmin()) return;
+          <textarea
+            id="collectionDescription"
+            placeholder="Collection description"
+          >${c ? esc(c.description) : ""}</textarea>
 
-  editingCollectionId =
-    collection.id;
+        </div>
 
-  $("collectionModalTitle").textContent =
-    "Edit Collection";
+        <div class="modal-actions">
 
-  $("collectionName").value =
-    text(collection.title);
+          <button onclick="saveCollection()">
+            Save Collection
+          </button>
 
-  $("collectionDesc").value =
-    text(collection.description);
+          <button
+            class="secondary"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
 
-  status("collectionError","");
+        </div>
 
-  $("collectionModal").classList.add("show");
+        <p id="modalError" class="status"></p>
 
+      </div>
+
+    </div>
+  `;
 }
 
-
-$("cancelCollection").onclick = () => {
-
-  $("collectionModal").classList.remove("show");
-
-};
-
-
-$("saveCollection").onclick = async () => {
+async function saveCollection(){
 
   if(!isAdmin()){
-
-    status(
-      "collectionError",
-      "Admin authentication required.",
-      true
-    );
-
+    toast("Admin access required");
     return;
-
   }
-
 
   const title =
-    $("collectionName").value.trim();
+    document.getElementById("collectionTitle")
+      .value.trim();
 
   const description =
-    $("collectionDesc").value.trim();
-
+    document.getElementById("collectionDescription")
+      .value.trim();
 
   if(!title){
-
-    status(
-      "collectionError",
-      "Collection title is required.",
-      true
-    );
-
+    document.getElementById("modalError")
+      .textContent="Collection title is required.";
     return;
-
   }
-
-
-  const button =
-    $("saveCollection");
-
-  button.disabled = true;
-
 
   try{
 
     if(editingCollectionId){
 
-      await db
-        .collection("collections")
+      await db.collection("collections")
         .doc(editingCollectionId)
         .update({
           title,
@@ -1968,722 +1297,587 @@ $("saveCollection").onclick = async () => {
 
     }else{
 
-      await db
-        .collection("collections")
-        .add({
-          title,
-          description,
-          order: collections.length,
-          createdAt:
-            firebase.firestore.FieldValue.serverTimestamp(),
-          updatedAt:
-            firebase.firestore.FieldValue.serverTimestamp()
-        });
+      const maxOrder =
+        collections.length
+        ? Math.max(...collections.map(orderValue))
+        : 0;
+
+      await db.collection("collections").add({
+
+        title,
+        description,
+        order:maxOrder+1,
+        published:true,
+
+        createdAt:
+          firebase.firestore.FieldValue.serverTimestamp(),
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+      });
 
       toast("Collection created");
-
     }
 
-
-    $("collectionModal").classList.remove("show");
+    closeModal();
 
   }catch(error){
 
     console.error(error);
 
-    status(
-      "collectionError",
-      "Save failed: " + error.message,
-      true
-    );
-
-  }finally{
-
-    button.disabled = false;
-
+    document.getElementById("modalError")
+      .textContent =
+      "Save failed: " + error.message;
   }
+}
 
-};
-
-
-/* =========================
-   DELETE COLLECTION
-========================= */
-
-async function deleteCollection(collection){
+async function deleteCollection(id){
 
   if(!isAdmin()) return;
 
+  const c =
+    collections.find(x=>x.id===id);
 
-  const used =
-    prompts.some(
-      prompt =>
-        text(prompt.collectionId) === collection.id
-    );
-
-
-  if(used){
-
-    alert(
-      "This collection still contains prompts. Delete or move those prompts first."
-    );
-
-    return;
-
-  }
-
-
-  if(
-    !confirm(
-      'Delete collection "' +
-      text(collection.title) +
-      '"?'
-    )
-  ) return;
-
+  if(!confirm(
+    `Delete "${c?.title || "this collection"}"?`
+  )) return;
 
   try{
 
-    await db
-      .collection("collections")
-      .doc(collection.id)
-      .delete();
+    const related =
+      prompts.filter(
+        p=>p.collectionId===id
+      );
+
+    const batch = db.batch();
+
+    batch.delete(
+      db.collection("collections").doc(id)
+    );
+
+    related.forEach(p=>{
+      batch.delete(
+        db.collection("prompts").doc(p.id)
+      );
+    });
+
+    await batch.commit();
 
     toast("Collection deleted");
 
   }catch(error){
 
-    console.error(error);
-
-    alert(
-      "Delete failed: " +
-      error.message
-    );
-
+    alert("Delete failed: "+error.message);
   }
-
 }
 
-
-/* =========================
-   REORDER COLLECTIONS
-========================= */
-
-async function moveCollection(index,direction){
+async function moveCollection(id,direction){
 
   if(!isAdmin()) return;
 
+  const index =
+    collections.findIndex(x=>x.id===id);
 
-  const otherIndex =
-    index + direction;
+  const target=index+direction;
 
+  if(index<0 || target<0 ||
+     target>=collections.length) return;
 
-  if(
-    otherIndex < 0 ||
-    otherIndex >= collections.length
-  ) return;
-
-
-  const first =
-    collections[index];
-
-  const second =
-    collections[otherIndex];
-
+  const a=collections[index];
+  const b=collections[target];
 
   try{
 
-    await db.runTransaction(async transaction => {
+    const batch=db.batch();
 
-      transaction.update(
-        db.collection("collections").doc(first.id),
-        {order:otherIndex}
-      );
-
-      transaction.update(
-        db.collection("collections").doc(second.id),
-        {order:index}
-      );
-
-    });
-
-
-    toast("Collection order updated");
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Could not reorder collections."
+    batch.update(
+      db.collection("collections").doc(a.id),
+      {order:orderValue(b)}
     );
 
+    batch.update(
+      db.collection("collections").doc(b.id),
+      {order:orderValue(a)}
+    );
+
+    await batch.commit();
+
+  }catch(error){
+    toast("Reorder failed");
   }
-
 }
 
-
-/* =========================
-   PROMPT COLLECTION SELECT
-========================= */
-
-function populatePromptCollections(){
-
-  const select =
-    $("promptCollection");
-
-  if(!select) return;
-
-  select.innerHTML = "";
-
-
-  collections.forEach(collection => {
-
-    const option =
-      document.createElement("option");
-
-    option.value =
-      collection.id;
-
-    option.textContent =
-      collection.title;
-
-    select.append(option);
-
-  });
-
-}
-
-
-/* =========================
-   ADMIN PROMPTS
-========================= */
+/* ==============================
+   PROMPT CMS
+============================== */
 
 function renderAdminPrompts(){
 
   const box =
-    $("adminPrompts");
+    document.getElementById("adminContent");
 
-  if(!box) return;
+  box.innerHTML = `
 
-  box.innerHTML = "";
+    <section class="admin-box">
 
+      <div class="admin-row"
+           style="border:0;padding-top:0">
 
-  if(!isAdmin()) return;
+        <div>
+          <h2>Prompts</h2>
+          <div class="status">
+            Add prompts to specific collections.
+          </div>
+        </div>
 
+        <button onclick="showPromptEditor()">
+          + Add Prompt
+        </button>
 
-  if(!prompts.length){
+      </div>
 
-    box.innerHTML =
-      '<p class="admin-sub">No prompts yet.</p>';
+      ${
+        prompts.length
+        ?
+        prompts.map(p=>{
 
-    return;
+          const c =
+            collections.find(
+              x=>x.id===p.collectionId
+            );
 
-  }
+          return `
 
+            <div class="admin-row">
 
-  prompts.forEach((prompt,index) => {
+              <div class="admin-info">
 
-    const row =
-      document.createElement("div");
+                <strong>
+                  ${esc(p.title)}
+                </strong>
 
-    row.className =
-      "admin-item";
+                <small>
+                  ${esc(p.platform || "AI")}
+                  ·
+                  ${esc(c?.title || "No collection")}
+                </small>
 
+              </div>
 
-    const info =
-      document.createElement("div");
+              <div class="admin-actions">
 
-    info.className =
-      "admin-info";
+                <button
+                  class="secondary"
+                  onclick="showPromptEditor('${p.id}')"
+                >
+                  Edit
+                </button>
 
+                <button
+                  class="danger"
+                  onclick="deletePrompt('${p.id}')"
+                >
+                  Delete
+                </button>
 
-    const title =
-      document.createElement("strong");
+              </div>
 
-    title.textContent =
-      text(prompt.title);
+            </div>
+          `;
+        }).join("")
+        :
+        `<div class="empty">
+          No prompts yet.
+        </div>`
+      }
 
-
-    const collection =
-      collections.find(
-        item =>
-          item.id === prompt.collectionId
-      );
-
-
-    const small =
-      document.createElement("small");
-
-    small.textContent =
-      text(prompt.platform || "AI") +
-      " · " +
-      text(collection?.title || "No collection");
-
-
-    info.append(title,small);
-
-
-    const actions =
-      document.createElement("div");
-
-    actions.className =
-      "admin-actions";
-
-
-    const up =
-      document.createElement("button");
-
-    up.className =
-      "btn secondary";
-
-    up.textContent =
-      "↑";
-
-    up.disabled =
-      index === 0;
-
-    up.onclick =
-      () => movePrompt(index,-1);
-
-
-    const down =
-      document.createElement("button");
-
-    down.className =
-      "btn secondary";
-
-    down.textContent =
-      "↓";
-
-    down.disabled =
-      index === prompts.length-1;
-
-    down.onclick =
-      () => movePrompt(index,1);
-
-
-    const edit =
-      document.createElement("button");
-
-    edit.className =
-      "btn secondary";
-
-    edit.textContent =
-      "Edit";
-
-    edit.onclick =
-      () => showPromptEditor(prompt);
-
-
-    const del =
-      document.createElement("button");
-
-    del.className =
-      "btn red";
-
-    del.textContent =
-      "Delete";
-
-    del.onclick =
-      () => deletePrompt(prompt);
-
-
-    actions.append(
-      up,
-      down,
-      edit,
-      del
-    );
-
-
-    row.append(info,actions);
-
-    box.append(row);
-
-  });
-
+    </section>
+  `;
 }
 
+function showPromptEditor(id=null){
 
-/* =========================
-   PROMPT EDITOR
-========================= */
+  editingPromptId=id;
 
-$("addPrompt").onclick = () => {
+  const p =
+    id
+    ? prompts.find(x=>x.id===id)
+    : null;
 
-  if(!isAdmin()) return;
+  document.getElementById("modalArea").innerHTML=`
 
+    <div class="modal-bg show">
 
-  if(!collections.length){
+      <div class="modal">
 
-    alert(
-      "Create a collection first."
-    );
+        <h2>
+          ${p ? "Edit Prompt" : "Add Prompt"}
+        </h2>
 
-    return;
+        <div class="form-row">
 
-  }
+          <label>Prompt Title</label>
 
+          <input
+            id="promptTitle"
+            value="${p ? esc(p.title) : ""}"
+            placeholder="Prompt title"
+          >
 
-  editingPromptId = null;
+        </div>
 
-  $("promptModalTitle").textContent =
-    "Add Prompt";
+        <div class="form-row">
 
-  $("promptTitle").value = "";
+          <label>Platform</label>
 
-  $("promptPlatform").value = "";
+          <input
+            id="promptPlatform"
+            value="${p ? esc(p.platform) : ""}"
+            placeholder="Meta AI / Google Flow AI / ChatGPT"
+          >
 
-  $("promptDescription").value = "";
+        </div>
 
-  $("promptText").value = "";
+        <div class="form-row">
 
-  populatePromptCollections();
+          <label>Collection</label>
 
-  $("promptCollection").value =
-    collections[0].id;
+          <select id="promptCollection">
 
-  status("promptError","");
+            <option value="">
+              Select Collection
+            </option>
 
-  $("promptModal").classList.add("show");
+            ${
+              collections.map(c=>`
 
-};
+                <option
+                  value="${c.id}"
+                  ${p?.collectionId===c.id ? "selected":""}
+                >
+                  ${esc(c.title)}
+                </option>
 
+              `).join("")
+            }
 
-function showPromptEditor(prompt){
+          </select>
 
-  if(!isAdmin()) return;
+        </div>
 
+        <div class="form-row">
 
-  editingPromptId =
-    prompt.id;
+          <label>Full Prompt</label>
 
-  $("promptModalTitle").textContent =
-    "Edit Prompt";
+          <textarea
+            id="promptText"
+            placeholder="Paste your complete prompt here..."
+          >${p ? esc(p.text) : ""}</textarea>
 
-  $("promptTitle").value =
-    text(prompt.title);
+        </div>
 
-  $("promptPlatform").value =
-    text(prompt.platform);
+        <div class="modal-actions">
 
-  $("promptDescription").value =
-    text(prompt.description);
+          <button onclick="savePrompt()">
+            Save Prompt
+          </button>
 
-  $("promptText").value =
-    text(prompt.text);
+          <button
+            class="secondary"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
 
+        </div>
 
-  populatePromptCollections();
+        <p id="modalError" class="status"></p>
 
+      </div>
 
-  $("promptCollection").value =
-    text(prompt.collectionId);
-
-
-  status("promptError","");
-
-  $("promptModal").classList.add("show");
-
+    </div>
+  `;
 }
 
-
-$("cancelPrompt").onclick = () => {
-
-  $("promptModal").classList.remove("show");
-
-};
-
-
-$("savePrompt").onclick = async () => {
+async function savePrompt(){
 
   if(!isAdmin()) return;
-
 
   const title =
-    $("promptTitle").value.trim();
+    document.getElementById("promptTitle")
+      .value.trim();
 
   const platform =
-    $("promptPlatform").value.trim();
-
-  const description =
-    $("promptDescription").value.trim();
-
-  const promptText =
-    $("promptText").value;
+    document.getElementById("promptPlatform")
+      .value.trim();
 
   const collectionId =
-    $("promptCollection").value;
+    document.getElementById("promptCollection")
+      .value;
 
+  const text =
+    document.getElementById("promptText")
+      .value.trim();
 
-  if(
-    !title ||
-    !platform ||
-    !promptText.trim() ||
-    !collectionId
-  ){
+  if(!title || !platform || !collectionId || !text){
 
-    status(
-      "promptError",
-      "Title, platform, collection and prompt text are required.",
-      true
-    );
+    document.getElementById("modalError")
+      .textContent =
+      "Title, platform, collection and prompt are required.";
 
     return;
-
   }
-
-
-  const button =
-    $("savePrompt");
-
-  button.disabled = true;
-
 
   try{
 
     if(editingPromptId){
 
-      await db
-        .collection("prompts")
+      await db.collection("prompts")
         .doc(editingPromptId)
         .update({
 
           title,
           platform,
-          description,
-          text:promptText,
           collectionId,
+          text,
+          published:true,
 
           updatedAt:
             firebase.firestore.FieldValue.serverTimestamp()
-
         });
 
       toast("Prompt updated");
 
     }else{
 
-      await db
-        .collection("prompts")
-        .add({
+      const sameCollection =
+        prompts.filter(
+          p=>p.collectionId===collectionId
+        );
 
-          title,
-          platform,
-          description,
-          text:promptText,
-          collectionId,
-          order:prompts.length,
+      const maxOrder =
+        sameCollection.length
+        ? Math.max(
+            ...sameCollection.map(orderValue)
+          )
+        : 0;
 
-          createdAt:
-            firebase.firestore.FieldValue.serverTimestamp(),
+      await db.collection("prompts").add({
 
-          updatedAt:
-            firebase.firestore.FieldValue.serverTimestamp()
+        title,
+        platform,
+        collectionId,
+        text,
 
-        });
+        order:maxOrder+1,
+
+        published:true,
+
+        createdAt:
+          firebase.firestore.FieldValue.serverTimestamp(),
+
+        updatedAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+      });
 
       toast("Prompt created");
-
     }
 
-
-    $("promptModal").classList.remove("show");
+    closeModal();
 
   }catch(error){
 
     console.error(error);
 
-    status(
-      "promptError",
-      "Save failed: " + error.message,
-      true
-    );
-
-  }finally{
-
-    button.disabled = false;
-
+    document.getElementById("modalError")
+      .textContent =
+      "Save failed: " + error.message;
   }
+}
 
-};
-
-
-/* =========================
-   DELETE PROMPT
-========================= */
-
-async function deletePrompt(prompt){
+async function deletePrompt(id){
 
   if(!isAdmin()) return;
 
+  const p=prompts.find(x=>x.id===id);
 
-  if(
-    !confirm(
-      'Delete "' +
-      text(prompt.title) +
-      '"?'
-    )
-  ) return;
-
+  if(!confirm(
+    `Delete "${p?.title || "this prompt"}"?`
+  )) return;
 
   try{
 
-    await db
-      .collection("prompts")
-      .doc(prompt.id)
+    await db.collection("prompts")
+      .doc(id)
       .delete();
 
     toast("Prompt deleted");
 
   }catch(error){
 
-    console.error(error);
-
-    alert(
-      "Delete failed: " +
-      error.message
-    );
-
+    alert("Delete failed: "+error.message);
   }
-
 }
 
+/* ==============================
+   SETTINGS
+============================== */
 
-/* =========================
-   REORDER PROMPTS
-========================= */
+function renderAdminSettings(){
 
-async function movePrompt(index,direction){
+  document.getElementById("adminContent").innerHTML=`
+
+    <section class="admin-box">
+
+      <h2>Website Settings</h2>
+
+      <p class="status">
+        Customize your public website.
+      </p>
+
+      <div class="form-row">
+
+        <label>Brand Name</label>
+
+        <input
+          id="settingBrand"
+          value="${esc(settings.brandName)}"
+        >
+
+      </div>
+
+      <div class="form-row">
+
+        <label>Tagline</label>
+
+        <input
+          id="settingTagline"
+          value="${esc(settings.tagline)}"
+        >
+
+      </div>
+
+      <button onclick="saveSettings()">
+        Save Settings
+      </button>
+
+      <button
+        class="secondary"
+        onclick="auth.signOut()"
+      >
+        Logout
+      </button>
+
+    </section>
+  `;
+}
+
+async function saveSettings(){
 
   if(!isAdmin()) return;
 
+  const brandName =
+    document.getElementById("settingBrand")
+      .value.trim();
 
-  const otherIndex =
-    index + direction;
-
-
-  if(
-    otherIndex < 0 ||
-    otherIndex >= prompts.length
-  ) return;
-
-
-  const first =
-    prompts[index];
-
-  const second =
-    prompts[otherIndex];
-
+  const tagline =
+    document.getElementById("settingTagline")
+      .value.trim();
 
   try{
 
-    await db.runTransaction(async transaction => {
-
-      transaction.update(
-        db.collection("prompts").doc(first.id),
-        {order:otherIndex}
-      );
-
-      transaction.update(
-        db.collection("prompts").doc(second.id),
-        {order:index}
-      );
-
-    });
-
-
-    toast("Prompt order updated");
-
-  }catch(error){
-
-    console.error(error);
-
-    alert(
-      "Could not reorder prompts."
-    );
-
-  }
-
-}
-
-
-/* =========================
-   SAVE WEBSITE SETTINGS
-========================= */
-
-$("saveSettings").onclick = async () => {
-
-  if(!isAdmin()) return;
-
-
-  const button =
-    $("saveSettings");
-
-  button.disabled = true;
-
-
-  try{
-
-    await db
-      .collection("settings")
+    await db.collection("settings")
       .doc("site")
       .set({
 
         brandName:
-          $("settingBrand").value.trim() ||
-          "Maishn.Work",
+          brandName || "Maishn.Work",
 
         tagline:
-          $("settingTagline").value.trim() ||
-          "Handcrafted prompts for better AI workflows.",
-
-        heroText:
-          $("settingHero").value.trim() ||
-          "Explore curated AI prompt collections and copy exactly what you need.",
+          tagline ||
+          "Empowering your AI workflow with handcrafted prompts.",
 
         updatedAt:
           firebase.firestore.FieldValue.serverTimestamp()
 
-      },{
-        merge:true
-      });
+      },{merge:true});
 
-
-    status(
-      "settingsStatus",
-      "Settings saved successfully."
-    );
-
-    toast("Website settings updated");
+    toast("Settings saved");
 
   }catch(error){
 
+    toast("Settings save failed");
     console.error(error);
+  }
+}
 
-    status(
-      "settingsStatus",
-      "Could not save settings: " + error.message,
-      true
-    );
+/* ==============================
+   HELPERS
+============================== */
 
-  }finally{
+function closeModal(){
 
-    button.disabled = false;
+  const area =
+    document.getElementById("modalArea");
 
+  if(area)
+    area.innerHTML="";
+}
+
+async function logout(){
+
+  await auth.signOut();
+
+  location.hash="";
+}
+
+/* ==============================
+   ROUTER
+============================== */
+
+function route(){
+
+  const hash =
+    location.hash.replace(/^#/,"");
+
+  if(hash==="admin"){
+
+    if(isAdmin())
+      renderAdmin();
+    else
+      renderAdminLogin();
+
+    return;
   }
 
-};
+  if(hash.startsWith("collection/")){
 
+    const id =
+      decodeURIComponent(
+        hash.substring("collection/".length)
+      );
 
-/* =========================
-   START ROUTER
-========================= */
+    renderCollection(id);
 
+    return;
+  }
+
+  renderHome();
+}
+
+window.addEventListener("hashchange",route);
+
+auth.onAuthStateChanged(user=>{
+
+  currentUser=user;
+
+  route();
+
+});
+
+/* Initial */
 route();
 
 </script>
-
 </body>
 </html>
