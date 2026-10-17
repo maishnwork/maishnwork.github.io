@@ -4,9 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b16">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<meta name="description" content="Maishn.Work — useful AI prompts, tools, links and resources.">
+<meta name="google-site-verification" content="s74jZmzX_eUlwHI9CiV81-7djtLblYiI4ZYdpkWlP3c">
+
 <title>Maishn.Work</title>
 
 <style>
+
 :root{
   color-scheme:dark;
   --bg:#080b16;
@@ -24,7 +32,9 @@
   --shadow:0 25px 80px rgba(0,0,0,.35);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html{
   scroll-behavior:smooth;
@@ -38,11 +48,15 @@ body{
     radial-gradient(circle at 10% 0%,#29396b55,transparent 35%),
     radial-gradient(circle at 90% 15%,#55276b44,transparent 32%),
     var(--bg);
-  font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,
+    "Segoe UI",Roboto,sans-serif;
   overflow-x:hidden;
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea,
+select{
   font:inherit;
 }
 
@@ -119,8 +133,12 @@ a{
 }
 
 @keyframes logoFloat{
-  from{transform:translateY(-3px) rotate(-2deg)}
-  to{transform:translateY(3px) rotate(2deg)}
+  from{
+    transform:translateY(-3px) rotate(-2deg);
+  }
+  to{
+    transform:translateY(3px) rotate(2deg);
+  }
 }
 
 /* BUTTONS */
@@ -251,18 +269,19 @@ a{
 
 .collection-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  grid-template-columns:
+    repeat(auto-fit,minmax(min(100%,280px),1fr));
   gap:15px;
 }
 
 .collection-card{
   position:relative;
-  min-height:210px;
+  min-height:220px;
   overflow:hidden;
   border:1px solid var(--line);
   border-radius:23px;
   padding:24px;
-  text-align:left;
+  text-align:center;
   background:
     linear-gradient(145deg,#17213b,#111727);
   box-shadow:0 16px 50px #0003;
@@ -282,41 +301,52 @@ a{
 .collection-card:before{
   content:"";
   position:absolute;
-  width:180px;
-  height:180px;
+  width:220px;
+  height:220px;
   border-radius:50%;
-  right:-70px;
-  top:-70px;
+  right:-80px;
+  top:-80px;
   background:var(--collection-color,#667fff);
-  opacity:.16;
-  filter:blur(10px);
+  opacity:.17;
+  filter:blur(12px);
 }
 
 .collection-icon{
-  width:48px;
-  height:48px;
-  border-radius:15px;
+  position:relative;
+  z-index:1;
+  width:60px;
+  height:60px;
+  margin:auto;
+  border-radius:18px;
   display:grid;
   place-items:center;
-  font-size:23px;
+  font-size:28px;
   background:var(--collection-color,#667fff);
-  box-shadow:0 10px 30px color-mix(
-    in srgb,
-    var(--collection-color,#667fff) 25%,
-    transparent
-  );
+  box-shadow:
+    0 10px 30px
+    color-mix(
+      in srgb,
+      var(--collection-color,#667fff) 30%,
+      transparent
+    );
 }
 
 .collection-card h3{
-  margin:20px 0 7px;
-  font-size:1.35rem;
   position:relative;
+  z-index:1;
+  margin:20px 0 8px;
+  font-size:clamp(1.8rem,5vw,2.8rem);
+  line-height:1.05;
+  font-weight:950;
+  letter-spacing:-.06em;
 }
 
 .collection-card p{
-  margin:0;
-  color:var(--muted);
   position:relative;
+  z-index:1;
+  margin:0 auto;
+  max-width:600px;
+  color:var(--muted);
 }
 
 .collection-arrow{
@@ -330,6 +360,7 @@ a{
 /* EMPTY */
 
 .empty{
+  width:100%;
   padding:45px 20px;
   border:1px dashed #3b4864;
   border-radius:20px;
@@ -341,24 +372,29 @@ a{
 
 .page-head{
   margin:10px 0 22px;
+  text-align:center;
   animation:rise .35s both;
 }
 
 .back{
-  margin-bottom:17px;
+  display:block;
+  margin:0 auto 20px;
 }
 
 .page-head h1{
-  margin:13px 0 6px;
-  font-size:clamp(2rem,6vw,3.4rem);
+  margin:15px 0 7px;
+  font-size:clamp(2.5rem,7vw,5rem);
   line-height:1.05;
   letter-spacing:-.06em;
 }
 
 .page-head p{
-  margin:0;
+  margin:auto;
+  max-width:700px;
   color:var(--muted);
 }
+
+/* SEARCH */
 
 .search-box{
   position:relative;
@@ -382,9 +418,12 @@ a{
   opacity:.7;
 }
 
+/* ITEMS */
+
 .item-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
+  grid-template-columns:
+    repeat(auto-fit,minmax(min(100%,300px),1fr));
   gap:14px;
 }
 
@@ -392,8 +431,12 @@ a{
   border:1px solid var(--line);
   border-radius:19px;
   padding:18px;
-  background:linear-gradient(145deg,#151d32,#101625);
-  transition:transform .22s,border-color .22s,box-shadow .22s;
+  background:
+    linear-gradient(145deg,#151d32,#101625);
+  transition:
+    transform .22s,
+    border-color .22s,
+    box-shadow .22s;
   animation:rise .4s both;
 }
 
@@ -560,7 +603,8 @@ a{
 .admin-panel{
   border:1px solid #303b58;
   border-radius:20px;
-  background:linear-gradient(145deg,#121a2b,#0d1422);
+  background:
+    linear-gradient(145deg,#121a2b,#0d1422);
   padding:20px;
   box-shadow:var(--shadow);
 }
@@ -759,11 +803,13 @@ select.field{
 }
 
 .modal{
+  position:relative;
   width:min(600px,100%);
   border:1px solid #455277;
   border-radius:22px;
   padding:22px;
-  background:linear-gradient(145deg,#171f34,#0f1626);
+  background:
+    linear-gradient(145deg,#171f34,#0f1626);
   box-shadow:0 30px 110px #0009;
   animation:pop .3s both;
 }
@@ -783,9 +829,11 @@ select.field{
   width:36px;
   height:36px;
   padding:0;
+  border:0;
   border-radius:10px;
   background:#252f46;
   color:#fff;
+  font-size:20px;
 }
 
 .modal-note{
@@ -875,6 +923,7 @@ select.field{
 }
 
 @media(max-width:650px){
+
   .wrap{
     padding:16px 13px 35px;
   }
@@ -906,6 +955,7 @@ select.field{
 }
 
 @media(prefers-reduced-motion:reduce){
+
   *,
   *::before,
   *::after{
@@ -914,6 +964,7 @@ select.field{
     scroll-behavior:auto!important;
   }
 }
+
 </style>
 </head>
 
@@ -922,64 +973,128 @@ select.field{
 <div class="wrap">
 
 <header class="header">
+
   <a class="brand" href="#home">
-    <div class="logo">👨‍💻</div>
+
+    <div class="logo">
+      👨‍💻
+    </div>
+
     <div>
-      <span class="brand-name" id="brandName">Maishn.Work</span>
-      <span class="brand-tagline" id="brandTagline">
+
+      <span
+        class="brand-name"
+        id="brandName"
+      >
+        Maishn.Work
+      </span>
+
+      <span
+        class="brand-tagline"
+        id="brandTagline"
+      >
         Handcrafted prompts for smarter AI workflows.
       </span>
+
     </div>
+
   </a>
+
 </header>
 
-<!-- PUBLIC HOME -->
+
+<!-- =========================================================
+     PUBLIC HOME
+========================================================= -->
 
 <section id="homeView">
 
   <div class="hero">
+
     <span class="eyebrow">
+
       <span class="dot"></span>
-      <span id="heroEyebrow">MAISHN.WORK COLLECTIONS</span>
+
+      <span id="heroEyebrow">
+        MAISHN.WORK COLLECTIONS
+      </span>
+
     </span>
 
     <h1>
+
       Explore<br>
-      <span class="gradient" id="heroTitle">Maishn.Work</span>
+
+      <span
+        class="gradient"
+        id="heroTitle"
+      >
+        Maishn.Work
+      </span>
+
     </h1>
 
     <p id="heroDescription">
       Discover useful collections and copy exactly what you need.
     </p>
+
   </div>
+
 
   <div class="section-head">
+
     <div>
-      <h2 id="collectionHeading">Explore Collections</h2>
-      <p id="collectionSubheading">Choose a collection to continue.</p>
+
+      <h2 id="collectionHeading">
+        Explore Collections
+      </h2>
+
+      <p id="collectionSubheading">
+        Choose a collection to continue.
+      </p>
+
     </div>
+
   </div>
 
-  <div id="collectionGrid" class="collection-grid"></div>
+
+  <div
+    id="collectionGrid"
+    class="collection-grid"
+  ></div>
 
 </section>
 
 
-<!-- COLLECTION VIEW -->
+<!-- =========================================================
+     COLLECTION VIEW
+========================================================= -->
 
-<section id="collectionView" class="hidden">
+<section
+  id="collectionView"
+  class="hidden"
+>
 
   <div class="page-head">
 
-    <button class="btn secondary back" id="backHome">
+    <button
+      class="btn secondary back"
+      id="backHome"
+    >
       ← Back to Collections
     </button>
 
-    <span class="eyebrow" id="collectionBadge">
+    <span
+      class="eyebrow"
+      id="collectionBadge"
+    >
       COLLECTION
     </span>
 
-    <h1 class="gradient" id="collectionTitle">
+    <h1
+      class="gradient"
+      id="collectionTitle"
+    >
       Collection
     </h1>
 
@@ -987,9 +1102,12 @@ select.field{
 
   </div>
 
+
   <div class="search-box">
 
-    <span class="search-icon">⌕</span>
+    <span class="search-icon">
+      ⌕
+    </span>
 
     <input
       id="itemSearch"
@@ -1000,32 +1118,51 @@ select.field{
 
   </div>
 
-  <div id="itemGrid" class="item-grid"></div>
+
+  <div
+    id="itemGrid"
+    class="item-grid"
+  ></div>
 
 </section>
 
 
-<!-- ADMIN LOGIN -->
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
 
-<section id="adminLoginView" class="hidden">
+<section
+  id="adminLoginView"
+  class="hidden"
+>
 
   <div class="auth-page">
 
     <div class="auth-card">
 
-      <div class="auth-icon">👨‍💻</div>
+      <div class="auth-icon">
+        👨‍💻
+      </div>
 
-      <h1>Admin Workspace</h1>
+      <h1>
+        Admin Workspace
+      </h1>
 
       <p>
         Secure management access for Maishn.Work.
       </p>
 
-      <button class="btn google" id="googleLogin">
+      <button
+        class="btn google"
+        id="googleLogin"
+      >
         Continue with Google
       </button>
 
-      <p id="authStatus" class="status"></p>
+      <p
+        id="authStatus"
+        class="status"
+      ></p>
 
     </div>
 
@@ -1034,9 +1171,14 @@ select.field{
 </section>
 
 
-<!-- ADMIN DASHBOARD -->
+<!-- =========================================================
+     ADMIN DASHBOARD
+========================================================= -->
 
-<section id="adminView" class="hidden">
+<section
+  id="adminView"
+  class="hidden"
+>
 
   <div class="admin-shell">
 
@@ -1049,13 +1191,24 @@ select.field{
         </div>
 
         <div>
-          <h1>Admin Dashboard</h1>
-          <p>Maishn.Work control center</p>
+
+          <h1>
+            Admin Dashboard
+          </h1>
+
+          <p>
+            Maishn.Work control center
+          </p>
+
         </div>
 
       </div>
 
-      <button class="btn secondary" id="logoutBtn">
+
+      <button
+        class="btn secondary"
+        id="logoutBtn"
+      >
         Sign out
       </button>
 
@@ -1064,11 +1217,17 @@ select.field{
 
     <div class="admin-nav">
 
-      <button class="nav-btn active" id="collectionsTab">
+      <button
+        class="nav-btn active"
+        id="collectionsTab"
+      >
         📁 Collections
       </button>
 
-      <button class="nav-btn" id="settingsTab">
+      <button
+        class="nav-btn"
+        id="settingsTab"
+      >
         ⚙️ Settings
       </button>
 
@@ -1084,6 +1243,7 @@ select.field{
         <div class="admin-folder-head">
 
           <div>
+
             <h2 id="adminCollectionHeading">
               Collections
             </h2>
@@ -1091,15 +1251,22 @@ select.field{
             <p class="admin-panel-note">
               Create and manage your website collections.
             </p>
+
           </div>
 
-          <button class="btn" id="addCollectionBtn">
+          <button
+            class="btn"
+            id="addCollectionBtn"
+          >
             ＋ Add Collection
           </button>
 
         </div>
 
-        <div id="adminCollectionList" class="admin-list"></div>
+        <div
+          id="adminCollectionList"
+          class="admin-list"
+        ></div>
 
       </div>
 
@@ -1108,7 +1275,10 @@ select.field{
 
     <!-- COLLECTION FOLDER -->
 
-    <div id="folderAdmin" class="hidden">
+    <div
+      id="folderAdmin"
+      class="hidden"
+    >
 
       <div class="admin-panel">
 
@@ -1116,25 +1286,40 @@ select.field{
 
           <div>
 
-            <button class="btn secondary small" id="backAdminCollections">
+            <button
+              class="btn secondary small"
+              id="backAdminCollections"
+            >
               ← Collections
             </button>
 
-            <h2 id="folderTitle" style="margin-top:14px">
+            <h2
+              id="folderTitle"
+              style="margin-top:14px"
+            >
               Collection
             </h2>
 
-            <p id="folderDescription" class="admin-panel-note"></p>
+            <p
+              id="folderDescription"
+              class="admin-panel-note"
+            ></p>
 
           </div>
 
-          <button class="btn" id="addItemBtn">
+          <button
+            class="btn"
+            id="addItemBtn"
+          >
             ＋ Add Item
           </button>
 
         </div>
 
-        <div id="adminItemList" class="admin-list"></div>
+        <div
+          id="adminItemList"
+          class="admin-list"
+        ></div>
 
       </div>
 
@@ -1143,54 +1328,132 @@ select.field{
 
     <!-- SETTINGS -->
 
-    <div id="settingsAdmin" class="hidden">
+    <div
+      id="settingsAdmin"
+      class="hidden"
+    >
 
       <div class="admin-panel">
 
-        <h2>Website Settings</h2>
+        <h2>
+          Website Settings
+        </h2>
 
         <p class="admin-panel-note">
           Customize the public website.
         </p>
 
-        <div class="form-row">
-          <label>Brand Name</label>
-          <input class="field" id="settingBrand">
-        </div>
 
         <div class="form-row">
-          <label>Header Tagline</label>
-          <input class="field" id="settingTagline">
+
+          <label>
+            Brand Name
+          </label>
+
+          <input
+            class="field"
+            id="settingBrand"
+          >
+
         </div>
+
 
         <div class="form-row">
-          <label>Hero Eyebrow</label>
-          <input class="field" id="settingEyebrow">
+
+          <label>
+            Header Tagline
+          </label>
+
+          <input
+            class="field"
+            id="settingTagline"
+          >
+
         </div>
+
 
         <div class="form-row">
-          <label>Hero Title</label>
-          <input class="field" id="settingHeroTitle">
+
+          <label>
+            Hero Eyebrow
+          </label>
+
+          <input
+            class="field"
+            id="settingEyebrow"
+          >
+
         </div>
+
 
         <div class="form-row">
-          <label>Hero Description</label>
-          <textarea class="field" id="settingHeroDescription"></textarea>
+
+          <label>
+            Hero Title
+          </label>
+
+          <input
+            class="field"
+            id="settingHeroTitle"
+          >
+
         </div>
+
 
         <div class="form-row">
-          <label>Collection Section Title</label>
-          <input class="field" id="settingCollectionHeading">
+
+          <label>
+            Hero Description
+          </label>
+
+          <textarea
+            class="field"
+            id="settingHeroDescription"
+          ></textarea>
+
         </div>
+
 
         <div class="form-row">
-          <label>Collection Section Description</label>
-          <input class="field" id="settingCollectionSubheading">
+
+          <label>
+            Collection Section Title
+          </label>
+
+          <input
+            class="field"
+            id="settingCollectionHeading"
+          >
+
         </div>
 
-        <hr style="border:0;border-top:1px solid #ffffff12;margin:25px 0">
 
-        <h2>Support / Contact</h2>
+        <div class="form-row">
+
+          <label>
+            Collection Section Description
+          </label>
+
+          <input
+            class="field"
+            id="settingCollectionSubheading"
+          >
+
+        </div>
+
+
+        <hr
+          style="
+            border:0;
+            border-top:1px solid #ffffff12;
+            margin:25px 0
+          "
+        >
+
+
+        <h2>
+          Support / Contact
+        </h2>
 
         <p class="admin-panel-note">
           Add up to 5 optional support links.
@@ -1198,13 +1461,22 @@ select.field{
 
         <div id="supportAdminList"></div>
 
-        <button class="btn secondary" id="addSupportBtn">
+        <button
+          class="btn secondary"
+          id="addSupportBtn"
+        >
           ＋ Add Support Entry
         </button>
 
-        <p id="settingsStatus" class="status"></p>
+        <p
+          id="settingsStatus"
+          class="status"
+        ></p>
 
-        <button class="btn green full" id="saveSettingsBtn">
+        <button
+          class="btn green full"
+          id="saveSettingsBtn"
+        >
           Save All Settings
         </button>
 
@@ -1217,9 +1489,16 @@ select.field{
 </section>
 
 
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer class="footer">
 
-  <div class="footer-brand" id="footerBrand">
+  <div
+    class="footer-brand"
+    id="footerBrand"
+  >
     Maishn.Work
   </div>
 
@@ -1227,11 +1506,20 @@ select.field{
     Handcrafted prompts for smarter AI workflows.
   </div>
 
-  <div id="supportFrontend" class="support hidden">
 
-    <span class="support-title">Support</span>
+  <div
+    id="supportFrontend"
+    class="support hidden"
+  >
 
-    <div id="supportList" class="support-list"></div>
+    <span class="support-title">
+      Support
+    </span>
+
+    <div
+      id="supportList"
+      class="support-list"
+    ></div>
 
   </div>
 
@@ -1240,9 +1528,14 @@ select.field{
 </div>
 
 
-<!-- COLLECTION MODAL -->
+<!-- =========================================================
+     COLLECTION MODAL
+========================================================= -->
 
-<div class="overlay" id="collectionModal">
+<div
+  class="overlay"
+  id="collectionModal"
+>
 
   <div class="modal">
 
@@ -1252,53 +1545,130 @@ select.field{
         Add Collection
       </h2>
 
-      <button class="close" data-close="collectionModal">
+      <button
+        class="close"
+        data-close="collectionModal"
+      >
         ×
       </button>
 
     </div>
 
+
     <div class="form-row">
-      <label>Collection Name</label>
-      <input class="field" id="collectionName">
+
+      <label>
+        Collection Name
+      </label>
+
+      <input
+        class="field"
+        id="collectionName"
+      >
+
     </div>
 
+
     <div class="form-row">
-      <label>Description</label>
-      <textarea class="field" id="collectionDesc"></textarea>
+
+      <label>
+        Description
+      </label>
+
+      <textarea
+        class="field"
+        id="collectionDesc"
+      ></textarea>
+
     </div>
 
+
     <div class="form-row">
-      <label>Icon</label>
-      <input class="field" id="collectionIcon" placeholder="📁">
+
+      <label>
+        Icon
+      </label>
+
+      <input
+        class="field"
+        id="collectionIcon"
+        placeholder="📁"
+      >
+
     </div>
 
+
     <div class="form-row">
 
-      <label>Card Color</label>
+      <label>
+        Card Color
+      </label>
 
-      <div class="color-row" id="colorChoices">
+      <div
+        class="color-row"
+        id="colorChoices"
+      >
 
-        <button class="color-choice" data-color="#667fff" style="background:#667fff"></button>
-        <button class="color-choice" data-color="#b16bff" style="background:#b16bff"></button>
-        <button class="color-choice" data-color="#56e0ef" style="background:#56e0ef"></button>
-        <button class="color-choice" data-color="#45e3a2" style="background:#45e3a2"></button>
-        <button class="color-choice" data-color="#ff718b" style="background:#ff718b"></button>
-        <button class="color-choice" data-color="#ffad5c" style="background:#ffad5c"></button>
+        <button
+          class="color-choice"
+          data-color="#667fff"
+          style="background:#667fff"
+        ></button>
+
+        <button
+          class="color-choice"
+          data-color="#b16bff"
+          style="background:#b16bff"
+        ></button>
+
+        <button
+          class="color-choice"
+          data-color="#56e0ef"
+          style="background:#56e0ef"
+        ></button>
+
+        <button
+          class="color-choice"
+          data-color="#45e3a2"
+          style="background:#45e3a2"
+        ></button>
+
+        <button
+          class="color-choice"
+          data-color="#ff718b"
+          style="background:#ff718b"
+        ></button>
+
+        <button
+          class="color-choice"
+          data-color="#ffad5c"
+          style="background:#ffad5c"
+        ></button>
 
       </div>
 
     </div>
 
-    <p id="collectionModalStatus" class="status"></p>
+
+    <p
+      id="collectionModalStatus"
+      class="status"
+    ></p>
+
 
     <div class="form-actions">
 
-      <button class="btn green" id="saveCollectionBtn">
+      <button
+        class="btn green"
+        id="saveCollectionBtn"
+      >
         Save Collection
       </button>
 
-      <button class="btn secondary" data-close="collectionModal">
+      <button
+        class="btn secondary"
+        data-close="collectionModal"
+      >
         Cancel
       </button>
 
@@ -1309,9 +1679,14 @@ select.field{
 </div>
 
 
-<!-- ITEM MODAL -->
+<!-- =========================================================
+     ITEM MODAL
+========================================================= -->
 
-<div class="overlay" id="itemModal">
+<div
+  class="overlay"
+  id="itemModal"
+>
 
   <div class="modal">
 
@@ -1321,59 +1696,131 @@ select.field{
         Add Item
       </h2>
 
-      <button class="close" data-close="itemModal">
+      <button
+        class="close"
+        data-close="itemModal"
+      >
         ×
       </button>
 
     </div>
 
-    <div class="form-row">
-      <label>Item Title</label>
-      <input class="field" id="itemTitle">
-    </div>
 
     <div class="form-row">
-      <label>Platform / Type Tag</label>
-      <input class="field" id="itemPlatform" placeholder="Meta AI, ChatGPT, Direct Link...">
+
+      <label>
+        Item Title
+      </label>
+
+      <input
+        class="field"
+        id="itemTitle"
+      >
+
     </div>
 
+
     <div class="form-row">
-      <label>Content Type</label>
-      <select class="field" id="itemContentType">
-        <option value="hidden">Hidden Content</option>
-        <option value="link">Link</option>
+
+      <label>
+        Platform / Type
+      </label>
+
+      <input
+        class="field"
+        id="itemPlatform"
+        placeholder="ChatGPT, Meta AI, Direct Link..."
+      >
+
+    </div>
+
+
+    <!-- NEW TYPE SELECT -->
+
+    <div class="form-row">
+
+      <label>
+        Content Type
+      </label>
+
+      <select
+        class="field"
+        id="itemType"
+      >
+
+        <option value="hidden">
+          Hidden Content
+        </option>
+
+        <option value="link">
+          Link
+        </option>
+
       </select>
+
     </div>
 
-    <div class="form-row" id="hiddenContentRow">
-      <label>Hidden Content</label>
+
+    <!-- HIDDEN CONTENT -->
+
+    <div
+      class="form-row"
+      id="hiddenContentRow"
+    >
+
+      <label>
+        Hidden Content
+      </label>
+
       <textarea
         class="field"
         id="itemContent"
         placeholder="Prompt, text, code, etc."
       ></textarea>
+
     </div>
 
-    <div class="form-row hidden" id="itemLinkRow">
-      <label>Link</label>
+
+    <!-- LINK -->
+
+    <div
+      class="form-row hidden"
+      id="linkRow"
+    >
+
+      <label>
+        Link
+      </label>
+
       <input
         class="field"
         id="itemLink"
         type="url"
-        inputmode="url"
-        placeholder="https://example.com"
+        placeholder="https://example.com/"
       >
+
     </div>
 
-    <p id="itemModalStatus" class="status"></p>
+
+    <p
+      id="itemModalStatus"
+      class="status"
+    ></p>
+
 
     <div class="form-actions">
 
-      <button class="btn green" id="saveItemBtn">
+      <button
+        class="btn green"
+        id="saveItemBtn"
+      >
         Save Item
       </button>
 
-      <button class="btn secondary" data-close="itemModal">
+      <button
+        class="btn secondary"
+        data-close="itemModal"
+      >
         Cancel
       </button>
 
@@ -1384,9 +1831,14 @@ select.field{
 </div>
 
 
-<!-- UNAUTHORIZED MODAL -->
+<!-- =========================================================
+     UNAUTHORIZED MODAL
+========================================================= -->
 
-<div class="overlay" id="unauthorizedModal">
+<div
+  class="overlay"
+  id="unauthorizedModal"
+>
 
   <div class="modal error-modal">
 
@@ -1410,7 +1862,10 @@ select.field{
       This Google account is not authorized to access the Admin Dashboard.
     </p>
 
-    <button class="btn secondary" id="unauthorizedOk">
+    <button
+      class="btn secondary"
+      id="unauthorizedOk"
+    >
       Try Again
     </button>
 
@@ -1419,61 +1874,123 @@ select.field{
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast"
+></div>
 
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
+
 <script>
+
 "use strict";
+
 
 /* =========================================================
    FIREBASE
 ========================================================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB6WxK_Ty-FxfG-rAScxtY8t5VjqXnoSLA",
-  authDomain: "maishnwork-65719.firebaseapp.com",
-  databaseURL: "https://maishnwork-65719-default-rtdb.firebaseio.com",
-  projectId: "maishnwork-65719",
-  storageBucket: "maishnwork-65719.firebasestorage.app",
-  messagingSenderId: "472199331646",
-  appId: "1:472199331646:web:f5d64df7ab68fc7cceb66f",
-  measurementId: "G-HHFSBHX254"
+
+  apiKey:
+    "AIzaSyB6WxK_Ty-FxfG-rAScxtY8t5VjqXnoSLA",
+
+  authDomain:
+    "maishnwork-65719.firebaseapp.com",
+
+  databaseURL:
+    "https://maishnwork-65719-default-rtdb.firebaseio.com",
+
+  projectId:
+    "maishnwork-65719",
+
+  storageBucket:
+    "maishnwork-65719.firebasestorage.app",
+
+  messagingSenderId:
+    "472199331646",
+
+  appId:
+    "1:472199331646:web:f5d64df7ab68fc7cceb66f",
+
+  measurementId:
+    "G-HHFSBHX254"
+
 };
 
-const ADMIN_EMAIL = "maishn.work@gmail.com";
 
-firebase.initializeApp(firebaseConfig);
+const ADMIN_EMAIL =
+  "maishn.work@gmail.com";
 
-const auth = firebase.auth();
-const db = firebase.firestore();
 
-const $ = id => document.getElementById(id);
+firebase.initializeApp(
+  firebaseConfig
+);
 
-const safe = value => String(value ?? "");
+
+const auth =
+  firebase.auth();
+
+const db =
+  firebase.firestore();
+
+
+const $ =
+  id => document.getElementById(id);
+
+
+const safe =
+  value => String(value ?? "");
+
 
 let currentUser = null;
+
 let collections = [];
+
 let currentCollection = null;
+
 let currentItems = [];
 
 let editingCollectionId = null;
+
 let editingItemId = null;
 
 let selectedColor = "#667fff";
 
+
 let settings = {
-  brandName: "Maishn.Work",
-  tagline: "Handcrafted prompts for smarter AI workflows.",
-  eyebrow: "MAISHN.WORK COLLECTIONS",
-  heroTitle: "Maishn.Work",
-  heroDescription: "Discover useful collections and copy exactly what you need.",
-  collectionHeading: "Explore Collections",
-  collectionSubheading: "Choose a collection to continue.",
+
+  brandName:
+    "Maishn.Work",
+
+  tagline:
+    "Handcrafted prompts for smarter AI workflows.",
+
+  eyebrow:
+    "MAISHN.WORK COLLECTIONS",
+
+  heroTitle:
+    "Maishn.Work",
+
+  heroDescription:
+    "Discover useful collections and copy exactly what you need.",
+
+  collectionHeading:
+    "Explore Collections",
+
+  collectionSubheading:
+    "Choose a collection to continue.",
+
   support: []
+
 };
 
 
@@ -1485,62 +2002,72 @@ function isAdmin(){
 
   return !!currentUser &&
     !!currentUser.email &&
-    currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+    currentUser.email.toLowerCase() ===
+      ADMIN_EMAIL.toLowerCase();
 
 }
 
 
 function toast(message){
 
-  const el = $("toast");
+  const el =
+    $("toast");
 
-  el.textContent = message;
+  el.textContent =
+    message;
 
   el.classList.add("show");
 
-  clearTimeout(window.__toastTimer);
+  clearTimeout(
+    window.__toastTimer
+  );
 
-  window.__toastTimer = setTimeout(() => {
-    el.classList.remove("show");
-  }, 1700);
+  window.__toastTimer =
+    setTimeout(()=>{
+
+      el.classList.remove("show");
+
+    },1700);
 
 }
 
 
-function status(id,message,error=false){
+function status(
+  id,
+  message,
+  error=false
+){
 
-  const el = $(id);
+  const el =
+    $(id);
 
   if(!el) return;
 
-  el.textContent = message;
+  el.textContent =
+    message;
 
-  el.classList.toggle("error",error);
+  el.classList.toggle(
+    "error",
+    error
+  );
 
 }
 
 
 function openModal(id){
 
-  $(id).classList.add("show");
+  $(id)
+    .classList
+    .add("show");
 
 }
 
 
 function closeModal(id){
 
-  $(id).classList.remove("show");
-
-}
-
-
-function escapeSort(a,b){
-
-  return safe(a).localeCompare(
-    safe(b),
-    undefined,
-    {numeric:true,sensitivity:"base"}
-  );
+  $(id)
+    .classList
+    .remove("show");
 
 }
 
@@ -1551,27 +2078,35 @@ function escapeSort(a,b){
 
 function route(){
 
-  const hash = location.hash;
+  const hash =
+    location.hash;
 
   if(hash === "#admin"){
 
     showAdminRoute();
 
     return;
-
   }
 
-  if(hash.startsWith("#collection/")){
 
-    const id = decodeURIComponent(
-      hash.substring("#collection/".length)
-    );
+  if(
+    hash.startsWith(
+      "#collection/"
+    )
+  ){
+
+    const id =
+      decodeURIComponent(
+        hash.substring(
+          "#collection/".length
+        )
+      );
 
     openCollectionById(id);
 
     return;
-
   }
+
 
   showHome();
 
@@ -1580,67 +2115,121 @@ function route(){
 
 function showHome(){
 
-  $("homeView").classList.remove("hidden");
-  $("collectionView").classList.add("hidden");
-  $("adminLoginView").classList.add("hidden");
-  $("adminView").classList.add("hidden");
+  $("homeView")
+    .classList
+    .remove("hidden");
+
+  $("collectionView")
+    .classList
+    .add("hidden");
+
+  $("adminLoginView")
+    .classList
+    .add("hidden");
+
+  $("adminView")
+    .classList
+    .add("hidden");
 
 }
 
 
 function showAdminRoute(){
 
-  $("homeView").classList.add("hidden");
-  $("collectionView").classList.add("hidden");
+  $("homeView")
+    .classList
+    .add("hidden");
+
+  $("collectionView")
+    .classList
+    .add("hidden");
+
 
   if(isAdmin()){
 
-    $("adminLoginView").classList.add("hidden");
-    $("adminView").classList.remove("hidden");
+    $("adminLoginView")
+      .classList
+      .add("hidden");
+
+    $("adminView")
+      .classList
+      .remove("hidden");
 
     return;
-
   }
 
-  $("adminView").classList.add("hidden");
-  $("adminLoginView").classList.remove("hidden");
+
+  $("adminView")
+    .classList
+    .add("hidden");
+
+  $("adminLoginView")
+    .classList
+    .remove("hidden");
 
 }
 
 
 async function openCollectionById(id){
 
-  const collection = collections.find(
-    item => item.id === id
-  );
+  const collection =
+    collections.find(
+      item => item.id === id
+    );
+
 
   if(!collection){
 
     showHome();
 
     return;
-
   }
 
-  currentCollection = collection;
 
-  $("homeView").classList.add("hidden");
-  $("adminLoginView").classList.add("hidden");
-  $("adminView").classList.add("hidden");
-  $("collectionView").classList.remove("hidden");
+  currentCollection =
+    collection;
 
-  $("collectionTitle").textContent =
-    safe(collection.name);
 
-  $("collectionDescription").textContent =
-    safe(collection.description);
+  $("homeView")
+    .classList
+    .add("hidden");
 
-  $("collectionBadge").textContent =
-    safe(collection.name).toUpperCase();
+  $("adminLoginView")
+    .classList
+    .add("hidden");
 
-  $("itemSearch").value = "";
+  $("adminView")
+    .classList
+    .add("hidden");
 
-  await loadItems(collection.id);
+  $("collectionView")
+    .classList
+    .remove("hidden");
+
+
+  $("collectionTitle")
+    .textContent =
+      safe(collection.name);
+
+
+  $("collectionDescription")
+    .textContent =
+      safe(collection.description);
+
+
+  $("collectionBadge")
+    .textContent =
+      safe(collection.name)
+        .toUpperCase();
+
+
+  $("itemSearch")
+    .value = "";
+
+
+  await loadItems(
+    collection.id
+  );
 
 }
 
@@ -1651,23 +2240,49 @@ async function openCollectionById(id){
 
 function applySettings(){
 
-  $("brandName").textContent = settings.brandName;
-  $("footerBrand").textContent = settings.brandName;
+  $("brandName")
+    .textContent =
+      settings.brandName;
 
-  $("brandTagline").textContent = settings.tagline;
-  $("footerTagline").textContent = settings.tagline;
+  $("footerBrand")
+    .textContent =
+      settings.brandName;
 
-  $("heroEyebrow").textContent = settings.eyebrow;
-  $("heroTitle").textContent = settings.heroTitle;
-  $("heroDescription").textContent = settings.heroDescription;
 
-  $("collectionHeading").textContent =
-    settings.collectionHeading;
+  $("brandTagline")
+    .textContent =
+      settings.tagline;
 
-  $("collectionSubheading").textContent =
-    settings.collectionSubheading;
+  $("footerTagline")
+    .textContent =
+      settings.tagline;
 
-  document.title = settings.brandName;
+
+  $("heroEyebrow")
+    .textContent =
+      settings.eyebrow;
+
+  $("heroTitle")
+    .textContent =
+      settings.heroTitle;
+
+  $("heroDescription")
+    .textContent =
+      settings.heroDescription;
+
+
+  $("collectionHeading")
+    .textContent =
+      settings.collectionHeading;
+
+  $("collectionSubheading")
+    .textContent =
+      settings.collectionSubheading;
+
+
+  document.title =
+    settings.brandName;
+
 
   renderSupport();
 
@@ -1678,30 +2293,45 @@ async function loadSettings(){
 
   try{
 
-    const snap = await db
-      .collection("site")
-      .doc("settings")
-      .get();
+    const snap =
+      await db
+        .collection("site")
+        .doc("settings")
+        .get();
+
 
     if(snap.exists){
 
-      const data = snap.data();
+      const data =
+        snap.data();
+
 
       settings = {
+
         ...settings,
+
         ...data,
-        support:Array.isArray(data.support)
-          ? data.support.slice(0,5)
-          : []
+
+        support:
+          Array.isArray(
+            data.support
+          )
+            ? data.support.slice(0,5)
+            : []
+
       };
 
     }
 
   }catch(error){
 
-    console.error("Settings:",error);
+    console.error(
+      "Settings:",
+      error
+    );
 
   }
+
 
   applySettings();
 
@@ -1712,15 +2342,34 @@ async function loadSettings(){
 
 function fillSettingsForm(){
 
-  $("settingBrand").value = settings.brandName;
-  $("settingTagline").value = settings.tagline;
-  $("settingEyebrow").value = settings.eyebrow;
-  $("settingHeroTitle").value = settings.heroTitle;
-  $("settingHeroDescription").value = settings.heroDescription;
-  $("settingCollectionHeading").value =
-    settings.collectionHeading;
-  $("settingCollectionSubheading").value =
-    settings.collectionSubheading;
+  $("settingBrand")
+    .value =
+      settings.brandName;
+
+  $("settingTagline")
+    .value =
+      settings.tagline;
+
+  $("settingEyebrow")
+    .value =
+      settings.eyebrow;
+
+  $("settingHeroTitle")
+    .value =
+      settings.heroTitle;
+
+  $("settingHeroDescription")
+    .value =
+      settings.heroDescription;
+
+  $("settingCollectionHeading")
+    .value =
+      settings.collectionHeading;
+
+  $("settingCollectionSubheading")
+    .value =
+      settings.collectionSubheading;
+
 
   renderSupportAdmin();
 
@@ -1735,33 +2384,46 @@ async function loadCollections(){
 
   try{
 
-    const snap = await db
-      .collection("collections")
-      .orderBy("order","asc")
-      .get();
+    const snap =
+      await db
+        .collection("collections")
+        .orderBy("order","asc")
+        .get();
 
-    collections = snap.docs.map(doc => ({
-      id:doc.id,
-      ...doc.data()
-    }));
+
+    collections =
+      snap.docs.map(
+        doc => ({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
 
   }catch(error){
 
     console.warn(
-      "Ordered query failed. Trying simple query.",
+      "Ordered query failed.",
       error
     );
 
+
     try{
 
-      const snap = await db
-        .collection("collections")
-        .get();
+      const snap =
+        await db
+          .collection("collections")
+          .get();
 
-      collections = snap.docs.map(doc => ({
-        id:doc.id,
-        ...doc.data()
-      }));
+
+      collections =
+        snap.docs.map(
+          doc => ({
+            id:doc.id,
+            ...doc.data()
+          })
+        );
+
 
       collections.sort(
         (a,b)=>
@@ -1769,9 +2431,12 @@ async function loadCollections(){
           Number(b.order || 0)
       );
 
+
     }catch(secondError){
 
-      console.error(secondError);
+      console.error(
+        secondError
+      );
 
       collections = [];
 
@@ -1779,7 +2444,9 @@ async function loadCollections(){
 
   }
 
+
   renderCollections();
+
   renderAdminCollections();
 
 }
@@ -1787,9 +2454,11 @@ async function loadCollections(){
 
 function renderCollections(){
 
-  const grid = $("collectionGrid");
+  const grid =
+    $("collectionGrid");
 
   grid.innerHTML = "";
+
 
   if(!collections.length){
 
@@ -1800,75 +2469,118 @@ function renderCollections(){
     `;
 
     return;
-
   }
 
-  collections.forEach((collection,index)=>{
 
-    const card = document.createElement("button");
+  collections.forEach(
+    (collection,index)=>{
 
-    card.className = "collection-card";
+      const card =
+        document.createElement(
+          "button"
+        );
 
-    card.style.setProperty(
-      "--collection-color",
-      safe(collection.color) || "#667fff"
-    );
 
-    card.style.animationDelay =
-      Math.min(index * 50,500) + "ms";
+      card.className =
+        "collection-card";
 
-    const icon = document.createElement("div");
 
-    icon.className = "collection-icon";
+      card.style.setProperty(
+        "--collection-color",
+        safe(collection.color) ||
+          "#667fff"
+      );
 
-    icon.textContent =
-      safe(collection.icon) || "📁";
 
-    const title = document.createElement("h3");
+      card.style.animationDelay =
+        Math.min(
+          index * 50,
+          500
+        ) + "ms";
 
-    title.textContent =
-      safe(collection.name);
 
-    const description = document.createElement("p");
+      const icon =
+        document.createElement(
+          "div"
+        );
 
-    description.textContent =
-      safe(collection.description);
+      icon.className =
+        "collection-icon";
 
-    const arrow = document.createElement("span");
+      icon.textContent =
+        safe(collection.icon) ||
+        "📁";
 
-    arrow.className = "collection-arrow";
 
-    arrow.textContent = "↗";
+      const title =
+        document.createElement(
+          "h3"
+        );
 
-    card.append(
-      icon,
-      title,
-      description,
-      arrow
-    );
+      title.textContent =
+        safe(collection.name);
 
-    card.onclick = () => {
 
-      location.hash =
-        "collection/" +
-        encodeURIComponent(collection.id);
+      const description =
+        document.createElement(
+          "p"
+        );
 
-    };
+      description.textContent =
+        safe(collection.description);
 
-    grid.append(card);
 
-  });
+      const arrow =
+        document.createElement(
+          "span"
+        );
+
+      arrow.className =
+        "collection-arrow";
+
+      arrow.textContent =
+        "↗";
+
+
+      card.append(
+        icon,
+        title,
+        description,
+        arrow
+      );
+
+
+      card.onclick =
+        () => {
+
+          location.hash =
+            "collection/" +
+            encodeURIComponent(
+              collection.id
+            );
+
+        };
+
+
+      grid.append(card);
+
+    }
+  );
 
 }
 
 
 /* =========================================================
-   COLLECTION ITEMS
+   PUBLIC ITEMS
 ========================================================= */
 
-async function loadItems(collectionId){
+async function loadItems(
+  collectionId
+){
 
-  const grid = $("itemGrid");
+  const grid =
+    $("itemGrid");
+
 
   grid.innerHTML = `
     <div class="empty">
@@ -1876,33 +2588,43 @@ async function loadItems(collectionId){
     </div>
   `;
 
+
   try{
 
     let snap;
 
+
     try{
 
-      snap = await db
-        .collection("collections")
-        .doc(collectionId)
-        .collection("items")
-        .orderBy("order","asc")
-        .get();
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .orderBy("order","asc")
+          .get();
+
 
     }catch(error){
 
-      snap = await db
-        .collection("collections")
-        .doc(collectionId)
-        .collection("items")
-        .get();
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .get();
 
     }
 
-    currentItems = snap.docs.map(doc=>({
-      id:doc.id,
-      ...doc.data()
-    }));
+
+    currentItems =
+      snap.docs.map(
+        doc => ({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
 
     currentItems.sort(
       (a,b)=>
@@ -1910,11 +2632,14 @@ async function loadItems(collectionId){
         Number(b.order || 0)
     );
 
+
     renderItems();
+
 
   }catch(error){
 
     console.error(error);
+
 
     grid.innerHTML = `
       <div class="empty">
@@ -1930,25 +2655,34 @@ async function loadItems(collectionId){
 function renderItems(){
 
   const query =
-    $("itemSearch").value
+    $("itemSearch")
+      .value
       .trim()
       .toLowerCase();
 
-  const list = currentItems.filter(item => {
 
-    return (
-      safe(item.title) +
-      " " +
-      safe(item.platform)
-    )
-      .toLowerCase()
-      .includes(query);
+  const list =
+    currentItems.filter(
+      item => {
 
-  });
+        return (
+          safe(item.title) +
+          " " +
+          safe(item.platform)
+        )
+          .toLowerCase()
+          .includes(query);
 
-  const grid = $("itemGrid");
+      }
+    );
+
+
+  const grid =
+    $("itemGrid");
+
 
   grid.innerHTML = "";
+
 
   if(!list.length){
 
@@ -1959,138 +2693,258 @@ function renderItems(){
     `;
 
     return;
-
   }
 
-  list.forEach((item,index)=>{
 
-    const card = document.createElement("article");
+  list.forEach(
+    (item,index)=>{
 
-    card.className = "item-card";
+      const card =
+        document.createElement(
+          "article"
+        );
 
-    const number = document.createElement("div");
+      card.className =
+        "item-card";
 
-    number.className = "item-number";
 
-    number.textContent =
-      "#" +
-      String(index + 1).padStart(2,"0");
+      const number =
+        document.createElement(
+          "div"
+        );
 
-    const top = document.createElement("div");
+      number.className =
+        "item-number";
 
-    top.className = "item-top";
+      number.textContent =
+        "#" +
+        String(index + 1)
+          .padStart(2,"0");
 
-    const title = document.createElement("h3");
 
-    title.textContent =
-      safe(item.title);
+      const top =
+        document.createElement(
+          "div"
+        );
 
-    top.append(title);
+      top.className =
+        "item-top";
 
-    if(safe(item.platform)){
 
-      const badge = document.createElement("span");
+      const title =
+        document.createElement(
+          "h3"
+        );
 
-      badge.className = "badge";
+      title.textContent =
+        safe(item.title);
 
-      badge.textContent =
-        safe(item.platform);
 
-      top.append(badge);
+      top.append(title);
 
-    }
 
-    const isLink =
-      safe(item.contentType || "hidden") === "link";
+      if(
+        safe(item.platform)
+      ){
 
-    const action = document.createElement("button");
-
-    action.className = "btn copy-btn";
-
-    if(isLink){
-
-      action.textContent = "↗ Open";
-
-      action.onclick = ()=>{
-
-        const url = normalizeLink(item.content);
-
-        if(!url){
-          toast("This link is not valid.");
-          return;
-        }
-
-        window.location.href = url;
-
-      };
-
-    }else{
-
-      action.textContent = "📋 Copy";
-
-      action.onclick = async()=>{
-
-        const original =
-          action.textContent;
-
-        try{
-
-          await navigator.clipboard.writeText(
-            safe(item.content)
+        const badge =
+          document.createElement(
+            "span"
           );
 
-        }catch(error){
+        badge.className =
+          "badge";
 
-          const textarea =
-            document.createElement("textarea");
+        badge.textContent =
+          safe(item.platform);
 
-          textarea.value =
-            safe(item.content);
+        top.append(badge);
 
-          textarea.style.position =
-            "fixed";
+      }
 
-          textarea.style.opacity = "0";
 
-          document.body.append(textarea);
+      /*
+        IMPORTANT:
+        Old items without a type are treated
+        as Hidden Content.
+      */
 
-          textarea.select();
+      const itemType =
+        safe(
+          item.type ||
+          item.contentType ||
+          "hidden"
+        );
 
-          document.execCommand("copy");
 
-          textarea.remove();
+      if(
+        itemType === "link"
+      ){
 
-        }
+        const open =
+          document.createElement(
+            "button"
+          );
 
-        action.textContent = "✓ Copied!";
+        open.className =
+          "btn copy-btn";
 
-        toast("Content copied to clipboard");
+        open.textContent =
+          "↗ Open";
 
-        setTimeout(()=>{
-          action.textContent = original;
-        },1300);
 
-      };
+        open.onclick =
+          () => {
+
+            let url =
+              safe(item.link);
+
+
+            if(!url){
+
+              toast(
+                "Link not available."
+              );
+
+              return;
+            }
+
+
+            if(
+              !/^https?:\/\//i
+                .test(url)
+            ){
+
+              url =
+                "https://" +
+                url;
+
+            }
+
+
+            /*
+              Same tab.
+              No new tab.
+            */
+
+            window.location.href =
+              url;
+
+          };
+
+
+        card.append(
+          number,
+          top,
+          open
+        );
+
+
+      }else{
+
+        const copy =
+          document.createElement(
+            "button"
+          );
+
+        copy.className =
+          "btn copy-btn";
+
+        copy.textContent =
+          "📋 Copy";
+
+
+        copy.onclick =
+          async()=>{
+
+            const original =
+              copy.textContent;
+
+
+            try{
+
+              await navigator
+                .clipboard
+                .writeText(
+                  safe(item.content)
+                );
+
+
+            }catch(error){
+
+              const textarea =
+                document.createElement(
+                  "textarea"
+                );
+
+              textarea.value =
+                safe(item.content);
+
+              textarea.style.position =
+                "fixed";
+
+              textarea.style.opacity =
+                "0";
+
+              document.body.append(
+                textarea
+              );
+
+              textarea.select();
+
+              document.execCommand(
+                "copy"
+              );
+
+              textarea.remove();
+
+            }
+
+
+            copy.textContent =
+              "✓ Copied!";
+
+
+            toast(
+              "Content copied to clipboard"
+            );
+
+
+            setTimeout(
+              () => {
+
+                copy.textContent =
+                  original;
+
+              },
+              1300
+            );
+
+          };
+
+
+        card.append(
+          number,
+          top,
+          copy
+        );
+
+      }
+
+
+      grid.append(card);
 
     }
-
-    card.append(
-      number,
-      top,
-      action
-    );
-
-    grid.append(card);
-
-  });
+  );
 
 }
 
 
-$("itemSearch").addEventListener(
-  "input",
-  renderItems
-);
+$("itemSearch")
+  .addEventListener(
+    "input",
+    renderItems
+  );
 
 
 /* =========================================================
@@ -2102,113 +2956,185 @@ function renderAdminCollections(){
   const list =
     $("adminCollectionList");
 
+
   list.innerHTML = "";
+
 
   if(!collections.length){
 
     list.innerHTML = `
       <div class="empty">
-        No collections yet. Create your first collection.
+        No collections yet.
+        Create your first collection.
       </div>
     `;
 
     return;
-
   }
 
-  collections.forEach(collection=>{
 
-    const row =
-      document.createElement("div");
+  collections.forEach(
+    collection => {
 
-    row.className = "admin-card";
-
-    const info =
-      document.createElement("div");
-
-    info.className = "admin-info";
-
-    const strong =
-      document.createElement("strong");
-
-    strong.textContent =
-      safe(collection.name);
-
-    const small =
-      document.createElement("small");
-
-    small.textContent =
-      safe(collection.description);
-
-    info.append(strong,small);
-
-    const actions =
-      document.createElement("div");
-
-    actions.className = "admin-actions";
-
-    const open =
-      document.createElement("button");
-
-    open.className = "btn";
-
-    open.textContent = "Open";
-
-    open.onclick = ()=>{
-      openAdminFolder(collection);
-    };
-
-    const edit =
-      document.createElement("button");
-
-    edit.className = "btn secondary";
-
-    edit.textContent = "Edit";
-
-    edit.onclick = ()=>{
-      showCollectionEditor(collection);
-    };
-
-    const del =
-      document.createElement("button");
-
-    del.className = "btn red";
-
-    del.textContent = "Delete";
-
-    del.onclick = async()=>{
-
-      if(!confirm(
-        "Delete this collection and all its items?"
-      )) return;
-
-      try{
-
-        await deleteCollection(
-          collection.id
+      const row =
+        document.createElement(
+          "div"
         );
 
-        toast("Collection deleted");
+      row.className =
+        "admin-card";
 
-      }catch(error){
 
-        console.error(error);
-
-        alert(
-          "Delete failed. Check Firestore Rules."
+      const info =
+        document.createElement(
+          "div"
         );
 
-      }
+      info.className =
+        "admin-info";
 
-    };
 
-    actions.append(open,edit,del);
+      const strong =
+        document.createElement(
+          "strong"
+        );
 
-    row.append(info,actions);
+      strong.textContent =
+        safe(collection.name);
 
-    list.append(row);
 
-  });
+      const small =
+        document.createElement(
+          "small"
+        );
+
+      small.textContent =
+        safe(collection.description);
+
+
+      info.append(
+        strong,
+        small
+      );
+
+
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+      actions.className =
+        "admin-actions";
+
+
+      const open =
+        document.createElement(
+          "button"
+        );
+
+      open.className =
+        "btn";
+
+      open.textContent =
+        "Open";
+
+      open.onclick =
+        () => {
+
+          openAdminFolder(
+            collection
+          );
+
+        };
+
+
+      const edit =
+        document.createElement(
+          "button"
+        );
+
+      edit.className =
+        "btn secondary";
+
+      edit.textContent =
+        "Edit";
+
+      edit.onclick =
+        () => {
+
+          showCollectionEditor(
+            collection
+          );
+
+        };
+
+
+      const del =
+        document.createElement(
+          "button"
+        );
+
+      del.className =
+        "btn red";
+
+      del.textContent =
+        "Delete";
+
+      del.onclick =
+        async()=>{
+
+          if(
+            !confirm(
+              "Delete this collection and all its items?"
+            )
+          ){
+
+            return;
+
+          }
+
+
+          try{
+
+            await deleteCollection(
+              collection.id
+            );
+
+            toast(
+              "Collection deleted"
+            );
+
+
+          }catch(error){
+
+            console.error(error);
+
+            alert(
+              "Delete failed. Check Firestore Rules."
+            );
+
+          }
+
+        };
+
+
+      actions.append(
+        open,
+        edit,
+        del
+      );
+
+
+      row.append(
+        info,
+        actions
+      );
+
+
+      list.append(row);
+
+    }
+  );
 
 }
 
@@ -2217,20 +3143,37 @@ function renderAdminCollections(){
    ADMIN FOLDER
 ========================================================= */
 
-async function openAdminFolder(collection){
+async function openAdminFolder(
+  collection
+){
 
-  if(!isAdmin()) return;
+  if(!isAdmin())
+    return;
 
-  currentCollection = collection;
 
-  $("collectionsAdmin").classList.add("hidden");
-  $("folderAdmin").classList.remove("hidden");
+  currentCollection =
+    collection;
 
-  $("folderTitle").textContent =
-    safe(collection.name);
 
-  $("folderDescription").textContent =
-    safe(collection.description);
+  $("collectionsAdmin")
+    .classList
+    .add("hidden");
+
+
+  $("folderAdmin")
+    .classList
+    .remove("hidden");
+
+
+  $("folderTitle")
+    .textContent =
+      safe(collection.name);
+
+
+  $("folderDescription")
+    .textContent =
+      safe(collection.description);
+
 
   await loadAdminItems(
     collection.id
@@ -2239,18 +3182,28 @@ async function openAdminFolder(collection){
 }
 
 
-$("backAdminCollections").onclick = ()=>{
+$("backAdminCollections")
+  .onclick =
+    () => {
 
-  $("folderAdmin").classList.add("hidden");
-  $("collectionsAdmin").classList.remove("hidden");
+      $("folderAdmin")
+        .classList
+        .add("hidden");
 
-};
+      $("collectionsAdmin")
+        .classList
+        .remove("hidden");
+
+    };
 
 
-async function loadAdminItems(collectionId){
+async function loadAdminItems(
+  collectionId
+){
 
   const list =
     $("adminItemList");
+
 
   list.innerHTML = `
     <div class="empty">
@@ -2258,34 +3211,43 @@ async function loadAdminItems(collectionId){
     </div>
   `;
 
+
   try{
 
     let snap;
 
+
     try{
 
-      snap = await db
-        .collection("collections")
-        .doc(collectionId)
-        .collection("items")
-        .orderBy("order","asc")
-        .get();
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .orderBy("order","asc")
+          .get();
+
 
     }catch(error){
 
-      snap = await db
-        .collection("collections")
-        .doc(collectionId)
-        .collection("items")
-        .get();
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .get();
 
     }
 
+
     currentItems =
-      snap.docs.map(doc=>({
-        id:doc.id,
-        ...doc.data()
-      }));
+      snap.docs.map(
+        doc => ({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
 
     currentItems.sort(
       (a,b)=>
@@ -2293,11 +3255,14 @@ async function loadAdminItems(collectionId){
         Number(b.order || 0)
     );
 
+
     renderAdminItems();
+
 
   }catch(error){
 
     console.error(error);
+
 
     list.innerHTML = `
       <div class="empty">
@@ -2315,7 +3280,9 @@ function renderAdminItems(){
   const list =
     $("adminItemList");
 
+
   list.innerHTML = "";
+
 
   if(!currentItems.length){
 
@@ -2326,161 +3293,282 @@ function renderAdminItems(){
     `;
 
     return;
-
   }
 
-  currentItems.forEach((item,index)=>{
 
-    const row =
-      document.createElement("div");
+  currentItems.forEach(
+    (item,index)=>{
 
-    row.className = "admin-card";
-
-    const info =
-      document.createElement("div");
-
-    info.className = "admin-info";
-
-    const title =
-      document.createElement("strong");
-
-    title.textContent =
-      "#" +
-      String(index + 1).padStart(2,"0") +
-      "  " +
-      safe(item.title);
-
-    const platform =
-      document.createElement("small");
-
-    platform.textContent =
-      safe(item.platform);
-
-    info.append(title,platform);
-
-    const actions =
-      document.createElement("div");
-
-    actions.className = "admin-actions";
-
-    const up =
-      document.createElement("button");
-
-    up.className = "btn secondary";
-
-    up.textContent = "↑";
-
-    up.disabled = index === 0;
-
-    up.onclick = ()=>{
-      moveItem(index,-1);
-    };
-
-    const down =
-      document.createElement("button");
-
-    down.className = "btn secondary";
-
-    down.textContent = "↓";
-
-    down.disabled =
-      index === currentItems.length - 1;
-
-    down.onclick = ()=>{
-      moveItem(index,1);
-    };
-
-    const edit =
-      document.createElement("button");
-
-    edit.className = "btn secondary";
-
-    edit.textContent = "Edit";
-
-    edit.onclick = ()=>{
-      showItemEditor(item);
-    };
-
-    const del =
-      document.createElement("button");
-
-    del.className = "btn red";
-
-    del.textContent = "Delete";
-
-    del.onclick = async()=>{
-
-      if(!confirm(
-        "Delete this item?"
-      )) return;
-
-      try{
-
-        await db
-          .collection("collections")
-          .doc(currentCollection.id)
-          .collection("items")
-          .doc(item.id)
-          .delete();
-
-        await loadAdminItems(
-          currentCollection.id
+      const row =
+        document.createElement(
+          "div"
         );
 
-        toast("Item deleted");
+      row.className =
+        "admin-card";
 
-      }catch(error){
 
-        console.error(error);
-
-        alert(
-          "Delete failed. Check Firestore Rules."
+      const info =
+        document.createElement(
+          "div"
         );
 
-      }
+      info.className =
+        "admin-info";
 
-    };
 
-    actions.append(
-      up,
-      down,
-      edit,
-      del
-    );
+      const title =
+        document.createElement(
+          "strong"
+        );
 
-    row.append(info,actions);
+      title.textContent =
+        "#" +
+        String(index + 1)
+          .padStart(2,"0") +
+        "  " +
+        safe(item.title);
 
-    list.append(row);
 
-  });
+      const platform =
+        document.createElement(
+          "small"
+        );
+
+
+      const type =
+        safe(
+          item.type ||
+          item.contentType ||
+          "hidden"
+        );
+
+
+      platform.textContent =
+        safe(item.platform) +
+        " • " +
+        (
+          type === "link"
+            ? "Link"
+            : "Hidden Content"
+        );
+
+
+      info.append(
+        title,
+        platform
+      );
+
+
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+      actions.className =
+        "admin-actions";
+
+
+      const up =
+        document.createElement(
+          "button"
+        );
+
+      up.className =
+        "btn secondary";
+
+      up.textContent =
+        "↑";
+
+      up.disabled =
+        index === 0;
+
+      up.onclick =
+        () => {
+
+          moveItem(
+            index,
+            -1
+          );
+
+        };
+
+
+      const down =
+        document.createElement(
+          "button"
+        );
+
+      down.className =
+        "btn secondary";
+
+      down.textContent =
+        "↓";
+
+      down.disabled =
+        index ===
+        currentItems.length - 1;
+
+      down.onclick =
+        () => {
+
+          moveItem(
+            index,
+            1
+          );
+
+        };
+
+
+      const edit =
+        document.createElement(
+          "button"
+        );
+
+      edit.className =
+        "btn secondary";
+
+      edit.textContent =
+        "Edit";
+
+      edit.onclick =
+        () => {
+
+          showItemEditor(
+            item
+          );
+
+        };
+
+
+      const del =
+        document.createElement(
+          "button"
+        );
+
+      del.className =
+        "btn red";
+
+      del.textContent =
+        "Delete";
+
+      del.onclick =
+        async()=>{
+
+          if(
+            !confirm(
+              "Delete this item?"
+            )
+          ){
+
+            return;
+
+          }
+
+
+          try{
+
+            await db
+              .collection(
+                "collections"
+              )
+              .doc(
+                currentCollection.id
+              )
+              .collection(
+                "items"
+              )
+              .doc(item.id)
+              .delete();
+
+
+            await loadAdminItems(
+              currentCollection.id
+            );
+
+
+            toast(
+              "Item deleted"
+            );
+
+
+          }catch(error){
+
+            console.error(error);
+
+            alert(
+              "Delete failed. Check Firestore Rules."
+            );
+
+          }
+
+        };
+
+
+      actions.append(
+        up,
+        down,
+        edit,
+        del
+      );
+
+
+      row.append(
+        info,
+        actions
+      );
+
+
+      list.append(row);
+
+    }
+  );
 
 }
 
 
 /* =========================================================
-   COLLECTION DELETE
+   DELETE COLLECTION
 ========================================================= */
 
-async function deleteCollection(id){
+async function deleteCollection(
+  id
+){
 
   const collectionRef =
-    db.collection("collections").doc(id);
+    db
+      .collection("collections")
+      .doc(id);
+
 
   const items =
     await collectionRef
       .collection("items")
       .get();
 
+
   const batch =
     db.batch();
 
-  items.forEach(doc=>{
-    batch.delete(doc.ref);
-  });
 
-  batch.delete(collectionRef);
+  items.forEach(
+    doc => {
+
+      batch.delete(
+        doc.ref
+      );
+
+    }
+  );
+
+
+  batch.delete(
+    collectionRef
+  );
+
 
   await batch.commit();
+
 
   await loadCollections();
 
@@ -2491,17 +3579,29 @@ async function deleteCollection(id){
    REORDER ITEMS
 ========================================================= */
 
-async function moveItem(index,direction){
+async function moveItem(
+  index,
+  direction
+){
 
-  if(!currentCollection) return;
+  if(!currentCollection)
+    return;
+
 
   const newIndex =
     index + direction;
 
+
   if(
     newIndex < 0 ||
-    newIndex >= currentItems.length
-  ) return;
+    newIndex >=
+      currentItems.length
+  ){
+
+    return;
+
+  }
+
 
   const a =
     currentItems[index];
@@ -2509,10 +3609,12 @@ async function moveItem(index,direction){
   const b =
     currentItems[newIndex];
 
+
   try{
 
     const batch =
       db.batch();
+
 
     const refA =
       db
@@ -2521,6 +3623,7 @@ async function moveItem(index,direction){
         .collection("items")
         .doc(a.id);
 
+
     const refB =
       db
         .collection("collections")
@@ -2528,23 +3631,35 @@ async function moveItem(index,direction){
         .collection("items")
         .doc(b.id);
 
+
     batch.update(
       refA,
-      {order:newIndex}
+      {
+        order:newIndex
+      }
     );
+
 
     batch.update(
       refB,
-      {order:index}
+      {
+        order:index
+      }
     );
 
+
     await batch.commit();
+
 
     await loadAdminItems(
       currentCollection.id
     );
 
-    toast("Order updated");
+
+    toast(
+      "Order updated"
+    );
+
 
   }catch(error){
 
@@ -2563,445 +3678,736 @@ async function moveItem(index,direction){
    COLLECTION EDITOR
 ========================================================= */
 
-function showCollectionEditor(collection=null){
+function showCollectionEditor(
+  collection=null
+){
 
   editingCollectionId =
-    collection ? collection.id : null;
-
-  $("collectionModalTitle").textContent =
     collection
-      ? "Edit Collection"
-      : "Add Collection";
+      ? collection.id
+      : null;
 
-  $("collectionName").value =
-    collection ? safe(collection.name) : "";
 
-  $("collectionDesc").value =
-    collection ? safe(collection.description) : "";
+  $("collectionModalTitle")
+    .textContent =
+      collection
+        ? "Edit Collection"
+        : "Add Collection";
 
-  $("collectionIcon").value =
-    collection
-      ? safe(collection.icon)
-      : "📁";
+
+  $("collectionName")
+    .value =
+      collection
+        ? safe(collection.name)
+        : "";
+
+
+  $("collectionDesc")
+    .value =
+      collection
+        ? safe(collection.description)
+        : "";
+
+
+  $("collectionIcon")
+    .value =
+      collection
+        ? safe(collection.icon)
+        : "📁";
+
 
   selectedColor =
-    collection && collection.color
+    collection &&
+    collection.color
       ? collection.color
       : "#667fff";
 
+
   updateColorSelection();
+
 
   status(
     "collectionModalStatus",
     ""
   );
 
-  openModal("collectionModal");
+
+  openModal(
+    "collectionModal"
+  );
 
 }
 
 
-$("addCollectionBtn").onclick = ()=>{
-  showCollectionEditor();
-};
+$("addCollectionBtn")
+  .onclick =
+    () => {
+
+      showCollectionEditor();
+
+    };
 
 
 function updateColorSelection(){
 
   document
-    .querySelectorAll(".color-choice")
-    .forEach(button=>{
+    .querySelectorAll(
+      ".color-choice"
+    )
+    .forEach(
+      button => {
 
-      button.classList.toggle(
-        "selected",
-        button.dataset.color === selectedColor
-      );
+        button.classList.toggle(
+          "selected",
+          button.dataset.color ===
+            selectedColor
+        );
 
-    });
+      }
+    );
 
 }
 
 
 document
-  .querySelectorAll(".color-choice")
-  .forEach(button=>{
+  .querySelectorAll(
+    ".color-choice"
+  )
+  .forEach(
+    button => {
 
-    button.onclick = ()=>{
+      button.onclick =
+        () => {
 
-      selectedColor =
-        button.dataset.color;
+          selectedColor =
+            button.dataset.color;
 
-      updateColorSelection();
+          updateColorSelection();
+
+        };
+
+    }
+  );
+
+
+$("saveCollectionBtn")
+  .onclick =
+    async()=>{
+
+      if(!isAdmin())
+        return;
+
+
+      const name =
+        $("collectionName")
+          .value
+          .trim();
+
+
+      const description =
+        $("collectionDesc")
+          .value
+          .trim();
+
+
+      const icon =
+        $("collectionIcon")
+          .value
+          .trim() ||
+        "📁";
+
+
+      if(!name){
+
+        status(
+          "collectionModalStatus",
+          "Collection name is required.",
+          true
+        );
+
+        return;
+      }
+
+
+      const button =
+        $("saveCollectionBtn");
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+        if(
+          editingCollectionId
+        ){
+
+          await db
+            .collection(
+              "collections"
+            )
+            .doc(
+              editingCollectionId
+            )
+            .update({
+
+              name,
+
+              description,
+
+              icon,
+
+              color:
+                selectedColor,
+
+              updatedAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp()
+
+            });
+
+
+          toast(
+            "Collection updated"
+          );
+
+
+        }else{
+
+          const order =
+            collections.length;
+
+
+          await db
+            .collection(
+              "collections"
+            )
+            .add({
+
+              name,
+
+              description,
+
+              icon,
+
+              color:
+                selectedColor,
+
+              order,
+
+              createdAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp(),
+
+              updatedAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp()
+
+            });
+
+
+          toast(
+            "Collection created"
+          );
+
+        }
+
+
+        closeModal(
+          "collectionModal"
+        );
+
+
+        await loadCollections();
+
+
+      }catch(error){
+
+        console.error(error);
+
+        status(
+          "collectionModalStatus",
+          "Could not save collection. Check Firestore Rules.",
+          true
+        );
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
 
     };
 
-  });
-
-
-$("saveCollectionBtn").onclick =
-async()=>{
-
-  if(!isAdmin()) return;
-
-  const name =
-    $("collectionName")
-      .value
-      .trim();
-
-  const description =
-    $("collectionDesc")
-      .value
-      .trim();
-
-  const icon =
-    $("collectionIcon")
-      .value
-      .trim() || "📁";
-
-  if(!name){
-
-    status(
-      "collectionModalStatus",
-      "Collection name is required.",
-      true
-    );
-
-    return;
-
-  }
-
-  const button =
-    $("saveCollectionBtn");
-
-  button.disabled = true;
-
-  try{
-
-    if(editingCollectionId){
-
-      await db
-        .collection("collections")
-        .doc(editingCollectionId)
-        .update({
-
-          name,
-          description,
-          icon,
-          color:selectedColor
-
-        });
-
-      toast("Collection updated");
-
-    }else{
-
-      const order =
-        collections.length;
-
-      await db
-        .collection("collections")
-        .add({
-
-          name,
-          description,
-          icon,
-          color:selectedColor,
-          order,
-          createdAt:
-            firebase.firestore.FieldValue
-              .serverTimestamp(),
-          updatedAt:
-            firebase.firestore.FieldValue
-              .serverTimestamp()
-
-        });
-
-      toast("Collection created");
-
-    }
-
-    closeModal("collectionModal");
-
-    await loadCollections();
-
-  }catch(error){
-
-    console.error(error);
-
-    status(
-      "collectionModalStatus",
-      "Could not save collection. Check Firestore Rules.",
-      true
-    );
-
-  }finally{
-
-    button.disabled = false;
-
-  }
-
-};
-
 
 /* =========================================================
-   ITEM CONTENT HELPERS
+   ITEM TYPE SWITCH
 ========================================================= */
 
-function normalizeLink(value){
-
-  const raw = safe(value).trim();
-
-  if(!raw) return "";
-
-  try{
-    const url = new URL(
-      /^https?:\/\//i.test(raw)
-        ? raw
-        : "https://" + raw
-    );
-
-    if(
-      url.protocol !== "http:" &&
-      url.protocol !== "https:"
-    ){
-      return "";
-    }
-
-    return url.href;
-
-  }catch(error){
-
-    return "";
-
-  }
-}
-
-
-function updateItemContentFields(){
+function updateItemTypeFields(){
 
   const type =
-    $("itemContentType").value || "hidden";
+    $("itemType")
+      .value;
 
-  const hiddenRow =
-    $("hiddenContentRow");
-
-  const linkRow =
-    $("itemLinkRow");
 
   if(type === "link"){
 
-    hiddenRow.classList.add("hidden");
-    linkRow.classList.remove("hidden");
+    $("hiddenContentRow")
+      .classList
+      .add("hidden");
+
+
+    $("linkRow")
+      .classList
+      .remove("hidden");
+
+
+    /*
+      Clear Hidden Content
+      when Link is selected.
+    */
+
+    $("itemContent")
+      .value = "";
+
 
   }else{
 
-    hiddenRow.classList.remove("hidden");
-    linkRow.classList.add("hidden");
+    $("linkRow")
+      .classList
+      .add("hidden");
+
+
+    $("hiddenContentRow")
+      .classList
+      .remove("hidden");
+
+
+    /*
+      Clear Link
+      when Hidden Content is selected.
+    */
+
+    $("itemLink")
+      .value = "";
 
   }
+
 }
 
 
-$("itemContentType").addEventListener(
-  "change",
-  updateItemContentFields
-);
+$("itemType")
+  .addEventListener(
+    "change",
+    updateItemTypeFields
+  );
 
 
 /* =========================================================
    ITEM EDITOR
 ========================================================= */
 
+function showItemEditor(
+  item=null
+){
 
-function showItemEditor(item=null){
+  if(!currentCollection)
+    return;
 
-  if(!currentCollection) return;
 
   editingItemId =
-    item ? item.id : null;
-
-  $("itemModalTitle").textContent =
     item
-      ? "Edit Item"
-      : "Add Item";
+      ? item.id
+      : null;
 
-  $("itemTitle").value =
-    item ? safe(item.title) : "";
 
-  $("itemPlatform").value =
-    item ? safe(item.platform) : "";
+  $("itemModalTitle")
+    .textContent =
+      item
+        ? "Edit Item"
+        : "Add Item";
 
-  const contentType =
-    item && safe(item.contentType) === "link"
-      ? "link"
+
+  $("itemTitle")
+    .value =
+      item
+        ? safe(item.title)
+        : "";
+
+
+  $("itemPlatform")
+    .value =
+      item
+        ? safe(item.platform)
+        : "";
+
+
+  /*
+    Support both:
+    type
+    and old contentType
+  */
+
+  const type =
+    item
+      ? safe(
+          item.type ||
+          item.contentType ||
+          "hidden"
+        )
       : "hidden";
 
-  $("itemContentType").value =
-    contentType;
 
-  $("itemContent").value =
-    item && contentType === "hidden"
-      ? safe(item.content)
-      : "";
+  $("itemType")
+    .value =
+      type === "link"
+        ? "link"
+        : "hidden";
 
-  $("itemLink").value =
-    item && contentType === "link"
-      ? safe(item.content)
-      : "";
 
-  updateItemContentFields();
+  $("itemContent")
+    .value =
+      item
+        ? safe(item.content)
+        : "";
+
+
+  $("itemLink")
+    .value =
+      item
+        ? safe(item.link)
+        : "";
+
+
+  updateItemTypeFields();
+
+
+  /*
+    Important:
+    updateItemTypeFields clears
+    the opposite field.
+    So restore the selected
+    field after switching.
+  */
+
+  if(
+    $("itemType").value ===
+    "link"
+  ){
+
+    $("itemLink")
+      .value =
+        item
+          ? safe(item.link)
+          : "";
+
+  }else{
+
+    $("itemContent")
+      .value =
+        item
+          ? safe(item.content)
+          : "";
+
+  }
+
 
   status(
     "itemModalStatus",
     ""
   );
 
-  openModal("itemModal");
+
+  openModal(
+    "itemModal"
+  );
 
 }
 
 
-$("addItemBtn").onclick = ()=>{
-  showItemEditor();
-};
+$("addItemBtn")
+  .onclick =
+    () => {
 
+      showItemEditor();
 
-$("saveItemBtn").onclick =
-async()=>{
-
-  if(!isAdmin() || !currentCollection)
-    return;
-
-  const title =
-    $("itemTitle")
-      .value
-      .trim();
-
-  const platform =
-    $("itemPlatform")
-      .value
-      .trim();
-
-  const contentType =
-    $("itemContentType").value === "link"
-      ? "link"
-      : "hidden";
-
-  let content = "";
-
-  if(contentType === "link"){
-
-    content = normalizeLink(
-      $("itemLink").value
-    );
-
-  }else{
-
-    content =
-      $("itemContent")
-        .value
-        .trim();
-
-  }
-
-  if(!title){
-
-    status(
-      "itemModalStatus",
-      "Item title is required.",
-      true
-    );
-
-    return;
-
-  }
-
-  if(!content){
-
-    status(
-      "itemModalStatus",
-      contentType === "link"
-        ? "Please enter a valid http/https link."
-        : "Hidden content is required.",
-      true
-    );
-
-    return;
-
-  }
-
-  const button =
-    $("saveItemBtn");
-
-  button.disabled = true;
-
-  try{
-
-    const ref =
-      db
-        .collection("collections")
-        .doc(currentCollection.id)
-        .collection("items");
-
-    const itemData = {
-      title,
-      platform,
-      contentType,
-      content,
-      updatedAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp()
     };
-
-    if(editingItemId){
-
-      await ref
-        .doc(editingItemId)
-        .update(itemData);
-
-      toast("Item updated");
-
-    }else{
-
-      await ref.add({
-        ...itemData,
-        order:currentItems.length,
-        createdAt:
-          firebase.firestore.FieldValue
-            .serverTimestamp()
-      });
-
-      toast("Item added");
-
-    }
-
-    closeModal("itemModal");
-
-    await loadAdminItems(
-      currentCollection.id
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    status(
-      "itemModalStatus",
-      "Could not save item. Check Firestore Rules.",
-      true
-    );
-
-  }finally{
-
-    button.disabled = false;
-
-  }
-
-};
 
 
 /* =========================================================
-   SETTINGS + SUPPORT
+   SAVE ITEM
+========================================================= */
+
+$("saveItemBtn")
+  .onclick =
+    async()=>{
+
+      if(
+        !isAdmin() ||
+        !currentCollection
+      ){
+
+        return;
+
+      }
+
+
+      const title =
+        $("itemTitle")
+          .value
+          .trim();
+
+
+      const platform =
+        $("itemPlatform")
+          .value
+          .trim();
+
+
+      const type =
+        $("itemType")
+          .value;
+
+
+      const content =
+        $("itemContent")
+          .value
+          .trim();
+
+
+      let link =
+        $("itemLink")
+          .value
+          .trim();
+
+
+      /* TITLE */
+
+      if(!title){
+
+        status(
+          "itemModalStatus",
+          "Item title is required.",
+          true
+        );
+
+        return;
+
+      }
+
+
+      /* HIDDEN CONTENT */
+
+      if(
+        type === "hidden" &&
+        !content
+      ){
+
+        status(
+          "itemModalStatus",
+          "Hidden Content is required.",
+          true
+        );
+
+        return;
+
+      }
+
+
+      /* LINK */
+
+      if(
+        type === "link" &&
+        !link
+      ){
+
+        status(
+          "itemModalStatus",
+          "Link is required.",
+          true
+        );
+
+        return;
+
+      }
+
+
+      /* URL */
+
+      if(type === "link"){
+
+        try{
+
+          if(
+            !/^https?:\/\//i
+              .test(link)
+          ){
+
+            link =
+              "https://" +
+              link;
+
+          }
+
+
+          link =
+            new URL(link).href;
+
+
+        }catch(error){
+
+          status(
+            "itemModalStatus",
+            "Please enter a valid URL.",
+            true
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      const button =
+        $("saveItemBtn");
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+        const ref =
+          db
+            .collection(
+              "collections"
+            )
+            .doc(
+              currentCollection.id
+            )
+            .collection(
+              "items"
+            );
+
+
+        const itemData = {
+
+          title,
+
+          platform,
+
+          type,
+
+          /*
+            Hidden Content only.
+            Link items get empty content.
+          */
+
+          content:
+            type === "hidden"
+              ? content
+              : "",
+
+          /*
+            Link only.
+            Hidden items get empty link.
+          */
+
+          link:
+            type === "link"
+              ? link
+              : "",
+
+          updatedAt:
+            firebase.firestore
+              .FieldValue
+              .serverTimestamp()
+
+        };
+
+
+        if(editingItemId){
+
+          await ref
+            .doc(
+              editingItemId
+            )
+            .update(
+              itemData
+            );
+
+
+          toast(
+            "Item updated"
+          );
+
+
+        }else{
+
+          await ref.add({
+
+            ...itemData,
+
+            order:
+              currentItems.length,
+
+            createdAt:
+              firebase.firestore
+                .FieldValue
+                .serverTimestamp()
+
+          });
+
+
+          toast(
+            "Item added"
+          );
+
+        }
+
+
+        closeModal(
+          "itemModal"
+        );
+
+
+        await loadAdminItems(
+          currentCollection.id
+        );
+
+
+      }catch(error){
+
+        console.error(error);
+
+        status(
+          "itemModalStatus",
+          "Could not save item. Check Firestore Rules.",
+          true
+        );
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    };
+
+
+/* =========================================================
+   SUPPORT
 ========================================================= */
 
 function renderSupport(){
@@ -3012,79 +4418,131 @@ function renderSupport(){
   const list =
     $("supportList");
 
+
   list.innerHTML = "";
 
-  if(!settings.support.length){
 
-    container.classList.add("hidden");
+  if(
+    !settings.support.length
+  ){
+
+    container
+      .classList
+      .add("hidden");
 
     return;
-
   }
 
-  container.classList.remove("hidden");
+
+  container
+    .classList
+    .remove("hidden");
+
 
   settings.support
     .slice(0,5)
-    .forEach(item=>{
+    .forEach(
+      item => {
 
-      const a =
-        document.createElement("a");
+        const a =
+          document.createElement(
+            "a"
+          );
 
-      a.className = "support-link";
 
-      const type =
-        safe(item.type);
+        a.className =
+          "support-link";
 
-      const supportTypeNames = {
-        email: "Support Email",
-        facebook: "Facebook",
-        instagram: "Instagram",
-        phone: "Phone / WhatsApp",
-        link: "Other Link"
-      };
 
-      // The public support button always shows the selected
-      // Platform / Type name, not the editable admin label.
-      a.textContent =
-        supportTypeNames[type] ||
-        safe(item.label) ||
-        "Support";
+        const type =
+          safe(item.type);
 
-      let url =
-        safe(item.value);
 
-      if(type === "email"){
+        const supportTypeNames = {
 
-        url =
-          url.startsWith("mailto:")
-            ? url
-            : "mailto:" + url;
+          email:
+            "Support Email",
 
-      }else if(type === "phone"){
+          facebook:
+            "Facebook",
 
-        url =
-          url.startsWith("tel:")
-            ? url
-            : "tel:" + url;
+          instagram:
+            "Instagram",
+
+          phone:
+            "Phone / WhatsApp",
+
+          link:
+            "Other Link"
+
+        };
+
+
+        a.textContent =
+          supportTypeNames[type] ||
+          safe(item.label) ||
+          "Support";
+
+
+        let url =
+          safe(item.value);
+
+
+        if(
+          type === "email"
+        ){
+
+          url =
+            url.startsWith(
+              "mailto:"
+            )
+              ? url
+              : "mailto:" + url;
+
+        }else if(
+          type === "phone"
+        ){
+
+          url =
+            url.startsWith(
+              "tel:"
+            )
+              ? url
+              : "tel:" + url;
+
+        }
+
+
+        a.href =
+          url;
+
+
+        /*
+          Email / Phone opens
+          default app directly.
+
+          Other social links use
+          a new tab.
+        */
+
+        if(
+          type !== "email" &&
+          type !== "phone"
+        ){
+
+          a.target =
+            "_blank";
+
+          a.rel =
+            "noopener noreferrer";
+
+        }
+
+
+        list.append(a);
 
       }
-
-      a.href = url;
-
-      if(
-        type !== "email" &&
-        type !== "phone"
-      ){
-
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-
-      }
-
-      list.append(a);
-
-    });
+    );
 
 }
 
@@ -3094,414 +4552,623 @@ function renderSupportAdmin(){
   const container =
     $("supportAdminList");
 
-  container.innerHTML = "";
+
+  container.innerHTML =
+    "";
+
 
   settings.support
     .slice(0,5)
-    .forEach((item,index)=>{
+    .forEach(
+      (item,index)=>{
 
-      const box =
-        document.createElement("div");
+        const box =
+          document.createElement(
+            "div"
+          );
 
-      box.className = "admin-card";
+        box.className =
+          "admin-card";
 
-      box.style.marginBottom = "9px";
+        box.style.marginBottom =
+          "9px";
 
-      const fields =
-        document.createElement("div");
 
-      fields.style.flex = "1";
-      fields.style.width = "100%";
+        const fields =
+          document.createElement(
+            "div"
+          );
 
-      const label =
-        document.createElement("input");
+        fields.style.flex =
+          "1";
 
-      label.className = "field";
+        fields.style.width =
+          "100%";
 
-      label.placeholder = "Label";
 
-      label.value =
-        safe(item.label);
+        const label =
+          document.createElement(
+            "input"
+          );
 
-      const type =
-        document.createElement("select");
+        label.className =
+          "field";
 
-      type.className = "field";
+        label.placeholder =
+          "Label";
 
-      type.style.marginTop = "7px";
+        label.value =
+          safe(item.label);
 
-      [
-        ["email","Support Email"],
-        ["facebook","Facebook"],
-        ["instagram","Instagram"],
-        ["phone","Phone / WhatsApp"],
-        ["link","Other Link"]
-      ].forEach(option=>{
 
-        const opt =
-          document.createElement("option");
+        const type =
+          document.createElement(
+            "select"
+          );
 
-        opt.value = option[0];
+        type.className =
+          "field";
 
-        opt.textContent = option[1];
+        type.style.marginTop =
+          "7px";
 
-        type.append(opt);
 
-      });
+        [
 
-      type.value =
-        safe(item.type) || "link";
+          [
+            "email",
+            "Support Email"
+          ],
 
-      const value =
-        document.createElement("input");
+          [
+            "facebook",
+            "Facebook"
+          ],
 
-      value.className = "field";
+          [
+            "instagram",
+            "Instagram"
+          ],
 
-      value.style.marginTop = "7px";
+          [
+            "phone",
+            "Phone / WhatsApp"
+          ],
 
-      value.placeholder =
-        "Email, URL, phone number...";
+          [
+            "link",
+            "Other Link"
+          ]
 
-      value.value =
-        safe(item.value);
+        ].forEach(
+          option => {
 
-      label.oninput =
-        ()=>item.label = label.value;
+            const opt =
+              document.createElement(
+                "option"
+              );
 
-      type.onchange =
-        ()=>item.type = type.value;
+            opt.value =
+              option[0];
 
-      value.oninput =
-        ()=>item.value = value.value;
+            opt.textContent =
+              option[1];
 
-      fields.append(
-        label,
-        type,
-        value
-      );
+            type.append(opt);
 
-      const remove =
-        document.createElement("button");
-
-      remove.className =
-        "btn red small";
-
-      remove.textContent =
-        "Delete";
-
-      remove.onclick = ()=>{
-
-        settings.support.splice(
-          index,
-          1
+          }
         );
 
-        renderSupportAdmin();
 
-      };
+        type.value =
+          safe(item.type) ||
+          "email";
 
-      box.append(
-        fields,
-        remove
-      );
 
-      container.append(box);
+        const value =
+          document.createElement(
+            "input"
+          );
 
-    });
+        value.className =
+          "field";
+
+        value.style.marginTop =
+          "7px";
+
+        value.placeholder =
+          "Email, URL, phone number...";
+
+        value.value =
+          safe(item.value);
+
+
+        label.oninput =
+          () => {
+
+            item.label =
+              label.value;
+
+          };
+
+
+        type.onchange =
+          () => {
+
+            item.type =
+              type.value;
+
+          };
+
+
+        value.oninput =
+          () => {
+
+            item.value =
+              value.value;
+
+          };
+
+
+        fields.append(
+          label,
+          type,
+          value
+        );
+
+
+        const remove =
+          document.createElement(
+            "button"
+          );
+
+        remove.className =
+          "btn red small";
+
+        remove.textContent =
+          "Delete";
+
+
+        remove.onclick =
+          () => {
+
+            settings.support.splice(
+              index,
+              1
+            );
+
+            renderSupportAdmin();
+
+          };
+
+
+        box.append(
+          fields,
+          remove
+        );
+
+
+        container.append(
+          box
+        );
+
+      }
+    );
 
 }
 
 
-$("addSupportBtn").onclick = ()=>{
+$("addSupportBtn")
+  .onclick =
+    () => {
 
-  if(settings.support.length >= 5){
+      if(
+        settings.support.length >= 5
+      ){
 
-    toast("Maximum 5 support entries");
+        toast(
+          "Maximum 5 support entries"
+        );
 
-    return;
+        return;
 
-  }
-
-  settings.support.push({
-    label:"Support",
-    type:"email",
-    value:""
-  });
-
-  renderSupportAdmin();
-
-};
+      }
 
 
-$("saveSettingsBtn").onclick =
-async()=>{
+      settings.support.push({
 
-  if(!isAdmin()) return;
+        label:
+          "Support",
 
-  const button =
-    $("saveSettingsBtn");
+        type:
+          "email",
 
-  button.disabled = true;
+        value:
+          ""
 
-  try{
+      });
 
-    const updated = {
 
-      brandName:
-        $("settingBrand").value,
-
-      tagline:
-        $("settingTagline").value,
-
-      eyebrow:
-        $("settingEyebrow").value,
-
-      heroTitle:
-        $("settingHeroTitle").value,
-
-      heroDescription:
-        $("settingHeroDescription").value,
-
-      collectionHeading:
-        $("settingCollectionHeading").value,
-
-      collectionSubheading:
-        $("settingCollectionSubheading").value,
-
-      support:
-        settings.support
-          .slice(0,5)
-          .map(item=>({
-            label:safe(item.label),
-            type:safe(item.type),
-            value:safe(item.value)
-          })),
-
-      updatedAt:
-        firebase.firestore.FieldValue
-          .serverTimestamp()
+      renderSupportAdmin();
 
     };
 
-    await db
-      .collection("site")
-      .doc("settings")
-      .set(
-        updated,
-        {merge:true}
-      );
 
-    settings = {
-      ...settings,
-      ...updated
+$("saveSettingsBtn")
+  .onclick =
+    async()=>{
+
+      if(!isAdmin())
+        return;
+
+
+      const button =
+        $("saveSettingsBtn");
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+        const updated = {
+
+          brandName:
+            $("settingBrand")
+              .value,
+
+          tagline:
+            $("settingTagline")
+              .value,
+
+          eyebrow:
+            $("settingEyebrow")
+              .value,
+
+          heroTitle:
+            $("settingHeroTitle")
+              .value,
+
+          heroDescription:
+            $("settingHeroDescription")
+              .value,
+
+          collectionHeading:
+            $("settingCollectionHeading")
+              .value,
+
+          collectionSubheading:
+            $("settingCollectionSubheading")
+              .value,
+
+          support:
+            settings.support
+              .slice(0,5)
+              .map(
+                item => ({
+
+                  label:
+                    safe(
+                      item.label
+                    ),
+
+                  type:
+                    safe(
+                      item.type
+                    ),
+
+                  value:
+                    safe(
+                      item.value
+                    )
+
+                })
+              ),
+
+          updatedAt:
+            firebase.firestore
+              .FieldValue
+              .serverTimestamp()
+
+        };
+
+
+        await db
+          .collection("site")
+          .doc("settings")
+          .set(
+            updated,
+            {
+              merge:true
+            }
+          );
+
+
+        settings = {
+
+          ...settings,
+
+          ...updated
+
+        };
+
+
+        applySettings();
+
+
+        status(
+          "settingsStatus",
+          "Settings saved successfully."
+        );
+
+
+        toast(
+          "Settings saved"
+        );
+
+
+      }catch(error){
+
+        console.error(error);
+
+        status(
+          "settingsStatus",
+          "Could not save settings. Check Firestore Rules.",
+          true
+        );
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
+
     };
-
-    applySettings();
-
-    status(
-      "settingsStatus",
-      "Settings saved successfully."
-    );
-
-    toast("Settings saved");
-
-  }catch(error){
-
-    console.error(error);
-
-    status(
-      "settingsStatus",
-      "Could not save settings. Check Firestore Rules.",
-      true
-    );
-
-  }finally{
-
-    button.disabled = false;
-
-  }
-
-};
 
 
 /* =========================================================
    ADMIN TABS
 ========================================================= */
 
-$("collectionsTab").onclick = ()=>{
+$("collectionsTab")
+  .onclick =
+    () => {
 
-  $("collectionsTab")
-    .classList.add("active");
+      $("collectionsTab")
+        .classList
+        .add("active");
 
-  $("settingsTab")
-    .classList.remove("active");
-
-  $("collectionsAdmin")
-    .classList.remove("hidden");
-
-  $("folderAdmin")
-    .classList.add("hidden");
-
-  $("settingsAdmin")
-    .classList.add("hidden");
-
-};
+      $("settingsTab")
+        .classList
+        .remove("active");
 
 
-$("settingsTab").onclick = ()=>{
+      $("collectionsAdmin")
+        .classList
+        .remove("hidden");
 
-  $("settingsTab")
-    .classList.add("active");
+      $("folderAdmin")
+        .classList
+        .add("hidden");
 
-  $("collectionsTab")
-    .classList.remove("active");
+      $("settingsAdmin")
+        .classList
+        .add("hidden");
 
-  $("collectionsAdmin")
-    .classList.add("hidden");
+    };
 
-  $("folderAdmin")
-    .classList.add("hidden");
 
-  $("settingsAdmin")
-    .classList.remove("hidden");
+$("settingsTab")
+  .onclick =
+    () => {
 
-  fillSettingsForm();
+      $("settingsTab")
+        .classList
+        .add("active");
 
-};
+      $("collectionsTab")
+        .classList
+        .remove("active");
+
+
+      $("collectionsAdmin")
+        .classList
+        .add("hidden");
+
+      $("folderAdmin")
+        .classList
+        .add("hidden");
+
+      $("settingsAdmin")
+        .classList
+        .remove("hidden");
+
+
+      fillSettingsForm();
+
+    };
 
 
 /* =========================================================
    GOOGLE AUTH
 ========================================================= */
 
-$("googleLogin").onclick =
-async()=>{
+$("googleLogin")
+  .onclick =
+    async()=>{
 
-  const button =
-    $("googleLogin");
+      const button =
+        $("googleLogin");
 
-  button.disabled = true;
 
-  status(
-    "authStatus",
-    "Opening Google sign-in..."
-  );
+      button.disabled =
+        true;
 
-  try{
-
-    const provider =
-      new firebase.auth.GoogleAuthProvider();
-
-    provider.setCustomParameters({
-      prompt:"select_account"
-    });
-
-    const result =
-      await auth.signInWithPopup(provider);
-
-    const signedUser =
-      result.user;
-
-    if(
-      !signedUser ||
-      !signedUser.email ||
-      signedUser.email.toLowerCase() !==
-      ADMIN_EMAIL.toLowerCase()
-    ){
-
-      await auth.signOut();
-
-      openModal(
-        "unauthorizedModal"
-      );
 
       status(
         "authStatus",
-        ""
+        "Opening Google sign-in..."
       );
 
-      return;
 
-    }
+      try{
+
+        const provider =
+          new firebase.auth
+            .GoogleAuthProvider();
+
+
+        provider.setCustomParameters({
+
+          prompt:
+            "select_account"
+
+        });
+
+
+        const result =
+          await auth
+            .signInWithPopup(
+              provider
+            );
+
+
+        const signedUser =
+          result.user;
+
+
+        if(
+          !signedUser ||
+          !signedUser.email ||
+          signedUser.email
+            .toLowerCase() !==
+            ADMIN_EMAIL.toLowerCase()
+        ){
+
+          await auth.signOut();
+
+
+          openModal(
+            "unauthorizedModal"
+          );
+
+
+          status(
+            "authStatus",
+            ""
+          );
+
+
+          return;
+
+        }
+
+
+        currentUser =
+          signedUser;
+
+
+        showAdminDashboard();
+
+
+      }catch(error){
+
+        console.error(error);
+
+
+        if(
+          error.code ===
+          "auth/popup-closed-by-user"
+        ){
+
+          status(
+            "authStatus",
+            "Sign-in window was closed."
+          );
+
+
+        }else if(
+          error.code ===
+          "auth/unauthorized-domain"
+        ){
+
+          status(
+            "authStatus",
+            "This website domain is not authorized in Firebase Authentication.",
+            true
+          );
+
+
+        }else{
+
+          status(
+            "authStatus",
+            "Sign-in failed. Please try again.",
+            true
+          );
+
+        }
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    };
+
+
+auth.onAuthStateChanged(
+  user => {
 
     currentUser =
-      signedUser;
+      user;
 
-    showAdminDashboard();
-
-  }catch(error){
-
-    console.error(error);
 
     if(
-      error.code ===
-      "auth/popup-closed-by-user"
+      location.hash === "#admin" &&
+      user &&
+      isAdmin()
     ){
 
-      status(
-        "authStatus",
-        "Sign-in window was closed."
-      );
+      showAdminDashboard();
+
 
     }else if(
-      error.code ===
-      "auth/unauthorized-domain"
+      location.hash === "#admin"
     ){
 
-      status(
-        "authStatus",
-        "This website domain is not authorized in Firebase Authentication.",
-        true
-      );
-
-    }else{
-
-      status(
-        "authStatus",
-        "Sign-in failed. Please try again.",
-        true
-      );
+      showAdminRoute();
 
     }
 
-  }finally{
-
-    button.disabled = false;
-
   }
-
-};
-
-
-auth.onAuthStateChanged(user=>{
-
-  currentUser = user;
-
-  if(
-    location.hash === "#admin" &&
-    user &&
-    isAdmin()
-  ){
-
-    showAdminDashboard();
-
-  }else if(
-    location.hash === "#admin"
-  ){
-
-    showAdminRoute();
-
-  }
-
-});
+);
 
 
 function showAdminDashboard(){
 
-  $("homeView").classList.add("hidden");
-  $("collectionView").classList.add("hidden");
-  $("adminLoginView").classList.add("hidden");
-  $("adminView").classList.remove("hidden");
+  $("homeView")
+    .classList
+    .add("hidden");
+
+  $("collectionView")
+    .classList
+    .add("hidden");
+
+  $("adminLoginView")
+    .classList
+    .add("hidden");
+
+  $("adminView")
+    .classList
+    .remove("hidden");
+
 
   renderAdminCollections();
 
@@ -3512,33 +5179,44 @@ function showAdminDashboard(){
    LOGOUT
 ========================================================= */
 
-$("logoutBtn").onclick =
-async()=>{
+$("logoutBtn")
+  .onclick =
+    async()=>{
 
-  try{
+      try{
 
-    await auth.signOut();
+        await auth.signOut();
 
-    currentUser = null;
 
-    $("adminView")
-      .classList.add("hidden");
+        currentUser =
+          null;
 
-    $("adminLoginView")
-      .classList.remove("hidden");
 
-    status(
-      "authStatus",
-      "You have been signed out."
-    );
+        $("adminView")
+          .classList
+          .add("hidden");
 
-  }catch(error){
 
-    console.error(error);
+        $("adminLoginView")
+          .classList
+          .remove("hidden");
 
-  }
 
-};
+        status(
+          "authStatus",
+          "You have been signed out."
+        );
+
+
+      }catch(error){
+
+        console.error(
+          error
+        );
+
+      }
+
+    };
 
 
 /* =========================================================
@@ -3551,6 +5229,7 @@ function closeUnauthorizedModal(){
     "unauthorizedModal"
   );
 
+
   status(
     "authStatus",
     ""
@@ -3559,63 +5238,80 @@ function closeUnauthorizedModal(){
 }
 
 
-$("closeUnauthorized").onclick =
-closeUnauthorizedModal;
+$("closeUnauthorized")
+  .onclick =
+    closeUnauthorizedModal;
 
-$("unauthorizedOk").onclick =
-closeUnauthorizedModal;
+
+$("unauthorizedOk")
+  .onclick =
+    closeUnauthorizedModal;
 
 
 /* =========================================================
-   MODAL CLOSE BUTTONS
+   MODAL CLOSE
 ========================================================= */
 
 document
-  .querySelectorAll("[data-close]")
-  .forEach(button=>{
+  .querySelectorAll(
+    "[data-close]"
+  )
+  .forEach(
+    button => {
 
-    button.onclick = ()=>{
+      button.onclick =
+        () => {
 
-      closeModal(
-        button.dataset.close
-      );
+          closeModal(
+            button.dataset.close
+          );
 
-    };
+        };
 
-  });
+    }
+  );
 
 
 document
-  .querySelectorAll(".overlay")
-  .forEach(overlay=>{
+  .querySelectorAll(
+    ".overlay"
+  )
+  .forEach(
+    overlay => {
 
-    overlay.addEventListener(
-      "click",
-      event=>{
+      overlay.addEventListener(
+        "click",
+        event => {
 
-        if(event.target === overlay){
+          if(
+            event.target ===
+            overlay
+          ){
 
-          overlay.classList.remove(
-            "show"
-          );
+            overlay.classList
+              .remove("show");
+
+          }
 
         }
+      );
 
-      }
-    );
-
-  });
+    }
+  );
 
 
 /* =========================================================
    NAVIGATION
 ========================================================= */
 
-$("backHome").onclick = ()=>{
+$("backHome")
+  .onclick =
+    () => {
 
-  location.hash = "home";
+      location.hash =
+        "home";
 
-};
+    };
 
 
 window.addEventListener(
@@ -3631,9 +5327,9 @@ window.addEventListener(
 async function boot(){
 
   /*
-    Render only after Firebase data is loaded.
-    This avoids showing hard-coded collections first
-    and then replacing them a moment later.
+    Load Firebase data first.
+    This prevents old/default content
+    from flashing before Firestore data.
   */
 
   await loadSettings();
@@ -3643,6 +5339,7 @@ async function boot(){
   route();
 
 }
+
 
 boot();
 
