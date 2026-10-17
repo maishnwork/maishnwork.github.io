@@ -1,1 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Center | Maishn.Work official</title>
+  <meta name="description" content="Get official support, report prompt issues, or connect via Facebook with Maishn.Work official.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --fb-color: #1877f2;
+      --bg-color: #060913;
+      --card-bg: rgba(17, 24, 39, 0.75);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-x: hidden;
+      perspective: 1200px; /* 3D Stage Perspective */
+    }
+
+    /* 3D Dynamic Ambient Glow Orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb-1 {
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: rgba(99, 102, 241, 0.25);
+      animation: floatOrb 8s infinite alternate ease-in-out;
+    }
+
+    .orb-2 {
+      bottom: -100px;
+      right: -100px;
+      width: 450px;
+      height: 450px;
+      background: rgba(168, 85, 247, 0.2);
+      animation: floatOrb 10s infinite alternate-reverse ease-in-out;
+    }
+
+    /* Top Navigation Header */
+    header {
+      padding: 24px 16px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    header a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #818cf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 22px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    header a:hover {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* 3D Main Stage Area */
+    main {
+      width: min(680px, 92%);
+      margin: 20px auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* 3D Card Animation Wrapper */
+    .card-3d-wrapper {
+      transform-style: preserve-3d;
+      animation: intro3DFlip 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transition: transform 0.2s ease-out;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 40px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7);
+      transform-style: preserve-3d;
+    }
+
+    /* Header Titles with 3D Depth */
+    .card-header {
+      text-align: center;
+      margin-bottom: 28px;
+      transform: translateZ(30px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(99, 102, 241, 0.12);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #34d399;
+      animation: pulse 1.8s infinite alternate;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ffffff, #c084fc, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 0.98rem;
+    }
+
+    /* Direct Facebook 3D Button Section */
+    .social-direct-box {
+      background: linear-gradient(135deg, rgba(24, 119, 242, 0.15) 0%, rgba(11, 16, 32, 0) 100%);
+      border: 1px solid rgba(24, 119, 242, 0.35);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      transform: translateZ(25px);
+      transition: all 0.3s ease;
+    }
+
+    .social-direct-box:hover {
+      border-color: var(--fb-color);
+      box-shadow: 0 10px 25px -5px rgba(24, 119, 242, 0.4);
+      transform: translateZ(35px) scale(1.02);
+    }
+
+    .fb-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px 20px;
+      background: var(--fb-color);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(24, 119, 242, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .fb-btn:hover {
+      background: #1565c0;
+      box-shadow: 0 8px 25px rgba(24, 119, 242, 0.7);
+      transform: translateY(-2px);
+    }
+
+    /* 3D Animated Form Fields */
+    form {
+      transform: translateZ(20px);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #e5e7eb;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: rgba(6, 9, 19, 0.8);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    
