@@ -7,23 +7,20 @@
   <title>About Us | Maishn.Work official</title>
   <meta name="description" content="Discover Maishn.Work official—your ultimate hub for AI animation prompts, 3D visual workflows, direct AI model links, and essential web resources.">
   
-  <!-- Google Font: Plus Jakarta Sans -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #155eef;
-      --primary-gradient: linear-gradient(135deg, #155eef 0%, #004eeb 100%);
-      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      --bg-color: #0b0f19;
-      --card-bg: #111827;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --border-color: #1f2937;
-      --accent-glow: rgba(99, 102, 241, 0.18);
-      --radius: 16px;
+      --bg-dark-blue: #0f1c2e;
+      --text-dark: #1e293b;
+      --text-muted: #475569;
+      --accent-blue: #1d4ed8;
+      --accent-purple: #7e22ce;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(30, 41, 59, 0.15);
     }
 
     * {
@@ -34,210 +31,394 @@
 
     body {
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.7;
-      padding: 40px 20px;
+      background-color: #080d16;
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 850px;
-      width: 100%;
-      background: var(--card-bg);
-      padding: 56px 48px;
-      border-radius: var(--radius);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border-color);
+    /* Main Canvas Background Container */
+    .poster-container {
       position: relative;
+      width: 100%;
+      max-width: 800px;
+      background-color: var(--bg-dark-blue);
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
       overflow: hidden;
-      animation: fadeIn 0.8s ease-out;
+      padding: 60px 20px 180px 20px;
     }
 
-    /* Ambient Background Glow */
-    .container::before {
+    /* Background Paper Pattern Texture */
+    .poster-container::before {
       content: '';
       position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 320px;
-      height: 320px;
-      background: var(--accent-glow);
-      filter: blur(90px);
-      border-radius: 50%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 16px 16px;
       pointer-events: none;
     }
 
+    /* ----------------------------------
+       ANIMATIONS (Medium Speed Shake)
+    ---------------------------------- */
+
+    /* Top Megaphone Shake Animation */
+    @keyframes megaShakeTop {
+      0% { transform: rotate(-5deg) translate(0, 0) scale(1); }
+      25% { transform: rotate(-2deg) translate(3px, -2px) scale(1.02); }
+      50% { transform: rotate(-7deg) translate(-2px, 3px) scale(0.99); }
+      75% { transform: rotate(-3deg) translate(2px, -1px) scale(1.01); }
+      100% { transform: rotate(-5deg) translate(0, 0) scale(1); }
+    }
+
+    /* Bottom Megaphone Shake Animation */
+    @keyframes megaShakeBottom {
+      0% { transform: rotate(15deg) translate(0, 0); }
+      20% { transform: rotate(12deg) translate(-3px, 2px); }
+      40% { transform: rotate(18deg) translate(2px, -3px); }
+      60% { transform: rotate(13deg) translate(-2px, -1px); }
+      80% { transform: rotate(17deg) translate(3px, 1px); }
+      100% { transform: rotate(15deg) translate(0, 0); }
+    }
+
+    /* Soundwaves Flash Animation */
+    @keyframes soundwaveFlash {
+      0%, 100% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* Crowd Silhouette Sway Animation */
+    @keyframes crowdSway {
+      0% { transform: translateY(0) scaleY(1); }
+      25% { transform: translateY(-4px) scaleY(1.02) skewX(1deg); }
+      50% { transform: translateY(-1px) scaleY(0.99) skewX(-1deg); }
+      75% { transform: translateY(-5px) scaleY(1.03) skewX(0.5deg); }
+      100% { transform: translateY(0) scaleY(1); }
+    }
+
+    /* Crowd Silhouette Hands Bounce Animation */
+    @keyframes handsBounce {
+      0% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-6px) rotate(-1.5deg); }
+      66% { transform: translateY(-2px) rotate(1.5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    /* TOP MEGAPHONE ELEMENT */
+    .top-megaphone {
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      z-index: 10;
+      animation: megaShakeTop 0.8s infinite ease-in-out;
+      transform-origin: top left;
+    }
+
+    .top-megaphone svg {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.5));
+    }
+
+    .top-megaphone .waves {
+      animation: soundwaveFlash 0.4s infinite alternate ease-in-out;
+    }
+
+    /* BOTTOM RIGHT MEGAPHONE ELEMENT */
+    .bottom-megaphone {
+      position: absolute;
+      bottom: 15px;
+      right: 25px;
+      z-index: 10;
+      animation: megaShakeBottom 0.75s infinite ease-in-out;
+      transform-origin: bottom right;
+    }
+
+    .bottom-megaphone svg {
+      width: 130px;
+      height: 130px;
+      filter: drop-shadow(-3px 5px 8px rgba(0,0,0,0.5));
+    }
+
+    .bottom-megaphone .sparks {
+      animation: soundwaveFlash 0.35s infinite alternate ease-in-out;
+    }
+
+    /* CROWD SILHOUETTE SECTION */
+    .crowd-wrapper {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 220px;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    .crowd-back {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      fill: #1a293e;
+      opacity: 0.6;
+      animation: crowdSway 1.2s infinite ease-in-out;
+    }
+
+    .crowd-front {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      fill: #080d16;
+      animation: handsBounce 0.9s infinite ease-in-out;
+    }
+
+    /* ----------------------------------
+       CENTRAL WAVY CHECKED PAPER CONTAINER
+    ---------------------------------- */
+    .paper-cutout {
+      position: relative;
+      /* Wavy Light Blue & White Checkerboard Pattern Background */
+      background-color: #ffffff;
+      background-image: 
+        radial-gradient(#c6e2ff 70%, transparent 71%),
+        radial-gradient(#c6e2ff 70%, transparent 71%);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+      
+      padding: 45px 40px;
+      margin: 0 auto;
+      z-index: 2;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      
+      /* Torn Paper Edge Clip Paths */
+      clip-path: polygon(
+        0% 2%, 3% 0%, 7% 3%, 12% 0%, 18% 2%, 24% 0%, 30% 3%, 37% 1%, 43% 3%, 50% 0%, 
+        57% 2%, 64% 0%, 71% 3%, 78% 1%, 85% 3%, 91% 0%, 96% 2%, 100% 0%,
+        99% 12%, 100% 22%, 98% 34%, 100% 45%, 99% 58%, 100% 70%, 98% 82%, 100% 93%, 99% 100%,
+        94% 98%, 88% 100%, 82% 97%, 75% 100%, 68% 98%, 62% 100%, 55% 97%, 48% 100%,
+        41% 98%, 35% 100%, 28% 97%, 21% 100%, 15% 98%, 9% 100%, 3% 97%, 0% 100%,
+        1% 88%, 0% 76%, 2% 64%, 0% 52%, 1% 40%, 0% 28%, 2% 16%, 0% 5%
+      );
+    }
+
+    /* Paper Shadow Overlay Effect */
+    .paper-shadow-bottom {
+      position: absolute;
+      bottom: -15px;
+      left: 2%;
+      width: 96%;
+      height: 30px;
+      background: rgba(0,0,0,0.35);
+      filter: blur(10px);
+      z-index: 1;
+    }
+
+    /* CONTENT STYLING INSIDE PAPER */
     header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 32px;
     }
 
     .badge {
       display: inline-block;
-      padding: 6px 16px;
-      background: rgba(99, 102, 241, 0.12);
-      color: #818cf8;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 50px;
+      padding: 4px 14px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #334155;
+      border: 1px dashed #94a3b8;
+      border-radius: 4px;
+      font-family: 'Courier Prime', monospace;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     h1 {
-      font-size: 2.75rem;
+      font-size: 2.2rem;
       font-weight: 800;
+      color: #0f172a;
       letter-spacing: -0.02em;
-      background: linear-gradient(to right, #ffffff, #c084fc, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 16px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     .tagline {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 620px;
+      font-size: 1.05rem;
+      color: #334155;
+      max-width: 580px;
       margin: 0 auto;
+      font-weight: 600;
     }
 
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin: 36px 0;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
     }
 
     .feature-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-color);
-      padding: 24px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 18px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      backdrop-filter: blur(4px);
     }
 
     .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: #818cf8;
-      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.2);
+      transform: translateY(-3px);
+      border-color: var(--accent-blue);
     }
 
     .feature-card h3 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 8px;
+      color: #0f172a;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .feature-card p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
+      font-size: 0.88rem;
+      color: #1e293b;
       margin: 0;
+      line-height: 1.5;
+      font-weight: 500;
     }
 
     section {
-      margin-bottom: 36px;
+      margin-bottom: 24px;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: #0f172a;
+      margin-bottom: 8px;
+      border-bottom: 2px solid rgba(30, 41, 59, 0.2);
+      padding-bottom: 4px;
     }
 
     p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 16px;
+      color: #1e293b;
+      font-size: 0.96rem;
+      line-height: 1.65;
+      margin-bottom: 12px;
+      font-weight: 500;
     }
 
     .highlight-text {
-      color: #a855f7;
-      font-weight: 600;
+      color: var(--accent-purple);
+      font-weight: 700;
+      background: rgba(126, 34, 206, 0.1);
+      padding: 1px 6px;
+      border-radius: 4px;
     }
 
+    /* Contact Box inside paper */
     .contact-box {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(17, 24, 39, 0) 100%);
-      border: 1px solid rgba(99, 102, 241, 0.25);
-      padding: 28px;
-      border-radius: 12px;
-      margin-top: 40px;
+      background: rgba(224, 242, 254, 0.9);
+      border: 1px dashed #0284c7;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
       text-align: center;
+      backdrop-filter: blur(4px);
     }
 
     .contact-box h3 {
-      color: #ffffff;
-      font-size: 1.25rem;
+      color: #0369a1;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .contact-box p {
       margin-bottom: 8px;
+      font-size: 0.9rem;
     }
 
     .contact-box a {
-      color: #818cf8;
-      font-weight: 600;
+      color: #0284c7;
+      font-weight: 700;
       text-decoration: none;
       font-size: 1.05rem;
-      transition: color 0.2s ease;
+      font-family: 'Courier Prime', monospace;
     }
 
     .contact-box a:hover {
-      color: #c084fc;
       text-decoration: underline;
     }
 
+    /* Footer Button inside paper */
     .footer-action {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 28px;
     }
 
     .back-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
-      background: var(--accent-gradient);
+      gap: 8px;
+      padding: 10px 24px;
+      background: #0f172a;
       color: #ffffff;
-      border-radius: 50px;
+      border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
-      transition: all 0.3s ease;
+      font-size: 0.92rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
     }
 
     .back-btn:hover {
+      background: #1e293b;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.55);
     }
 
-    /* Entry Animation */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    /* RESPONSIVE ADJUSTMENTS */
     @media (max-width: 640px) {
-      .container {
-        padding: 32px 20px;
+      .poster-container {
+        padding: 40px 12px 160px 12px;
+      }
+      .paper-cutout {
+        padding: 30px 20px;
       }
       h1 {
-        font-size: 2rem;
+        font-size: 1.7rem;
+      }
+      .top-megaphone {
+        top: -15px;
+        left: 5px;
+      }
+      .top-megaphone svg {
+        width: 100px;
+        height: 100px;
+      }
+      .bottom-megaphone {
+        bottom: 10px;
+        right: 5px;
+      }
+      .bottom-megaphone svg {
+        width: 90px;
+        height: 90px;
       }
       .grid-container {
         grid-template-columns: 1fr;
@@ -247,57 +428,136 @@
 </head>
 <body>
 
-  <main class="container">
-    <header>
-      <span class="badge">AI Animation & Resource Vault</span>
-      <h1>Welcome to Maishn.Work official</h1>
-      <p class="tagline">Your central launchpad for AI animation prompts, 3D visual workflows, direct AI model links, and high-value web tools.</p>
-    </header>
-
-    <section>
-      <h2>What is Maishn.Work official?</h2>
-      <p><strong>Maishn.Work official</strong> is a specialized digital directory engineered for content creators, animators, and digital storytellers. We simplify your creative workflow by organizing master AI prompts, 3D anatomical/visual concepts, direct AI model links, and powerful web tools into one seamless hub.</p>
-    </section>
-
-    <!-- Highlight Grid -->
-    <div class="grid-container">
-      <div class="feature-card">
-        <h3>🎬 Animation & Visual Prompts</h3>
-        <p>Production-ready master prompts for 3D visual animations, stickman workflows, dynamic camera movements, and cinematic video creation.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>🤖 Direct AI Model Links</h3>
-        <p>Instant access to top AI image generators, LLMs, and video animation platforms without searching across multiple sites.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>🌐 Curated Web Resources</h3>
-        <p>Hand-picked website links, creative toolkits, and utility resources designed to boost your video editing and production pipeline.</p>
-      </div>
+  <div class="poster-container">
+    
+    <!-- TOP ANIMATED MEGAPHONE WITH HAND -->
+    <div class="top-megaphone" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Megaphone Body -->
+        <path d="M70 60 L140 25 L150 115 L70 90 Z" fill="#e2e8f0" stroke="#0f172a" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M140 25 L150 115" stroke="#0f172a" stroke-width="8"/>
+        <!-- Megaphone Back/Handle -->
+        <rect x="40" y="60" width="30" height="30" rx="3" fill="#334155" stroke="#0f172a" stroke-width="4"/>
+        <path d="M50 90 L40 130 L55 130 L62 90 Z" fill="#1e293b" stroke="#0f172a" stroke-width="4"/>
+        <!-- Hand holding Megaphone -->
+        <path d="M20 130 C20 110 35 100 50 100 L55 135 C40 140 25 145 20 130 Z" fill="#f87171" stroke="#0f172a" stroke-width="4"/>
+        <path d="M10 160 L35 125 L55 140 L30 180 Z" fill="#fca5a5" stroke="#0f172a" stroke-width="4"/>
+        <!-- Soundwaves / Rays -->
+        <g class="waves" stroke="#fbbf24" stroke-width="6" stroke-linecap="round">
+          <line x1="165" y1="45" x2="185" y2="35" />
+          <line x1="170" y1="70" x2="195" y2="70" />
+          <line x1="165" y1="95" x2="185" y2="105" />
+        </g>
+      </svg>
     </div>
 
-    <section>
-      <h2>Our Creative Vision</h2>
-      <p>Whether you're crafting high-retention short-form videos, <span class="highlight-text">3D animated scientific models</span>, or hyper-realistic character visual styles, Maishn.Work official gives you direct, battle-tested blueprints to bring your vision to life effortlessly.</p>
-    </section>
+    <!-- MAIN RIPPED PAPER AREA CONTAINING ALL TEXT -->
+    <main class="paper-cutout">
+      
+      <header>
+        <span class="badge">AI Animation & Resource Vault</span>
+        <h1>Welcome to Maishn.Work official</h1>
+        <p class="tagline">Your central launchpad for AI animation prompts, 3D visual workflows, direct AI model links, and high-value web tools.</p>
+      </header>
 
-    <section>
-      <h2>Adaptability & Dynamic AI</h2>
-      <p>AI tools and animation models are evolving constantly. Every prompt blueprint and tool recommendation on Maishn.Work official is built to be flexible—allowing creators to fine-tune camera angles, movement parameters, and styles for their specific projects.</p>
-    </section>
+      <section>
+        <h2>What is Maishn.Work official?</h2>
+        <p><strong>Maishn.Work official</strong> is a specialized digital directory engineered for content creators, animators, and digital storytellers. We simplify your creative workflow by organizing master AI prompts, 3D anatomical/visual concepts, direct AI model links, and powerful web tools into one seamless hub.</p>
+      </section>
 
-    <!-- Contact Section -->
-    <div class="contact-box">
-      <h3>Have Animation Ideas or Useful AI Links to Share?</h3>
-      <p>We are always exploring new animation workflows and AI tools. Feel free to connect with us!</p>
-      <a href="mailto:maishn.work@gmail.com">maishn.work@gmail.com</a>
+      <!-- Highlight Grid -->
+      <div class="grid-container">
+        <div class="feature-card">
+          <h3>🎬 Animation & Visual Prompts</h3>
+          <p>Production-ready master prompts for 3D visual animations, stickman workflows, dynamic camera movements, and cinematic video creation.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🤖 Direct AI Model Links</h3>
+          <p>Instant access to top AI image generators, LLMs, and video animation platforms without searching across multiple sites.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>🌐 Curated Web Resources</h3>
+          <p>Hand-picked website links, creative toolkits, and utility resources designed to boost your video editing and production pipeline.</p>
+        </div>
+      </div>
+
+      <section>
+        <h2>Our Creative Vision</h2>
+        <p>Whether you're crafting high-retention short-form videos, <span class="highlight-text">3D animated scientific models</span>, or hyper-realistic character visual styles, Maishn.Work official gives you direct, battle-tested blueprints to bring your vision to life effortlessly.</p>
+      </section>
+
+      <section>
+        <h2>Adaptability & Dynamic AI</h2>
+        <p>AI tools and animation models are evolving constantly. Every prompt blueprint and tool recommendation on Maishn.Work official is built to be flexible—allowing creators to fine-tune camera angles, movement parameters, and styles for their specific projects.</p>
+      </section>
+
+      <!-- Contact Section -->
+      <div class="contact-box">
+        <h3>Have Animation Ideas or Useful AI Links to Share?</h3>
+        <p>We are always exploring new animation workflows and AI tools. Feel free to connect with us!</p>
+        <a href="mailto:maishn.work@gmail.com">maishn.work@gmail.com</a>
+      </div>
+
+      <div class="footer-action">
+        <a href="./" class="back-btn">&larr; Back to Maishn.Work official</a>
+      </div>
+
+    </main>
+    <div class="paper-shadow-bottom"></div>
+
+    <!-- BOTTOM ANIMATED CROWD SILHOUETTE -->
+    <div class="crowd-wrapper" aria-hidden="true">
+      <!-- Back Crowd Layer -->
+      <svg class="crowd-back" viewBox="0 0 1000 300" preserveAspectRatio="none">
+        <path d="M0,300 L0,180 Q25,120 50,180 Q75,100 100,160 Q125,90 150,170 Q175,110 200,180 Q225,80 250,160 Q275,130 300,180 Q325,100 350,170 Q375,90 400,160 Q425,110 450,180 Q475,70 500,150 Q525,100 550,170 Q575,80 600,160 Q625,120 650,180 Q675,90 700,160 Q725,110 750,170 Q775,80 800,150 Q825,120 850,180 Q875,100 900,160 Q925,130 950,170 Q975,110 1000,180 L1000,300 Z" />
+      </svg>
+      <!-- Front Crowd Layer with Raising Hands & Rock Signs -->
+      <svg class="crowd-front" viewBox="0 0 1000 300" preserveAspectRatio="none">
+        <path d="M0,300 L0,220 
+                 C15,200 20,140 25,120 L35,120 L35,190 
+                 C50,210 60,180 75,150 L85,150 L80,210 
+                 C100,190 110,100 120,80 L132,80 L130,120 L140,120 L138,180
+                 C160,200 170,230 190,210 
+                 C200,150 215,90 225,60 L238,60 L235,120 L245,120 L242,190
+                 C260,210 280,220 300,200
+                 C310,160 320,110 330,80 L342,80 L340,180
+                 C360,200 380,210 400,190
+                 C415,140 425,70 435,40 L448,40 L445,110 L455,110 L450,210
+                 C470,230 490,210 510,200
+                 C525,150 535,80 545,60 L558,60 L555,180
+                 C570,200 590,210 610,190
+                 C625,130 635,70 645,50 L658,50 L655,120 L665,120 L660,210
+                 C680,220 700,200 720,210
+                 C735,160 745,100 755,70 L768,70 L765,180
+                 C780,200 800,220 820,190
+                 C835,140 845,80 855,50 L868,50 L865,110 L875,110 L870,210
+                 C890,220 910,210 930,200
+                 C945,160 955,120 965,90 L978,90 L975,220
+                 L1000,220 L1000,300 Z" />
+      </svg>
     </div>
 
-    <div class="footer-action">
-      <a href="./" class="back-btn">&larr; Back to Maishn.Work official</a>
+    <!-- BOTTOM RIGHT ANIMATED MEGAPHONE -->
+    <div class="bottom-megaphone" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Megaphone Body -->
+        <path d="M130 140 L60 175 L50 85 L130 110 Z" fill="#e2e8f0" stroke="#0f172a" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M60 175 L50 85" stroke="#0f172a" stroke-width="8"/>
+        <!-- Handle -->
+        <rect x="130" y="110" width="30" height="30" rx="3" fill="#334155" stroke="#0f172a" stroke-width="4"/>
+        <path d="M140 140 L150 180 L135 180 L128 140 Z" fill="#1e293b" stroke="#0f172a" stroke-width="4"/>
+        <!-- Sparks / Energy -->
+        <g class="sparks" stroke="#f59e0b" stroke-width="5" stroke-linecap="round">
+          <line x1="35" y1="155" x2="15" y2="165" />
+          <line x1="30" y1="130" x2="5" y2="130" />
+          <line x1="35" y1="105" x2="15" y2="95" />
+        </g>
+      </svg>
     </div>
-  </main>
+
+  </div>
 
 </body>
 </html>
