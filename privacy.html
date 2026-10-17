@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,47 +6,216 @@
   <meta name="robots" content="index,follow">
   <title>Privacy Policy | Prompt Vault</title>
   <meta name="description" content="Learn how Prompt Vault handles visitor information, cookies, and advertising.">
+  
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      line-height: 1.8;
-      color: #222;
-      background: #fff;
+    :root {
+      --primary: #155eef;
+      --primary-hover: #004eeb;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
     }
-    h1, h2 { color: #155eef; }
-    a { color: #155eef; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 48px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    header {
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .last-updated {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .intro {
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+      color: var(--text-main);
+    }
+
+    section {
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background-color: var(--primary);
+      border-radius: 2px;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .contact-card {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 20px;
+      border-radius: var(--radius);
+      margin-top: 16px;
+    }
+
+    .contact-card p {
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 32px;
+      padding: 10px 20px;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 24px;
+      }
+      h1 {
+        font-size: 1.75rem;
+      }
+      h2 {
+        font-size: 1.15rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <p>Last updated: October 18, 2026</p>
 
-  <p>Welcome to Prompt Vault. This Privacy Policy explains how information may be collected and used when you visit our website.</p>
+  <main class="container">
+    <header>
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Last updated: October 18, 2026</p>
+    </header>
 
-  <h2>Information We Collect</h2>
-  <p>We may collect information that you voluntarily provide and limited technical information needed to operate, maintain, and secure the website.</p>
+    <p class="intro">
+      Welcome to <strong>Prompt Vault</strong>. Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you visit our website.
+    </p>
 
-  <h2>Cookies and Advertising</h2>
-  <p>Our website may use cookies or similar technologies. If third-party advertising services, including Google AdSense, are enabled, those services may use cookies or similar technologies to display and measure advertisements, subject to their policies and applicable consent requirements.</p>
+    <section>
+      <h2>Information We Collect</h2>
+      <p>We may collect information that you voluntarily provide to us (such as contact details) and limited technical information needed to operate, maintain, and secure the website.</p>
+    </section>
 
-  <h2>Third-Party Services</h2>
-  <p>Third-party services operate under their own privacy policies. We encourage visitors to review those policies before using their services.</p>
+    <section>
+      <h2>Cookies and Advertising</h2>
+      <p>Our website may use cookies or similar technologies to enhance user experience. If third-party advertising services, including Google AdSense, are enabled, those services may use cookies to display and measure advertisements subject to their privacy policies and applicable consent requirements.</p>
+    </section>
 
-  <h2>Data Protection</h2>
-  <p>We take reasonable steps to protect information handled by our website. No method of online transmission or storage can be guaranteed to be completely secure.</p>
+    <section>
+      <h2>Third-Party Services</h2>
+      <p>We may link to or use third-party services on our site. These third parties operate independently under their own privacy policies. We encourage visitors to review those policies before engaging with external services.</p>
+    </section>
 
-  <h2>Children's Privacy</h2>
-  <p>Our website is not intended to knowingly collect personal information from children in violation of applicable laws.</p>
+    <section>
+      <h2>Data Protection</h2>
+      <p>We take reasonable security measures to protect the information handled by our website. However, please note that no method of online transmission or storage can be guaranteed to be 100% secure.</p>
+    </section>
 
-  <h2>Changes to This Policy</h2>
-  <p>We may update this Privacy Policy when our website or services change. Any updates will be published on this page.</p>
+    <section>
+      <h2>Children's Privacy</h2>
+      <p>Our website is not intended to knowingly collect personal information from children in violation of applicable laws.</p>
+    </section>
 
-  <h2>Contact Us</h2>
-  <p>For privacy-related questions, contact us at: <strong>maishn.work@gmail.com</strong></p>
+    <section>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our website or legal requirements. Any updates will be posted directly on this page with an updated date.</p>
+    </section>
 
-  <p><a href="./">Back to Prompt Vault</a></p>
+    <section>
+      <h2>Contact Us</h2>
+      <p>If you have any privacy-related questions, concerns, or requests, please feel free to reach out to us:</p>
+      <div class="contact-card">
+        <p>Email: <a href="mailto:maishn.work@gmail.com"><strong>maishn.work@gmail.com</strong></a></p>
+      </div>
+    </section>
+
+    <a href="./" class="back-btn">&larr; Back to Prompt Vault</a>
+  </main>
+
 </body>
 </html>
