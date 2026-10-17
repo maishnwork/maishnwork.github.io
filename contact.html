@@ -1,39 +1,442 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Us | Prompt Vault</title>
-  <meta name="description" content="Contact Prompt Vault with questions, suggestions, or feedback.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index,follow">
+  <title>Contact Us | Maishn.Work official</title>
+  <meta name="description" content="Get in touch with Maishn.Work official for AI animation prompts, direct model links, visual workflows, and feedback.">
+  
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      line-height: 1.8;
-      color: #222;
-      background: #fff;
+    :root {
+      --primary: #155eef;
+      --accent-purple: #a855f7;
+      --accent-indigo: #6366f1;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --bg-color: #0b0f19;
+      --card-bg: #111827;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #1f2937;
+      --radius: 16px;
     }
-    h1, h2 { color: #155eef; }
-    a { color: #155eef; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated Main Container */
+    .container {
+      max-width: 850px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 56px 48px;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Floating Glowing Background Orbs */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 350px;
+      height: 350px;
+      background: rgba(99, 102, 241, 0.22);
+      filter: blur(100px);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+    }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: -120px;
+      width: 300px;
+      height: 300px;
+      background: rgba(168, 85, 247, 0.18);
+      filter: blur(100px);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: pulseGlow 8s ease-in-out infinite alternate-reverse;
+    }
+
+    header {
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 32px;
+      margin-bottom: 36px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      background: rgba(99, 102, 241, 0.12);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      animation: floatBadge 3s ease-in-out infinite alternate;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #34d399;
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #ffffff, #c084fc, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Glassmorphism Hero Contact Card */
+    .hero-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      padding: 36px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-purple);
+      box-shadow: 0 15px 35px -10px rgba(168, 85, 247, 0.3);
+    }
+
+    .email-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .email-address {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .email-address:hover {
+      color: #c084fc;
+      text-shadow: 0 0 15px rgba(192, 132, 252, 0.6);
+      transform: scale(1.03);
+    }
+
+    .action-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-mail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-mail:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.55);
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #818cf8;
+      color: #818cf8;
+    }
+
+    /* Grid for Feedback and Topics */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      border-radius: 12px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.2);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: var(--accent-gradient);
+      transition: height 0.35s ease;
+    }
+
+    .info-card:hover::before {
+      height: 100%;
+    }
+
+    .info-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      margin: 0;
+    }
+
+    /* Footer Back Button with Shimmer Animation */
+    .footer-action {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.6);
+    }
+
+    .back-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transform: rotate(30deg);
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+
+    .back-btn:hover::after {
+      opacity: 1;
+      left: 100%;
+    }
+
+    /* KEYFRAME ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.15;
+      }
+      100% {
+        transform: scale(1.2) translate(10px, -10px);
+        opacity: 0.28;
+      }
+    }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 32px 20px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .email-address {
+        font-size: 1.15rem;
+      }
+      .hero-card {
+        padding: 24px 16px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Contact Us</h1>
 
-  <p>We welcome your questions, suggestions, and feedback about Prompt Vault.</p>
+  <main class="container">
+    <header>
+      <div class="badge">
+        <span class="status-dot"></span>
+        Get In Touch
+      </div>
+      <h1>Contact Us</h1>
+      <p class="subtitle">Have questions, prompt suggestions, or need custom 3D/AI animation workflows? We are ready to connect.</p>
+    </header>
 
-  <h2>Email</h2>
-  <p>You can contact us at:</p>
-  <p><a href="mailto: maishn.work@gmail.com">maishn.work@gmail.com</a></p>
+    <!-- Interactive Primary Email Card -->
+    <div class="hero-card">
+      <div class="email-label">Official Inquiry Desk</div>
+      <a href="mailto:maishn.work@gmail.com" class="email-address" id="emailText">maishn.work@gmail.com</a>
+      
+      <div class="action-btn-group">
+        <a href="mailto:maishn.work@gmail.com" class="btn-mail">
+          ✉️ Send Direct Email
+        </a>
+        <button class="btn-copy" onclick="copyEmail()">
+          📋 <span id="copyBtnText">Copy Email Address</span>
+        </button>
+      </div>
+    </div>
 
-  <h2>Feedback</h2>
-  <p>If you find an issue with a prompt or have an idea for improving our website, please send us an email with the details.</p>
+    <!-- Features & Feedback Grid -->
+    <div class="grid-container">
+      <div class="info-card">
+        <h3>💡 Feedback & Prompt Ideas</h3>
+        <p>Found a prompt or AI model link that needs optimization? Have ideas for new 3D animation scripts? Send us your suggestions anytime.</p>
+      </div>
 
-  <p>We will review messages and respond when possible.</p>
+      <div class="info-card">
+        <h3>🤝 Partnerships & Collaboration</h3>
+        <p>Looking to collaborate on video automation, prompt engineering workflows, or channel growth strategies? Let's discuss possibilities.</p>
+      </div>
+    </div>
 
-  <p><a href="./">Back to Prompt Vault</a></p>
+    <div class="footer-action">
+      <a href="./" class="back-btn">&larr; Back to Maishn.Work official</a>
+    </div>
+  </main>
+
+  <script>
+    function copyEmail() {
+      const email = "maishn.work@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const btnText = document.getElementById("copyBtnText");
+        btnText.innerText = "Copied to Clipboard! ✓";
+        setTimeout(() => {
+          btnText.innerText = "Copy Email Address";
+        }, 3000);
+      });
+    }
+  </script>
+
 </body>
 </html>
