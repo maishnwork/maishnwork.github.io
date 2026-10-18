@@ -23,192 +23,89 @@
 
   <style>
 
-    :root {
-      --bg: #080b12;
-      --surface: #10141d;
-      --surface-light: #151b26;
-      --border: rgba(255,255,255,0.08);
-
-      --text: #f8fafc;
-      --muted: #9ca3af;
-
-      --blue: #4f7cff;
-      --purple: #a855f7;
-
-      --gradient:
-        linear-gradient(
-          135deg,
-          #4f7cff 0%,
-          #765cff 50%,
-          #a855f7 100%
-        );
-    }
-
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-
     body {
-      font-family:
-        'Plus Jakarta Sans',
-        system-ui,
-        -apple-system,
-        sans-serif;
-
-      background:
-        radial-gradient(
-          circle at 10% 10%,
-          rgba(79,124,255,0.10),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 90% 15%,
-          rgba(168,85,247,0.09),
-          transparent 28%
-        ),
-        var(--bg);
-
-      color: var(--text);
-
-      line-height: 1.7;
-
-      min-height: 100vh;
-
-      padding: 30px 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #080d16;
+      color: #0f172a;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-
 
     a {
       text-decoration: none;
-      color: inherit;
     }
 
-
-    /* ==============================
-       MAIN CONTAINER
-    ============================== */
-
-    .container {
+    .page {
       width: 100%;
-      max-width: 1050px;
-
+      max-width: 1100px;
       margin: 0 auto;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(17,24,39,0.98),
-          rgba(11,15,24,0.98)
-        );
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 22px;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.45);
-
-      animation:
-        pageEnter 0.7s ease both;
+      background: #ffffff;
+      min-height: 100vh;
     }
 
 
-    /* ==============================
-       NAVIGATION
-    ============================== */
+    /* =========================
+       HEADER
+    ========================= */
 
-    .topbar {
-      min-height: 68px;
+    .top-header {
+      height: 64px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
-      padding: 0 32px;
+      padding: 0 35px;
 
-      border-bottom:
-        1px solid var(--border);
+      border-bottom: 1px solid #e5e7eb;
 
-      background:
-        rgba(8,11,18,0.70);
-
-      backdrop-filter:
-        blur(18px);
-
-      position: relative;
-
-      z-index: 10;
+      background: #ffffff;
     }
 
-
-    .brand {
+    .logo {
       font-size: 1rem;
-
       font-weight: 800;
-
-      letter-spacing: -0.4px;
-
-      color: #ffffff;
+      color: #111827;
+      letter-spacing: -0.5px;
     }
 
-
-    .brand span {
-      color: #718cff;
+    .logo span {
+      color: #2563eb;
     }
-
 
     .nav {
       display: flex;
-
       align-items: center;
-
       gap: 22px;
     }
 
-
     .nav a {
-      color: #aeb6c5;
-
-      font-size: 0.75rem;
-
+      color: #475569;
+      font-size: 0.78rem;
       font-weight: 600;
 
-      transition:
-        color 0.2s ease,
-        transform 0.2s ease;
+      transition: 0.2s ease;
     }
-
 
     .nav a:hover {
-      color: #ffffff;
-
-      transform:
-        translateY(-1px);
+      color: #2563eb;
     }
-
 
     .nav .active {
-      color: #8ba4ff;
+      color: #2563eb;
     }
 
 
-    /* ==============================
-       HERO
-    ============================== */
+    /* =========================
+       PRIVACY HERO
+       SAME STYLE AS ABOUT
+    ========================= */
 
     .privacy-hero {
       display: grid;
@@ -217,263 +114,123 @@
         0.9fr
         1.1fr;
 
-      min-height: 390px;
+      min-height: 340px;
 
-      background:
-        linear-gradient(
-          135deg,
-          #111827,
-          #0d121c
-        );
-
-      position: relative;
-
-      overflow: hidden;
+      background: #f8fafc;
     }
 
-
-    .privacy-hero::before {
-      content: '';
-
-      position: absolute;
-
-      width: 350px;
-      height: 350px;
-
-      left: -180px;
-      top: -180px;
-
-      background:
-        rgba(79,124,255,0.12);
-
-      filter:
-        blur(90px);
-
-      border-radius: 50%;
-
-      pointer-events: none;
-    }
-
-
-    /* ==============================
-       HERO CONTENT
-    ============================== */
-
-    .hero-content {
+    .privacy-content-hero {
       display: flex;
-
       flex-direction: column;
-
       justify-content: center;
 
-      padding:
-        55px 45px;
-
-      position: relative;
-
-      z-index: 2;
+      padding: 50px;
     }
 
+    .small-title {
+      color: #2563eb;
 
-    .hero-badge {
-      width: fit-content;
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      padding:
-        7px 13px;
-
-      margin-bottom: 18px;
-
-      border:
-        1px solid rgba(99,102,241,0.28);
-
-      border-radius: 50px;
-
-      background:
-        rgba(99,102,241,0.10);
-
-      color: #9aa9ff;
-
-      font-size: 0.68rem;
-
-      font-weight: 700;
-
-      text-transform: uppercase;
-
-      letter-spacing: 1.2px;
-    }
-
-
-    .hero-badge::before {
-      content: '';
-
-      width: 6px;
-      height: 6px;
-
-      border-radius: 50%;
-
-      background: #718cff;
-
-      box-shadow:
-        0 0 10px #718cff;
-    }
-
-
-    .hero-content h1 {
-      font-size:
-        clamp(2.1rem, 5vw, 3.5rem);
-
-      line-height: 1.08;
-
-      letter-spacing: -0.045em;
-
-      font-weight: 800;
-
-      margin-bottom: 18px;
-
-      background:
-        linear-gradient(
-          110deg,
-          #ffffff 10%,
-          #b8c7ff 48%,
-          #c084fc 90%
-        );
-
-      -webkit-background-clip: text;
-
-      -webkit-text-fill-color: transparent;
-    }
-
-
-    .hero-content p {
-      max-width: 480px;
-
-      color: var(--muted);
-
-      font-size: 0.9rem;
-
-      line-height: 1.8;
-    }
-
-
-    /* ==============================
-       PHOTO
-    ============================== */
-
-    .hero-image-wrapper {
-      position: relative;
-
-      min-height: 390px;
-
-      overflow: hidden;
-
-      background:
-        #0b1019;
-    }
-
-
-    .hero-image-wrapper::after {
-      content: '';
-
-      position: absolute;
-
-      inset: 0;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(16,20,29,0.55),
-          transparent 35%
-        );
-
-      pointer-events: none;
-    }
-
-
-    .privacy-photo {
-      width: 100%;
-
-      height: 100%;
-
-      min-height: 390px;
-
-      display: block;
-
-      object-fit: cover;
-
-      object-position: center;
-
-      transition:
-        transform 0.6s ease;
-    }
-
-
-    .hero-image-wrapper:hover
-    .privacy-photo {
-      transform:
-        scale(1.025);
-    }
-
-
-    /* ==============================
-       PRIVACY CONTENT
-    ============================== */
-
-    .privacy-content {
-      padding:
-        55px 48px;
-    }
-
-
-    .section-label {
-      color: #8197ff;
-
-      font-size: 0.68rem;
-
+      font-size: 0.72rem;
       font-weight: 800;
 
       letter-spacing: 1.5px;
-
       text-transform: uppercase;
-
-      margin-bottom: 8px;
-    }
-
-
-    .main-title {
-      font-size: 1.7rem;
-
-      font-weight: 800;
-
-      letter-spacing: -0.025em;
-
-      color: #ffffff;
 
       margin-bottom: 12px;
     }
 
+    .privacy-content-hero h1 {
+      font-size: 2.3rem;
 
-    .intro-text {
-      color: var(--muted);
+      line-height: 1.15;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+      margin-bottom: 15px;
+    }
+
+    .privacy-content-hero p {
+      max-width: 430px;
+
+      color: #64748b;
 
       font-size: 0.88rem;
 
-      line-height: 1.85;
-
-      max-width: 800px;
-
-      margin-bottom: 35px;
+      line-height: 1.7;
     }
 
 
-    /* ==============================
+    /* =========================
+       PRIVACY PHOTO
+    ========================= */
+
+    .hero-image-wrapper {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+    }
+
+    .privacy-photo {
+      width: 100%;
+      height: 100%;
+
+      min-height: 340px;
+
+      object-fit: cover;
+
+      display: block;
+    }
+
+
+    /* =========================
+       PRIVACY INTRO
+    ========================= */
+
+    .privacy-intro {
+      padding: 55px 50px;
+
+      background: #ffffff;
+    }
+
+    .section-title {
+      text-align: center;
+
+      font-size: 1.5rem;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+      margin-bottom: 15px;
+    }
+
+    .intro-text {
+      max-width: 800px;
+
+      margin: 0 auto;
+
+      text-align: center;
+
+      color: #64748b;
+
+      font-size: 0.82rem;
+
+      line-height: 1.75;
+    }
+
+
+    /* =========================
        PRIVACY CARDS
-    ============================== */
+       BLACK + WHITE TEXT
+    ========================= */
+
+    .privacy-section {
+      padding: 55px 50px;
+
+      background: #f8fafc;
+    }
 
     .privacy-grid {
       display: grid;
@@ -481,37 +238,63 @@
       grid-template-columns:
         repeat(2, 1fr);
 
-      gap: 18px;
+      gap: 20px;
     }
 
 
     .privacy-card {
       padding: 25px;
 
-      background:
-        rgba(255,255,255,0.025);
+      background: #000000;
 
-      border:
-        1px solid var(--border);
+      border: 1px solid #1f1f1f;
 
-      border-radius: 14px;
+      border-radius: 10px;
+
+      color: #ffffff;
 
       transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
+        transform 0.3s ease,
+        border-color 0.3s ease;
+
+      animation:
+        blackCardAnimation 3.5s ease-in-out infinite;
+    }
+
+
+    .privacy-card:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .privacy-card:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .privacy-card:nth-child(4) {
+      animation-delay: 0.9s;
+    }
+
+    .privacy-card:nth-child(5) {
+      animation-delay: 1.2s;
+    }
+
+    .privacy-card:nth-child(6) {
+      animation-delay: 1.5s;
+    }
+
+    .privacy-card:nth-child(7) {
+      animation-delay: 1.8s;
+    }
+
+    .privacy-card:nth-child(8) {
+      animation-delay: 2.1s;
     }
 
 
     .privacy-card:hover {
-      transform:
-        translateY(-4px);
+      transform: translateY(-5px);
 
-      border-color:
-        rgba(129,151,255,0.35);
-
-      background:
-        rgba(255,255,255,0.04);
+      border-color: #333333;
     }
 
 
@@ -519,24 +302,24 @@
       display: inline-flex;
 
       align-items: center;
-
       justify-content: center;
 
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
 
       margin-bottom: 15px;
 
-      border-radius: 9px;
+      border-radius: 8px;
 
-      background:
-        rgba(99,102,241,0.12);
+      background: #181818;
 
-      color: #91a3ff;
+      color: #ffffff;
 
       font-size: 0.72rem;
 
       font-weight: 800;
+
+      border: 1px solid #2b2b2b;
     }
 
 
@@ -550,20 +333,20 @@
 
 
     .privacy-card p {
-      color: var(--muted);
+      color: #ffffff;
 
-      font-size: 0.77rem;
+      font-size: 0.76rem;
 
-      line-height: 1.75;
+      line-height: 1.7;
     }
 
 
     .privacy-card ul {
       padding-left: 18px;
 
-      color: var(--muted);
+      color: #ffffff;
 
-      font-size: 0.77rem;
+      font-size: 0.76rem;
 
       line-height: 1.8;
     }
@@ -575,173 +358,152 @@
 
 
     .privacy-card strong {
-      color: #e5e7eb;
+      color: #ffffff;
     }
 
 
-    /* ==============================
+    /* =========================
+       BLACK CARD ANIMATION
+    ========================= */
+
+    @keyframes blackCardAnimation {
+
+      0% {
+        box-shadow:
+          0 0 0 rgba(0, 0, 0, 0);
+      }
+
+      50% {
+        box-shadow:
+          0 0 24px rgba(0, 0, 0, 0.75);
+      }
+
+      100% {
+        box-shadow:
+          0 0 0 rgba(0, 0, 0, 0);
+      }
+
+    }
+
+
+    /* =========================
        CONTACT
-    ============================== */
+    ========================= */
 
-    .contact-box {
-      margin-top: 35px;
-
-      padding:
-        35px 25px;
+    .contact-section {
+      padding: 50px;
 
       text-align: center;
 
-      border:
-        1px solid rgba(99,102,241,0.22);
-
-      border-radius: 16px;
-
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(99,102,241,0.12),
-          rgba(17,24,39,0.3)
-        );
+      background: #ffffff;
     }
 
+    .contact-section h2 {
+      font-size: 1.4rem;
 
-    .contact-box h2 {
-      color: #ffffff;
+      margin-bottom: 10px;
 
-      font-size: 1.3rem;
-
-      margin-bottom: 8px;
+      color: #0f172a;
     }
 
+    .contact-section p {
+      color: #64748b;
 
-    .contact-box p {
-      color: var(--muted);
+      font-size: 0.82rem;
 
-      font-size: 0.8rem;
-
-      margin-bottom: 14px;
+      margin-bottom: 15px;
     }
-
 
     .email {
-      color: #9aa9ff;
+      color: #2563eb;
 
-      font-size: 0.88rem;
+      font-size: 0.9rem;
 
       font-weight: 700;
     }
 
 
     .email:hover {
-      color: #c084fc;
-
       text-decoration: underline;
     }
 
 
-    /* ==============================
-       BUTTONS
-    ============================== */
+    /* =========================
+       ACTION BUTTONS
+    ========================= */
 
-    .actions {
+    .back-area {
       display: flex;
 
       justify-content: center;
-
       align-items: center;
 
       gap: 12px;
 
-      flex-wrap: wrap;
+      padding: 0 50px 50px;
 
-      padding:
-        0 48px 50px;
+      background: #ffffff;
     }
 
 
-    .action-btn {
-      display: inline-flex;
+    .back-btn,
+    .support-btn {
+      display: inline-block;
 
-      align-items: center;
+      padding: 10px 20px;
 
-      justify-content: center;
+      border-radius: 7px;
 
-      gap: 8px;
+      font-size: 0.78rem;
 
-      padding:
-        11px 22px;
+      font-weight: 600;
 
-      border-radius: 50px;
-
-      font-size: 0.75rem;
-
-      font-weight: 700;
-
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+      transition: 0.2s ease;
     }
 
 
     .back-btn {
-      background:
-        var(--gradient);
+      background: #0f172a;
 
       color: #ffffff;
-
-      box-shadow:
-        0 8px 25px rgba(99,102,241,0.22);
-    }
-
-
-    .support-btn {
-      background:
-        rgba(255,255,255,0.06);
-
-      color: #dbe2ff;
-
-      border:
-        1px solid rgba(129,151,255,0.25);
-    }
-
-
-    .action-btn:hover {
-      transform:
-        translateY(-2px);
     }
 
 
     .back-btn:hover {
-      box-shadow:
-        0 12px 30px rgba(99,102,241,0.35);
+      background: #2563eb;
+
+      transform: translateY(-2px);
+    }
+
+
+    .support-btn {
+      background: #111111;
+
+      color: #ffffff;
+
+      border: 1px solid #222222;
     }
 
 
     .support-btn:hover {
-      background:
-        rgba(99,102,241,0.12);
+      background: #2563eb;
 
-      border-color:
-        rgba(129,151,255,0.45);
+      transform: translateY(-2px);
     }
 
 
-    /* ==============================
+    /* =========================
        FOOTER
-    ============================== */
+    ========================= */
 
-    .site-footer {
-      padding:
-        28px 25px;
+    footer {
+      background: #080d16;
+
+      color: #94a3b8;
+
+      padding: 30px 35px;
 
       text-align: center;
-
-      background:
-        #080b12;
-
-      border-top:
-        1px solid var(--border);
     }
 
 
@@ -749,26 +511,22 @@
       display: flex;
 
       justify-content: center;
-
       align-items: center;
 
       flex-wrap: wrap;
 
-      gap: 9px;
+      gap: 10px;
 
       margin-bottom: 10px;
     }
 
 
     .footer-links a {
-      color: #aeb6c5;
+      color: #cbd5e1;
 
-      font-size: 0.72rem;
+      font-size: 0.75rem;
 
-      font-weight: 600;
-
-      transition:
-        color 0.2s ease;
+      transition: 0.2s ease;
     }
 
 
@@ -782,102 +540,27 @@
     }
 
 
-    .footer-links span {
-      color: #374151;
-
-      font-size: 0.7rem;
-    }
-
-
     .footer-copyright {
-      color: #5f6878;
+      font-size: 0.68rem;
 
-      font-size: 0.66rem;
+      color: #64748b;
     }
 
 
-    /* ==============================
-       ANIMATION
-    ============================== */
-
-    @keyframes pageEnter {
-      from {
-        opacity: 0;
-
-        transform:
-          translateY(15px);
-      }
-
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0);
-      }
-    }
-
-
-    /* ==============================
-       TABLET
-    ============================== */
-
-    @media (max-width: 800px) {
-
-      .privacy-hero {
-        grid-template-columns:
-          1fr 1fr;
-      }
-
-      .hero-content {
-        padding:
-          35px 28px;
-      }
-
-      .hero-content h1 {
-        font-size:
-          2.2rem;
-      }
-
-      .privacy-content {
-        padding:
-          42px 28px;
-      }
-
-      .privacy-grid {
-        gap: 12px;
-      }
-
-    }
-
-
-    /* ==============================
+    /* =========================
        MOBILE
-    ============================== */
+    ========================= */
 
-    @media (max-width: 650px) {
+    @media (max-width: 700px) {
 
-      body {
-        padding: 0;
-      }
-
-
-      .container {
-        border-radius: 0;
-
-        border-left: none;
-        border-right: none;
-      }
-
-
-      .topbar {
+      .top-header {
         height: auto;
 
-        padding:
-          18px 20px;
+        padding: 18px 20px;
 
         flex-direction: column;
 
-        gap: 13px;
+        gap: 14px;
       }
 
 
@@ -891,79 +574,73 @@
 
 
       .privacy-hero {
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
 
-      .hero-content {
-        padding:
-          40px 25px;
+      .privacy-content-hero {
+        padding: 35px 25px;
       }
 
 
-      .hero-content h1 {
-        font-size:
-          2.15rem;
+      .privacy-content-hero h1 {
+        font-size: 2rem;
       }
 
 
-      .hero-content p {
-        font-size:
-          0.82rem;
+      .privacy-content-hero p {
+        font-size: 0.82rem;
       }
 
 
       .hero-image-wrapper {
-        min-height:
-          270px;
+        min-height: 250px;
       }
 
 
       .privacy-photo {
-        min-height:
-          270px;
+        min-height: 250px;
 
-        max-height:
-          320px;
+        max-height: 300px;
       }
 
 
-      .privacy-content {
-        padding:
-          40px 22px;
+      .privacy-intro {
+        padding: 40px 25px;
+      }
+
+
+      .privacy-section {
+        padding: 40px 25px;
       }
 
 
       .privacy-grid {
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
 
-      .contact-box {
-        margin-top:
-          28px;
+      .contact-section {
+        padding: 40px 25px;
+      }
 
+
+      .back-area {
         padding:
-          30px 20px;
+          0 25px 40px;
       }
 
 
-      .actions {
-        padding:
-          0 22px 40px;
+      .back-btn,
+      .support-btn {
+        flex: 1;
+
+        text-align: center;
       }
 
 
-      .action-btn {
-        width: 100%;
-      }
-
-
-      .site-footer {
-        padding:
-          25px 15px;
+      footer {
+        padding: 25px 15px;
       }
 
     }
@@ -975,16 +652,16 @@
 <body>
 
 
-  <main class="container">
+  <div class="page">
 
 
-    <!-- ==============================
-         NAVIGATION
-    ============================== -->
+    <!-- =========================
+         HEADER
+    ========================= -->
 
-    <header class="topbar">
+    <header class="top-header">
 
-      <a href="./" class="brand">
+      <a href="./" class="logo">
         Maishn<span>.Work</span>
       </a>
 
@@ -1006,7 +683,7 @@
           href="privacy.html"
           class="active"
         >
-          Privacy Policy
+          Privacy
         </a>
 
         <a href="contact.html">
@@ -1019,18 +696,18 @@
 
 
 
-    <!-- ==============================
-         HERO
-    ============================== -->
+    <!-- =========================
+         PRIVACY HERO
+    ========================= -->
 
     <section class="privacy-hero">
 
 
-      <div class="hero-content">
+      <div class="privacy-content-hero">
 
-        <span class="hero-badge">
+        <div class="small-title">
           Privacy & Security
-        </span>
+        </div>
 
 
         <h1>
@@ -1048,8 +725,6 @@
       </div>
 
 
-      <!-- YOUR PRIVACY PHOTO -->
-
       <div class="hero-image-wrapper">
 
         <img
@@ -1065,19 +740,14 @@
 
 
 
-    <!-- ==============================
-         PRIVACY CONTENT
-    ============================== -->
+    <!-- =========================
+         PRIVACY INTRO
+    ========================= -->
 
-    <section class="privacy-content">
-
-
-      <div class="section-label">
-        Privacy Policy
-      </div>
+    <section class="privacy-intro">
 
 
-      <h2 class="main-title">
+      <h2 class="section-title">
         How We Respect Your Privacy
       </h2>
 
@@ -1093,6 +763,16 @@
 
       </p>
 
+
+    </section>
+
+
+
+    <!-- =========================
+         PRIVACY CARDS
+    ========================= -->
+
+    <section class="privacy-section">
 
 
       <div class="privacy-grid">
@@ -1317,46 +997,47 @@
       </div>
 
 
-
-      <!-- CONTACT -->
-
-      <div class="contact-box">
-
-        <h2>
-          Have Questions About Privacy?
-        </h2>
+    </section>
 
 
-        <p>
-          If you have any questions, concerns or requests
-          regarding this Privacy Policy, feel free to contact us.
-        </p>
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section class="contact-section">
+
+      <h2>
+        Have Questions About Privacy?
+      </h2>
 
 
-        <a
-          href="mailto:maishn.work@gmail.com"
-          class="email"
-        >
-          maishn.work@gmail.com
-        </a>
+      <p>
+        If you have any questions, concerns or requests
+        regarding this Privacy Policy, feel free to contact us.
+      </p>
 
-      </div>
 
+      <a
+        href="mailto:maishn.work@gmail.com"
+        class="email"
+      >
+        maishn.work@gmail.com
+      </a>
 
     </section>
 
 
 
-    <!-- ==============================
+    <!-- =========================
          BUTTONS
-    ============================== -->
+    ========================= -->
 
-    <div class="actions">
-
+    <div class="back-area">
 
       <a
         href="./"
-        class="action-btn back-btn"
+        class="back-btn"
       >
         ← Back to Maishn.Work
       </a>
@@ -1364,21 +1045,20 @@
 
       <a
         href="support.html"
-        class="action-btn support-btn"
+        class="support-btn"
       >
         ✦ Get Support
       </a>
-
 
     </div>
 
 
 
-    <!-- ==============================
+    <!-- =========================
          FOOTER
-    ============================== -->
+    ========================= -->
 
-    <footer class="site-footer">
+    <footer>
 
 
       <nav
@@ -1392,10 +1072,7 @@
 
         <span>|</span>
 
-        <a
-          href="privacy.html"
-          class="active"
-        >
+        <a href="privacy.html">
           Privacy Policy
         </a>
 
@@ -1425,7 +1102,7 @@
     </footer>
 
 
-  </main>
+  </div>
 
 
 </body>
