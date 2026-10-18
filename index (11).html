@@ -1,0 +1,5652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b16">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<meta name="description" content="Maishn.Work — useful AI prompts, tools, links and resources.">
+<meta name="google-site-verification" content="s74jZmzX_eUlwHI9CiV81-7djtLblYiI4ZYdpkWlP3c">
+
+<title>Maishn.Work</title>
+
+<style>
+
+:root{
+  color-scheme:dark;
+  --bg:#0b0c10;
+  --bg2:#0d1220;
+  --card:#12192b;
+  --card2:#171f34;
+  --line:#2b3753;
+  --text:#f6f8ff;
+  --muted:#9da9c2;
+  --blue:#6687ff;
+  --cyan:#57e1ef;
+  --purple:#b16bff;
+  --green:#42dda0;
+  --red:#ff718b;
+  --shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    linear-gradient(180deg,rgba(7,12,25,.40) 0%,rgba(7,12,25,.48) 42%,rgba(35,31,103,.94) 70%,#5149b8 100%),
+    url("home-background.jpg") center top / cover fixed,
+    linear-gradient(135deg,#39495c,#121b2a 55%,#0b1020);
+  background-attachment:fixed;
+  font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,
+    "Segoe UI",Roboto,sans-serif;
+  overflow-x:hidden;
+  position:relative;
+  isolation:isolate;
+}
+
+/* =========================================================
+   CINEMATIC AMBIENT BACKGROUND
+   Dark charcoal + blurred neon mesh, designed as a seamless
+   slow loop. No reference image is used.
+========================================================= */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-22%;
+  z-index:-6;
+  pointer-events:none;
+  background:
+    linear-gradient(135deg,rgba(10,17,31,.28),rgba(10,17,31,.08)),
+    radial-gradient(ellipse 34% 28% at 17% 24%, rgba(108,42,170,.28), transparent 72%),
+    radial-gradient(ellipse 31% 26% at 78% 18%, rgba(22,151,181,.24), transparent 72%),
+    radial-gradient(ellipse 38% 31% at 74% 72%, rgba(117,48,174,.25), transparent 74%),
+    #0b0c10;
+  filter:blur(28px) saturate(1.12);
+  transform:translate3d(0,0,0) scale(1.08);
+  animation:ambientMesh 34s linear infinite;
+  will-change:transform,filter;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:-10%;
+  z-index:-5;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(174,82,255,.16) 0 2%, transparent 8%),
+    radial-gradient(circle at 82% 28%, rgba(47,221,244,.14) 0 2%, transparent 9%),
+    radial-gradient(circle at 66% 78%, rgba(143,70,255,.13) 0 2%, transparent 9%),
+    radial-gradient(circle at 28% 72%, rgba(226,48,151,.12) 0 2%, transparent 8%),
+    radial-gradient(circle at 52% 45%, rgba(255,255,255,.035) 0 1%, transparent 7%);
+  filter:blur(18px);
+  opacity:.9;
+  animation:bokehDrift 28s linear infinite;
+  will-change:transform;
+}
+
+.ambient-bg{
+  position:fixed;
+  inset:0;
+  z-index:-4;
+  overflow:hidden;
+  pointer-events:none;
+  filter:blur(0);
+}
+
+.ambient-bg .blob{
+  position:absolute;
+  width:40vw;
+  height:30vw;
+  min-width:260px;
+  min-height:200px;
+  border-radius:50% 42% 58% 46% / 46% 54% 44% 56%;
+  opacity:.62;
+  filter:blur(72px);
+  mix-blend-mode:screen;
+  will-change:transform;
+}
+
+.ambient-bg .b1{
+  top:-10%; left:-9%;
+  background:radial-gradient(ellipse at center,rgba(125,47,194,.72),rgba(79,28,123,.28) 48%,transparent 74%);
+  animation:blobPurple 31s linear infinite;
+}
+.ambient-bg .b2{
+  top:12%; right:-13%;
+  background:radial-gradient(ellipse at center,rgba(24,189,213,.62),rgba(20,112,142,.22) 48%,transparent 74%);
+  animation:blobCyan 37s linear infinite;
+}
+.ambient-bg .b3{
+  bottom:0; left:15%;
+  background:radial-gradient(ellipse at center,rgba(120,62,222,.52),rgba(67,33,137,.20) 48%,transparent 75%);
+  animation:blobViolet 34s linear infinite;
+}
+.ambient-bg .b4{
+  bottom:-12%; right:-8%;
+  background:radial-gradient(ellipse at center,rgba(183,37,124,.46),rgba(104,24,83,.20) 48%,transparent 76%);
+  animation:blobMagenta 40s linear infinite;
+}
+
+.ambient-bg .outline,
+.ambient-bg .plus{
+  display:none;
+}
+
+@keyframes ambientMesh{
+  0%{transform:translate3d(0,0,0) scale(1.08) rotate(0deg);}
+  25%{transform:translate3d(3%,-2%,0) scale(1.12) rotate(1deg);}
+  50%{transform:translate3d(-2%,3%,0) scale(1.1) rotate(-1deg);}
+  75%{transform:translate3d(2%,2%,0) scale(1.13) rotate(.7deg);}
+  100%{transform:translate3d(0,0,0) scale(1.08) rotate(0deg);}
+}
+
+@keyframes bokehDrift{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  25%{transform:translate3d(2%,-1%,0) scale(1.04);}
+  50%{transform:translate3d(-1%,2%,0) scale(1.02);}
+  75%{transform:translate3d(-2%,-1%,0) scale(1.05);}
+  100%{transform:translate3d(0,0,0) scale(1);}
+}
+
+@keyframes blobPurple{
+  0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);}
+  25%{transform:translate3d(18vw,8vh,0) scale(1.18) rotate(8deg);}
+  50%{transform:translate3d(7vw,25vh,0) scale(.94) rotate(-7deg);}
+  75%{transform:translate3d(-5vw,10vh,0) scale(1.12) rotate(5deg);}
+  100%{transform:translate3d(0,0,0) scale(1) rotate(0deg);}
+}
+
+@keyframes blobCyan{
+  0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);}
+  25%{transform:translate3d(-14vw,12vh,0) scale(.92) rotate(-8deg);}
+  50%{transform:translate3d(-22vw,28vh,0) scale(1.16) rotate(6deg);}
+  75%{transform:translate3d(-8vw,6vh,0) scale(1.05) rotate(-4deg);}
+  100%{transform:translate3d(0,0,0) scale(1) rotate(0deg);}
+}
+
+@keyframes blobViolet{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  25%{transform:translate3d(12vw,-13vh,0) scale(1.13);}
+  50%{transform:translate3d(25vw,-3vh,0) scale(.92);}
+  75%{transform:translate3d(7vw,9vh,0) scale(1.08);}
+  100%{transform:translate3d(0,0,0) scale(1);}
+}
+
+@keyframes blobMagenta{
+  0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);}
+  25%{transform:translate3d(-12vw,-9vh,0) scale(1.16) rotate(7deg);}
+  50%{transform:translate3d(-25vw,-18vh,0) scale(.94) rotate(-6deg);}
+  75%{transform:translate3d(-8vw,-5vh,0) scale(1.08) rotate(4deg);}
+  100%{transform:translate3d(0,0,0) scale(1) rotate(0deg);}
+}
+
+@media (max-width:650px){
+  body::before{filter:blur(22px) saturate(1.1);}
+  body::after{filter:blur(14px);}
+  .ambient-bg .blob{filter:blur(58px);}
+}
+
+@media (prefers-reduced-motion: reduce){
+  body::before,body::after,.ambient-bg *{
+    animation:none!important;
+  }
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible{
+  outline:2px solid var(--cyan);
+  outline-offset:3px;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.wrap{
+  width:min(1120px,100%);
+  margin:auto;
+  padding:20px 16px 50px;
+}
+
+/* HEADER */
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:5px 0 28px;
+}
+.header-nav{display:flex;align-items:center;gap:clamp(12px,3vw,34px);flex-wrap:wrap}
+.header-nav a{color:#f3f6ff;font-size:.92rem;border-bottom:1px solid transparent;transition:.2s}
+.header-nav a:hover{border-color:#ff718b;color:#fff}
+.logo{background:linear-gradient(135deg,#ff4d65,#a62e4d);border-radius:0;box-shadow:none}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  background:linear-gradient(135deg,#5f83ff,#a65cff);
+  box-shadow:0 0 35px #6c7fff45;
+  animation:logoFloat 3s ease-in-out infinite alternate;
+}
+
+.brand-name{
+  font-size:1.25rem;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+
+.brand-tagline{
+  display:block;
+  color:var(--muted);
+  font-size:.78rem;
+}
+
+@keyframes logoFloat{
+  from{
+    transform:translateY(-3px) rotate(-2deg);
+  }
+  to{
+    transform:translateY(3px) rotate(2deg);
+  }
+}
+
+/* BUTTONS */
+
+.btn{
+  border:1px solid transparent;
+  border-radius:13px;
+  padding:10px 15px;
+  background:linear-gradient(110deg,#5b7fff,#8e5cff);
+  color:#fff;
+  font-weight:800;
+  transition:
+    transform .2s ease,
+    filter .2s ease,
+    box-shadow .2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+  box-shadow:0 10px 30px #667fff35;
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn.secondary{
+  background:#202943;
+  border-color:#35415f;
+}
+
+.btn.green{
+  background:linear-gradient(110deg,#168e71,#27b98f);
+}
+
+.btn.red{
+  background:#632c3e;
+  border-color:#8e4057;
+}
+
+.btn.small{
+  padding:7px 10px;
+  font-size:.8rem;
+}
+
+.btn.full{
+  width:100%;
+}
+
+/* HERO */
+
+.hero{
+  text-align:center;
+  padding:48px 0 35px;
+  animation:rise .7s both;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 11px;
+  border:1px solid #7289ff40;
+  border-radius:999px;
+  background:#617eff12;
+  color:#c8d3ff;
+  font-size:.76rem;
+  font-weight:800;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
+}
+
+.hero{
+  text-align:center;
+  padding:18px 0 8px;
+  min-height:235px;
+}
+.hero .eyebrow{display:none}
+.hero h1{
+  margin:17px 0 12px;
+  font-size:clamp(2.7rem,8vw,5.5rem);
+  line-height:1;
+  letter-spacing:-.055em;
+}
+.hero .gradient{background:none;-webkit-text-fill-color:#fff;color:#fff;text-shadow:0 4px 12px #0009;animation:none}
+.hero p{color:#e7edfa;text-shadow:0 2px 8px #0008}
+.collection-search{width:min(350px,90%);height:54px;margin:20px auto 0;display:flex;align-items:center;gap:12px;padding:0 20px;border:2px solid #fff9;border-radius:40px;background:rgba(255,255,255,.9);box-shadow:0 8px 25px #0003;color:#111}
+.collection-search span{font-size:30px;line-height:1}
+.collection-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#111;font-size:1.05rem}
+.collection-search input::placeholder{color:#555}
+
+.gradient{
+  color:#f8fbff;
+  background:linear-gradient(110deg,#ffffff 0%,#dce7ff 24%,#b9caff 45%,#f0d7ff 68%,#bff8ff 86%,#ffffff 100%);
+  background-size:220% auto;
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 24px rgba(170,200,255,.14);
+  animation:textShimmer 7s ease-in-out infinite;
+}
+
+.hero p{
+  max-width:650px;
+  margin:auto;
+  color:#d5def2;
+}
+
+
+/* Reference-inspired fixed ecosystem banner */
+.ecosystem-banner{position:relative;isolation:isolate;overflow:hidden;margin:22px auto 28px;padding:16px 20px;width:min(900px,100%);text-align:center;border:1px solid #9db5ff8c;border-radius:16px;background:linear-gradient(110deg,#111a49,#252477,#3549a5,#171c50);background-size:260% 100%;color:#fff;font-size:clamp(.95rem,2.8vw,1.25rem);font-weight:900;letter-spacing:.12em;text-shadow:0 0 14px #a8c2ffb3;box-shadow:0 12px 34px #080b286e,0 0 22px #586cff66;animation:ecosystemFlow 8s ease-in-out infinite,ecosystemPulse 3s ease-in-out infinite}
+.ecosystem-banner:before{content:"";position:absolute;inset:-50% auto -50% -35%;width:25%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,#ffffff65,transparent);animation:bannerShine 4.8s ease-in-out infinite;z-index:-1}
+@keyframes ecosystemFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes ecosystemPulse{0%,100%{box-shadow:0 12px 34px #080b286e,0 0 14px #586cff44}50%{box-shadow:0 15px 40px #080b2888,0 0 28px #8292ff99}}
+@keyframes bannerShine{0%,25%{left:-35%}70%,100%{left:125%}}
+.collection-card{--card-text:#10121b;--card-bg:#f4f6ff;background:var(--card-bg);color:var(--card-text);border-color:color-mix(in srgb,var(--card-text) 18%,transparent);box-shadow:0 16px 35px #0006,inset 0 1px 2px #ffffffa8;animation:cardFloat 5.5s ease-in-out infinite,cardEntrance .65s both;}
+.collection-card:nth-child(3n+2){animation-delay:.25s,.08s}.collection-card:nth-child(3n){animation-delay:.5s,.16s}
+.collection-card:after{content:"";position:absolute;inset:-60% auto -60% -45%;width:35%;transform:rotate(20deg);background:linear-gradient(90deg,transparent,#ffffff8c,transparent);pointer-events:none;animation:cardShine 6s ease-in-out infinite}
+.collection-card h3,.collection-card p,.collection-card .collection-arrow{color:var(--card-text);text-shadow:none}
+.collection-card .collection-icon{color:var(--card-text);border:1px solid color-mix(in srgb,var(--card-text) 22%,transparent)}
+.collection-card:hover{transform:translateY(-10px) scale(1.025);box-shadow:0 25px 55px #0008,0 0 26px color-mix(in srgb,var(--collection-color,#667fff) 65%,transparent)}
+@keyframes cardFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes cardEntrance{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes cardShine{0%,20%{left:-45%}60%,100%{left:135%}}
+@media(prefers-reduced-motion:reduce){.ecosystem-banner,.ecosystem-banner:before,.collection-card,.collection-card:after{animation:none!important;transition:none!important}}
+
+/* COLLECTIONS */
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin:18px 0 17px;
+  flex-wrap:wrap;
+}
+.section-head>div{width:100%;text-align:center}
+.section-head h2{font-size:1.7rem}
+
+.section-head h2{
+  margin:0;
+  font-size:1.45rem;
+  letter-spacing:-.04em;
+  color:#f5f8ff;
+  text-shadow:0 0 18px rgba(180,205,255,.12);
+}
+
+.section-head p{
+  margin:3px 0 0;
+  color:#c2cde2;
+  font-size:.88rem;
+}
+
+.collection-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(min(100%,245px),1fr));
+  gap:22px;
+}
+
+.collection-card{
+  position:relative;
+  min-height:290px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:24px;
+  padding:24px 20px;
+  text-align:center;
+  background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(219,229,255,.92));
+  color:#10121b;
+  backdrop-filter:blur(12px);
+  box-shadow:0 14px 28px rgba(0,0,0,.38),inset 0 1px 2px #fff;
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+  animation:rise .55s both;
+}
+
+.collection-card:hover{
+  transform:translateY(-7px);
+  border-color:#fff;
+  box-shadow:0 25px 55px #0007,0 0 20px #b9c8ff55;
+}
+
+.collection-card:before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  right:-80px;
+  top:-80px;
+  background:var(--collection-color,#667fff);
+  opacity:.17;
+  filter:blur(12px);
+}
+
+.collection-icon{
+  position:relative;
+  z-index:1;
+  width:60px;
+  height:60px;
+  margin:auto;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  background:var(--collection-color,#667fff);
+  color:#fff;
+  box-shadow:
+    0 10px 30px
+    color-mix(
+      in srgb,
+      var(--collection-color,#667fff) 30%,
+      transparent
+    );
+}
+
+.collection-card h3{
+  position:relative;
+  z-index:1;
+  margin:20px 0 8px;
+  font-size:clamp(1.25rem,2.2vw,1.65rem);
+  line-height:1.2;
+  font-weight:850;
+  letter-spacing:-.025em;
+  color:#11131b;
+  text-shadow:none;
+  overflow-wrap:anywhere;
+}
+
+.collection-card p{
+  position:relative;
+  z-index:1;
+  margin:0 auto;
+  max-width:600px;
+  color:#202330;
+  text-shadow:none;
+  overflow-wrap:anywhere;
+}
+
+.collection-arrow{
+  position:absolute;
+  right:22px;
+  bottom:20px;
+  font-weight:900;
+  color:#dbe3ff;
+}
+
+/* EMPTY */
+
+.empty{
+  width:100%;
+  padding:45px 20px;
+  border:1px dashed #3b4864;
+  border-radius:20px;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* COLLECTION VIEW */
+
+.page-head{
+  margin:10px 0 22px;
+  text-align:center;
+  animation:rise .35s both;
+}
+
+.back{
+  display:block;
+  margin:0 auto 20px;
+}
+
+.page-head h1{
+  margin:15px 0 7px;
+  font-size:clamp(2.5rem,7vw,5rem);
+  line-height:1.05;
+  letter-spacing:-.06em;
+}
+
+.page-head p{
+  margin:auto;
+  max-width:700px;
+  color:#d3ddf0;
+}
+
+/* SEARCH */
+
+.search-box{
+  position:relative;
+  margin:20px 0;
+}
+
+.search-box input{
+  width:100%;
+  padding:14px 16px 14px 45px;
+  border-radius:15px;
+  border:1px solid #33405d;
+  background:#0c1220;
+  color:var(--text);
+}
+
+.search-icon{
+  position:absolute;
+  left:16px;
+  top:12px;
+  font-size:20px;
+  opacity:.7;
+}
+
+/* ITEMS */
+
+.item-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(min(100%,300px),1fr));
+  gap:14px;
+}
+
+.item-card{
+  border:1px solid var(--line);
+  border-radius:19px;
+  padding:18px;
+  background:linear-gradient(145deg,rgba(15,27,60,.88),rgba(8,17,42,.86));
+  backdrop-filter:blur(8px);
+  transition:
+    transform .22s,
+    border-color .22s,
+    box-shadow .22s;
+  animation:rise .4s both;
+}
+
+.item-card:hover{
+  transform:translateY(-4px);
+  border-color:#607dff80;
+  box-shadow:0 15px 45px #0003;
+}
+
+.item-number{
+  color:#9caeff;
+  font-size:.75rem;
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:start;
+}
+
+.item-card h3{
+  margin:0;
+  font-size:1.2rem;
+  line-height:1.3;
+  color:#f5f8ff;
+}
+
+.badge{
+  flex-shrink:0;
+  max-width:45%;
+  overflow-wrap:anywhere;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#52dce712;
+  border:1px solid #52dce72c;
+  color:#8fe8f1;
+  font-size:.72rem;
+  font-weight:800;
+}
+
+.copy-btn{
+  width:100%;
+  margin-top:18px;
+}
+
+
+/* ADMIN */
+
+.admin-shell{
+  min-height:calc(100vh - 70px);
+  animation:rise .4s both;
+}
+
+.admin-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:22px;
+  flex-wrap:wrap;
+}
+
+.admin-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.admin-title-icon{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#202a46;
+  border:1px solid #3c4a6e;
+}
+
+.admin-title h1{
+  margin:0;
+  font-size:1.5rem;
+}
+
+.admin-title p{
+  margin:2px 0 0;
+  color:var(--muted);
+  font-size:.8rem;
+}
+
+.admin-nav{
+  display:flex;
+  gap:7px;
+  padding:6px;
+  border:1px solid #2e3953;
+  border-radius:15px;
+  background:#0e1423;
+  margin-bottom:18px;
+}
+
+.nav-btn{
+  flex:1;
+  padding:10px 12px;
+  border:0;
+  border-radius:10px;
+  color:#aab6cf;
+  background:transparent;
+  font-weight:800;
+}
+
+.nav-btn.active{
+  color:#fff;
+  background:#283452;
+}
+
+.admin-panel{
+  border:1px solid #303b58;
+  border-radius:20px;
+  background:
+    linear-gradient(145deg,#121a2b,#0d1422);
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.admin-panel h2{
+  margin:0 0 5px;
+}
+
+.admin-panel-note{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+.admin-list{
+  display:grid;
+  gap:10px;
+}
+
+.admin-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px;
+  border:1px solid #2d3852;
+  border-radius:15px;
+  background:#11192a;
+}
+
+.admin-info{
+  min-width:0;
+  flex:1;
+}
+
+.admin-info strong{
+  display:block;
+  overflow-wrap:anywhere;
+}
+
+.admin-info small{
+  color:var(--muted);
+  display:block;
+  overflow-wrap:anywhere;
+}
+
+.admin-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.admin-actions .btn{
+  padding:7px 10px;
+  font-size:.78rem;
+}
+
+.admin-folder-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:17px;
+}
+
+/* FORMS */
+
+.form-row{
+  margin:14px 0;
+}
+
+.form-row label{
+  display:block;
+  margin-bottom:6px;
+  color:#c9d2e7;
+  font-size:.84rem;
+  font-weight:700;
+}
+
+.field{
+  width:100%;
+  border:1px solid #35415d;
+  border-radius:12px;
+  padding:12px 13px;
+  background:#0c1321;
+  color:var(--text);
+}
+
+textarea.field{
+  min-height:170px;
+  resize:vertical;
+}
+
+select.field{
+  appearance:auto;
+}
+
+.form-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:17px;
+}
+
+.color-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.color-choice{
+  width:34px;
+  height:34px;
+  padding:0;
+  border:2px solid transparent;
+  border-radius:10px;
+}
+
+.color-choice.selected{
+  border-color:#fff;
+  box-shadow:0 0 0 2px #667fff;
+}
+
+/* LOGIN */
+
+.auth-page{
+  min-height:75vh;
+  display:grid;
+  place-items:center;
+}
+
+.auth-card{
+  width:min(500px,100%);
+  padding:30px;
+  border:1px solid #3d4a6c;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at top,#35436b55,transparent 40%),
+    linear-gradient(145deg,#171f35,#0e1524);
+  box-shadow:0 35px 100px #0008;
+  text-align:center;
+  animation:pop .45s both;
+}
+
+.auth-icon{
+  width:78px;
+  height:78px;
+  margin:0 auto 17px;
+  display:grid;
+  place-items:center;
+  border-radius:24px;
+  font-size:35px;
+  background:linear-gradient(135deg,#6385ff,#a45cff);
+  box-shadow:0 0 60px #7287ff40;
+  animation:logoFloat 3s ease-in-out infinite alternate;
+}
+
+.auth-card h1{
+  margin:0 0 8px;
+  font-size:1.8rem;
+}
+
+.auth-card p{
+  color:var(--muted);
+}
+
+.google{
+  width:100%;
+  background:#fff;
+  color:#171923;
+}
+
+.google:hover{
+  background:#f0f2f7;
+  color:#171923;
+}
+
+/* MODALS */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  overflow:auto;
+  background:#050711e8;
+  backdrop-filter:blur(14px);
+}
+
+.overlay.show{
+  display:flex;
+}
+
+.modal{
+  position:relative;
+  width:min(600px,100%);
+  border:1px solid #455277;
+  border-radius:22px;
+  padding:22px;
+  background:
+    linear-gradient(145deg,#171f34,#0f1626);
+  box-shadow:0 30px 110px #0009;
+  animation:pop .3s both;
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.modal-head h2{
+  margin:0;
+}
+
+.close{
+  width:36px;
+  height:36px;
+  padding:0;
+  border:0;
+  border-radius:10px;
+  background:#252f46;
+  color:#fff;
+  font-size:20px;
+}
+
+.modal-note{
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+.error-modal{
+  text-align:center;
+  width:min(470px,100%);
+}
+
+.error-icon{
+  width:70px;
+  height:70px;
+  margin:4px auto 15px;
+  display:grid;
+  place-items:center;
+  border-radius:22px;
+  background:#6a2b4055;
+  border:1px solid #a44562;
+  font-size:30px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  z-index:300;
+  transform:translate(-50%,20px);
+  padding:11px 17px;
+  border:1px solid #52648d;
+  border-radius:13px;
+  background:#171f34ee;
+  box-shadow:0 15px 50px #0008;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* STATUS */
+
+.status{
+  min-height:22px;
+  margin:12px 0;
+  color:#aab8d3;
+  font-size:.86rem;
+}
+
+.status.error{
+  color:#ff9aaa;
+}
+
+.success{
+  color:#6fe3b0;
+}
+
+/* ANIMATION */
+
+@keyframes rise{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes pop{
+  from{
+    opacity:0;
+    transform:translateY(14px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.site-footer{
+  width:100%;
+  margin:50px auto 0;
+  padding:26px 16px 24px;
+  border-top:1px solid rgba(255,255,255,.12);
+  text-align:center;
+  color:var(--muted);
+  animation:rise .8s ease both;
+}
+.site-footer .footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.site-footer .footer-links a{
+  color:#dce4ff;
+  font-weight:700;
+  transition:color .2s ease,transform .2s ease;
+}
+.site-footer .footer-links a:hover{
+  color:var(--cyan);
+  transform:translateY(-2px);
+}
+.footer-copyright{margin:10px 0 0;font-size:.8rem;}
+
+@media(max-width:650px){
+
+  .wrap{
+    padding:16px 13px 35px;
+  }
+
+  .hero{
+    padding-top:20px;
+    min-height:205px;
+  }
+
+  .header{align-items:flex-start;flex-direction:column;padding-bottom:18px}
+  .header-nav{gap:10px 17px}
+  .header-nav a{font-size:.82rem}
+  .collection-card{min-height:240px;padding:22px 18px}
+  .collection-search{margin-top:17px}
+
+  .hero h1{
+    font-size:clamp(2.5rem,14vw,4rem);
+  }
+
+  .admin-card{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .admin-actions{
+    width:100%;
+  }
+
+  .admin-actions .btn{
+    flex:1;
+  }
+
+  .auth-card{
+    padding:23px;
+  }
+}
+
+@keyframes textShimmer{
+  0%,100%{
+    background-position:0% 50%;
+  }
+  50%{
+    background-position:100% 50%;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
+
+
+/* =========================================================
+   MAISHN.WORK VISUAL REFRESH — custom photo background + vivid cards
+========================================================= */
+body{
+  background:
+    linear-gradient(180deg,rgba(5,9,20,.20) 0%,rgba(5,9,20,.28) 48%,rgba(5,9,20,.78) 100%),
+    var(--site-background-image, url("home-background.jpg")) center center / cover fixed,
+    linear-gradient(135deg,#b5e6ee,#d7e6ef 55%,#101d4f);
+}
+body::before,body::after,.ambient-bg{display:none!important}
+.wrap{position:relative;z-index:1}
+.header{padding-top:8px}
+.brand-name,.brand-tagline,.header-nav a{text-shadow:0 2px 8px #0009}
+.hero{padding-top:68px;min-height:310px}
+.hero h1{font-size:clamp(3rem,8vw,5.8rem);letter-spacing:-.045em}
+.hero .gradient{font-weight:950;text-shadow:0 5px 22px #000a}
+.hero p{max-width:720px}
+.collection-search{width:min(420px,92%);height:58px}
+.ecosystem-banner{margin-top:18px}
+.collection-card{
+  --card-text:#fff;
+  background:linear-gradient(145deg,
+    color-mix(in srgb,var(--collection-color,#667fff) 92%,#fff 8%),
+    color-mix(in srgb,var(--collection-color,#667fff) 68%,#080d27 32%))!important;
+  color:#fff!important;
+  border:1px solid #ffffffa8!important;
+  box-shadow:0 18px 38px #0005,inset 0 1px 1px #ffffff70!important;
+  backdrop-filter:blur(10px);
+}
+.collection-card:before{
+  width:260px;height:260px;right:-90px;top:-110px;
+  background:#fff;opacity:.18;filter:blur(26px)
+}
+.collection-card h3,.collection-card p,.collection-card .collection-arrow{
+  color:#fff!important;text-shadow:0 2px 8px #0003!important
+}
+.collection-card .collection-icon{
+  color:#fff!important;background:#ffffff26!important;
+  border:1px solid #ffffff70!important;
+  box-shadow:0 8px 22px #0002
+}
+.collection-card p{font-weight:550}
+.collection-card:hover{filter:saturate(1.13) brightness(1.07)}
+.site-footer{position:relative;z-index:1}
+@media(max-width:650px){
+  .hero{padding-top:35px;min-height:250px}
+  .header{align-items:center}
+  .header-nav{gap:9px 14px}
+  .collection-card{min-height:230px}
+}
+
+
+
+/* =========================================================
+   MAISHN.WORK — CUSTOM WHITE WAVE + RESTRICTED COLOR PALETTE
+   Palette only: #000000 #4B0082 #0B1F3A #8B0000 #006400 #B8860B
+   Keep background1.jpg beside index.html in the GitHub repository.
+========================================================= */
+:root {
+  color-scheme: light;
+  --bg: #B8860B;
+  --bg2: #0B1F3A;
+  --card: #4B0082;
+  --card2: #8B0000;
+  --line: #0B1F3A;
+  --text: #000000;
+  --muted: #0B1F3A;
+  --blue: #4B0082;
+  --cyan: #B8860B;
+  --purple: #4B0082;
+  --green: #006400;
+  --red: #8B0000;
+  --shadow: 0 14px 32px #0B1F3A;
+}
+html { background: #B8860B; }
+body {
+  color: #000000 !important;
+  background: #B8860B url("./background1.jpg") center center / cover fixed no-repeat !important;
+  background-attachment: fixed !important;
+}
+body::before, body::after, .ambient-bg, .ambient-bg * { display: none !important; }
+.wrap, main, .main-content, .content, section, .hero, .categories, .collections,
+.collection-section, .container { background-color: transparent; }
+
+/* Text is limited to the requested palette. */
+body, p, small, label, li, dt, dd, .brand-tagline, .hero p,
+.section-description, .section-subtitle, .site-footer, .footer-copyright,
+.collection-card p, .collection-card h3, .collection-card .collection-arrow {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+h1, h2, h3, h4, h5, h6, .brand-name, .hero h1, .section-title,
+.section-heading, .ecosystem-bannner, .ecosystem-banner, .eyebrow {
+  color: #0B1F3A !important;
+  text-shadow: none !important;
+}
+a, .header-nav a, .footer-links a { color: #4B0082 !important; }
+a:hover, .header-nav a:hover, .footer-links a:hover { color: #8B0000 !important; }
+.brand-tagline, .muted, .text-muted { color: #0B1F3A !important; }
+
+/* Header and search */
+.header { background: transparent !important; }
+.logo { background: #4B0082 !important; color: #B8860B !important; border: 2px solid #0B1F3A !important; box-shadow: none !important; }
+.header-nav a { font-weight: 800; border-color: transparent !important; }
+.header-nav a:hover { border-color: #8B0000 !important; }
+.hero .gradient, .gradient {
+  background: none !important;
+  color: #4B0082 !important;
+  -webkit-text-fill-color: #4B0082 !important;
+  text-shadow: none !important;
+  animation: none !important;
+}
+.eyebrow { background: #B8860B !important; border: 2px solid #0B1F3A !important; }
+.dot { background: #006400 !important; box-shadow: none !important; }
+.collection-search, .search-box, .search-container {
+  background: #B8860B !important;
+  border: 2px solid #0B1F3A !important;
+  box-shadow: 0 8px 22px #0B1F3A !important;
+  color: #000000 !important;
+}
+.collection-search input, input, textarea, select {
+  color: #000000 !important;
+  background-color: #B8860B !important;
+  border-color: #0B1F3A !important;
+}
+input::placeholder, textarea::placeholder { color: #0B1F3A !important; opacity: 1; }
+
+/* Banner and collection cards: rich colors only from the chosen palette. */
+.ecosystem-banner, .ecosystem-bannner, .banner {
+  color: #B8860B !important;
+  background: #0B1F3A !important;
+  border: 2px solid #4B0082 !important;
+  box-shadow: none !important;
+}
+.collection-card {
+  border: 2px solid #0B1F3A !important;
+  border-radius: 22px !important;
+  box-shadow: 0 12px 25px #0B1F3A !important;
+  background: #B8860B !important;
+  color: #000000 !important;
+  animation: none !important;
+  transform: none !important;
+}
+.collection-card h3, .collection-card p, .collection-card .collection-arrow,
+.collection-card .collection-icon { color: var(--card-text) !important; }
+.collection-card .collection-icon { background: transparent !important; border: 2px solid var(--card-text) !important; }
+.collection-card::after { display: none !important; }
+.collection-card:hover { filter: none !important; transform: translateY(-4px) !important; }
+
+/* Buttons and interactive controls */
+.btn, button, .button {
+  background: #4B0082 !important;
+  color: #B8860B !important;
+  border: 2px solid #0B1F3A !important;
+  box-shadow: none !important;
+}
+.btn.secondary { background: #0B1F3A !important; color: #B8860B !important; }
+.btn.green { background: #006400 !important; color: #B8860B !important; }
+.btn.red { background: #8B0000 !important; color: #B8860B !important; }
+button:hover, .btn:hover, .button:hover { filter: brightness(1.08); }
+.item-card, .admin-card, .auth-card, .panel, .modal, .field, .form-control {
+  border-color: #0B1F3A !important;
+}
+.site-footer { border-top: 2px solid #0B1F3A !important; background: transparent !important; }
+.site-footer .footer-links a { color: #4B0082 !important; }
+.site-footer .footer-links a:hover { color: #8B0000 !important; }
+:focus-visible { outline: 3px solid #B8860B !important; outline-offset: 3px; }
+
+@media (max-width: 650px) {
+  body { background-position: center center !important; background-attachment: scroll !important; }
+  .collection-card { min-height: 210px; }
+  .header-nav a { font-size: .86rem; }
+}
+
+
+
+/* =========================================================
+   MAISHN.WORK ADMIN REDESIGN — LIGHT WAVE / INDIGO PALETTE
+   Collection and Settings views share the same clean system.
+========================================================= */
+:root {
+  --admin-ink: #0B1F3A;
+  --admin-purple: #4B0082;
+  --admin-gold: #B8860B;
+  --admin-line: rgba(11,31,58,.13);
+  --admin-glass: rgba(255,255,255,.86);
+}
+body { color:#000000; }
+#adminView { color:#0B1F3A; }
+#adminView .admin-shell { max-width:1280px; margin:0 auto; padding:18px 0 34px; }
+#adminView .admin-header { align-items:center; margin-bottom:22px; }
+#adminView .admin-title-icon { background:linear-gradient(145deg,#0B1F3A,#4B0082); color:#fff; border:1px solid rgba(75,0,130,.22); box-shadow:0 8px 20px rgba(11,31,58,.16); }
+#adminView .admin-title h1 { color:#0B1F3A; font-size:clamp(1.35rem,2.6vw,1.8rem); letter-spacing:-.035em; }
+#adminView .admin-title p { color:#0B1F3A; opacity:.72; }
+#adminView .admin-nav { gap:8px; padding:5px; border:1px solid rgba(75,0,130,.13); border-radius:16px; background:rgba(255,255,255,.82); box-shadow:0 8px 24px rgba(11,31,58,.08); backdrop-filter:blur(14px); }
+#adminView .nav-btn { min-height:48px; border:1px solid transparent; border-radius:12px; color:#0B1F3A; background:transparent; transition:all .2s ease; }
+#adminView .nav-btn:hover { background:rgba(75,0,130,.06); }
+#adminView .nav-btn.active { color:#4B0082; background:linear-gradient(100deg,rgba(75,0,130,.11),rgba(184,134,11,.09)); border-color:rgba(75,0,130,.22); box-shadow:inset 0 -2px 0 #4B0082; }
+#adminView .admin-panel { padding:clamp(17px,2.5vw,28px); border:1px solid rgba(255,255,255,.92); border-radius:22px; color:#0B1F3A; background:rgba(255,255,255,.83); backdrop-filter:blur(18px); box-shadow:0 16px 42px rgba(11,31,58,.13), inset 0 1px 0 #fff; }
+#adminView .admin-panel h2 { color:#0B1F3A; font-size:clamp(1.2rem,2.4vw,1.55rem); letter-spacing:-.025em; }
+#adminView .admin-panel-note { color:#0B1F3A; opacity:.72; line-height:1.55; }
+#adminView #addCollectionBtn, #adminView #addItemBtn { color:#fff; background:#4B0082; border:1px solid #4B0082; border-radius:12px; box-shadow:0 7px 18px rgba(75,0,130,.18); }
+#adminView .admin-list { gap:11px; }
+#adminView .admin-card { position:relative; overflow:hidden; padding:17px 16px 17px 20px; border:1px solid rgba(11,31,58,.09); border-radius:15px; background:linear-gradient(100deg,rgba(75,0,130,.075),rgba(255,255,255,.88)); color:#0B1F3A; box-shadow:0 5px 16px rgba(11,31,58,.045); transition:transform .2s ease,box-shadow .2s ease; }
+#adminView .admin-card:nth-child(3n + 2) { background:linear-gradient(100deg,rgba(0,100,0,.075),rgba(255,255,255,.9)); }
+#adminView .admin-card:nth-child(3n) { background:linear-gradient(100deg,rgba(139,0,0,.07),rgba(255,255,255,.9)); }
+#adminView .admin-card::before { content:""; position:absolute; inset:0 auto 0 0; width:4px; background:#4B0082; }
+#adminView .admin-card:nth-child(3n + 2)::before { background:#006400; }
+#adminView .admin-card:nth-child(3n)::before { background:#8B0000; }
+#adminView .admin-card:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(11,31,58,.1); }
+#adminView .admin-info strong { color:#0B1F3A; font-size:1rem; }
+#adminView .admin-info small { margin-top:4px; color:#0B1F3A; opacity:.75; line-height:1.45; }
+#adminView .admin-actions { align-items:center; }
+#adminView .admin-actions .btn { border-radius:10px; min-height:34px; }
+#adminView .admin-actions .btn:not(.secondary) { background:#4B0082; color:#fff; border-color:#4B0082; }
+#adminView .admin-actions .btn.secondary { background:#0B1F3A; color:#fff; border-color:#0B1F3A; }
+#adminView .admin-actions .btn.danger, #adminView .admin-actions .delete-btn { background:#8B0000; color:#fff; border-color:#8B0000; }
+#adminView .form-row { padding:14px; margin:13px 0; border:1px solid rgba(11,31,58,.08); border-radius:14px; background:rgba(255,255,255,.66); }
+#adminView .form-row label { color:#0B1F3A; font-weight:800; }
+#adminView .field { color:#000; background:rgba(255,255,255,.96); border:1px solid rgba(11,31,58,.19); border-radius:11px; box-shadow:inset 0 1px 2px rgba(11,31,58,.025); }
+#adminView .field:focus { border-color:#4B0082; outline:3px solid rgba(75,0,130,.1); }
+#adminView .field::placeholder { color:#0B1F3A; opacity:.55; }
+#adminView hr { border-top-color:rgba(11,31,58,.13)!important; }
+#adminView .status { color:#006400; }
+#adminView .btn.green { background:#006400; color:#fff; border-color:#006400; }
+#adminView .btn.secondary { background:#0B1F3A; color:#fff; border-color:#0B1F3A; }
+#adminView #logoutBtn { color:#fff; background:#0B1F3A; border-color:#0B1F3A; border-radius:12px; }
+#adminView .color-choice { width:38px; height:38px; border:2px solid rgba(11,31,58,.14); box-shadow:0 2px 8px rgba(11,31,58,.12); }
+#adminView .color-choice.selected { outline:3px solid #B8860B; outline-offset:3px; transform:scale(1.04); }
+#adminView .modal { background:rgba(255,255,255,.98); color:#0B1F3A; border:1px solid rgba(75,0,130,.18); box-shadow:0 25px 80px rgba(11,31,58,.24); }
+#adminView .modal h2, #adminView .modal label { color:#0B1F3A; }
+#adminView .modal .close { color:#0B1F3A; }
+#adminView .empty { color:#0B1F3A; border-color:rgba(75,0,130,.25); background:rgba(255,255,255,.7); }
+/* The card text is fixed white; only card background color can be selected in Admin. */
+.collection-card, .collection-card h3, .collection-card p, .collection-card .collection-arrow, .collection-card .collection-icon { color:#FFFFFF !important; }
+.collection-card h3, .collection-card p { text-shadow:0 1px 2px rgba(0,0,0,.25); }
+.collection-card { background:var(--collection-color,#4B0082)!important; border:1px solid rgba(255,255,255,.65)!important; }
+.collection-card::before { background:rgba(255,255,255,.22)!important; opacity:.22!important; }
+.collection-card .collection-icon { background:rgba(255,255,255,.12)!important; border:1px solid rgba(255,255,255,.55)!important; }
+.collection-card::after { background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent); }
+/* Keep site links in the header only; no duplicate navigation at the bottom. */
+.site-footer .footer-links { display:none!important; }
+@media(max-width:700px){
+  #adminView .admin-shell { padding-top:10px; }
+  #adminView .admin-panel { padding:15px; border-radius:17px; }
+  #adminView .admin-card { align-items:flex-start; flex-direction:column; }
+  #adminView .admin-actions { width:100%; }
+  #adminView .admin-actions .btn { flex:1; }
+  #adminView .admin-nav { position:static; }
+}
+
+
+/* Refined admin edit forms: consistent white, navy and purple theme */
+#adminView .modal,
+#adminView .admin-panel,
+#adminView .panel,
+#adminView .settings-panel {
+  border-radius: 20px;
+}
+#adminView .modal .form-row,
+#adminView .form-row {
+  background: rgba(255,255,255,.88);
+  border: 1px solid rgba(75,0,130,.14);
+  border-radius: 14px;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+#adminView .modal .form-row:focus-within,
+#adminView .form-row:focus-within {
+  border-color: #4B0082;
+  box-shadow: 0 0 0 3px rgba(75,0,130,.08);
+}
+#adminView .modal .btn,
+#adminView .form-actions .btn,
+#adminView #saveSettingsBtn {
+  font-weight: 800;
+  border-radius: 13px;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+#adminView .modal .btn:hover,
+#adminView .form-actions .btn:hover,
+#adminView #saveSettingsBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(11,31,58,.16);
+  filter: brightness(1.04);
+}
+#adminView #saveSettingsBtn {
+  min-height: 54px;
+  color: #fff;
+  background: linear-gradient(110deg, #4B0082 0%, #0B1F3A 58%, #006400 100%);
+  border: 1px solid rgba(184,134,11,.65);
+  box-shadow: 0 9px 24px rgba(75,0,130,.24), inset 0 1px 0 rgba(255,255,255,.2);
+  letter-spacing: .02em;
+}
+#adminView #saveSettingsBtn:disabled { opacity: .72; cursor: wait; transform: none; }
+#adminView .color-row { display:flex; flex-wrap:wrap; gap:13px; padding:8px 4px; align-items:center; }
+#adminView .color-choice { flex: 0 0 42px; width:42px; height:42px; min-width:42px; border-radius:12px; cursor:pointer; display:inline-block; }
+#adminView .color-choice.selected { outline:3px solid #B8860B; outline-offset:3px; box-shadow:0 0 0 5px rgba(184,134,11,.15); }
+.save-success-overlay { position:fixed; inset:0; z-index:100000; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(11,31,58,.48); backdrop-filter:blur(7px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .32s ease, visibility .32s ease; }
+.save-success-overlay.show { opacity:1; visibility:visible; }
+.save-success-card { width:min(620px, 94vw); padding:clamp(28px,5vw,54px); text-align:center; background:linear-gradient(145deg,#fff 0%,#f8f4ff 100%); border:2px solid rgba(75,0,130,.22); border-radius:28px; box-shadow:0 28px 90px rgba(11,31,58,.32); transform:translateY(14px) scale(.96); transition:transform .32s ease; }
+.save-success-overlay.show .save-success-card { transform:translateY(0) scale(1); }
+.save-success-check { width:74px; height:74px; display:grid; place-items:center; margin:0 auto 18px; border-radius:50%; color:#fff; background:linear-gradient(135deg,#006400,#0B1F3A); font-size:44px; font-weight:900; box-shadow:0 10px 28px rgba(0,100,0,.24); }
+.save-success-title { color:#006400; font-size:clamp(23px,4vw,36px); font-weight:900; line-height:1.2; }
+.save-success-subtitle { margin-top:12px; color:#0B1F3A; font-size:clamp(14px,2vw,18px); }
+@media (prefers-reduced-motion: reduce) { .save-success-overlay, .save-success-card { transition:none; } }
+
+
+
+/* FINAL ADMIN THEME FIX — all admin forms, color swatches and save feedback */
+:root { --admin-purple:#4B0082; --admin-navy:#0B1F3A; --admin-red:#8B0000; --admin-green:#006400; --admin-gold:#B8860B; --admin-black:#000000; }
+
+/* The collection's stored color is authoritative; do not override it by card position. */
+.collection-card {
+  background: var(--collection-color, #4B0082) !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+}
+.collection-card h3, .collection-card p, .collection-card .collection-arrow,
+.collection-card .collection-icon { color:#FFFFFF !important; }
+.collection-card .collection-icon { background:rgba(255,255,255,.12)!important; border-color:rgba(255,255,255,.55)!important; }
+
+/* All modal/editor surfaces use the same clean white + navy + purple design. */
+.overlay { background:rgba(11,31,58,.58)!important; backdrop-filter:blur(8px); }
+.overlay .modal {
+  color:#0B1F3A!important;
+  background:linear-gradient(145deg,#FFFFFF 0%,#F8F7FC 100%)!important;
+  border:1px solid rgba(75,0,130,.22)!important;
+  border-radius:22px!important;
+  box-shadow:0 28px 80px rgba(11,31,58,.28)!important;
+}
+.overlay .modal h2, .overlay .modal label { color:#0B1F3A!important; font-weight:800; }
+.overlay .modal .form-row { background:rgba(255,255,255,.86)!important; border:1px solid rgba(75,0,130,.14)!important; border-radius:14px!important; }
+.overlay .modal .field,
+#adminView .field,
+#adminView input, #adminView textarea, #adminView select {
+  background:#FFFFFF!important;
+  background-color:#FFFFFF!important;
+  color:#000000!important;
+  border:1px solid rgba(11,31,58,.24)!important;
+  border-radius:11px!important;
+}
+.overlay .modal .field:focus, #adminView .field:focus { border-color:#4B0082!important; outline:3px solid rgba(75,0,130,.12)!important; }
+
+/* Force each palette swatch to show its own real color, despite global button rules. */
+.color-choice, button.color-choice { width:42px!important; height:42px!important; min-width:42px!important; flex:0 0 42px!important; padding:0!important; border-radius:12px!important; border:2px solid rgba(11,31,58,.24)!important; box-shadow:0 3px 9px rgba(11,31,58,.14)!important; cursor:pointer!important; }
+.color-choice[data-color="#000000"] { background:#000000!important; background-color:#000000!important; }
+.color-choice[data-color="#4B0082"] { background:#4B0082!important; background-color:#4B0082!important; }
+.color-choice[data-color="#0B1F3A"] { background:#0B1F3A!important; background-color:#0B1F3A!important; }
+.color-choice[data-color="#8B0000"] { background:#8B0000!important; background-color:#8B0000!important; }
+.color-choice[data-color="#006400"] { background:#006400!important; background-color:#006400!important; }
+.color-choice[data-color="#705000"] { background:#705000!important; background-color:#705000!important; }
+.color-choice[data-color="#191970"] { background:#191970!important; background-color:#191970!important; }
+.color-choice[data-color="#4A0E4E"] { background:#4A0E4E!important; background-color:#4A0E4E!important; }
+.color-choice[data-color="#5A1A01"] { background:#5A1A01!important; background-color:#5A1A01!important; }
+.color-choice[data-color="#1B4332"] { background:#1B4332!important; background-color:#1B4332!important; }
+.color-choice.selected { outline:3px solid #B8860B!important; outline-offset:3px!important; box-shadow:0 0 0 5px rgba(184,134,11,.18)!important; transform:scale(1.05); }
+.color-choice:hover { filter:brightness(1.13)!important; }
+
+/* Consistent high-contrast buttons across Settings, Collection and Item editors. */
+#adminView .btn, .overlay .modal .btn, #saveCollectionBtn, #saveItemBtn, #saveSettingsBtn {
+  min-height:44px;
+  border-radius:13px!important;
+  border:1px solid #0B1F3A!important;
+  color:#FFFFFF!important;
+  font-weight:850!important;
+  letter-spacing:.01em;
+  box-shadow:0 7px 18px rgba(11,31,58,.14)!important;
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+#saveCollectionBtn, #saveItemBtn, #saveSettingsBtn {
+  background:linear-gradient(115deg,#4B0082 0%,#0B1F3A 72%,#006400 100%)!important;
+  border:2px solid #B8860B!important;
+  padding:12px 22px!important;
+}
+#adminView .btn.secondary, .overlay .modal .btn.secondary { background:#0B1F3A!important; color:#FFFFFF!important; }
+#adminView .btn.danger, .overlay .modal .btn.danger { background:#8B0000!important; color:#FFFFFF!important; }
+#adminView .btn:hover, .overlay .modal .btn:hover, #saveCollectionBtn:hover, #saveItemBtn:hover, #saveSettingsBtn:hover { transform:translateY(-2px); box-shadow:0 11px 24px rgba(11,31,58,.2)!important; filter:brightness(1.05); }
+#saveCollectionBtn:disabled, #saveItemBtn:disabled, #saveSettingsBtn:disabled { opacity:.7; cursor:wait; transform:none; }
+
+/* Large centered success message appears after every successful save, then fades out. */
+.save-success-overlay { z-index:100000!important; }
+.save-success-card { width:min(720px,94vw)!important; padding:clamp(30px,6vw,62px)!important; border:2px solid #B8860B!important; border-radius:28px!important; }
+.save-success-title { color:#006400!important; font-size:clamp(27px,5vw,43px)!important; font-weight:950!important; }
+.save-success-subtitle { color:#0B1F3A!important; }
+
+
+/* FINAL FIX: homepage collection cards always use the saved Firestore color. */
+#homeView .collection-grid > .collection-card,
+#homeView .collection-grid > .collection-card:nth-child(n) {
+  background: var(--collection-color, #4B0082) !important;
+  background-color: var(--collection-color, #4B0082) !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+}
+#homeView .collection-grid > .collection-card h3,
+#homeView .collection-grid > .collection-card p,
+#homeView .collection-grid > .collection-card .collection-arrow,
+#homeView .collection-grid > .collection-card .collection-icon { color:#FFFFFF!important; }
+#adminView .color-row { display:flex!important; flex-wrap:wrap!important; gap:12px!important; }
+#adminView .color-choice { appearance:none!important; -webkit-appearance:none!important; }
+
+
+/* COLLECTION DETAIL + SEARCH POLISH */
+#collectionView .page-head { animation: detailHeadIn .65s cubic-bezier(.2,.8,.2,1) both; }
+#collectionView .page-head .gradient { animation: titleGlow 3.8s ease-in-out infinite, titleFloat 4.2s ease-in-out infinite !important; }
+#heroTitle, .brand-name { display:inline-block; transform-origin:50% 65%; animation: gentleShake 4.8s ease-in-out infinite, titleGlow 3.8s ease-in-out infinite !important; }
+@keyframes gentleShake { 0%, 88%, 100% { transform:translateX(0) rotate(0deg) } 90% { transform:translateX(-1.5px) rotate(-.35deg) } 92% { transform:translateX(1.5px) rotate(.35deg) } 94% { transform:translateX(-1px) rotate(-.2deg) } 96% { transform:translateX(0) rotate(0deg) } }
+@keyframes titleGlow { 0%,100% { text-shadow:0 0 0 rgba(75,0,130,0) } 50% { text-shadow:0 0 16px rgba(75,0,130,.25) } }
+@keyframes titleFloat { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-3px) } }
+@keyframes detailHeadIn { from { opacity:0; transform:translateY(14px) } to { opacity:1; transform:translateY(0) } }
+#collectionView .search-box { position:relative; display:flex; align-items:center; gap:10px; padding:8px 10px 8px 42px; border:1px solid rgba(75,0,130,.28)!important; border-radius:16px!important; background:rgba(255,255,255,.94)!important; box-shadow:0 10px 28px rgba(11,31,58,.15)!important; }
+#collectionView .search-box .search-icon { left:14px; top:50%; transform:translateY(-50%); color:#4B0082; z-index:1; }
+#collectionView .search-box input { min-width:0; flex:1; padding:10px 4px!important; border:0!important; outline:0!important; background:transparent!important; color:#0B1F3A!important; box-shadow:none!important; }
+.collection-search { position:relative; }
+.collection-search input { background:transparent!important; color:#0B1F3A!important; }
+.search-clear { flex:0 0 auto; width:34px; height:34px; display:inline-grid; place-items:center; border:0!important; border-radius:50%!important; background:#0B1F3A!important; color:#FFFFFF!important; font-size:24px!important; line-height:1; cursor:pointer; box-shadow:0 4px 12px rgba(11,31,58,.18)!important; }
+.search-clear[hidden] { display:none!important; }
+.search-suggestions { position:absolute; z-index:5000; top:calc(100% + 8px); left:0; right:0; max-height:280px; overflow:auto; padding:7px; border:1px solid rgba(75,0,130,.22); border-radius:15px; background:rgba(255,255,255,.98); box-shadow:0 16px 36px rgba(11,31,58,.2); backdrop-filter:blur(16px); }
+.collection-search + .search-suggestions { position:relative; top:auto; left:auto; right:auto; width:min(520px,94vw); margin:-10px auto 0; }
+.search-suggestions[hidden] { display:none!important; }
+.search-suggestion { display:flex; align-items:center; gap:10px; width:100%; padding:11px 12px; text-align:left; border:0!important; border-radius:10px!important; background:transparent!important; color:#0B1F3A!important; box-shadow:none!important; font-weight:750; cursor:pointer; }
+.search-suggestion:hover,.search-suggestion:focus-visible { background:#4B0082!important; color:#FFFFFF!important; outline:2px solid #B8860B; }
+.search-suggestion small { margin-left:auto; color:inherit!important; opacity:.75; }
+#collectionView .item-grid { gap:16px; }
+#collectionView .item-card { position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.32)!important; border-radius:18px!important; background:linear-gradient(145deg,#0B1F3A,#17112e 75%,#4B0082)!important; color:#FFFFFF!important; box-shadow:0 12px 28px rgba(11,31,58,.22)!important; animation: itemRise .55s both, itemBreathe 6s ease-in-out infinite; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+#collectionView .item-card:nth-child(3n+2) { animation-delay:.08s,.7s; }
+#collectionView .item-card:nth-child(3n) { animation-delay:.16s,1.2s; }
+#collectionView .item-card h3,#collectionView .item-card p,#collectionView .item-card .item-number,#collectionView .item-card .badge { color:#FFFFFF!important; }
+#collectionView .item-card .item-number { opacity:.75; }
+#collectionView .item-card .badge { background:rgba(75,0,130,.7)!important; border:1px solid rgba(255,255,255,.28)!important; }
+#collectionView .item-card button,#collectionView .item-card .btn { background:#4B0082!important; color:#FFFFFF!important; border:1px solid #B8860B!important; border-radius:10px!important; }
+#collectionView .item-card:hover { transform:translateY(-5px) scale(1.012); border-color:#B8860B!important; box-shadow:0 18px 38px rgba(11,31,58,.32),0 0 18px rgba(75,0,130,.16)!important; }
+@keyframes itemRise { from { opacity:0; transform:translateY(12px) scale(.985) } to { opacity:1; transform:translateY(0) scale(1) } }
+@keyframes itemBreathe { 0%,100% { box-shadow:0 12px 28px rgba(11,31,58,.22) } 50% { box-shadow:0 15px 32px rgba(75,0,130,.18) } }
+@media(prefers-reduced-motion:reduce) { #heroTitle,.brand-name,#collectionView .page-head,#collectionView .page-head .gradient,#collectionView .item-card { animation:none!important; transition:none!important; } }
+
+
+/* Adsterra direct link: clearly labeled, only inside Collection pages. */
+.collection-sponsored-wrap{margin:18px 0 22px;padding:16px 18px;border:1px solid rgba(75,0,130,.24);border-radius:16px;background:linear-gradient(135deg,rgba(75,0,130,.08),rgba(11,31,58,.07));box-shadow:0 10px 24px rgba(11,31,58,.09);text-align:center}
+.collection-sponsored-wrap[hidden]{display:none!important}
+.collection-sponsored-wrap .sponsored-label{display:inline-block;padding:4px 10px;border-radius:999px;background:#0B1F3A;color:#fff;font-size:10px;font-weight:800;letter-spacing:.12em}
+.collection-sponsored-wrap p{margin:9px 0 12px;color:#0B1F3A;font-size:13px}
+.collection-sponsored-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border:1px solid #B8860B;border-radius:11px;background:linear-gradient(135deg,#4B0082,#0B1F3A);color:#fff!important;font-weight:800;text-decoration:none;box-shadow:0 8px 18px rgba(75,0,130,.2);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+.collection-sponsored-link:hover{transform:translateY(-2px);filter:brightness(1.12);box-shadow:0 12px 25px rgba(75,0,130,.3)}
+.collection-sponsored-link:focus-visible{outline:3px solid #B8860B;outline-offset:3px}
+</style>
+</head>
+
+<body>
+
+<div class="ambient-bg" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+  <span class="blob b4"></span>
+  <span class="outline o1"></span>
+  <span class="outline o2"></span>
+  <span class="outline o3"></span>
+  <span class="plus p1"></span>
+  <span class="plus p2"></span>
+  <span class="plus p3"></span>
+  <span class="plus p4"></span>
+</div>
+
+<div class="wrap">
+
+<header class="header">
+
+  <a class="brand" href="#home">
+
+    <div class="logo">
+      🖥️
+    </div>
+
+    <div>
+
+      <span
+        class="brand-name"
+        id="brandName"
+      >
+        Maishn.Work
+      </span>
+
+      <span
+        class="brand-tagline"
+        id="brandTagline"
+      >
+        Handcrafted prompts for smarter AI workflows.
+      </span>
+
+    </div>
+
+  </a>
+
+  <nav class="header-nav" aria-label="Main navigation">
+    <a href="about.html">About Us</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="support.html">Support</a>
+  </nav>
+
+</header>
+
+
+<!-- =========================================================
+     PUBLIC HOME
+========================================================= -->
+
+<section id="homeView">
+
+  <div class="hero">
+
+    <span class="eyebrow">
+
+      <span class="dot"></span>
+
+      <span id="heroEyebrow">
+        MAISHN.WORK COLLECTIONS
+      </span>
+
+    </span>
+
+    <h1>
+
+      <br>
+
+      <span
+        class="gradient"
+        id="heroTitle"
+      >
+        Maishn.Work
+      </span>
+
+    </h1>
+
+    <label class="collection-search" aria-label="Search collections">
+      <span aria-hidden="true">⌕</span>
+      <input id="collectionSearch" type="search" placeholder="Search collections..." autocomplete="off" aria-autocomplete="list" aria-controls="collectionSearchSuggestions">
+      <button type="button" class="search-clear" id="clearCollectionSearch" aria-label="Clear search" title="Clear search" hidden>×</button>
+    </label>
+    <div class="search-suggestions" id="collectionSearchSuggestions" role="listbox" hidden></div>
+
+<!-- Homepage ad script removed: ads are shown only inside Collection view. -->
+    <p id="heroDescription">
+      Discover useful collections and copy exactly what you need.
+    </p>
+
+  </div>
+
+
+  <div class="section-head">
+
+    <div>
+<h2 id="collectionHeading">
+        MaishnWork Collections
+      </h2>
+
+      <p id="collectionSubheading">
+        Choose a collection to continue.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="collectionGrid"
+    class="collection-grid"
+  ></div>
+
+</section>
+
+
+<!-- =========================================================
+     COLLECTION VIEW
+========================================================= -->
+
+<section
+  id="collectionView"
+  class="hidden"
+>
+
+  <div class="page-head">
+
+    <button
+      class="btn secondary back"
+      id="backHome"
+    >
+      ← Back to Collections
+    </button>
+
+    <span
+      class="eyebrow"
+      id="collectionBadge"
+    >
+      COLLECTION
+    </span>
+
+    <h1
+      class="gradient"
+      id="collectionTitle"
+    >
+      Collection
+    </h1>
+
+    <p id="collectionDescription"></p>
+
+  </div>
+
+
+  <div class="search-box">
+
+    <span class="search-icon">
+      ⌕
+    </span>
+
+    <input
+      id="itemSearch"
+      type="search"
+      placeholder="Search items in this collection..."
+      aria-label="Search items"
+      autocomplete="off"
+      aria-autocomplete="list"
+      aria-controls="itemSearchSuggestions"
+    >
+    <button type="button" class="search-clear" id="clearItemSearch" aria-label="Clear search" title="Clear search" hidden>×</button>
+    <div class="search-suggestions" id="itemSearchSuggestions" role="listbox" hidden></div>
+
+  </div>
+
+
+  <div class="collection-sponsored-wrap" id="collectionSponsoredWrap" hidden>
+    <span class="sponsored-label">SPONSORED</span>
+    <p>Support Maishn.Work by checking this partner link.</p>
+    <a class="collection-sponsored-link" id="collectionSponsoredLink" href="#" rel="nofollow sponsored" aria-label="Open sponsored link">
+      <span aria-hidden="true">↗</span> Visit Sponsored Link
+    </a>
+  </div>
+
+  <div
+    id="itemGrid"
+    class="item-grid"
+  ></div>
+
+</section>
+
+
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
+
+<section
+  id="adminLoginView"
+  class="hidden"
+>
+
+  <div class="auth-page">
+
+    <div class="auth-card">
+
+      <div class="auth-icon">
+        👨‍💻
+      </div>
+
+      <h1>
+        Admin Workspace
+      </h1>
+
+      <p>
+        Secure management access for Maishn.Work.
+      </p>
+
+      <button
+        class="btn google"
+        id="googleLogin"
+      >
+        Continue with Google
+      </button>
+
+      <p
+        id="authStatus"
+        class="status"
+      ></p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ADMIN DASHBOARD
+========================================================= -->
+
+<section
+  id="adminView"
+  class="hidden"
+>
+
+  <div class="admin-shell">
+
+    <div class="admin-header">
+
+      <div class="admin-title">
+
+        <div class="admin-title-icon">
+          ⚙️
+        </div>
+
+        <div>
+
+          <h1>
+            Admin Dashboard
+          </h1>
+
+          <p>
+            Maishn.Work control center
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn secondary"
+        id="logoutBtn"
+      >
+        Sign out
+      </button>
+
+    </div>
+
+
+    <div class="admin-nav">
+
+      <button
+        class="nav-btn active"
+        id="collectionsTab"
+      >
+        📁 Collections
+      </button>
+
+      <button
+        class="nav-btn"
+        id="settingsTab"
+      >
+        ⚙️ Settings
+      </button>
+
+    </div>
+
+
+    <!-- COLLECTION ADMIN -->
+
+    <div id="collectionsAdmin">
+
+      <div class="admin-panel">
+
+        <div class="admin-folder-head">
+
+          <div>
+
+            <h2 id="adminCollectionHeading">
+              Collections
+            </h2>
+
+            <p class="admin-panel-note">
+              Create and manage your website collections.
+            </p>
+
+          </div>
+
+          <button
+            class="btn"
+            id="addCollectionBtn"
+          >
+            ＋ Add Collection
+          </button>
+
+        </div>
+
+        <div
+          id="adminCollectionList"
+          class="admin-list"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- COLLECTION FOLDER -->
+
+    <div
+      id="folderAdmin"
+      class="hidden"
+    >
+
+      <div class="admin-panel">
+
+        <div class="admin-folder-head">
+
+          <div>
+
+            <button
+              class="btn secondary small"
+              id="backAdminCollections"
+            >
+              ← Collections
+            </button>
+
+            <h2
+              id="folderTitle"
+              style="margin-top:14px"
+            >
+              Collection
+            </h2>
+
+            <p
+              id="folderDescription"
+              class="admin-panel-note"
+            ></p>
+
+          </div>
+
+          <button
+            class="btn"
+            id="addItemBtn"
+          >
+            ＋ Add Item
+          </button>
+
+        </div>
+
+        <div
+          id="adminItemList"
+          class="admin-list"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SETTINGS -->
+
+    <div
+      id="settingsAdmin"
+      class="hidden"
+    >
+
+      <div class="admin-panel">
+
+        <h2>
+          Website Settings
+        </h2>
+
+        <p class="admin-panel-note">
+          Customize the public website.
+        </p>
+
+
+        <div class="form-row">
+
+          <label>
+            Brand Name
+          </label>
+
+          <input
+            class="field"
+            id="settingBrand"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label>
+            Header Tagline
+          </label>
+
+          <input
+            class="field"
+            id="settingTagline"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label>
+            Hero Eyebrow
+          </label>
+
+          <input
+            class="field"
+            id="settingEyebrow"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label>
+            Hero Title
+          </label>
+
+          <input
+            class="field"
+            id="settingHeroTitle"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label>
+            Hero Description
+          </label>
+
+          <textarea
+            class="field"
+            id="settingHeroDescription"
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label>
+            Collection Section Title
+          </label>
+
+          <input
+            class="field"
+            id="settingCollectionHeading"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label>
+            Collection Section Description
+          </label>
+
+          <input
+            class="field"
+            id="settingCollectionSubheading"
+          >
+
+        </div>
+
+
+
+        <hr
+          style="
+            border:0;
+            border-top:1px solid #ffffff12;
+            margin:25px 0
+          "
+        >
+
+        <p
+          id="settingsStatus"
+          class="status"
+        ></p>
+
+        <button
+          class="btn green full"
+          id="saveSettingsBtn"
+        >
+          Save All Settings
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+</div>
+
+
+<!-- =========================================================
+     COLLECTION MODAL
+========================================================= -->
+
+<div
+  class="overlay"
+  id="collectionModal"
+>
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2 id="collectionModalTitle">
+        Add Collection
+      </h2>
+
+      <button
+        class="close"
+        data-close="collectionModal"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        Collection Name
+      </label>
+
+      <input
+        class="field"
+        id="collectionName"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        Description
+      </label>
+
+      <textarea
+        class="field"
+        id="collectionDesc"
+      ></textarea>
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        Icon
+      </label>
+
+      <input
+        class="field"
+        id="collectionIcon"
+        placeholder="📁"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        Card Color
+      </label>
+
+      <div
+        class="color-row"
+        id="colorChoices"
+      >
+
+        <button type="button" class="color-choice" data-color="#000000" aria-label="Black" title="Black" style="background-color:#000000"></button>
+        <button type="button" class="color-choice" data-color="#4B0082" aria-label="Indigo Purple" title="Indigo Purple" style="background-color:#4B0082"></button>
+        <button type="button" class="color-choice" data-color="#0B1F3A" aria-label="Deep Navy" title="Deep Navy" style="background-color:#0B1F3A"></button>
+        <button type="button" class="color-choice" data-color="#8B0000" aria-label="Dark Red" title="Dark Red" style="background-color:#8B0000"></button>
+        <button type="button" class="color-choice" data-color="#006400" aria-label="Dark Green" title="Dark Green" style="background-color:#006400"></button>
+        <button type="button" class="color-choice" data-color="#705000" aria-label="Deep Gold" title="Deep Gold" style="background-color:#705000"></button>
+        <button type="button" class="color-choice" data-color="#191970" aria-label="Midnight Blue" title="Midnight Blue" style="background-color:#191970"></button>
+        <button type="button" class="color-choice" data-color="#4A0E4E" aria-label="Dark Plum" title="Dark Plum" style="background-color:#4A0E4E"></button>
+        <button type="button" class="color-choice" data-color="#5A1A01" aria-label="Dark Brown" title="Dark Brown" style="background-color:#5A1A01"></button>
+        <button type="button" class="color-choice" data-color="#1B4332" aria-label="Forest Green" title="Forest Green" style="background-color:#1B4332"></button>
+
+      </div>
+
+    </div>
+<p
+      id="collectionModalStatus"
+      class="status"
+    ></p>
+
+
+    <div class="form-actions">
+
+      <button
+        class="btn green"
+        id="saveCollectionBtn"
+      >
+        Save Collection
+      </button>
+
+      <button
+        class="btn secondary"
+        data-close="collectionModal"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     ITEM MODAL
+========================================================= -->
+
+<div
+  class="overlay"
+  id="itemModal"
+>
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2 id="itemModalTitle">
+        Add Item
+      </h2>
+
+      <button
+        class="close"
+        data-close="itemModal"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        Item Title
+      </label>
+
+      <input
+        class="field"
+        id="itemTitle"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        Platform / Type
+      </label>
+
+      <input
+        class="field"
+        id="itemPlatform"
+        placeholder="ChatGPT, Meta AI, Direct Link..."
+      >
+
+    </div>
+
+
+    <!-- NEW TYPE SELECT -->
+
+    <div class="form-row">
+
+      <label>
+        Content Type
+      </label>
+
+      <select
+        class="field"
+        id="itemType"
+      >
+
+        <option value="hidden">
+          Hidden Content
+        </option>
+
+        <option value="link">
+          Link
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- HIDDEN CONTENT -->
+
+    <div
+      class="form-row"
+      id="hiddenContentRow"
+    >
+
+      <label>
+        Hidden Content
+      </label>
+
+      <textarea
+        class="field"
+        id="itemContent"
+        placeholder="Prompt, text, code, etc."
+      ></textarea>
+
+    </div>
+
+
+    <!-- LINK -->
+
+    <div
+      class="form-row hidden"
+      id="linkRow"
+    >
+
+      <label>
+        Link
+      </label>
+
+      <input
+        class="field"
+        id="itemLink"
+        type="url"
+        placeholder="https://example.com/"
+      >
+
+    </div>
+
+
+    <p
+      id="itemModalStatus"
+      class="status"
+    ></p>
+
+
+    <div class="form-actions">
+
+      <button
+        class="btn green"
+        id="saveItemBtn"
+      >
+        Save Item
+      </button>
+
+      <button
+        class="btn secondary"
+        data-close="itemModal"
+      >
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     UNAUTHORIZED MODAL
+========================================================= -->
+
+<div
+  class="overlay"
+  id="unauthorizedModal"
+>
+
+  <div class="modal error-modal">
+
+    <button
+      class="close"
+      id="closeUnauthorized"
+      style="position:absolute;right:20px;top:20px"
+    >
+      ×
+    </button>
+
+    <div class="error-icon">
+      ⚠️
+    </div>
+
+    <h2 style="font-size:1.7rem">
+      Admin Gmail Not Found
+    </h2>
+
+    <p class="modal-note">
+      This Google account is not authorized to access the Admin Dashboard.
+    </p>
+
+    <button
+      class="btn secondary"
+      id="unauthorizedOk"
+    >
+      Try Again
+    </button>
+
+  </div>
+
+</div>
+
+
+<div id="saveSuccessOverlay" class="save-success-overlay" role="status" aria-live="polite" aria-hidden="true">
+  <div class="save-success-card">
+    <div class="save-success-check" aria-hidden="true">✓</div>
+    <div class="save-success-title">Save All Settings Successful!</div>
+    <div class="save-success-subtitle">Your changes have been saved successfully.</div>
+  </div>
+</div>
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB6WxK_Ty-FxfG-rAScxtY8t5VjqXnoSLA",
+
+  authDomain:
+    "maishnwork-65719.firebaseapp.com",
+
+  databaseURL:
+    "https://maishnwork-65719-default-rtdb.firebaseio.com",
+
+  projectId:
+    "maishnwork-65719",
+
+  storageBucket:
+    "maishnwork-65719.firebasestorage.app",
+
+  messagingSenderId:
+    "472199331646",
+
+  appId:
+    "1:472199331646:web:f5d64df7ab68fc7cceb66f",
+
+  measurementId:
+    "G-HHFSBHX254"
+
+};
+
+
+const ADMIN_EMAIL =
+  "maishn.work@gmail.com";
+
+
+firebase.initializeApp(
+  firebaseConfig
+);
+
+
+const auth =
+  firebase.auth();
+
+const db =
+  firebase.firestore();
+
+
+const $ =
+  id => document.getElementById(id);
+
+
+const safe =
+  value => String(value ?? "");
+
+
+let currentUser = null;
+
+let collections = [];
+
+let currentCollection = null;
+
+let currentItems = [];
+
+let editingCollectionId = null;
+
+let editingItemId = null;
+
+// Paste your active Adsterra Direct Link URL here. Do not use a normal website URL.
+// The sponsored link is shown only inside Collection pages, never on the homepage.
+const ADSTERRA_DIRECT_LINK = "https://auctionr.org/4/e387fc17908bca86646faef13fb40ce3";
+
+const COLLECTION_CARD_COLORS = [
+  { hex: "#000000", name: "Black" },
+  { hex: "#4B0082", name: "Indigo Purple" },
+  { hex: "#0B1F3A", name: "Deep Navy" },
+  { hex: "#8B0000", name: "Dark Red" },
+  { hex: "#006400", name: "Dark Green" },
+  { hex: "#705000", name: "Deep Gold" },
+  { hex: "#191970", name: "Midnight Blue" },
+  { hex: "#4A0E4E", name: "Dark Plum" },
+  { hex: "#5A1A01", name: "Dark Brown" },
+  { hex: "#1B4332", name: "Forest Green" }
+];
+let selectedColor = "#4B0082";
+
+
+let settings = {
+
+  brandName:
+    "Maishn.Work",
+
+  tagline:
+    "Handcrafted prompts for smarter AI workflows.",
+
+  eyebrow:
+    "MAISHN.WORK COLLECTIONS",
+
+  heroTitle:
+    "Maishn.Work",
+
+  heroDescription:
+    "Discover useful collections and copy exactly what you need.",
+
+  collectionHeading:
+    "Explore Collections",
+
+  collectionSubheading:
+    "Choose a collection to continue.",
+
+
+};
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function isAdmin(){
+
+  return !!currentUser &&
+    !!currentUser.email &&
+    currentUser.email.toLowerCase() ===
+      ADMIN_EMAIL.toLowerCase();
+
+}
+
+
+function toast(message){
+
+  const el =
+    $("toast");
+
+  el.textContent =
+    message;
+
+  el.classList.add("show");
+
+  clearTimeout(
+    window.__toastTimer
+  );
+
+  window.__toastTimer =
+    setTimeout(()=>{
+
+      el.classList.remove("show");
+
+    },1700);
+
+}
+
+
+function status(
+  id,
+  message,
+  error=false
+){
+
+  const el =
+    $(id);
+
+  if(!el) return;
+
+  el.textContent =
+    message;
+
+  el.classList.toggle(
+    "error",
+    error
+  );
+
+}
+
+
+function openModal(id){
+
+  $(id)
+    .classList
+    .add("show");
+
+}
+
+
+function closeModal(id){
+
+  $(id)
+    .classList
+    .remove("show");
+
+}
+
+
+/* =========================================================
+   ROUTING
+========================================================= */
+
+function route(){
+
+  const hash =
+    location.hash;
+
+  if(hash === "#admin"){
+
+    showAdminRoute();
+
+    return;
+  }
+
+
+  if(
+    hash.startsWith(
+      "#collection/"
+    )
+  ){
+
+    const id =
+      decodeURIComponent(
+        hash.substring(
+          "#collection/".length
+        )
+      );
+
+    openCollectionById(id);
+
+    return;
+  }
+
+
+  showHome();
+
+}
+
+
+function showHome(){
+
+  $("homeView")
+    .classList
+    .remove("hidden");
+
+  $("collectionView")
+    .classList
+    .add("hidden");
+
+  $("adminLoginView")
+    .classList
+    .add("hidden");
+
+  $("adminView")
+    .classList
+    .add("hidden");
+
+}
+
+
+function showAdminRoute(){
+
+  $("homeView")
+    .classList
+    .add("hidden");
+
+  $("collectionView")
+    .classList
+    .add("hidden");
+
+
+  if(isAdmin()){
+
+    $("adminLoginView")
+      .classList
+      .add("hidden");
+
+    $("adminView")
+      .classList
+      .remove("hidden");
+
+    return;
+  }
+
+
+  $("adminView")
+    .classList
+    .add("hidden");
+
+  $("adminLoginView")
+    .classList
+    .remove("hidden");
+
+}
+
+
+async function openCollectionById(id){
+
+  const collection =
+    collections.find(
+      item => item.id === id
+    );
+
+
+  if(!collection){
+
+    showHome();
+
+    return;
+  }
+
+
+  currentCollection =
+    collection;
+
+
+  $("homeView")
+    .classList
+    .add("hidden");
+
+  $("adminLoginView")
+    .classList
+    .add("hidden");
+
+  $("adminView")
+    .classList
+    .add("hidden");
+
+  $("collectionView")
+    .classList
+    .remove("hidden");
+
+
+  $("collectionTitle")
+    .textContent =
+      safe(collection.name);
+
+
+  $("collectionDescription")
+    .textContent =
+      safe(collection.description);
+
+
+  $("collectionBadge")
+    .textContent =
+      safe(collection.name)
+        .toUpperCase();
+
+  // Keep advertising separate from core tool buttons. Show it only within a Collection.
+  const sponsoredWrap = document.getElementById("collectionSponsoredWrap");
+  const sponsoredLink = document.getElementById("collectionSponsoredLink");
+  const configuredAdLink = String(ADSTERRA_DIRECT_LINK || "").trim();
+  const validAdLink = /^https?:\/\//i.test(configuredAdLink) && !configuredAdLink.includes("PASTE_YOUR_ADSTERRA_DIRECT_LINK_HERE");
+  if (sponsoredWrap && sponsoredLink) {
+    sponsoredWrap.hidden = !validAdLink;
+    if (validAdLink) {
+      sponsoredLink.href = configuredAdLink;
+      sponsoredLink.target = "_self";
+    } else {
+      sponsoredLink.removeAttribute("href");
+    }
+  }
+
+  $("itemSearch")
+    .value = "";
+  const clearItem = document.getElementById("clearItemSearch");
+  const itemSuggestions = document.getElementById("itemSearchSuggestions");
+  if (clearItem) clearItem.hidden = true;
+  if (itemSuggestions) itemSuggestions.hidden = true;
+
+  await loadItems(
+    collection.id
+  );
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function applySettings(){
+
+  $("brandName")
+    .textContent =
+      settings.brandName;
+
+  $("brandTagline")
+    .textContent =
+      settings.tagline;
+
+  $("heroEyebrow")
+    .textContent =
+      settings.eyebrow;
+
+  $("heroTitle")
+    .textContent =
+      settings.heroTitle;
+
+  $("heroDescription")
+    .textContent =
+      settings.heroDescription;
+
+
+  $("collectionHeading")
+    .textContent =
+      settings.collectionHeading;
+
+  $("collectionSubheading")
+    .textContent =
+      settings.collectionSubheading;
+
+
+  document.title =
+    settings.brandName;
+
+
+}
+
+
+async function loadSettings(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("site")
+        .doc("settings")
+        .get();
+
+
+    if(snap.exists){
+
+      const data =
+        snap.data();
+
+
+      settings = {
+
+        ...settings,
+
+        ...data,
+
+      };
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Settings:",
+      error
+    );
+
+  }
+
+
+  applySettings();
+
+  fillSettingsForm();
+
+}
+
+
+function fillSettingsForm(){
+
+  $("settingBrand")
+    .value =
+      settings.brandName;
+
+  $("settingTagline")
+    .value =
+      settings.tagline;
+
+  $("settingEyebrow")
+    .value =
+      settings.eyebrow;
+
+  $("settingHeroTitle")
+    .value =
+      settings.heroTitle;
+
+  $("settingHeroDescription")
+    .value =
+      settings.heroDescription;
+
+  $("settingCollectionHeading")
+    .value =
+      settings.collectionHeading;
+
+  $("settingCollectionSubheading")
+    .value =
+      settings.collectionSubheading;
+
+
+}
+
+
+/* =========================================================
+   COLLECTIONS
+========================================================= */
+
+async function loadCollections(){
+
+  try{
+
+    const snap =
+      await db
+        .collection("collections")
+        .orderBy("order","asc")
+        .get();
+
+
+    collections =
+      snap.docs.map(
+        doc => ({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+
+  }catch(error){
+
+    console.warn(
+      "Ordered query failed.",
+      error
+    );
+
+
+    try{
+
+      const snap =
+        await db
+          .collection("collections")
+          .get();
+
+
+      collections =
+        snap.docs.map(
+          doc => ({
+            id:doc.id,
+            ...doc.data()
+          })
+        );
+
+
+      collections.sort(
+        (a,b)=>
+          Number(a.order || 0) -
+          Number(b.order || 0)
+      );
+
+
+    }catch(secondError){
+
+      console.error(
+        secondError
+      );
+
+      collections = [];
+
+    }
+
+  }
+
+
+  renderCollections();
+
+  renderAdminCollections();
+
+}
+
+
+function renderCollections(){
+
+  const grid =
+    $("collectionGrid");
+
+  grid.innerHTML = "";
+
+
+  if(!collections.length){
+
+    grid.innerHTML = `
+      <div class="empty">
+        No collections available yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  collections.forEach(
+    (collection,index)=>{
+
+      const card =
+        document.createElement(
+          "button"
+        );
+
+
+      card.className =
+        "collection-card";
+
+
+      const allowedCardColors = COLLECTION_CARD_COLORS.map(color => color.hex);
+      const savedCardColor = String(collection.color || "").toUpperCase();
+      const effectiveCardColor = allowedCardColors.includes(savedCardColor)
+        ? savedCardColor
+        : COLLECTION_CARD_COLORS[index % COLLECTION_CARD_COLORS.length].hex;
+      card.style.setProperty("--collection-color", effectiveCardColor);
+      card.style.setProperty("--card-bg", effectiveCardColor);
+      card.style.setProperty("--card-text", "#FFFFFF");
+
+
+      card.style.animationDelay =
+        Math.min(
+          index * 50,
+          500
+        ) + "ms";
+
+
+      const icon =
+        document.createElement(
+          "div"
+        );
+
+      icon.className =
+        "collection-icon";
+
+      icon.textContent =
+        safe(collection.icon) ||
+        "📁";
+
+
+      const title =
+        document.createElement(
+          "h3"
+        );
+
+      title.textContent =
+        safe(collection.name);
+
+
+      const description =
+        document.createElement(
+          "p"
+        );
+
+      description.textContent =
+        safe(collection.description);
+
+
+      const arrow =
+        document.createElement(
+          "span"
+        );
+
+      arrow.className =
+        "collection-arrow";
+
+      arrow.textContent =
+        "↗";
+
+
+      card.append(
+        icon,
+        title,
+        description,
+        arrow
+      );
+
+
+      card.onclick =
+        () => {
+
+          location.hash =
+            "collection/" +
+            encodeURIComponent(
+              collection.id
+            );
+
+        };
+
+
+      grid.append(card);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   PUBLIC ITEMS
+========================================================= */
+
+async function loadItems(
+  collectionId
+){
+
+  const grid =
+    $("itemGrid");
+
+
+  grid.innerHTML = `
+    <div class="empty">
+      Loading items...
+    </div>
+  `;
+
+
+  try{
+
+    let snap;
+
+
+    try{
+
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .orderBy("order","asc")
+          .get();
+
+
+    }catch(error){
+
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .get();
+
+    }
+
+
+    currentItems =
+      snap.docs.map(
+        doc => ({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+
+    currentItems.sort(
+      (a,b)=>
+        Number(a.order || 0) -
+        Number(b.order || 0)
+    );
+
+
+    renderItems();
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    grid.innerHTML = `
+      <div class="empty">
+        Could not load items.
+      </div>
+    `;
+
+  }
+
+}
+
+
+function renderItems(){
+
+  const query =
+    $("itemSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const list =
+    currentItems.filter(item => {
+      return (safe(item.title) + " " + safe(item.platform)).toLowerCase().includes(query);
+    }).sort((a, b) => {
+      if (!query) return Number(a.order || 0) - Number(b.order || 0);
+      const aTitle = safe(a.title).toLowerCase();
+      const bTitle = safe(b.title).toLowerCase();
+      const aScore = aTitle === query ? 0 : aTitle.startsWith(query) ? 1 : aTitle.includes(query) ? 2 : 3;
+      const bScore = bTitle === query ? 0 : bTitle.startsWith(query) ? 1 : bTitle.includes(query) ? 2 : 3;
+      return aScore - bScore || Number(a.order || 0) - Number(b.order || 0);
+    });
+
+
+  const grid =
+    $("itemGrid");
+
+
+  grid.innerHTML = "";
+
+
+  if(!list.length){
+
+    grid.innerHTML = `
+      <div class="empty">
+        No items found.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  list.forEach(
+    (item,index)=>{
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+      card.className =
+        "item-card";
+
+
+      const number =
+        document.createElement(
+          "div"
+        );
+
+      number.className =
+        "item-number";
+
+      number.textContent =
+        "#" +
+        String(index + 1)
+          .padStart(2,"0");
+
+
+      const top =
+        document.createElement(
+          "div"
+        );
+
+      top.className =
+        "item-top";
+
+
+      const title =
+        document.createElement(
+          "h3"
+        );
+
+      title.textContent =
+        safe(item.title);
+
+
+      top.append(title);
+
+
+      if(
+        safe(item.platform)
+      ){
+
+        const badge =
+          document.createElement(
+            "span"
+          );
+
+        badge.className =
+          "badge";
+
+        badge.textContent =
+          safe(item.platform);
+
+        top.append(badge);
+
+      }
+
+
+      /*
+        IMPORTANT:
+        Old items without a type are treated
+        as Hidden Content.
+      */
+
+      const itemType =
+        safe(
+          item.type ||
+          item.contentType ||
+          "hidden"
+        );
+
+
+      if(
+        itemType === "link"
+      ){
+
+        const open =
+          document.createElement(
+            "button"
+          );
+
+        open.className =
+          "btn copy-btn";
+
+        open.textContent =
+          "↗ Open";
+
+
+        open.onclick =
+          () => {
+
+            let url =
+              safe(item.link);
+
+
+            if(!url){
+
+              toast(
+                "Link not available."
+              );
+
+              return;
+            }
+
+
+            if(
+              !/^https?:\/\//i
+                .test(url)
+            ){
+
+              url =
+                "https://" +
+                url;
+
+            }
+
+
+            /*
+              Same tab.
+              No new tab.
+            */
+
+            window.location.href =
+              url;
+
+          };
+
+
+        card.append(
+          number,
+          top,
+          open
+        );
+
+
+      }else{
+
+        const copy =
+          document.createElement(
+            "button"
+          );
+
+        copy.className =
+          "btn copy-btn";
+
+        copy.textContent =
+          "📋 Copy";
+
+
+        copy.onclick =
+          async()=>{
+
+            const original =
+              copy.textContent;
+
+
+            try{
+
+              await navigator
+                .clipboard
+                .writeText(
+                  safe(item.content)
+                );
+
+
+            }catch(error){
+
+              const textarea =
+                document.createElement(
+                  "textarea"
+                );
+
+              textarea.value =
+                safe(item.content);
+
+              textarea.style.position =
+                "fixed";
+
+              textarea.style.opacity =
+                "0";
+
+              document.body.append(
+                textarea
+              );
+
+              textarea.select();
+
+              document.execCommand(
+                "copy"
+              );
+
+              textarea.remove();
+
+            }
+
+
+            copy.textContent =
+              "✓ Copied!";
+
+
+            toast(
+              "Content copied to clipboard"
+            );
+
+
+            setTimeout(
+              () => {
+
+                copy.textContent =
+                  original;
+
+              },
+              1300
+            );
+
+          };
+
+
+        card.append(
+          number,
+          top,
+          copy
+        );
+
+      }
+
+
+      grid.append(card);
+
+    }
+  );
+
+}
+
+
+$("itemSearch")
+  .addEventListener(
+    "input",
+    renderItems
+  );
+
+
+/* =========================================================
+   ADMIN COLLECTION LIST
+========================================================= */
+
+function renderAdminCollections(){
+
+  const list =
+    $("adminCollectionList");
+
+
+  list.innerHTML = "";
+
+
+  if(!collections.length){
+
+    list.innerHTML = `
+      <div class="empty">
+        No collections yet.
+        Create your first collection.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  collections.forEach(
+    collection => {
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+      row.className =
+        "admin-card";
+
+
+      const info =
+        document.createElement(
+          "div"
+        );
+
+      info.className =
+        "admin-info";
+
+
+      const strong =
+        document.createElement(
+          "strong"
+        );
+
+      strong.textContent =
+        safe(collection.name);
+
+
+      const small =
+        document.createElement(
+          "small"
+        );
+
+      small.textContent =
+        safe(collection.description);
+
+
+      info.append(
+        strong,
+        small
+      );
+
+
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+      actions.className =
+        "admin-actions";
+
+
+      const open =
+        document.createElement(
+          "button"
+        );
+
+      open.className =
+        "btn";
+
+      open.textContent =
+        "Open";
+
+      open.onclick =
+        () => {
+
+          openAdminFolder(
+            collection
+          );
+
+        };
+
+
+      const edit =
+        document.createElement(
+          "button"
+        );
+
+      edit.className =
+        "btn secondary";
+
+      edit.textContent =
+        "Edit";
+
+      edit.onclick =
+        () => {
+
+          showCollectionEditor(
+            collection
+          );
+
+        };
+
+
+      const del =
+        document.createElement(
+          "button"
+        );
+
+      del.className =
+        "btn red";
+
+      del.textContent =
+        "Delete";
+
+      del.onclick =
+        async()=>{
+
+          if(
+            !confirm(
+              "Delete this collection and all its items?"
+            )
+          ){
+
+            return;
+
+          }
+
+
+          try{
+
+            await deleteCollection(
+              collection.id
+            );
+
+            toast(
+              "Collection deleted"
+            );
+
+
+          }catch(error){
+
+            console.error(error);
+
+            alert(
+              "Delete failed. Check Firestore Rules."
+            );
+
+          }
+
+        };
+
+
+      actions.append(
+        open,
+        edit,
+        del
+      );
+
+
+      row.append(
+        info,
+        actions
+      );
+
+
+      list.append(row);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ADMIN FOLDER
+========================================================= */
+
+async function openAdminFolder(
+  collection
+){
+
+  if(!isAdmin())
+    return;
+
+
+  currentCollection =
+    collection;
+
+
+  $("collectionsAdmin")
+    .classList
+    .add("hidden");
+
+
+  $("folderAdmin")
+    .classList
+    .remove("hidden");
+
+
+  $("folderTitle")
+    .textContent =
+      safe(collection.name);
+
+
+  $("folderDescription")
+    .textContent =
+      safe(collection.description);
+
+
+  await loadAdminItems(
+    collection.id
+  );
+
+}
+
+
+$("backAdminCollections")
+  .onclick =
+    () => {
+
+      $("folderAdmin")
+        .classList
+        .add("hidden");
+
+      $("collectionsAdmin")
+        .classList
+        .remove("hidden");
+
+    };
+
+
+async function loadAdminItems(
+  collectionId
+){
+
+  const list =
+    $("adminItemList");
+
+
+  list.innerHTML = `
+    <div class="empty">
+      Loading items...
+    </div>
+  `;
+
+
+  try{
+
+    let snap;
+
+
+    try{
+
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .orderBy("order","asc")
+          .get();
+
+
+    }catch(error){
+
+      snap =
+        await db
+          .collection("collections")
+          .doc(collectionId)
+          .collection("items")
+          .get();
+
+    }
+
+
+    currentItems =
+      snap.docs.map(
+        doc => ({
+          id:doc.id,
+          ...doc.data()
+        })
+      );
+
+
+    currentItems.sort(
+      (a,b)=>
+        Number(a.order || 0) -
+        Number(b.order || 0)
+    );
+
+
+    renderAdminItems();
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    list.innerHTML = `
+      <div class="empty">
+        Could not load items.
+      </div>
+    `;
+
+  }
+
+}
+
+
+function renderAdminItems(){
+
+  const list =
+    $("adminItemList");
+
+
+  list.innerHTML = "";
+
+
+  if(!currentItems.length){
+
+    list.innerHTML = `
+      <div class="empty">
+        No items in this collection.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  currentItems.forEach(
+    (item,index)=>{
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+      row.className =
+        "admin-card";
+
+
+      const info =
+        document.createElement(
+          "div"
+        );
+
+      info.className =
+        "admin-info";
+
+
+      const title =
+        document.createElement(
+          "strong"
+        );
+
+      title.textContent =
+        "#" +
+        String(index + 1)
+          .padStart(2,"0") +
+        "  " +
+        safe(item.title);
+
+
+      const platform =
+        document.createElement(
+          "small"
+        );
+
+
+      const type =
+        safe(
+          item.type ||
+          item.contentType ||
+          "hidden"
+        );
+
+
+      platform.textContent =
+        safe(item.platform) +
+        " • " +
+        (
+          type === "link"
+            ? "Link"
+            : "Hidden Content"
+        );
+
+
+      info.append(
+        title,
+        platform
+      );
+
+
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+      actions.className =
+        "admin-actions";
+
+
+      const up =
+        document.createElement(
+          "button"
+        );
+
+      up.className =
+        "btn secondary";
+
+      up.textContent =
+        "↑";
+
+      up.disabled =
+        index === 0;
+
+      up.onclick =
+        () => {
+
+          moveItem(
+            index,
+            -1
+          );
+
+        };
+
+
+      const down =
+        document.createElement(
+          "button"
+        );
+
+      down.className =
+        "btn secondary";
+
+      down.textContent =
+        "↓";
+
+      down.disabled =
+        index ===
+        currentItems.length - 1;
+
+      down.onclick =
+        () => {
+
+          moveItem(
+            index,
+            1
+          );
+
+        };
+
+
+      const edit =
+        document.createElement(
+          "button"
+        );
+
+      edit.className =
+        "btn secondary";
+
+      edit.textContent =
+        "Edit";
+
+      edit.onclick =
+        () => {
+
+          showItemEditor(
+            item
+          );
+
+        };
+
+
+      const del =
+        document.createElement(
+          "button"
+        );
+
+      del.className =
+        "btn red";
+
+      del.textContent =
+        "Delete";
+
+      del.onclick =
+        async()=>{
+
+          if(
+            !confirm(
+              "Delete this item?"
+            )
+          ){
+
+            return;
+
+          }
+
+
+          try{
+
+            await db
+              .collection(
+                "collections"
+              )
+              .doc(
+                currentCollection.id
+              )
+              .collection(
+                "items"
+              )
+              .doc(item.id)
+              .delete();
+
+
+            await loadAdminItems(
+              currentCollection.id
+            );
+
+
+            toast(
+              "Item deleted"
+            );
+
+
+          }catch(error){
+
+            console.error(error);
+
+            alert(
+              "Delete failed. Check Firestore Rules."
+            );
+
+          }
+
+        };
+
+
+      actions.append(
+        up,
+        down,
+        edit,
+        del
+      );
+
+
+      row.append(
+        info,
+        actions
+      );
+
+
+      list.append(row);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   DELETE COLLECTION
+========================================================= */
+
+async function deleteCollection(
+  id
+){
+
+  const collectionRef =
+    db
+      .collection("collections")
+      .doc(id);
+
+
+  const items =
+    await collectionRef
+      .collection("items")
+      .get();
+
+
+  const batch =
+    db.batch();
+
+
+  items.forEach(
+    doc => {
+
+      batch.delete(
+        doc.ref
+      );
+
+    }
+  );
+
+
+  batch.delete(
+    collectionRef
+  );
+
+
+  await batch.commit();
+
+
+  await loadCollections();
+
+}
+
+
+/* =========================================================
+   REORDER ITEMS
+========================================================= */
+
+async function moveItem(
+  index,
+  direction
+){
+
+  if(!currentCollection)
+    return;
+
+
+  const newIndex =
+    index + direction;
+
+
+  if(
+    newIndex < 0 ||
+    newIndex >=
+      currentItems.length
+  ){
+
+    return;
+
+  }
+
+
+  const a =
+    currentItems[index];
+
+  const b =
+    currentItems[newIndex];
+
+
+  try{
+
+    const batch =
+      db.batch();
+
+
+    const refA =
+      db
+        .collection("collections")
+        .doc(currentCollection.id)
+        .collection("items")
+        .doc(a.id);
+
+
+    const refB =
+      db
+        .collection("collections")
+        .doc(currentCollection.id)
+        .collection("items")
+        .doc(b.id);
+
+
+    batch.update(
+      refA,
+      {
+        order:newIndex
+      }
+    );
+
+
+    batch.update(
+      refB,
+      {
+        order:index
+      }
+    );
+
+
+    await batch.commit();
+
+
+    await loadAdminItems(
+      currentCollection.id
+    );
+
+
+    toast(
+      "Order updated"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Could not reorder. Check Firestore Rules."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   COLLECTION EDITOR
+========================================================= */
+
+function showCollectionEditor(
+  collection=null
+){
+
+  editingCollectionId =
+    collection
+      ? collection.id
+      : null;
+
+
+  $("collectionModalTitle")
+    .textContent =
+      collection
+        ? "Edit Collection"
+        : "Add Collection";
+
+
+  $("collectionName")
+    .value =
+      collection
+        ? safe(collection.name)
+        : "";
+
+
+  $("collectionDesc")
+    .value =
+      collection
+        ? safe(collection.description)
+        : "";
+
+
+  $("collectionIcon")
+    .value =
+      collection
+        ? safe(collection.icon)
+        : "📁";
+
+
+  const allowedCardColors = COLLECTION_CARD_COLORS.map(color => color.hex);
+  const savedCardColor = String(collection && collection.color || "").toUpperCase();
+  selectedColor = allowedCardColors.includes(savedCardColor) ? savedCardColor : "#4B0082";
+
+
+  updateColorSelection();
+
+
+  status(
+    "collectionModalStatus",
+    ""
+  );
+
+
+  openModal(
+    "collectionModal"
+  );
+
+}
+
+
+$("addCollectionBtn")
+  .onclick =
+    () => {
+
+      showCollectionEditor();
+
+    };
+
+
+function updateColorSelection(){
+  const allowedCardColors = COLLECTION_CARD_COLORS.map(color => color.hex);
+  document.querySelectorAll(".color-choice").forEach(button => {
+    const color = String(button.dataset.color || "").toUpperCase();
+    // Global button styles use !important, so set the swatch color with priority too.
+    if (allowedCardColors.includes(color)) {
+      button.style.setProperty("background", color, "important");
+      button.style.setProperty("background-color", color, "important");
+    }
+    button.classList.toggle("selected", color === selectedColor);
+    button.setAttribute("aria-pressed", color === selectedColor ? "true" : "false");
+  });
+}
+
+
+document
+  .querySelectorAll(
+    ".color-choice"
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        () => {
+
+          selectedColor =
+            button.dataset.color;
+
+          updateColorSelection();
+
+        };
+
+    }
+  );
+
+
+$("saveCollectionBtn")
+  .onclick =
+    async()=>{
+
+      if(!isAdmin())
+        return;
+
+
+      const name =
+        $("collectionName")
+          .value
+          .trim();
+
+
+      const description =
+        $("collectionDesc")
+          .value
+          .trim();
+
+
+      const icon =
+        $("collectionIcon")
+          .value
+          .trim() ||
+        "📁";
+
+
+      if(!name){
+
+        status(
+          "collectionModalStatus",
+          "Collection name is required.",
+          true
+        );
+
+        return;
+      }
+
+
+      const button =
+        $("saveCollectionBtn");
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+        if(
+          editingCollectionId
+        ){
+
+          await db
+            .collection(
+              "collections"
+            )
+            .doc(
+              editingCollectionId
+            )
+            .update({
+
+              name,
+
+              description,
+
+              icon,
+
+              color:
+                selectedColor,
+
+
+              updatedAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp()
+
+            });
+
+
+          toast(
+            "Collection updated"
+          );
+
+
+        }else{
+
+          const order =
+            collections.length;
+
+
+          await db
+            .collection(
+              "collections"
+            )
+            .add({
+
+              name,
+
+              description,
+
+              icon,
+
+              color:
+                selectedColor,
+
+
+              order,
+
+              createdAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp(),
+
+              updatedAt:
+                firebase.firestore
+                  .FieldValue
+                  .serverTimestamp()
+
+            });
+
+
+          toast(
+            "Collection created"
+          );
+
+        }
+
+
+        closeModal(
+          "collectionModal"
+        );
+
+
+        await loadCollections();
+        showSaveSuccess(editingCollectionId ? "Collection Updated Successfully!" : "Collection Saved Successfully!");
+
+
+      }catch(error){
+
+        console.error(error);
+
+        status(
+          "collectionModalStatus",
+          "Could not save collection. Check Firestore Rules.",
+          true
+        );
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    };
+
+
+/* =========================================================
+   ITEM TYPE SWITCH
+========================================================= */
+
+function updateItemTypeFields(){
+
+  const type =
+    $("itemType")
+      .value;
+
+
+  if(type === "link"){
+
+    $("hiddenContentRow")
+      .classList
+      .add("hidden");
+
+
+    $("linkRow")
+      .classList
+      .remove("hidden");
+
+
+    /*
+      Clear Hidden Content
+      when Link is selected.
+    */
+
+    $("itemContent")
+      .value = "";
+
+
+  }else{
+
+    $("linkRow")
+      .classList
+      .add("hidden");
+
+
+    $("hiddenContentRow")
+      .classList
+      .remove("hidden");
+
+
+    /*
+      Clear Link
+      when Hidden Content is selected.
+    */
+
+    $("itemLink")
+      .value = "";
+
+  }
+
+}
+
+
+$("itemType")
+  .addEventListener(
+    "change",
+    updateItemTypeFields
+  );
+
+
+/* =========================================================
+   ITEM EDITOR
+========================================================= */
+
+function showItemEditor(
+  item=null
+){
+
+  if(!currentCollection)
+    return;
+
+
+  editingItemId =
+    item
+      ? item.id
+      : null;
+
+
+  $("itemModalTitle")
+    .textContent =
+      item
+        ? "Edit Item"
+        : "Add Item";
+
+
+  $("itemTitle")
+    .value =
+      item
+        ? safe(item.title)
+        : "";
+
+
+  $("itemPlatform")
+    .value =
+      item
+        ? safe(item.platform)
+        : "";
+
+
+  /*
+    Support both:
+    type
+    and old contentType
+  */
+
+  const type =
+    item
+      ? safe(
+          item.type ||
+          item.contentType ||
+          "hidden"
+        )
+      : "hidden";
+
+
+  $("itemType")
+    .value =
+      type === "link"
+        ? "link"
+        : "hidden";
+
+
+  $("itemContent")
+    .value =
+      item
+        ? safe(item.content)
+        : "";
+
+
+  $("itemLink")
+    .value =
+      item
+        ? safe(item.link)
+        : "";
+
+
+  updateItemTypeFields();
+
+
+  /*
+    Important:
+    updateItemTypeFields clears
+    the opposite field.
+    So restore the selected
+    field after switching.
+  */
+
+  if(
+    $("itemType").value ===
+    "link"
+  ){
+
+    $("itemLink")
+      .value =
+        item
+          ? safe(item.link)
+          : "";
+
+  }else{
+
+    $("itemContent")
+      .value =
+        item
+          ? safe(item.content)
+          : "";
+
+  }
+
+
+  status(
+    "itemModalStatus",
+    ""
+  );
+
+
+  openModal(
+    "itemModal"
+  );
+
+}
+
+
+$("addItemBtn")
+  .onclick =
+    () => {
+
+      showItemEditor();
+
+    };
+
+
+/* =========================================================
+   SAVE ITEM
+========================================================= */
+
+$("saveItemBtn")
+  .onclick =
+    async()=>{
+
+      if(
+        !isAdmin() ||
+        !currentCollection
+      ){
+
+        return;
+
+      }
+
+
+      const title =
+        $("itemTitle")
+          .value
+          .trim();
+
+
+      const platform =
+        $("itemPlatform")
+          .value
+          .trim();
+
+
+      const type =
+        $("itemType")
+          .value;
+
+
+      const content =
+        $("itemContent")
+          .value
+          .trim();
+
+
+      let link =
+        $("itemLink")
+          .value
+          .trim();
+
+
+      /* TITLE */
+
+      if(!title){
+
+        status(
+          "itemModalStatus",
+          "Item title is required.",
+          true
+        );
+
+        return;
+
+      }
+
+
+      /* HIDDEN CONTENT */
+
+      if(
+        type === "hidden" &&
+        !content
+      ){
+
+        status(
+          "itemModalStatus",
+          "Hidden Content is required.",
+          true
+        );
+
+        return;
+
+      }
+
+
+      /* LINK */
+
+      if(
+        type === "link" &&
+        !link
+      ){
+
+        status(
+          "itemModalStatus",
+          "Link is required.",
+          true
+        );
+
+        return;
+
+      }
+
+
+      /* URL */
+
+      if(type === "link"){
+
+        try{
+
+          if(
+            !/^https?:\/\//i
+              .test(link)
+          ){
+
+            link =
+              "https://" +
+              link;
+
+          }
+
+
+          link =
+            new URL(link).href;
+
+
+        }catch(error){
+
+          status(
+            "itemModalStatus",
+            "Please enter a valid URL.",
+            true
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      const button =
+        $("saveItemBtn");
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+        const ref =
+          db
+            .collection(
+              "collections"
+            )
+            .doc(
+              currentCollection.id
+            )
+            .collection(
+              "items"
+            );
+
+
+        const itemData = {
+
+          title,
+
+          platform,
+
+          type,
+
+          /*
+            Hidden Content only.
+            Link items get empty content.
+          */
+
+          content:
+            type === "hidden"
+              ? content
+              : "",
+
+          /*
+            Link only.
+            Hidden items get empty link.
+          */
+
+          link:
+            type === "link"
+              ? link
+              : "",
+
+          updatedAt:
+            firebase.firestore
+              .FieldValue
+              .serverTimestamp()
+
+        };
+
+
+        if(editingItemId){
+
+          await ref
+            .doc(
+              editingItemId
+            )
+            .update(
+              itemData
+            );
+
+
+          toast(
+            "Item updated"
+          );
+
+
+        }else{
+
+          await ref.add({
+
+            ...itemData,
+
+            order:
+              currentItems.length,
+
+            createdAt:
+              firebase.firestore
+                .FieldValue
+                .serverTimestamp()
+
+          });
+
+
+          toast(
+            "Item added"
+          );
+
+        }
+
+
+        closeModal(
+          "itemModal"
+        );
+
+
+        await loadAdminItems(
+          currentCollection.id
+        );
+        showSaveSuccess(editingItemId ? "Item Updated Successfully!" : "Item Saved Successfully!");
+
+
+      }catch(error){
+
+        console.error(error);
+
+        status(
+          "itemModalStatus",
+          "Could not save item. Check Firestore Rules.",
+          true
+        );
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    };
+
+
+
+function showSaveSuccess(message = "Save Successful!"){
+  const overlay = $("saveSuccessOverlay");
+  if(!overlay) return;
+  const title = overlay.querySelector(".save-success-title");
+  const subtitle = overlay.querySelector(".save-success-subtitle");
+  if(title) title.textContent = message;
+  if(subtitle) subtitle.textContent = "Your changes have been saved successfully.";
+  overlay.classList.add("show");
+  overlay.setAttribute("aria-hidden", "false");
+  clearTimeout(window.__settingsSuccessTimer);
+  window.__settingsSuccessTimer = setTimeout(()=>{
+    overlay.classList.remove("show");
+    overlay.setAttribute("aria-hidden", "true");
+  }, 2000);
+}
+
+$("saveSettingsBtn")
+  .onclick =
+    async()=>{
+
+      if(!isAdmin())
+        return;
+
+
+      const button =
+        $("saveSettingsBtn");
+
+
+      button.disabled =
+        true;
+
+
+      try{
+
+        const updated = {
+
+          brandName:
+            $("settingBrand")
+              .value,
+
+          tagline:
+            $("settingTagline")
+              .value,
+
+          eyebrow:
+            $("settingEyebrow")
+              .value,
+
+          heroTitle:
+            $("settingHeroTitle")
+              .value,
+
+          heroDescription:
+            $("settingHeroDescription")
+              .value,
+
+          collectionHeading:
+            $("settingCollectionHeading")
+              .value,
+
+          collectionSubheading:
+            $("settingCollectionSubheading")
+              .value,
+
+          updatedAt:
+            firebase.firestore
+              .FieldValue
+              .serverTimestamp()
+
+        };
+
+
+        await db
+          .collection("site")
+          .doc("settings")
+          .set(
+            updated,
+            {
+              merge:true
+            }
+          );
+
+
+        settings = {
+
+          ...settings,
+
+          ...updated
+
+        };
+
+
+        applySettings();
+
+
+        status(
+          "settingsStatus",
+          "Settings saved successfully."
+        );
+
+        showSaveSuccess("Save All Settings Successful!");
+        toast("Settings saved successfully");
+
+
+      }catch(error){
+
+        console.error(error);
+
+        status(
+          "settingsStatus",
+          "Could not save settings. Check Firestore Rules.",
+          true
+        );
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    };
+
+
+/* =========================================================
+   ADMIN TABS
+========================================================= */
+
+$("collectionsTab")
+  .onclick =
+    () => {
+
+      $("collectionsTab")
+        .classList
+        .add("active");
+
+      $("settingsTab")
+        .classList
+        .remove("active");
+
+
+      $("collectionsAdmin")
+        .classList
+        .remove("hidden");
+
+      $("folderAdmin")
+        .classList
+        .add("hidden");
+
+      $("settingsAdmin")
+        .classList
+        .add("hidden");
+
+    };
+
+
+$("settingsTab")
+  .onclick =
+    () => {
+
+      $("settingsTab")
+        .classList
+        .add("active");
+
+      $("collectionsTab")
+        .classList
+        .remove("active");
+
+
+      $("collectionsAdmin")
+        .classList
+        .add("hidden");
+
+      $("folderAdmin")
+        .classList
+        .add("hidden");
+
+      $("settingsAdmin")
+        .classList
+        .remove("hidden");
+
+
+      fillSettingsForm();
+
+    };
+
+
+/* =========================================================
+   GOOGLE AUTH
+========================================================= */
+
+$("googleLogin")
+  .onclick =
+    async()=>{
+
+      const button =
+        $("googleLogin");
+
+
+      button.disabled =
+        true;
+
+
+      status(
+        "authStatus",
+        "Opening Google sign-in..."
+      );
+
+
+      try{
+
+        const provider =
+          new firebase.auth
+            .GoogleAuthProvider();
+
+
+        provider.setCustomParameters({
+
+          prompt:
+            "select_account"
+
+        });
+
+
+        const result =
+          await auth
+            .signInWithPopup(
+              provider
+            );
+
+
+        const signedUser =
+          result.user;
+
+
+        if(
+          !signedUser ||
+          !signedUser.email ||
+          signedUser.email
+            .toLowerCase() !==
+            ADMIN_EMAIL.toLowerCase()
+        ){
+
+          await auth.signOut();
+
+
+          openModal(
+            "unauthorizedModal"
+          );
+
+
+          status(
+            "authStatus",
+            ""
+          );
+
+
+          return;
+
+        }
+
+
+        currentUser =
+          signedUser;
+
+
+        showAdminDashboard();
+
+
+      }catch(error){
+
+        console.error(error);
+
+
+        if(
+          error.code ===
+          "auth/popup-closed-by-user"
+        ){
+
+          status(
+            "authStatus",
+            "Sign-in window was closed."
+          );
+
+
+        }else if(
+          error.code ===
+          "auth/unauthorized-domain"
+        ){
+
+          status(
+            "authStatus",
+            "This website domain is not authorized in Firebase Authentication.",
+            true
+          );
+
+
+        }else{
+
+          status(
+            "authStatus",
+            "Sign-in failed. Please try again.",
+            true
+          );
+
+        }
+
+
+      }finally{
+
+        button.disabled =
+          false;
+
+      }
+
+    };
+
+
+auth.onAuthStateChanged(
+  user => {
+
+    currentUser =
+      user;
+
+
+    if(
+      location.hash === "#admin" &&
+      user &&
+      isAdmin()
+    ){
+
+      showAdminDashboard();
+
+
+    }else if(
+      location.hash === "#admin"
+    ){
+
+      showAdminRoute();
+
+    }
+
+  }
+);
+
+
+function showAdminDashboard(){
+
+  $("homeView")
+    .classList
+    .add("hidden");
+
+  $("collectionView")
+    .classList
+    .add("hidden");
+
+  $("adminLoginView")
+    .classList
+    .add("hidden");
+
+  $("adminView")
+    .classList
+    .remove("hidden");
+
+
+  renderAdminCollections();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutBtn")
+  .onclick =
+    async()=>{
+
+      try{
+
+        await auth.signOut();
+
+
+        currentUser =
+          null;
+
+
+        $("adminView")
+          .classList
+          .add("hidden");
+
+
+        $("adminLoginView")
+          .classList
+          .remove("hidden");
+
+
+        status(
+          "authStatus",
+          "You have been signed out."
+        );
+
+
+      }catch(error){
+
+        console.error(
+          error
+        );
+
+      }
+
+    };
+
+
+/* =========================================================
+   UNAUTHORIZED MODAL
+========================================================= */
+
+function closeUnauthorizedModal(){
+
+  closeModal(
+    "unauthorizedModal"
+  );
+
+
+  status(
+    "authStatus",
+    ""
+  );
+
+}
+
+/* Load public collections on initial homepage visit, not only after admin actions. */
+loadCollections().catch(error => {
+  console.error("Could not initialize homepage collections:", error);
+});
+
+
+
+$("closeUnauthorized")
+  .onclick =
+    closeUnauthorizedModal;
+
+
+$("unauthorizedOk")
+  .onclick =
+    closeUnauthorizedModal;
+
+
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-close]"
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        () => {
+
+          closeModal(
+            button.dataset.close
+          );
+
+        };
+
+    }
+  );
+
+
+document
+  .querySelectorAll(
+    ".overlay"
+  )
+  .forEach(
+    overlay => {
+
+      overlay.addEventListener(
+        "click",
+        event => {
+
+          if(
+            event.target ===
+            overlay
+          ){
+
+            overlay.classList
+              .remove("show");
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+$("backHome")
+  .onclick =
+    () => {
+
+      location.hash =
+        "home";
+
+    };
+
+
+window.addEventListener(
+  "hashchange",
+  route
+);
+
+/* Live suggestions, relevance sorting and clear-search controls. */
+(function initLiveSearchEnhancements(){
+  const homeInput = document.getElementById("collectionSearch");
+  const homeClear = document.getElementById("clearCollectionSearch");
+  const homePanel = document.getElementById("collectionSearchSuggestions");
+  const itemInput = document.getElementById("itemSearch");
+  const itemClear = document.getElementById("clearItemSearch");
+  const itemPanel = document.getElementById("itemSearchSuggestions");
+
+  function addSuggestion(panel, label, meta, onChoose){
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "search-suggestion";
+    button.setAttribute("role", "option");
+    const title = document.createElement("span");
+    title.textContent = label;
+    button.appendChild(title);
+    if(meta){ const small=document.createElement("small"); small.textContent=meta; button.appendChild(small); }
+    button.addEventListener("click", onChoose);
+    panel.appendChild(button);
+  }
+
+  function updateHomeSearch(){
+    if(!homeInput || !homePanel) return;
+    const q = homeInput.value.trim().toLowerCase();
+    if(homeClear) homeClear.hidden = !q;
+    homePanel.innerHTML = "";
+    if(!q){ homePanel.hidden = true; renderCollections(); return; }
+    const matches = (collections || []).filter(c => (safe(c.name)+" "+safe(c.description)).toLowerCase().includes(q))
+      .sort((a,b)=>{
+        const an=safe(a.name).toLowerCase(), bn=safe(b.name).toLowerCase();
+        const as=an.startsWith(q)?0:an.includes(q)?1:2, bs=bn.startsWith(q)?0:bn.includes(q)?1:2;
+        return as-bs || Number(a.order||0)-Number(b.order||0);
+      });
+    // Keep the homepage cards filtered while typing.
+    const grid = document.getElementById("collectionGrid");
+    if(grid){
+      grid.innerHTML = "";
+      if(!matches.length){ grid.innerHTML='<div class="empty">No matching collections found.</div>'; }
+      else matches.forEach((collection,index)=>{
+        const originalQuery=homeInput.value;
+        const allowed = COLLECTION_CARD_COLORS.map(c=>c.hex);
+        const saved = String(collection.color||"").toUpperCase();
+        const color = allowed.includes(saved)?saved:COLLECTION_CARD_COLORS[index%COLLECTION_CARD_COLORS.length].hex;
+        const card=document.createElement("button"); card.className="collection-card";
+        card.style.setProperty("--collection-color",color); card.style.setProperty("--card-bg",color); card.style.setProperty("--card-text","#FFFFFF");
+        const icon=document.createElement("div"); icon.className="collection-icon"; icon.textContent=safe(collection.icon)||"📁";
+        const h=document.createElement("h3"); h.textContent=safe(collection.name);
+        const d=document.createElement("p"); d.textContent=safe(collection.description);
+        const arrow=document.createElement("span"); arrow.className="collection-arrow"; arrow.textContent="↗";
+        card.append(icon,h,d,arrow); card.addEventListener("click",()=>location.hash="collection/"+encodeURIComponent(collection.id)); grid.appendChild(card);
+      });
+    }
+    matches.slice(0,8).forEach(c=>addSuggestion(homePanel,safe(c.name),"Collection",()=>{
+      homeInput.value=safe(c.name); homePanel.hidden=true; updateHomeSearch(); location.hash="collection/"+encodeURIComponent(c.id);
+    }));
+    homePanel.hidden = matches.length===0;
+  }
+
+  function updateItemSearch(){
+    if(!itemInput || !itemPanel) return;
+    const q=itemInput.value.trim().toLowerCase();
+    if(itemClear) itemClear.hidden=!q;
+    itemPanel.innerHTML="";
+    renderItems();
+    if(!q){ itemPanel.hidden=true; return; }
+    const matches=(currentItems||[]).filter(item=>(safe(item.title)+" "+safe(item.platform)).toLowerCase().includes(q))
+      .sort((a,b)=>{
+        const an=safe(a.title).toLowerCase(),bn=safe(b.title).toLowerCase();
+        const as=an===q?0:an.startsWith(q)?1:an.includes(q)?2:3;
+        const bs=bn===q?0:bn.startsWith(q)?1:bn.includes(q)?2:3;
+        return as-bs || Number(a.order||0)-Number(b.order||0);
+      });
+    matches.slice(0,8).forEach(item=>addSuggestion(itemPanel,safe(item.title),safe(item.platform),()=>{
+      itemInput.value=safe(item.title); itemPanel.hidden=true; renderItems();
+      const cards=Array.from(document.querySelectorAll("#itemGrid .item-card"));
+      const found=cards.find(card=>card.querySelector("h3")?.textContent===safe(item.title));
+      if(found) found.scrollIntoView({behavior:"smooth",block:"center"});
+    }));
+    itemPanel.hidden=matches.length===0;
+  }
+
+  homeInput?.addEventListener("input",updateHomeSearch);
+  itemInput?.addEventListener("input",updateItemSearch);
+  homeClear?.addEventListener("click",()=>{homeInput.value=""; updateHomeSearch(); homeInput.focus();});
+  itemClear?.addEventListener("click",()=>{itemInput.value=""; updateItemSearch(); itemInput.focus();});
+  document.addEventListener("click",event=>{
+    if(homePanel && !homePanel.contains(event.target) && event.target!==homeInput) homePanel.hidden=true;
+    if(itemPanel && !itemPanel.contains(event.target) && event.target!==itemInput) itemPanel.hidden=true;
+  });
+  homeInput?.addEventListener("keydown",event=>{ if(event.key==="Escape"){homeInput.value="";updateHomeSearch();homePanel.hidden=true;} });
+  itemInput?.addEventListener("keydown",event=>{ if(event.key==="Escape"){itemInput.value="";updateItemSearch();itemPanel.hidden=true;} });
+})();
+
+
+</script>
+
+
+ <footer class="site-footer">
+<p class="footer-copyright">
+    &copy; 2026 Maishn. Work Official. All rights reserved.
+   </p>
+</footer>
+
+  
+</body>
+</html>
